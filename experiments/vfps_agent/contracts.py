@@ -626,8 +626,16 @@ class AttemptResult:
     error_code: ClosedErrorCode | None = None
     observed_model_hash: str | None = None
     late: bool = False
+    provider_evidence: Mapping[str, Any] | None = None
+    provider_evidence_hash: str | None = None
 
     def __post_init__(self) -> None:
+        if self.provider_evidence is not None:
+            object.__setattr__(
+                self,
+                "provider_evidence",
+                _freeze_mapping(self.provider_evidence, "provider_evidence"),
+            )
         if not isinstance(self.status, AttemptStatus):
             raise TypeError("status must be AttemptStatus")
         if not isinstance(self.usage_status, UsageStatus):
@@ -646,10 +654,20 @@ class AttemptResult:
                 raise ValueError("reported usage requires both token counts")
             if self.input_tokens < 0 or self.output_tokens < 0:
                 raise ValueError("token counts must be non-negative")
-        for name in ("provider_response_id_hash", "observed_model_hash"):
+        for name in (
+            "provider_response_id_hash",
+            "observed_model_hash",
+            "provider_evidence_hash",
+        ):
             value = getattr(self, name)
             if value is not None:
                 _require_sha256(value, name)
+        if (self.provider_evidence is None) != (self.provider_evidence_hash is None):
+            raise ValueError("provider evidence and its hash must be present together")
+        if self.provider_evidence is not None:
+            if canonical_sha256(self.provider_evidence) != self.provider_evidence_hash:
+                raise ValueError("provider_evidence_hash does not bind provider_evidence")
+            scan_forbidden_proxies(self.provider_evidence)
 
 
 @dataclass(frozen=True, slots=True)

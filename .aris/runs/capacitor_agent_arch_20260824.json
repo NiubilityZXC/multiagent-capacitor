@@ -6,7 +6,7 @@
     "provisional_advances": true
   },
   "created": "2026-08-24T04:52:38Z",
-  "updated": "2026-08-24T08:54:32Z",
+  "updated": "2026-08-24T10:23:31Z",
   "phases": [
     {
       "phase": "idea-discovery",
@@ -24,15 +24,15 @@
     {
       "phase": "experiment-bridge",
       "status": "running",
-      "artifact": "refine-logs/EXPERIMENT_CODE_REVIEW_20260824_165432.md",
-      "verdict_id": "m2-release-round2",
+      "artifact": "refine-logs/EXPERIMENT_CODE_REVIEW_20260824_182331.md",
+      "verdict_id": "m3-offline-postfix-release",
       "reviewer": "codex-gpt-5.6-sol",
       "reviewer_family": "openai",
       "review_independence": "same-family",
-      "acceptance_status": "provisional_mock_only",
+      "acceptance_status": "provisional_mock_only_with_local_evaluator_boundary",
       "executor_model": "codex-gpt-5.6-sol",
       "executor_family": "openai",
-      "updated": "2026-08-24T08:54:32Z"
+      "updated": "2026-08-24T10:23:31Z"
     },
     {
       "phase": "auto-review-loop",

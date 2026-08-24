@@ -31,6 +31,7 @@ from .runner import (
     _read_regular,
     _write_exclusive,
     build_causal_packet,
+    verify_durable_checkpoint,
     verify_prediction_phase,
 )
 
@@ -103,36 +104,18 @@ def _verify_checkpoint_for_reveal(
     paths: CAPRunPaths,
     checkpoint_record_hash: str,
     expected_origin_index: int,
+    expected_origin_hash: str,
+    expected_packet_hash: str,
+    allowed_policy_hashes: Sequence[str] = (),
 ) -> dict[str, Any]:
-    prediction_by_hash, execution_by_hash, checkpoint_by_hash = _checkpoint_maps(paths, sealed=False)
-    try:
-        checkpoint_record = checkpoint_by_hash[checkpoint_record_hash]
-    except KeyError as exc:
-        raise CAPM2Error("reveal checkpoint is absent from the durable ledger") from exc
-    checkpoint = checkpoint_record["payload"]
-    if checkpoint["origin_event_index"] != expected_origin_index:
-        raise CAPM2Error("reveal index is not the committed origin plus one")
-    try:
-        prediction = prediction_by_hash[checkpoint["prediction_record_hash"]]
-    except KeyError as exc:
-        raise CAPM2Error("checkpoint references no durable prediction") from exc
-    if prediction["payload"]["commit_id"] != checkpoint["commit_id"]:
-        raise CAPM2Error("checkpoint commit differs from its prediction")
-    referenced = checkpoint["execution_record_hashes"]
-    if len(referenced) != checkpoint["planned_key_count"]:
-        raise CAPM2Error("checkpoint planned-key count differs from its execution references")
-    for item in referenced:
-        try:
-            execution = execution_by_hash[item["record_hash"]]
-        except KeyError as exc:
-            raise CAPM2Error("checkpoint references no durable execution row") from exc
-        if (
-            execution["payload"]["commit_id"] != checkpoint["commit_id"]
-            or execution["payload"]["key_execution"]["key_token"] != item["key_token"]
-            or execution["payload"]["prediction_record_hash"] != checkpoint["prediction_record_hash"]
-        ):
-            raise CAPM2Error("checkpoint execution reference differs from the actual row")
-    return checkpoint_record
+    return verify_durable_checkpoint(
+        paths.root,
+        checkpoint_record_hash=checkpoint_record_hash,
+        expected_origin_index=expected_origin_index,
+        expected_origin_hash=expected_origin_hash,
+        expected_packet_hash=expected_packet_hash,
+        allowed_policy_hashes=allowed_policy_hashes,
+    )
 
 
 class BlindReplayService:
@@ -156,6 +139,7 @@ class BlindReplayService:
         allowed_conditions: Mapping[str, Any] | None = None,
         train_error_summaries: Mapping[str, Any] | None = None,
         diagnostic_bins: Mapping[str, Any] | None = None,
+        allowed_policy_hashes: Sequence[str] = (),
         resume: bool = False,
     ) -> None:
         self.paths = CAPRunPaths(Path(run_dir))
@@ -185,6 +169,7 @@ class BlindReplayService:
         self._conditions = dict(allowed_conditions or {})
         self._train = dict(train_error_summaries or {})
         self._diagnostics = dict(diagnostic_bins or {})
+        self._allowed_policy_hashes = tuple(allowed_policy_hashes)
         self._access = CanonicalJSONLLedger(self.paths.access, LedgerKind.ACCESS, resume=resume)
         self._closed = False
         access_records = read_verified_ledger_records(self.paths.access, expected_kind=LedgerKind.ACCESS)
@@ -227,10 +212,22 @@ class BlindReplayService:
         return tuple(event.revealed() for event in self._events[: self._revealed_count])
 
     def build_current_packet(self) -> Any:
-        prefix = self.current_prefix()
+        return self._build_packet_for_origin(self._revealed_count - 1)
+
+    def _build_packet_for_origin(self, origin_event_index: int) -> Any:
+        if (
+            isinstance(origin_event_index, bool)
+            or not isinstance(origin_event_index, int)
+            or origin_event_index < 0
+            or origin_event_index >= self._revealed_count
+        ):
+            raise CAPM2Error("packet origin is outside the causally revealed prefix")
+        prefix = tuple(
+            event.revealed() for event in self._events[: origin_event_index + 1]
+        )
         return build_causal_packet(
             packet_kind=self._packet_kind,
-            origin_event_index=prefix[-1].event_index,
+            origin_event_index=origin_event_index,
             availability_cutoff=prefix[-1].available_at,
             revealed_observations=prefix,
             causal_schema=self._schema,
@@ -245,20 +242,49 @@ class BlindReplayService:
     def reveal_next_after_checkpoint(self, checkpoint_record_hash: str) -> RevealedObservation:
         if self._closed:
             raise CAPM2Error("blind event service is closed")
-        if self._revealed_count >= len(self._events):
-            raise CAPM2Error("held-out stream has ended")
+        access_records = read_verified_ledger_records(
+            self.paths.access, expected_kind=LedgerKind.ACCESS
+        )
         used = {
-            record["payload"].get("checkpoint_record_hash")
-            for record in read_verified_ledger_records(self.paths.access, expected_kind=LedgerKind.ACCESS)
+            record["payload"].get("checkpoint_record_hash"): record
+            for record in access_records
             if record["payload"].get("checkpoint_record_hash") is not None
         }
         if checkpoint_record_hash in used:
-            raise CAPM2Error("one checkpoint cannot authorize two label reveals")
+            # Transport retry (including crash after ACCESS fsync but before
+            # reply) is idempotent: re-verify the full durable prediction chain
+            # and return exactly the already committed observation without a
+            # second ACCESS append or reveal-count change.
+            access_payload = used[checkpoint_record_hash]["payload"]
+            event_index = access_payload["revealed_event_index"]
+            origin_index = event_index - 1
+            packet = self._build_packet_for_origin(origin_index)
+            checkpoint_record = _verify_checkpoint_for_reveal(
+                paths=self.paths,
+                checkpoint_record_hash=checkpoint_record_hash,
+                expected_origin_index=origin_index,
+                expected_origin_hash=packet.opaque_origin_hash,
+                expected_packet_hash=packet.packet_hash,
+                allowed_policy_hashes=self._allowed_policy_hashes,
+            )
+            event = self._events[event_index]
+            if (
+                event.event_hash != access_payload["observation_hash"]
+                or checkpoint_record["payload"]["commit_id"] != access_payload["commit_id"]
+            ):
+                raise CAPM2Error("idempotent reveal differs from durable ACCESS evidence")
+            return event.revealed()
+        if self._revealed_count >= len(self._events):
+            raise CAPM2Error("held-out stream has ended")
         origin_index = self._revealed_count - 1
+        packet = self._build_packet_for_origin(origin_index)
         checkpoint_record = _verify_checkpoint_for_reveal(
             paths=self.paths,
             checkpoint_record_hash=checkpoint_record_hash,
             expected_origin_index=origin_index,
+            expected_origin_hash=packet.opaque_origin_hash,
+            expected_packet_hash=packet.packet_hash,
+            allowed_policy_hashes=self._allowed_policy_hashes,
         )
         event = self._events[self._revealed_count]
         if event.event_index != origin_index + 1:
@@ -281,7 +307,23 @@ class BlindReplayService:
 
         if self._closed:
             raise CAPM2Error("blind event service is closed")
+        # This is a strict pre-write barrier.  In particular, never create a
+        # maturity artifact containing a hidden suffix label and only later
+        # discover through verify_complete_run that the label was not revealed.
+        if self._revealed_count != len(self._events):
+            raise CAPM2Error("complete replay is required before maturity evaluation")
         prediction_report = verify_prediction_phase(self.paths.root)
+        prewrite_barrier = verify_access_barrier(
+            self.paths.root,
+            context=self._context,
+            require_access_seal=False,
+        )
+        if (
+            prewrite_barrier["revealed_count"] != len(self._events)
+            or prewrite_barrier["post_commit_reveal_count"]
+            != len(self._events) - self._context
+        ):
+            raise CAPM2Error("pre-write access barrier does not cover the complete hidden stream")
         self._access.seal(self.paths.seal_path(LedgerKind.ACCESS))
         self._access.close()
         verify_access_barrier(self.paths.root, context=self._context)
@@ -365,12 +407,17 @@ class BlindReplayService:
         self._closed = True
 
 
-def verify_access_barrier(run_dir: str | os.PathLike[str], *, context: int) -> dict[str, Any]:
+def verify_access_barrier(
+    run_dir: str | os.PathLike[str],
+    *,
+    context: int,
+    require_access_seal: bool = True,
+) -> dict[str, Any]:
     paths = CAPRunPaths(Path(run_dir))
     access = read_verified_ledger_records(
         paths.access,
         expected_kind=LedgerKind.ACCESS,
-        seal_path=paths.seal_path(LedgerKind.ACCESS),
+        seal_path=paths.seal_path(LedgerKind.ACCESS) if require_access_seal else None,
     )
     prediction_by_hash, execution_by_hash, checkpoint_by_hash = _checkpoint_maps(paths, sealed=True)
     used_checkpoints: set[str] = set()

@@ -1,0 +1,15 @@
+{
+  "call_number": 3,
+  "purpose": "m3-evaluator-fresh-review",
+  "timestamp": "2026-08-24T10:00:45Z",
+  "thread_id": "/root/m3_threat_review",
+  "model": "gpt-5.6-sol",
+  "executor_model": "codex-gpt-5.6-sol",
+  "executor_family": "openai",
+  "reviewer_family": "openai",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional_mock_only",
+  "effort": "inherited",
+  "fallback_reason": "",
+  "status": "ok"
+}

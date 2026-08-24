@@ -1,0 +1,11 @@
+{
+  "call_number": 3,
+  "purpose": "m3-evaluator-fresh-review",
+  "timestamp": "2026-08-24T10:00:45Z",
+  "tool": "followup_task",
+  "model": "gpt-5.6-sol",
+  "effort": "inherited",
+  "fallback_reason": "",
+  "status": "ok",
+  "prompt": "执行 fresh post-implementation evaluator read-only review。工作区 /home/user/multiagent-capacitor。不得联网/读env/改产品代码或tests。完整审查 evaluator_service.py、replay.py、runner.py 的 verify_durable_checkpoint、__init__.py、tests/test_vfps_evaluator_service.py，对照 refine-logs/EXPERIMENT_PLAN.md。攻击 hidden suffix/label进入client、supervisor handoff、framed IPC closed schema/HMAC/nonce/seq/hash chain、tamper/reorder/cross-session、duplicate/exact replay、ACCESS/COMPLETED fsync crash、checkpoint完整链、allowed policy/generation、FINALIZE seal/barrier、process cleanup、journal truncation/partial write、deadlock、TOCTOU、same UID/FS、client pending loss、自洽ledger伪造。运行focused tests/只读诊断。输出blockers/nonblockers与file:line、明确裁决 RELEASE_LOCAL_PROCESS_BOUNDARY / RELEASE_MOCK_ONLY / BLOCKED，禁止称production权限隔离或精度证据。最终原文写 /home/user/multiagent-capacitor/.aris/reviewer-tmp/m3_evaluator_fresh_review.md，并返回SHA-256。\n"
+}

@@ -243,6 +243,11 @@ def _normalise_key(key: str) -> str:
 
 
 def _scan_string(value: str) -> None:
+    # A fixed public protocol route is part of the typed Ark request contract,
+    # not a local/private filesystem locator.  Keep the exception exact so no
+    # caller-controlled path prefix or suffix is admitted.
+    if value == "/responses":
+        return
     normalised = _normalise_key(value)
     for proxy in _FORBIDDEN_KEY_FRAGMENTS:
         if proxy in normalised:

@@ -1,0 +1,11 @@
+{
+  "call_number": 4,
+  "purpose": "m3-ark-postfix-review",
+  "timestamp": "2026-08-24T10:22:13Z",
+  "tool": "followup_task",
+  "model": "gpt-5.6-sol",
+  "effort": "xhigh",
+  "fallback_reason": "",
+  "status": "ok",
+  "prompt": "执行 Ark post-fix fresh re-review，保持只读、离线、不读env/凭据、不调用Ark、不改代码/tests。先读取当前代码与原trace `.aris/traces/experiment-bridge/2026-08-24_run01/002-m3-ark-fresh-review.response.md`，但自行复现原B1-B5。重点验证：typed evidence envelope可逐字段篡改拒绝且ledger resume交叉STARTED/FINISHED；97/96和partial/invalid usage正式CAP fallback；ledger short-write不send；typed capability exact intersection/membership；same-version weak schema只到adapter但formal verifier fallback；raw body/response/ID不落盘。运行canonical full或focused。明确区分已修、部分修、仍未修，给最终裁决 RELEASE_OFFLINE_PRODUCTION_CANDIDATE / RELEASE_MOCK_ONLY / BLOCKED；B5 concrete transport和P3真实认证/精度不能被mock替代。写最终原文到 `/home/user/multiagent-capacitor/.aris/reviewer-tmp/m3_ark_postfix_review.md` 并返回SHA。\n"
+}

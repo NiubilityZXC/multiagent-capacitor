@@ -1,0 +1,15 @@
+{
+  "call_number": 2,
+  "purpose": "m3-ark-fresh-review",
+  "timestamp": "2026-08-24T09:51:00Z",
+  "thread_id": "/root/ark_fresh_review",
+  "model": "gpt-5.6-sol",
+  "executor_model": "codex-gpt-5.6-sol",
+  "executor_family": "openai",
+  "reviewer_family": "openai",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional_mock_only",
+  "effort": "xhigh",
+  "fallback_reason": "",
+  "status": "ok"
+}

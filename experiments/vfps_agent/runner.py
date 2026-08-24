@@ -2,8 +2,9 @@
 
 This is the only path intended for future accuracy experiments.  It binds a
 causal packet, frozen policy, numerical/action registry and one-call budget
-*before* a provider can be invoked.  Every provider response is ephemeral;
-only a verified forecast bundle, closed status codes and hashes are persisted.
+*before* a provider can be invoked.  Every raw provider response is ephemeral;
+only a verified forecast bundle, closed status codes, hashes, reported usage,
+and a typed secret-free binding record are persisted.
 """
 
 from __future__ import annotations
@@ -55,14 +56,14 @@ from .ledger import (
     read_verified_ledger_records,
     verify_ledger,
 )
-from .provider import MockProvider, ProviderResponse
+from .provider import AccuracyProvider, ProviderResponse
 from .registry import CAPActionRegistry, ForecastBundle, ForecastStatus, ForecastValue
 
 
 _SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 CAP_M2_VERIFIER_HASH = canonical_sha256(
     {
-        "schema_version": "CAPTypedAccuracyRunner.v2",
+        "schema_version": "CAPTypedAccuracyRunner.v3",
         "bindings": [
             "policy",
             "packet",
@@ -76,7 +77,8 @@ CAP_M2_VERIFIER_HASH = canonical_sha256(
         "attempts": "accuracy_v1_one_physical_attempt_no_retry",
         "commit": "started_finished_prediction_execution_checkpoint",
         "semantic_validation": "exact_prediction_bundle_certificate_and_key_rows",
-        "provider_persistence": "closed_status_and_hashed_response_id_only",
+        "provider_persistence": "closed_status_hashes_usage_and_typed_safe_evidence_only",
+        "provider_audit": "typed_secret_free_request_response_evidence_in_finished_record",
     }
 )
 
@@ -440,22 +442,76 @@ def _validate_bindings(
     scan_forbidden_proxies(packet.payload())
 
 
-def _closed_result(attempt: AttemptStart, response: ProviderResponse) -> AttemptResult:
-    status = response.status if isinstance(response.status, AttemptStatus) else AttemptStatus.ERROR
+def _closed_result(
+    attempt: AttemptStart,
+    response: ProviderResponse,
+    *,
+    expected_policy: PolicySpec | None = None,
+    expected_budget: AccuracyBudgetSpec | None = None,
+) -> AttemptResult:
+    """Close one consumed slot using runner-owned, fail-closed semantics."""
+
+    status_valid = isinstance(response.status, AttemptStatus)
+    status = response.status if status_valid else AttemptStatus.ERROR
     completed = response.completed_unix_ms
-    if isinstance(completed, bool) or not isinstance(completed, int) or completed < 0:
-        completed = attempt.started_unix_ms
-    usage_known = all(
-        isinstance(item, int) and not isinstance(item, bool) and item >= 0
-        for item in (response.input_tokens, response.output_tokens)
+    completed_valid = (
+        isinstance(completed, int)
+        and not isinstance(completed, bool)
+        and completed >= attempt.started_unix_ms
     )
+    if not completed_valid:
+        completed = attempt.started_unix_ms
+
+    input_tokens = response.input_tokens
+    output_tokens = response.output_tokens
+    usage_absent = input_tokens is None and output_tokens is None
+    usage_reported = (
+        isinstance(input_tokens, int)
+        and not isinstance(input_tokens, bool)
+        and input_tokens >= 0
+        and isinstance(output_tokens, int)
+        and not isinstance(output_tokens, bool)
+        and 0 <= output_tokens <= attempt.requested_tokens
+    )
+    usage_invalid = not usage_absent and not usage_reported
+
+    late_valid = isinstance(response.late, bool)
+    late = response.late if late_valid else False
+    late = late or completed > attempt.deadline_unix_ms
+
     response_id_hash: str | None = None
-    if isinstance(response.provider_response_id, str) and response.provider_response_id:
+    raw_response_id = response.provider_response_id
+    direct_response_id_hash = getattr(response, "provider_response_id_sha256", None)
+    invalid_response = not status_valid or not completed_valid or not late_valid or usage_invalid
+    if raw_response_id is not None:
         try:
-            scan_forbidden_proxies({"provider_response_id": response.provider_response_id})
-            response_id_hash = canonical_sha256({"provider_response_id": response.provider_response_id})
+            if not isinstance(raw_response_id, str) or not raw_response_id:
+                raise ValueError("invalid response ID")
+            scan_forbidden_proxies({"provider_response_id": raw_response_id})
+            raw_direct_hash = hashlib.sha256(raw_response_id.encode("utf-8")).hexdigest()
+            if direct_response_id_hash is not None and direct_response_id_hash != raw_direct_hash:
+                raise ValueError("response ID hash mismatch")
+            response_id_hash = (
+                direct_response_id_hash
+                if direct_response_id_hash is not None
+                else canonical_sha256({"provider_response_id": raw_response_id})
+            )
         except Exception:
-            status = AttemptStatus.ERROR
+            invalid_response = True
+            response_id_hash = None
+    elif direct_response_id_hash is not None:
+        if isinstance(direct_response_id_hash, str) and _SHA256_RE.fullmatch(direct_response_id_hash):
+            response_id_hash = direct_response_id_hash
+        else:
+            invalid_response = True
+
+    observed = response.observed_model_hash
+    if observed is not None and (
+        not isinstance(observed, str) or _SHA256_RE.fullmatch(observed) is None
+    ):
+        observed = None
+        invalid_response = True
+
     error: ClosedErrorCode | None = None
     if status is AttemptStatus.TIMEOUT:
         error = ClosedErrorCode.TIMEOUT
@@ -463,22 +519,140 @@ def _closed_result(attempt: AttemptStart, response: ProviderResponse) -> Attempt
         error = ClosedErrorCode.MODEL_MISMATCH
     elif status is AttemptStatus.ERROR:
         error = ClosedErrorCode.PROVIDER_ERROR
-    observed = response.observed_model_hash
-    if not isinstance(observed, str) or _SHA256_RE.fullmatch(observed) is None:
-        observed = None
-    late = bool(response.late) or completed > attempt.deadline_unix_ms
-    return AttemptResult(
+    if invalid_response:
+        status = AttemptStatus.ERROR
+        error = ClosedErrorCode.INVALID_RESPONSE
+        input_tokens = output_tokens = None
+        usage_reported = False
+
+    provider_evidence: Mapping[str, Any] | None = None
+    provider_evidence_hash: str | None = None
+    rebuilt_evidence: Any | None = None
+    audit = getattr(response, "audit", None)
+    evidence = getattr(response, "evidence", None)
+    if audit is not None or evidence is not None:
+        try:
+            # Imported only when production Ark evidence is present; mock
+            # providers retain a dependency-free formal interface.
+            from .ark_provider import (
+                ArkClosedOutcome,
+                ArkInvocationAudit,
+                ArkProviderEvidenceEnvelope,
+            )
+
+            if not isinstance(audit, ArkInvocationAudit) or not isinstance(
+                evidence, ArkProviderEvidenceEnvelope
+            ):
+                raise TypeError("provider evidence has the wrong closed type")
+            primitive = to_primitive(evidence)
+            if not isinstance(primitive, Mapping):
+                raise TypeError("provider evidence is not an object")
+            rebuilt_evidence = ArkProviderEvidenceEnvelope.from_mapping(primitive)
+            rebuilt_evidence.validate_attempt(attempt)
+            if expected_policy is not None and canonical_bytes(rebuilt_evidence.policy) != canonical_bytes(
+                expected_policy
+            ):
+                raise ValueError("provider policy differs from runner policy")
+            if expected_budget is not None and canonical_bytes(rebuilt_evidence.budget) != canonical_bytes(
+                expected_budget
+            ):
+                raise ValueError("provider budget differs from runner budget")
+            rebuilt_audit = rebuilt_evidence.invocation_audit
+            if canonical_bytes(audit) != canonical_bytes(rebuilt_audit):
+                raise ValueError("ephemeral audit differs from evidence envelope")
+            expected_status = {
+                ArkClosedOutcome.SUCCESS: AttemptStatus.SUCCESS,
+                ArkClosedOutcome.LATE_RESPONSE: AttemptStatus.SUCCESS,
+                ArkClosedOutcome.MODEL_MISMATCH: AttemptStatus.MODEL_MISMATCH,
+                ArkClosedOutcome.TRANSPORT_ERROR: AttemptStatus.ERROR,
+                ArkClosedOutcome.HTTP_ERROR: AttemptStatus.ERROR,
+                ArkClosedOutcome.INVALID_RESPONSE: AttemptStatus.ERROR,
+            }[rebuilt_audit.outcome]
+            expected_error = {
+                ArkClosedOutcome.SUCCESS: None,
+                ArkClosedOutcome.LATE_RESPONSE: None,
+                ArkClosedOutcome.MODEL_MISMATCH: ClosedErrorCode.MODEL_MISMATCH,
+                ArkClosedOutcome.TRANSPORT_ERROR: ClosedErrorCode.PROVIDER_ERROR,
+                ArkClosedOutcome.HTTP_ERROR: ClosedErrorCode.PROVIDER_ERROR,
+                ArkClosedOutcome.INVALID_RESPONSE: ClosedErrorCode.INVALID_RESPONSE,
+            }[rebuilt_audit.outcome]
+            content_hash = None
+            if response.response_text is not None:
+                if not isinstance(response.response_text, str):
+                    raise TypeError("response content is not text")
+                parsed_content = strict_json_loads(response.response_text)
+                content_bytes = canonical_bytes(parsed_content)
+                if content_bytes.decode("utf-8") != response.response_text:
+                    raise ValueError("response content is not canonical JSON")
+                content_hash = hashlib.sha256(content_bytes).hexdigest()
+            ephemeral_pairs = (
+                (getattr(response, "ephemeral_request_body_sha256", None), rebuilt_audit.request_body_sha256),
+                (getattr(response, "ephemeral_raw_response_sha256", None), rebuilt_audit.raw_response_sha256),
+                (
+                    getattr(response, "ephemeral_response_content_sha256", None),
+                    rebuilt_audit.response_content_sha256,
+                ),
+                (
+                    getattr(response, "ephemeral_provider_response_id_sha256", None),
+                    rebuilt_audit.provider_response_id_sha256,
+                ),
+            )
+            if any(left != right for left, right in ephemeral_pairs) or content_hash != rebuilt_audit.response_content_sha256:
+                raise ValueError("ephemeral request/response hashes differ from provider evidence")
+            if (
+                raw_response_id is not None
+                or status is not expected_status
+                or error is not expected_error
+                or completed != rebuilt_audit.completed_unix_ms
+                or late != (completed > attempt.deadline_unix_ms)
+                or input_tokens != rebuilt_audit.input_tokens
+                or output_tokens != rebuilt_audit.output_tokens
+                or response_id_hash != rebuilt_audit.provider_response_id_sha256
+                or observed != rebuilt_audit.resolved_model_hash
+            ):
+                raise ValueError("provider response differs from rebuilt evidence")
+            scan_forbidden_proxies(primitive)
+            provider_evidence = primitive
+            provider_evidence_hash = canonical_sha256(provider_evidence)
+        except Exception:
+            # Never include provider/audit values in a failed binding row.
+            status = AttemptStatus.ERROR
+            error = ClosedErrorCode.BINDING_MISMATCH
+            input_tokens = output_tokens = None
+            usage_reported = False
+            response_id_hash = None
+            observed = None
+            provider_evidence = None
+            provider_evidence_hash = None
+            rebuilt_evidence = None
+
+    result = AttemptResult(
         attempt_id=attempt.attempt_id,
         status=status,
         completed_unix_ms=completed,
-        usage_status=UsageStatus.REPORTED if usage_known else UsageStatus.UNKNOWN,
-        input_tokens=response.input_tokens if usage_known else None,
-        output_tokens=response.output_tokens if usage_known else None,
+        usage_status=UsageStatus.REPORTED if usage_reported else UsageStatus.UNKNOWN,
+        input_tokens=input_tokens if usage_reported else None,
+        output_tokens=output_tokens if usage_reported else None,
         provider_response_id_hash=response_id_hash,
         error_code=error,
         observed_model_hash=observed,
         late=late,
+        provider_evidence=provider_evidence,
+        provider_evidence_hash=provider_evidence_hash,
     )
+    if rebuilt_evidence is not None:
+        try:
+            rebuilt_evidence.validate_result(result)
+        except Exception:
+            return AttemptResult(
+                attempt_id=attempt.attempt_id,
+                status=AttemptStatus.ERROR,
+                completed_unix_ms=completed,
+                usage_status=UsageStatus.UNKNOWN,
+                error_code=ClosedErrorCode.BINDING_MISMATCH,
+                late=late,
+            )
+    return result
 
 
 def _recovery_result(start: AttemptStart, completed_unix_ms: int) -> AttemptResult:
@@ -760,6 +934,147 @@ def _validate_committed_prediction(
     return [dict(row) for row in embedded_rows]
 
 
+def verify_durable_checkpoint(
+    run_dir: str | os.PathLike[str],
+    *,
+    checkpoint_record_hash: str,
+    expected_origin_index: int,
+    expected_origin_hash: str,
+    expected_packet_hash: str,
+    allowed_policy_hashes: Sequence[str] = (),
+) -> dict[str, Any]:
+    """Verify one unsealed checkpoint through the complete durable lineage.
+
+    Online reveal cannot wait for the prediction-phase seal, but it must still
+    validate the same STARTED -> FINISHED -> prediction -> execution ->
+    checkpoint semantics.  Every input ledger is parsed through the canonical
+    typed verifier first; this function then proves the cross-ledger links for
+    exactly one origin and binds it to the evaluator-recomputed causal packet.
+    """
+
+    _require_hash(checkpoint_record_hash, "checkpoint_record_hash")
+    _require_hash(expected_origin_hash, "expected_origin_hash")
+    _require_hash(expected_packet_hash, "expected_packet_hash")
+    policy_authority = frozenset(
+        _require_hash(value, "allowed_policy_hash") for value in allowed_policy_hashes
+    )
+    if (
+        isinstance(expected_origin_index, bool)
+        or not isinstance(expected_origin_index, int)
+        or expected_origin_index < 0
+    ):
+        raise CAPM2Error("expected_origin_index must be non-negative")
+    paths = CAPRunPaths(Path(run_dir))
+    records = {
+        kind: read_verified_ledger_records(paths.ledger_path(kind), expected_kind=kind)
+        for kind in (
+            LedgerKind.ATTEMPT,
+            LedgerKind.PREDICTION,
+            LedgerKind.EXECUTION,
+            LedgerKind.CHECKPOINT,
+        )
+    }
+    checkpoint_matches = [
+        item
+        for item in records[LedgerKind.CHECKPOINT]
+        if item["record_hash"] == checkpoint_record_hash
+    ]
+    if len(checkpoint_matches) != 1:
+        raise CAPM2Error("reveal checkpoint is absent or duplicated in the durable ledger")
+    checkpoint_record = checkpoint_matches[0]
+    checkpoint = checkpoint_record["payload"]
+    if (
+        checkpoint["origin_event_index"] != expected_origin_index
+        or checkpoint["origin_hash"] != expected_origin_hash
+        or checkpoint["packet_hash"] != expected_packet_hash
+        or (policy_authority and checkpoint["policy_hash"] not in policy_authority)
+    ):
+        raise CAPM2Error("reveal checkpoint differs from the evaluator causal origin")
+
+    attempt_id = checkpoint["attempt_id"]
+    starts = [
+        item
+        for item in records[LedgerKind.ATTEMPT]
+        if item["event"] == "STARTED" and item["payload"]["attempt_id"] == attempt_id
+    ]
+    finishes = [
+        item
+        for item in records[LedgerKind.ATTEMPT]
+        if item["event"] == "FINISHED" and item["payload"]["attempt_id"] == attempt_id
+    ]
+    predictions = [
+        item
+        for item in records[LedgerKind.PREDICTION]
+        if item["payload"]["attempt_id"] == attempt_id
+    ]
+    if len(starts) != 1 or len(finishes) != 1 or len(predictions) != 1:
+        raise CAPM2Error("checkpoint requires exactly one STARTED, FINISHED, and prediction")
+    start = starts[0]
+    finish = finishes[0]
+    prediction_record = predictions[0]
+    try:
+        commit = _parse_commit(prediction_record["payload"])
+    except Exception as exc:
+        raise CAPM2Error("checkpoint prediction commit is invalid") from exc
+    start_payload = start["payload"]
+    if (
+        start_payload["protocol"] != ProtocolId.ACCURACY_V1.value
+        or commit.started_record_hash != start["record_hash"]
+        or commit.policy_hash != start_payload["policy_hash"]
+        or commit.origin_hash != start_payload["origin_hash"]
+        or commit.packet_hash != start_payload["packet_hash"]
+        or finish["payload"]["started_record_hash"] != start["record_hash"]
+        or checkpoint["attempt_final_record_hash"] != finish["record_hash"]
+        or checkpoint["prediction_record_hash"] != prediction_record["record_hash"]
+        or checkpoint["commit_id"] != commit.commit_id
+        or checkpoint["policy_hash"] != commit.policy_hash
+        or checkpoint["origin_hash"] != commit.origin_hash
+        or checkpoint["packet_hash"] != commit.packet_hash
+    ):
+        raise CAPM2Error("checkpoint lineage differs from STARTED/FINISHED/prediction")
+
+    embedded_rows = _validate_committed_prediction(commit, start_payload=start_payload)
+    all_commit_checkpoints = [
+        item
+        for item in records[LedgerKind.CHECKPOINT]
+        if item["payload"]["commit_id"] == commit.commit_id
+    ]
+    if len(all_commit_checkpoints) != 1:
+        raise CAPM2Error("prediction commit has duplicate durable checkpoints")
+    execution_rows = [
+        item
+        for item in records[LedgerKind.EXECUTION]
+        if item["payload"]["commit_id"] == commit.commit_id
+    ]
+    actual_by_key = {
+        item["payload"]["key_execution"]["key_token"]: item for item in execution_rows
+    }
+    expected_by_key = {item["key_token"]: item for item in embedded_rows}
+    if (
+        len(actual_by_key) != len(execution_rows)
+        or set(actual_by_key) != set(expected_by_key)
+    ):
+        raise CAPM2Error("checkpoint execution key set differs from committed prediction")
+    for key_token, execution_record in actual_by_key.items():
+        if (
+            execution_record["payload"]["prediction_record_hash"]
+            != prediction_record["record_hash"]
+            or execution_record["payload"]["key_execution"] != expected_by_key[key_token]
+        ):
+            raise CAPM2Error("checkpoint execution row differs from committed prediction")
+    expected_references = [
+        {"key_token": key_token, "record_hash": actual_by_key[key_token]["record_hash"]}
+        for key_token in sorted(actual_by_key)
+    ]
+    if (
+        checkpoint["execution_record_hashes"] != expected_references
+        or checkpoint["planned_key_count"] != len(expected_references)
+        or checkpoint["origin_event_index"] != commit.prediction["origin_event_index"]
+    ):
+        raise CAPM2Error("checkpoint does not bind the complete execution set and origin")
+    return checkpoint_record
+
+
 class CAPAccuracyRun:
     """One append/resume-safe accuracy_v1 run directory."""
 
@@ -860,7 +1175,7 @@ class CAPAccuracyRun:
     def run_origin(
         self,
         *,
-        provider: MockProvider | None,
+        provider: AccuracyProvider | None,
         policy: PolicySpec,
         packet: OriginPacketV2,
         registry: CAPActionRegistry,
@@ -969,6 +1284,8 @@ class CAPAccuracyRun:
                 if result_payload.get("error_code") is not None else None,
                 observed_model_hash=result_payload.get("observed_model_hash"),
                 late=result_payload.get("late", False),
+                provider_evidence=result_payload.get("provider_evidence"),
+                provider_evidence_hash=result_payload.get("provider_evidence_hash"),
             )
             execution_hashes, checkpoint_hash = self._append_execution_and_checkpoint(
                 attempt=attempt,
@@ -1012,7 +1329,12 @@ class CAPAccuracyRun:
                     completed_unix_ms=started_unix_ms,
                     response_text=None,
                 )
-            result = _closed_result(attempt, ephemeral)
+            result = _closed_result(
+                attempt,
+                ephemeral,
+                expected_policy=policy,
+                expected_budget=budget,
+            )
             self._ledgers[LedgerKind.ATTEMPT].append_finished(start_record["record_hash"], result)
             if result.status is AttemptStatus.SUCCESS and not result.late and ephemeral.response_text is not None:
                 execution = execute_arm(

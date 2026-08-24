@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import hashlib
-from typing import Callable
+from typing import Callable, Protocol
 
 from .contracts import AttemptStart, AttemptStatus
 
@@ -23,9 +23,16 @@ class ProviderResponse:
     input_tokens: int | None = None
     output_tokens: int | None = None
     provider_response_id: str | None = None
+    provider_response_id_sha256: str | None = None
     observed_model_hash: str | None = None
     error_code: str | None = None
     late: bool = False
+
+
+class AccuracyProvider(Protocol):
+    """One-shot provider interface consumed by the formal accuracy runner."""
+
+    def invoke(self, request_bytes: bytes, attempt: AttemptStart) -> ProviderResponse: ...
 
 
 class MockProvider:

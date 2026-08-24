@@ -108,6 +108,7 @@ from .runner import (
     CAPRunPaths,
     TypedOriginResult,
     build_causal_packet,
+    verify_durable_checkpoint,
     verify_prediction_phase,
 )
 from .replay import (
@@ -115,6 +116,13 @@ from .replay import (
     HiddenEvent,
     verify_access_barrier,
     verify_complete_run,
+)
+from .evaluator_service import (
+    EvaluatorClient,
+    EvaluatorProtocolError,
+    EvaluatorResult,
+    EvaluatorSupervisor,
+    start_isolated_evaluator,
 )
 from .verifier import (
     ACTION_RESPONSE_SCHEMA_VERSION,
@@ -164,6 +172,10 @@ __all__ = [
     "EnumSearchConfig",
     "EnumSelection",
     "ExecutionState",
+    "EvaluatorClient",
+    "EvaluatorProtocolError",
+    "EvaluatorResult",
+    "EvaluatorSupervisor",
     "FROZEN_ARM_SPECS",
     "FROZEN_CAP_ARM_SPECS",
     "FeatureSpec",
@@ -230,10 +242,12 @@ __all__ = [
     "scan_forbidden_proxies",
     "strict_canonical_loads",
     "strict_json_loads",
+    "start_isolated_evaluator",
     "verify_and_execute_actions",
     "verify_and_execute_if_representation",
     "verify_ledger",
     "verify_access_barrier",
     "verify_complete_run",
+    "verify_durable_checkpoint",
     "verify_prediction_phase",
 ]

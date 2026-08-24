@@ -143,3 +143,16 @@
 | 2026-08-24 16:54 | /experiment-bridge | refine-logs/EXPERIMENT_TRACKER.md | implementation | current experiment tracker latest copy |
 | 2026-08-24 16:54 | /research-refine-pipeline | refine-logs/PIPELINE_SUMMARY_20260824_165432.md | implementation | M2 review 后的 pipeline handoff 快照 |
 | 2026-08-24 16:54 | /research-refine-pipeline | refine-logs/PIPELINE_SUMMARY.md | implementation | current pipeline summary latest copy |
+| 2026-08-24 18:23 | /experiment-bridge | experiments/vfps_agent/ark_provider.py | implementation | 离线transport-injected Ark `/responses` adapter、typed capability/evidence与strict local parse |
+| 2026-08-24 18:23 | /experiment-bridge | experiments/vfps_agent/evaluator_service.py | implementation | same-UID process-separated hidden-event evaluator、authenticated IPC/journal与crash controls |
+| 2026-08-24 18:23 | /experiment-bridge | tests/test_vfps_ark_provider.py | implementation | Ark binding、usage、tamper、secret与failure fixtures |
+| 2026-08-24 18:23 | /experiment-bridge | tests/test_vfps_evaluator_service.py | implementation | reveal/replay/finalize/rollback/config/tamper adversarial fixtures |
+| 2026-08-24 18:23 | /experiment-bridge | .aris/traces/experiment-bridge/2026-08-24_run01/ | audit | pre-review、fresh review与post-fix re-review exact traces；same-family provisional |
+| 2026-08-24 18:23 | /experiment-bridge | refine-logs/EXPERIMENT_CODE_REVIEW_20260824_182331.md | implementation | M3分层裁决：Ark/integrated MOCK_ONLY；evaluator LOCAL_PROCESS_BOUNDARY；204 tests |
+| 2026-08-24 18:23 | /experiment-bridge | refine-logs/EXPERIMENT_CODE_REVIEW.md | implementation | M3 code review latest copy |
+| 2026-08-24 18:23 | /experiment-plan | refine-logs/EXPERIMENT_PLAN_20260824_182331.md | implementation | 加入M3 provider/evaluator boundary与剩余transport/security Gate的计划快照 |
+| 2026-08-24 18:23 | /experiment-plan | refine-logs/EXPERIMENT_PLAN.md | implementation | experiment plan latest copy |
+| 2026-08-24 18:23 | /experiment-bridge | refine-logs/EXPERIMENT_TRACKER_20260824_182331.md | implementation | M3六项运行记录、204 tests与P1/P3 checkpoint快照 |
+| 2026-08-24 18:23 | /experiment-bridge | refine-logs/EXPERIMENT_TRACKER.md | implementation | current experiment tracker latest copy |
+| 2026-08-24 18:23 | /research-refine-pipeline | refine-logs/PIPELINE_SUMMARY_20260824_182331.md | implementation | M3 offline engineering handoff与paper-not-ready边界 |
+| 2026-08-24 18:23 | /research-refine-pipeline | refine-logs/PIPELINE_SUMMARY.md | implementation | current pipeline summary latest copy |

@@ -1,0 +1,11 @@
+{
+  "call_number": 1,
+  "purpose": "m3-preimplementation-threat-review",
+  "timestamp": "2026-08-24T09:24:56Z",
+  "tool": "spawn_agent",
+  "model": "gpt-5.6-sol",
+  "effort": "inherited",
+  "fallback_reason": "",
+  "status": "ok",
+  "prompt": "只读对抗审查子任务，不要编辑文件、不要联网、不要读取环境变量/密钥。审查当前 /home/user/multiagent-capacitor 的 experiments/vfps_agent/{runner,replay,ledger,contracts,schemas}.py、experiments/api_hybrid，以及 refine-logs/EXPERIMENT_CODE_REVIEW.md/EXPERIMENT_PLAN.md。输出一份面向本轮两个实现的精确 acceptance checklist：A production Ark adapter 要机械证明哪些绑定/失败语义，B process-isolated evaluator 要防哪些泄漏/重放/竞态/崩溃；给出至少 12 个可执行 adversarial tests，按 blocking/nonblocking 分类；指出任何会使“production-ready”表述过度的边界。不要写结果文件，直接回消息。\n"
+}

@@ -1,0 +1,11 @@
+{
+  "call_number": 2,
+  "purpose": "m3-ark-fresh-review",
+  "timestamp": "2026-08-24T09:51:00Z",
+  "tool": "spawn_agent",
+  "model": "gpt-5.6-sol",
+  "effort": "xhigh",
+  "fallback_reason": "",
+  "status": "ok",
+  "prompt": "你是 fresh same-family 独立代码审查者。工作区固定为 /home/user/multiagent-capacitor。不得联网、不得读取环境变量/凭据、不得调用 Ark、不得修改产品代码。审查以下文件及它们直接依赖的 formal runner/ledger contract：\n- /home/user/multiagent-capacitor/experiments/vfps_agent/ark_provider.py\n- /home/user/multiagent-capacitor/experiments/vfps_agent/provider.py\n- /home/user/multiagent-capacitor/experiments/vfps_agent/contracts.py\n- /home/user/multiagent-capacitor/experiments/vfps_agent/ledger.py\n- /home/user/multiagent-capacitor/experiments/vfps_agent/runner.py\n- /home/user/multiagent-capacitor/tests/test_vfps_ark_provider.py\nCanonical plan: /home/user/multiagent-capacitor/refine-logs/EXPERIMENT_PLAN.md\nGate: /home/user/multiagent-capacitor/refine-logs/ARK_AGENTPLAN_GATE2_PROTOCOL.md\n任务：逐项验证 accuracy_v1 exactly-one-send/zero-retry、STARTED-before-send、immutable mechanical binding (policy/arm/prompt/schema/decode/registry/budget/deadline/model)、exact returned model、local strict envelope+schema、missing usage=>valid UNKNOWN、invalid/over-ceiling usage fail closed、late semantics、safe durable evidence、secret/raw-body/raw-response non-persistence、crash/resume invariant。特别寻找 hash self-consistency 但非语义绑定、schema swap、model drift、response ID泄露、异常分支未闭合等漏洞。运行相关 focused tests，可添加临时只读诊断但不要改产品/tests。输出按严重度列 blockers/nonblockers、具体 file:line evidence、测试命令与结果，并给一个明确裁决：RELEASE_OFFLINE_PRODUCTION_CANDIDATE、RELEASE_MOCK_ONLY 或 BLOCKED。必须明确：该裁决不能证明真实 API 可用性或预测精度。把最终审查原文写入 /home/user/multiagent-capacitor/.aris/reviewer-tmp/m3_ark_fresh_review.md（必要时创建目录），并在最终消息给出该文件 SHA-256。\n"
+}

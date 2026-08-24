@@ -75,7 +75,8 @@ _ATTEMPT_RESULT_KEYS = frozenset(
     {
         "attempt_id", "status", "completed_unix_ms", "usage_status",
         "input_tokens", "output_tokens", "provider_response_id_hash",
-        "error_code", "observed_model_hash", "late", "started_record_hash",
+        "error_code", "observed_model_hash", "late", "provider_evidence",
+        "provider_evidence_hash", "started_record_hash",
     }
 )
 _PREDICTION_COMMIT_KEYS = frozenset(
@@ -314,11 +315,24 @@ class CanonicalJSONLLedger:
         record_hash = canonical_sha256(body)
         record = dict(body)
         record["record_hash"] = record_hash
+        encoded = canonical_bytes(record) + b"\n"
         try:
-            self._stream.write(canonical_bytes(record) + b"\n")
+            offset = 0
+            while offset < len(encoded):
+                written = self._stream.write(encoded[offset:])
+                if (
+                    isinstance(written, bool)
+                    or not isinstance(written, int)
+                    or written <= 0
+                    or written > len(encoded) - offset
+                ):
+                    raise LedgerIntegrityError("durable ledger append made a short write")
+                offset += written
             self._stream.flush()
             os.fsync(self._stream.fileno())
-        except OSError as exc:
+        except LedgerIntegrityError:
+            raise
+        except (OSError, ValueError) as exc:
             raise LedgerIntegrityError("durable ledger append failed") from exc
         self._sequence += 1
         self._previous_hash = record_hash
@@ -461,7 +475,7 @@ def _typed_attempt_result(payload: Mapping[str, Any]) -> AttemptResult:
     _require_exact_payload_keys(payload, _ATTEMPT_RESULT_KEYS, "FINISHED")
     try:
         error = payload.get("error_code")
-        return AttemptResult(
+        result = AttemptResult(
             attempt_id=payload["attempt_id"],
             status=AttemptStatus(payload["status"]),
             completed_unix_ms=payload["completed_unix_ms"],
@@ -472,7 +486,18 @@ def _typed_attempt_result(payload: Mapping[str, Any]) -> AttemptResult:
             error_code=ClosedErrorCode(error) if error is not None else None,
             observed_model_hash=payload.get("observed_model_hash"),
             late=payload.get("late", False),
+            provider_evidence=payload.get("provider_evidence"),
+            provider_evidence_hash=payload.get("provider_evidence_hash"),
         )
+        if result.provider_evidence is not None:
+            # A FINISHED row must contain a reconstructable semantic envelope,
+            # not merely a self-consistent caller-supplied mapping and hash.
+            from .ark_provider import ArkProviderEvidenceEnvelope
+
+            envelope = ArkProviderEvidenceEnvelope.from_mapping(result.provider_evidence)
+            if envelope.evidence_hash != result.provider_evidence_hash:
+                raise LedgerIntegrityError("provider evidence hash differs after reconstruction")
+        return result
     except Exception as exc:
         raise LedgerIntegrityError("invalid typed FINISHED payload") from exc
 
@@ -639,6 +664,7 @@ def verify_ledger(
     lines = ledger_bytes.splitlines()
     previous = "0" * 64
     started: dict[str, str] = {}
+    started_attempts: dict[str, AttemptStart] = {}
     finished: set[str] = set()
     committed: set[str] = set()
     executed: set[tuple[str, str]] = set()
@@ -676,12 +702,26 @@ def verify_ledger(
             if event == "STARTED":
                 if attempt_id in started:
                     raise LedgerIntegrityError("duplicate STARTED record")
-                _typed_attempt_start(payload)
+                typed_start = _typed_attempt_start(payload)
                 started[attempt_id] = record["record_hash"]
+                started_attempts[attempt_id] = typed_start
             elif event == "FINISHED":
                 if attempt_id in finished or payload.get("started_record_hash") != started.get(attempt_id):
                     raise LedgerIntegrityError("orphaned or duplicate FINISHED record")
-                _typed_attempt_result(payload)
+                typed_result = _typed_attempt_result(payload)
+                if typed_result.provider_evidence is not None:
+                    try:
+                        from .ark_provider import ArkProviderEvidenceEnvelope
+
+                        envelope = ArkProviderEvidenceEnvelope.from_mapping(
+                            typed_result.provider_evidence
+                        )
+                        envelope.validate_attempt(started_attempts[attempt_id])
+                        envelope.validate_result(typed_result)
+                    except Exception as exc:
+                        raise LedgerIntegrityError(
+                            "provider evidence differs from STARTED or FINISHED"
+                        ) from exc
                 finished.add(attempt_id)
             else:
                 raise LedgerIntegrityError("unexpected attempt ledger event")

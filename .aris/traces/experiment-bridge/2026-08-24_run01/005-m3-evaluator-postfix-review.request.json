@@ -1,0 +1,11 @@
+{
+  "call_number": 5,
+  "purpose": "m3-evaluator-postfix-review",
+  "timestamp": "2026-08-24T10:22:13Z",
+  "tool": "followup_task",
+  "model": "gpt-5.6-sol",
+  "effort": "inherited",
+  "fallback_reason": "",
+  "status": "ok",
+  "prompt": "执行 evaluator post-fix re-review，保持只读/离线/不改代码tests。读取当前代码和原trace `.aris/traces/experiment-bridge/2026-08-24_run01/003-m3-evaluator-fresh-review.response.md`，自行复现原B1-B7。重点：early FINALIZE必须在任何ACCESS seal/MATURITY/final seal前拒绝且零未来label；完整HMAC journal prefix truncation须被authenticated head拒绝并说明双文件同步rollback边界；launch HMAC必须绑定全配置；error code closed allowlist；既有REVEAL crash/replay、checkpoint/policy链不回归。运行focused/full，逐项标已修/部分/未修，最终裁决 RELEASE_LOCAL_PROCESS_BOUNDARY / RELEASE_MOCK_ONLY / BLOCKED；不得称secure/production isolation或精度证据。写 `/home/user/multiagent-capacitor/.aris/reviewer-tmp/m3_evaluator_postfix_review.md` 并返回SHA。\n"
+}

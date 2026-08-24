@@ -8,6 +8,17 @@ import pytest
 import experiments.vfps_agent.runner as runner_module
 
 from experiments.vfps_agent.actions import ActionSpace, BaseAction, BaseOperator
+from experiments.vfps_agent.ark_provider import (
+    ArkCapabilitySnapshot,
+    ArkDecodeSpec,
+    ArkModelRule,
+    ArkPromptSpec,
+    ArkProviderAdapter,
+    ArkProviderRule,
+    ArkRequestContract,
+    ArkResponseFormat,
+    ArkTransportResponse,
+)
 from experiments.vfps_agent.canonical import canonical_bytes, canonical_sha256
 from experiments.vfps_agent.contracts import (
     AccuracyBudgetSpec,
@@ -21,7 +32,11 @@ from experiments.vfps_agent.contracts import (
     SealedSplitProvenance,
 )
 from experiments.vfps_agent.provider import MockProvider
-from experiments.vfps_agent.ledger import CanonicalJSONLLedger, LedgerKind
+from experiments.vfps_agent.ledger import (
+    CanonicalJSONLLedger,
+    LedgerIntegrityError,
+    LedgerKind,
+)
 from experiments.vfps_agent.replay import (
     BlindReplayService,
     HiddenEvent,
@@ -281,6 +296,196 @@ def test_typed_direct_run_binds_registry_and_forced_rul_na(tmp_path) -> None:
         "checkpoint_count": 1,
         "phase_seal_hash": report["phase_seal_hash"],
     }
+
+
+@pytest.mark.parametrize(
+    ("input_tokens", "output_tokens"),
+    ((10, 97), (10, None), (None, 20), (True, 20), (10, -1)),
+)
+def test_full_accuracy_run_rejects_invalid_or_over_ceiling_usage(
+    tmp_path,
+    input_tokens,
+    output_tokens,
+) -> None:
+    """The runner, rather than a provider adapter, owns slot usage validity."""
+
+    registry = registry_fixture()
+    packet, schema = packet_fixture(registry)
+    budget = AccuracyBudgetSpec(96, 100, 1, 0)
+    policy = policy_fixture(ArmId.D1_PACKET, registry, schema, budget)
+    provider = MockProvider(
+        response_text=direct_response(registry),
+        input_tokens=input_tokens,
+        output_tokens=output_tokens,
+    )
+    run_dir = tmp_path / f"usage-{input_tokens}-{output_tokens}"
+    with CAPAccuracyRun(run_dir) as run:
+        result = run.run_origin(
+            provider=provider,
+            policy=policy,
+            packet=packet,
+            registry=registry,
+            budget=budget,
+            started_unix_ms=1000,
+        )
+        assert provider.physical_attempts == 1
+        assert result.attempt.status.value == "ERROR"
+        assert result.attempt.error_code.value == "INVALID_RESPONSE"
+        assert result.attempt.usage_status.value == "UNKNOWN"
+        assert result.commit.disposition.value == "FALLBACK"
+        run.seal_prediction_phase()
+    assert verify_prediction_phase(run_dir)["status"] == "PASS"
+
+
+def test_started_short_write_never_returns_or_sends_provider_request(tmp_path) -> None:
+    registry = registry_fixture()
+    packet, schema = packet_fixture(registry)
+    budget = AccuracyBudgetSpec(96, 100, 1, 0)
+    policy = policy_fixture(ArmId.D1_PACKET, registry, schema, budget)
+    provider = MockProvider(response_text=direct_response(registry))
+
+    class ShortWriteThenStall:
+        def __init__(self, base) -> None:
+            self.base = base
+            self.calls = 0
+
+        def write(self, value):
+            self.calls += 1
+            if self.calls == 1:
+                return self.base.write(value[:-1])
+            return 0
+
+        def flush(self):
+            return self.base.flush()
+
+        def fileno(self):
+            return self.base.fileno()
+
+        def close(self):
+            return self.base.close()
+
+    run = CAPAccuracyRun(tmp_path / "short-write")
+    attempt_ledger = run._ledgers[LedgerKind.ATTEMPT]
+    attempt_ledger._stream = ShortWriteThenStall(attempt_ledger._stream)
+    try:
+        with pytest.raises(LedgerIntegrityError, match="short write"):
+            run.run_origin(
+                provider=provider,
+                policy=policy,
+                packet=packet,
+                registry=registry,
+                budget=budget,
+                started_unix_ms=1000,
+            )
+        assert attempt_ledger.record_count == 0
+        assert attempt_ledger.final_record_hash == "0" * 64
+        assert provider.physical_attempts == 0
+    finally:
+        run.close()
+
+
+def test_same_version_weak_ark_schema_still_formally_falls_back(tmp_path) -> None:
+    """Local schema acceptance cannot replace the frozen CAP semantic verifier."""
+
+    registry = registry_fixture()
+    packet, schema = packet_fixture(registry)
+    budget = AccuracyBudgetSpec(96, 100, 1, 0)
+    capability = ArkCapabilitySnapshot(
+        model_list_artifact_sha256="a" * 64,
+        text_resources_artifact_sha256="b" * 64,
+        authenticated_model_ids=("kimi-k3",),
+        text_resource_model_ids=("kimi-k3",),
+        eligible_model_ids=("kimi-k3",),
+    )
+    weak_schema = {
+        "type": "object",
+        "additionalProperties": False,
+        "required": ["schema_version", "forecasts"],
+        "properties": {
+            "schema_version": {"const": DIRECT_RESPONSE_SCHEMA_VERSION},
+            "forecasts": {"type": "array", "items": {}},
+        },
+    }
+    contract = ArkRequestContract(
+        prompt=ArkPromptSpec(
+            instructions="Return the frozen direct forecast object.",
+            packet_preamble="Causal packet follows.",
+        ),
+        decode=ArkDecodeSpec(),
+        model=ArkModelRule("kimi-k3", capability),
+        provider=ArkProviderRule(ArkResponseFormat.PROMPT_ONLY, "weak_direct"),
+        response_schema=weak_schema,
+    )
+    policy = PolicySpec(
+        policy_id="provider-weak-schema-formal-gate",
+        generation=1,
+        protocol=ProtocolId.ACCURACY_V1,
+        arm=ArmId.D1_PACKET,
+        provider_rule_hash=contract.provider.provider_rule_hash,
+        model_version_rule_hash=contract.model.model_version_rule_hash,
+        prompt_hash=contract.prompt.prompt_hash,
+        packet_schema_hash=schema.schema_hash,
+        response_schema_hash=contract.response_schema_hash,
+        grammar_hash=registry.action_manifest_hash,
+        registry_hash=registry.registry_hash,
+        decode_parameters_hash=contract.decode.decode_parameters_hash,
+        one_call_budget_hash=budget.budget_hash,
+        verifier_hash=CAP_M2_VERIFIER_HASH,
+        fallback_hash=registry.numerical.fallback_bundle.bundle_hash,
+        capability_snapshot_hash=capability.snapshot_hash,
+    )
+    invalid_direct = canonical_bytes(
+        {"schema_version": DIRECT_RESPONSE_SCHEMA_VERSION, "forecasts": []}
+    ).decode()
+    raw_envelope = canonical_bytes(
+        {
+            "id": "resp_weak_schema",
+            "model": "kimi-k3",
+            "object": "response",
+            "output": [
+                {
+                    "type": "message",
+                    "status": "completed",
+                    "role": "assistant",
+                    "content": [{"type": "output_text", "text": invalid_direct}],
+                }
+            ],
+            "status": "completed",
+            "store": False,
+        }
+    )
+
+    class OneShotTransport:
+        calls = 0
+
+        def send(self, _request):
+            self.calls += 1
+            return ArkTransportResponse(200, raw_envelope, 1050)
+
+    transport = OneShotTransport()
+    adapter = ArkProviderAdapter(
+        policy=policy,
+        budget=budget,
+        contract=contract,
+        transport=transport,
+    )
+    run_dir = tmp_path / "weak-schema"
+    with CAPAccuracyRun(run_dir) as run:
+        result = run.run_origin(
+            provider=adapter,
+            policy=policy,
+            packet=packet,
+            registry=registry,
+            budget=budget,
+            started_unix_ms=1000,
+        )
+        assert result.attempt.status.value == "SUCCESS"
+        assert result.commit.disposition.value == "FALLBACK"
+        assert result.commit.reason_code.value == "INVALID_RESPONSE"
+        assert result.commit.prediction["error_fallback"] is True
+        run.seal_prediction_phase()
+    assert transport.calls == adapter.physical_attempts == 1
+    assert verify_prediction_phase(run_dir)["status"] == "PASS"
 
 
 @pytest.mark.parametrize(

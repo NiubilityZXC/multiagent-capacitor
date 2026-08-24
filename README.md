@@ -22,7 +22,8 @@ All arms use strict rolling-origin replay, outer leave-one-capacitor-out and cro
 ## Current status
 
 - ARIS Idea Discovery and method refinement are complete at a provisional empirical-study framing. CAP-ACT is an architecture comparison, not a pre-claimed method novelty.
-- The typed M2 mock harness now implements causal packets, one-attempt/no-retry execution, crash-safe no-resend recovery, exact action authority, blind rolling reveal, per-key maturity, cross-ledger seals, and endpoint-gated `RUL_NA`. Fresh same-family review returned `RELEASE_MOCK_ONLY`; real accuracy remains blocked by data, split, evaluator-isolation, production-provider, credential, and human gates.
+- The typed M0–M3 harness now implements causal packets, direct and hybrid arm authority, durable one-attempt slots, typed Ark request/evidence binding, runner-owned token limits, blind rolling reveal, a same-UID process-separated evaluator, crash-safe REVEAL recovery, per-key maturity and endpoint-gated `RUL_NA`.
+- Fresh post-fix review returned `RELEASE_MOCK_ONLY` for the Ark/integrated harness and narrowly scoped `RELEASE_LOCAL_PROCESS_BOUNDARY` for the honest-launcher evaluator. Neither label means production security, real API readiness or forecast accuracy.
 - Stress-2 is available only as a small column-surrogate sanity benchmark. It cannot establish physical-unit generalization.
 - The 5.04 GB electrical-stress pack has partial integrity/schema audits, but its target, physical-identity, alignment, and outcome gates still block Benchmark-L model and RUL claims.
 - Ren and Patrizi acquisition/audit scopes are frozen in [the P1 decision packet](refine-logs/DATA_ACQUISITION_GATE.md), but neither new payload may be downloaded before its explicit human approval.
@@ -39,7 +40,7 @@ Use the project environment:
 .venv-audit-cap/bin/python -m pytest -q tests
 ```
 
-Validated CAP project suite on 2026-08-24: `130 passed in 15.38s`; `python -m py_compile experiments/vfps_agent/*.py` and `git diff --check` also passed. These are synthetic implementation checks, not target-accuracy evidence.
+Validated CAP project suite on 2026-08-24: `204 passed in 21.18s`; fresh reviewers independently obtained `204 passed`. `py_compile`, `git diff --check` and a non-echoing repository secret scan also passed. These are synthetic implementation checks, not target-accuracy evidence.
 
 ## Ark AgentPlan
 
@@ -57,6 +58,12 @@ export ARK_API_KEY='ROTATED_VALUE_FROM_SECRET_MANAGER'
 ```
 
 The provisional model registry is [configs/ark_agentplan_models.json](configs/ark_agentplan_models.json). Formal experiments require an authenticated account-level model snapshot and synthetic strict-schema smoke tests first.
+
+The repository now contains an offline, transport-injected `/responses` adapter. It does not own credentials or networking. A future P3 concrete transport must prove that SDK/HTTP retry, redirect and replay are disabled; one adapter method invocation is not yet evidence of one physical HTTP request. Full direct/action/IF response-schema registry generation also remains a pre-P4 task.
+
+## Evaluator boundary
+
+The local evaluator holds the hidden suffix in a spawned process and releases each next point only after a durable checkpoint is verified. HMAC-framed IPC, launch-configuration binding, early-FINALIZE preflight and authenticated journal heads are covered by adversarial tests. Predictor and evaluator still share UID and filesystem, so coordinated rollback, TOCTOU, client-process loss and generation-global scoring require a stronger external authority before formal confirmatory runs.
 
 ## Data and result policy
 
