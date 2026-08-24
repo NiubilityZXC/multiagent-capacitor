@@ -1,0 +1,15 @@
+{
+  "run_id": "capacitor_agent_arch_20260824",
+  "phase": "proposal",
+  "round": 0,
+  "agent_id": "/root/idea_jury",
+  "last_score": null,
+  "last_verdict": null,
+  "status": "in_progress",
+  "timestamp": "2026-08-24T13:38:49+08:00",
+  "problem_anchor_sha256": "609523fb547f0092c4461dda2c70e6bfdf9a36a1680b78ddce2cca9829825c6b",
+  "proposal_sha256": "1f26a472aec0616d7bb4cecae55592164899e2b9350ca3a90d3e07b89eeb9790",
+  "auto_proceed": false,
+  "human_checkpoint_required": true,
+  "real_api_allowed": false
+}

@@ -1,0 +1,8 @@
+{
+  "claim_prohibited": true,
+  "claim_status": "NOT_ELIGIBLE_BENCHMARK_S_SANITY_ONLY",
+  "completed_utc": "2026-08-20T08:16:47.743066+00:00",
+  "prediction_ledger_seal_sha256": "88edd6118afdcffb4707b6a6d56acc80971eeeaa90178d3733e4f7cc41c26fc3",
+  "run_manifest_sha256": "5f2b01c62c111ff12618fac0118d7e907678a3a3f7567ee5b2a99f0796b95989",
+  "status": "COMPLETE"
+}

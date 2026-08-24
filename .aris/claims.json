@@ -1,0 +1,44 @@
+[
+  {
+    "id": "H1-HARNESS-ROWS",
+    "claim": "The frozen context-4 sanity run emitted and matured 1296 predictions.",
+    "value": "1296",
+    "source": "results/audit_cap/stress2_context4_final2_20260820_164848/RUN_SUMMARY.json"
+  },
+  {
+    "id": "H1-RIDGE-OBSERVED-MAE",
+    "claim": "The observed context-4 Ridge capacity h=1 macro MAE is 0.0070735758718676539.",
+    "value": "ridge,capacity_ratio,1,6,42,0,OK,0.0070735758718676539",
+    "source": "results/audit_cap/stress2_context4_final2_20260820_164848/AGGREGATE_METRICS.csv"
+  },
+  {
+    "id": "H1-REPRO-LEDGER",
+    "claim": "The official and reproducibility context-4 runs record the same prediction ledger SHA256.",
+    "value": "d18599d0068074d784a89ce9aa16e5fcc2a4adc191dfe4dfbf30358d96f2984a",
+    "source": "results/audit_cap/stress2_context4_final2_repro_20260820_164848/RUN_SUMMARY.json"
+  },
+  {
+    "id": "H1-DESIGN-REPEATS",
+    "claim": "The quick design run contains 3000 planned repeats.",
+    "value": "3000",
+    "source": "results/audit_cap/design_quick_final2_20260820_164848/DESIGN_SIM_SUMMARY.json"
+  },
+  {
+    "id": "H1-DESIGN-FAILURES",
+    "claim": "The quick design run records 13 failed repeats.",
+    "value": "13",
+    "source": "results/audit_cap/design_quick_final2_20260820_164848/DESIGN_SIM_SUMMARY.json"
+  },
+  {
+    "id": "H1-RUL-BLOCK",
+    "claim": "RUL numerical scoring is disabled for unknown termination and insufficient independent units.",
+    "value": "NA_unknown_termination_and_insufficient_independent_units",
+    "source": "results/audit_cap/stress2_context4_final2_20260820_164848/RUN_SUMMARY.json"
+  },
+  {
+    "id": "H1-CLAIM-CEILING",
+    "claim": "The Stress-2 run is explicitly ineligible for a model-accuracy claim.",
+    "value": "NOT_ELIGIBLE_BENCHMARK_S_SANITY_ONLY",
+    "source": "results/audit_cap/stress2_context4_final2_20260820_164848/RUN_SUMMARY.json"
+  }
+]

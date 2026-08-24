@@ -1,0 +1,6 @@
+你是 fresh 新颖性核验员。只以以下三个文件为方案输入，不参考任何先前对话或作者解释：
+- /home/user/multiagent-capacitor/idea-stage/EVIDENCE_LEDGER.md
+- /home/user/multiagent-capacitor/idea-stage/FROZEN_EVAL_PROTOCOL.md
+- /home/user/multiagent-capacitor/idea-stage/IDEA_CANDIDATES.md
+
+任务：对 C1 TRACE-Cap 的 5 个核心 claim 逐项查新：A 因果 EIS→在线瞬态概率测量桥并传播到 RUL；B 层级 C/ESR 双状态/切换状态在线模型；C 目标×horizon、变化点感知、仅用过去 prequential proper loss 的异构专家软路由/拒绝；D 删失感知 C/ESR→SOH/RUL/异常联合输出与在线校准；E 类型化证据 Agent 图 + frozen Eval/LOCO/LOVO/rolling/shadow promotion。每项至少用三种检索表达，尤其覆盖 2024-2026，查 arXiv、正式论文和公开代码。不要把“把 X 用于电容”自动当创新；明确最接近工作和真正 delta。输出严格 JSON：claims[{id,novelty:HIGH|MEDIUM|LOW,closest_works:[{title,year,url,overlap}],delta,reviewer_killer_objection,allowed_claim}],overall_recommendation,positioning,search_queries,limitations。不要给预测性能主观分，不得臆造论文。标记 review_independence=same-family、acceptance_status=provisional。

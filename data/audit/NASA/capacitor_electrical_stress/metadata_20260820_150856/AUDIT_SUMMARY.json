@@ -1,0 +1,79 @@
+{
+  "data_gate": {
+    "benchmark_l_modeling": "blocked",
+    "byte_integrity": "passed",
+    "hdf5_readability": "passed",
+    "overall": "partial_integrity_only",
+    "physical_semantic_mapping": "blocked_pending_review",
+    "termination_and_rul_eligibility": "not_assessed"
+  },
+  "hdf5_files": {
+    "ES10.mat": {
+      "dataset_count": 8048,
+      "external_storage_dataset_count": 0,
+      "h5py_version": "3.11.0",
+      "hdf5_lib_version": "1.14.2",
+      "numeric_scan_requested": false,
+      "numeric_scan_row_count": 0,
+      "object_count": 8076,
+      "quarantine_count": 41,
+      "reference_dtype_dataset_count": 1193,
+      "root_userblock_size": 512,
+      "virtual_dataset_count": 0
+    },
+    "ES12.mat": {
+      "dataset_count": 7930,
+      "external_storage_dataset_count": 0,
+      "h5py_version": "3.11.0",
+      "hdf5_lib_version": "1.14.2",
+      "numeric_scan_requested": false,
+      "numeric_scan_row_count": 0,
+      "object_count": 7959,
+      "quarantine_count": 43,
+      "reference_dtype_dataset_count": 1193,
+      "root_userblock_size": 512,
+      "virtual_dataset_count": 0
+    },
+    "ES14.mat": {
+      "dataset_count": 7954,
+      "external_storage_dataset_count": 0,
+      "h5py_version": "3.11.0",
+      "hdf5_lib_version": "1.14.2",
+      "numeric_scan_requested": false,
+      "numeric_scan_row_count": 0,
+      "object_count": 7983,
+      "quarantine_count": 43,
+      "reference_dtype_dataset_count": 1193,
+      "root_userblock_size": 512,
+      "virtual_dataset_count": 0
+    }
+  },
+  "integrity": {
+    "all_target_auxiliary_size_and_crc32_match": true,
+    "all_target_streamed_sha256_match": true,
+    "all_targets_hdf5_readable": true,
+    "required_target_count": 3,
+    "zip_member_crc": "passed"
+  },
+  "matlab_class_counts": {
+    "canonical empty": 3,
+    "cell": 3507,
+    "char": 11466,
+    "double": 8884,
+    "struct": 80
+  },
+  "mode": "metadata_only",
+  "numeric_scan_status_counts": {},
+  "object_count": 24018,
+  "object_type_counts": {
+    "dataset": 23932,
+    "group": 86
+  },
+  "quarantine_count": 127,
+  "quarantine_reason_counts": {
+    "unknown_semantics": 127
+  },
+  "reference_dtype_dataset_count": 3579,
+  "scan_chunk_bytes": null,
+  "schema_version": "audit-cap.b0.v2"
+}

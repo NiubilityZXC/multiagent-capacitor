@@ -1,0 +1,13 @@
+{
+  "skill": "experiment-audit",
+  "run_id": "2026-08-20_run01",
+  "started_at": "2026-08-20T08:17:35Z",
+  "project_dir": "/home/user/multiagent-capacitor",
+  "executor": "codex",
+  "executor_model": "gpt-5.6-sol",
+  "executor_family": "openai",
+  "reviewer_model": "gpt-5.6-sol",
+  "reviewer_family": "openai",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional"
+}

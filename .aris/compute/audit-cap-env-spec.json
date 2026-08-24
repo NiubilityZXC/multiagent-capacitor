@@ -1,0 +1,47 @@
+{
+  "base": "CPython 3.12 CPU-only venv",
+  "env": {
+    "MKL_NUM_THREADS": "4",
+    "NUMEXPR_NUM_THREADS": "4",
+    "OMP_NUM_THREADS": "4",
+    "OPENBLAS_NUM_THREADS": "4",
+    "PYTHONHASHSEED": "0"
+  },
+  "pip_phases": [
+    [
+      "pip==24.2",
+      "setuptools==72.1.0",
+      "wheel==0.44.0"
+    ],
+    [
+      "numpy==1.26.4",
+      "scipy==1.11.4",
+      "pandas==2.2.2",
+      "h5py==3.11.0",
+      "scikit-learn==1.5.1",
+      "pytest==8.3.2"
+    ]
+  ],
+  "run_commands": [],
+  "smoke": {
+    "cli_checks": [
+      "python3"
+    ],
+    "gpu_tests": [
+      {
+        "cmd": "python -c 'import numpy as np; from scipy.linalg import solve; from sklearn.linear_model import Ridge; np.random.seed(20260813); x=np.arange(12,dtype=float).reshape(-1,1); y=2*x.ravel()+1; m=Ridge(alpha=1e-4).fit(x,y); z=solve(np.eye(2),np.array([1.,2.])); print(\"WITNESS\", np.round(m.predict([[12.]])[0],6), z.tolist(), np.__version__)'",
+        "expect": "^WITNESS 24\\.99999[0-9] \\[1\\.0, 2\\.0\\] 1\\.26\\.4$"
+      }
+    ],
+    "import_names": [
+      "numpy",
+      "scipy",
+      "pandas",
+      "h5py",
+      "sklearn",
+      "pytest"
+    ]
+  },
+  "system_pkgs": [],
+  "weight_dirs": {}
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "capacitor-agent.ark-model-registry.v1",
+  "captured_at": "2026-08-24",
+  "base_url": "https://ark.cn-beijing.volces.com/api/plan/v3",
+  "source_status": "user_screenshot_plus_official_public_docs_not_account_verified",
+  "formal_use_status": "blocked_until_authenticated_ListArkAgentPlanModel_snapshot",
+  "models": [
+    {
+      "logical_id": "doubao-seed-2.0-mini",
+      "status": "user_reported"
+    },
+    {
+      "logical_id": "glm-5.3",
+      "status": "user_reported"
+    },
+    {
+      "logical_id": "deepseek-v4-flash",
+      "status": "user_reported"
+    },
+    {
+      "logical_id": "kimi-k3",
+      "status": "user_reported_enabled_medium_or_higher"
+    },
+    {
+      "logical_id": "glm-5.2",
+      "status": "user_reported_approaching_retirement",
+      "formal_dependency_allowed": false
+    },
+    {
+      "logical_id": "kimi-k2.7-code",
+      "status": "user_reported"
+    },
+    {
+      "logical_id": "minimax-m3",
+      "status": "user_reported"
+    },
+    {
+      "logical_id": "deepseek-v4-pro",
+      "status": "user_reported"
+    }
+  ],
+  "verification_requirements": [
+    "authenticated AgentPlan model-list snapshot",
+    "one synthetic strict-schema capability call per selected model",
+    "service-returned model and version recorded",
+    "tool, storage, cache, retry, token, and deadline policies frozen",
+    "secret scan passes before and after execution"
+  ]
+}

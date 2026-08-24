@@ -1,0 +1,26 @@
+{
+  "schema_version": "audit-cap.benchmark-l-data-gate.amendment.v1.1",
+  "frozen_at": "2026-08-24T11:37:52+08:00",
+  "parent_contract": "BENCHMARK_L_DATA_GATE_PROTOCOL_20260824_113327.json",
+  "parent_contract_sha256": "6e2a726177e68a51f9df39f33b5ac8135aeb1221642c48743d37605cb2eaad19",
+  "reason": "pre_execution_probe_observed_zero_frequency_acquisition_preamble",
+  "expected_raw_reference_slots": 9316,
+  "expected_nonempty_matrix_pairs": 8835,
+  "expected_paired_canonical_empties": 481,
+  "frequency_row_contract": {
+    "preserve_all_raw_rows": true,
+    "raw_row_counts_allowed": [58, 59],
+    "row_classes": {
+      "acquisition_preamble": "frequency_equals_zero",
+      "positive_frequency_sweep": "frequency_greater_than_zero",
+      "invalid_frequency": "frequency_negative_or_nonfinite"
+    },
+    "preamble_must_be_contiguous_prefix": true,
+    "allowed_preamble_lengths": [7, 8],
+    "sweep_must_be_contiguous_suffix": true,
+    "expected_positive_sweep_rows": 51,
+    "positive_sweep_order": "strictly_decreasing",
+    "n_frequency_definition": "positive_frequency_sweep_rows",
+    "target_proxy_status": "BLOCKED"
+  }
+}

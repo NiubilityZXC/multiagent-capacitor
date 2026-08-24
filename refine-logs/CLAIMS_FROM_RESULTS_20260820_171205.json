@@ -1,0 +1,65 @@
+{
+  "schema_version": "audit-cap.result-to-claim.v1",
+  "generated_at": "2026-08-20T17:12:05+08:00",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "integrity_status": "WARN",
+  "numerical_integrity": "PASS",
+  "overall_claim_ceiling": "deterministic Stress-2 surrogate replay and quick synthetic-design implementation sanity only",
+  "claims": {
+    "C1": {
+      "claim_supported": "yes",
+      "confidence": "high",
+      "narrow_wording": "The deterministic parser, surrogate-LOCO replay, causal ledger, failure accounting, and truth-blind quick simulator are operational and reproducible on the frozen sanity fixtures.",
+      "missing_to_upgrade": "independent cross-family/environment reproduction, external chronology, identity-resolved Benchmark-L validation",
+      "overstatement_severity": "high_if_scope_removed"
+    },
+    "C2": {
+      "claim_supported": "no",
+      "confidence": "high",
+      "narrow_wording": "Ridge had the lowest observed macro MAE in all executed Stress-2 surrogate cells; this is descriptive ordering only.",
+      "missing_to_upgrade": "identity-safe preregistered Benchmark-L and independent external evaluation",
+      "overstatement_severity": "critical"
+    },
+    "C3": {
+      "claim_supported": "no",
+      "confidence": "high",
+      "narrow_wording": "RUL and interval scoring were disabled; only descriptive capacity/ESR point errors were computed.",
+      "missing_to_upgrade": "verified termination/censoring, independent units, frozen RUL estimand, calibration and proper-score evaluation",
+      "overstatement_severity": "critical"
+    },
+    "C4": {
+      "claim_supported": "no",
+      "confidence": "high",
+      "narrow_wording": "The quick simulator is operational, but the formal Design Gate was not evaluated and no champion or topology was selected.",
+      "missing_to_upgrade": "formal-repeat budget, all preregistered criteria, eligible frozen real-data evaluation, separate topology meta-evaluation",
+      "overstatement_severity": "critical"
+    },
+    "C5": {
+      "claim_supported": "partial",
+      "confidence": "high",
+      "narrow_wording": "Proceed to frozen reference-aware parser and target-semantics/Data-Gate work only; run the formal Design Gate and Freeze B afterward.",
+      "missing_to_upgrade": "identity/time/target/missingness/outcome gates plus formal Design Gate completion",
+      "overstatement_severity": "moderate"
+    }
+  },
+  "forbidden_claims": [
+    "general_model_superiority",
+    "physical_device_independence",
+    "rul_accuracy",
+    "interval_calibration",
+    "cross_condition_robustness",
+    "deployment_readiness",
+    "benchmark_L_or_formal_gate_pass",
+    "model_champion",
+    "agent_topology_advantage"
+  ],
+  "next_experiment": {
+    "decision": "parser_and_data_gate_only",
+    "benchmark_L_modeling": "blocked",
+    "rul": "blocked",
+    "formal_design_gate": "blocked_pending_data_gate",
+    "freeze_b": "blocked_pending_data_and_design_gates",
+    "ablation_plan_warranted": false
+  }
+}

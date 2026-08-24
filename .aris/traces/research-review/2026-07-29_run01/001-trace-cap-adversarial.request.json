@@ -1,0 +1,14 @@
+{
+  "call_number": 1,
+  "purpose": "trace-cap-adversarial",
+  "timestamp": "2026-07-29T18:00:00+08:00",
+  "tool": "collaboration.spawn_agent",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "ultra",
+  "files_referenced": [
+    "idea-stage/EVIDENCE_LEDGER.md",
+    "idea-stage/FROZEN_EVAL_PROTOCOL.md",
+    "idea-stage/IDEA_CANDIDATES.md"
+  ],
+  "prompt": "你是 fresh NeurIPS/ICML/PHM senior reviewer，审查一个尚未跑正式实验的实证研究计划。只读这些文件，不参考 prior conversation、作者摘要或其他 review：\n- /home/user/multiagent-capacitor/idea-stage/EVIDENCE_LEDGER.md\n- /home/user/multiagent-capacitor/idea-stage/FROZEN_EVAL_PROTOCOL.md\n- /home/user/multiagent-capacitor/idea-stage/IDEA_CANDIDATES.md\n\n从“方案很可能在某处是坏的”出发，逐证据检查。特别攻击：数据是否足以支持系统复杂度；RUL/EOL/删失是否可识别；跨电压是否真是跨工况；在线回放是否仍有标签延迟/校准泄漏；最近邻是否杀死新颖性；Agent 图是否与预测精度因果脱节；过多组件是否形成不可归因的全栈故事；统计功效；公开复现与许可。不要臆造结果，不要给实验性能主观分。输出严格 JSON：headline_rejection_memo（≤250中文字）, findings[{id,severity:CRITICAL|MAJOR|MINOR,claim,evidence_file_section,why_it_matters,minimum_fix,decisive_experiment}], claims_matrix[{outcome,allowed_claim,forbidden_claim}], minimum_publishable_package, recommended_scope, verdict:PROCEED_WITH_MAJOR_REDESIGN|PROCEED|STOP, review_independence:same-family, acceptance_status:provisional。"
+}

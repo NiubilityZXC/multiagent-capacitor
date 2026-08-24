@@ -1,0 +1,10 @@
+{
+  "cell_seal_sha256": "f5d48e9b49c775d7482fb9325ffb00ee546fbb9185bde71eb9369237356b325d",
+  "code_hash": "36f8a0af273cfbe606f08383a6ea8594d6bf93d5f96d7f6094d60e3e7f240e90",
+  "completed_utc": "2026-08-20T08:49:22.928595+00:00",
+  "design_gate": "NOT_EVALUATED_QUICK_SANITY",
+  "protocol_hash": "316c67f74d746102c52577e09bd2645934c753f9d91ea413ca6697707d2ca623",
+  "repeat_seal_sha256": "d20a90445693717a668c2ce5aacadf47c058d6c7a77ccae17cddda130d0504d4",
+  "run_manifest_sha256": "70de02aa9afaf670ac5d17fe31b827d5c556091b002e038e6bdd526877aef21a",
+  "status": "COMPLETE"
+}

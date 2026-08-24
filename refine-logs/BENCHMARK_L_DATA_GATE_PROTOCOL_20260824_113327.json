@@ -1,0 +1,68 @@
+{
+  "schema_version": "audit-cap.benchmark-l-data-gate.v1",
+  "frozen_at": "2026-08-24T11:33:27+08:00",
+  "scope": "reference_aware_parser_and_data_gate_only",
+  "forbidden_actions": [
+    "model_training",
+    "model_evaluation",
+    "rul_generation_or_scoring",
+    "formal_design_gate",
+    "freeze_b",
+    "agent_topology_evaluation"
+  ],
+  "status_precedence": ["FAIL", "BLOCKED", "AMBER", "PASS"],
+  "amber_unlocks_modeling": false,
+  "expected_counts": {
+    "provisional_eis_units": 24,
+    "events_per_unit": 73,
+    "eis_event_slots": 1752,
+    "eis_nonempty_matrices": 8835,
+    "eis_nonempty_by_condition": {"ES10": 2981, "ES12": 2921, "ES14": 2933},
+    "transient_units": 23,
+    "transient_arrays": 46,
+    "ES10_timestamp_rows": 75826,
+    "ES10_signal_rows": 75826,
+    "ES12_timestamp_rows": 77241,
+    "ES12_signal_rows": 77237,
+    "ES14_timestamp_rows": 77241,
+    "ES14_signal_rows": 77241
+  },
+  "column_mapping": {
+    "raw_token_count": 20,
+    "canonical_column_count": 18,
+    "allowed_merges": [["cycle", "number"], ["I", "Range"]],
+    "raw_orientation": "feature_by_frequency",
+    "canonical_orientation": "frequency_by_feature"
+  },
+  "duplicate_detection": {
+    "exact": "sha256_dtype_shape_little_endian_canonical_nan_and_zero_bytes",
+    "eis_sample_positions": 64,
+    "transient_sample_rows": 257,
+    "transient_sample_columns": 17,
+    "minimum_finite_overlap": 64,
+    "pearson_threshold": 0.999999,
+    "pooled_rms_nrmse_threshold": 0.00001,
+    "candidate_implies_physical_identity": false
+  },
+  "gate_ids": ["G00", "G01", "G02", "G03", "G04", "G05", "G06", "G07", "G08", "G09", "G10"],
+  "reference_pairing_order": "pair_by_raw_index_before_stable_sort_by_acquisition_time",
+  "event_availability_rule": "max_included_replicate_finish_candidate",
+  "reference_table_fourth_field_name": "elapsed_like_raw",
+  "forbidden_feature_classes": [
+    "raw_header",
+    "source_path",
+    "source_filename",
+    "hdf5_reference_name",
+    "condition_label",
+    "unit_label",
+    "termination_proxy",
+    "sequence_length"
+  ],
+  "release_policy": {
+    "eis_parser": ["G00", "G01", "G02", "G03", "G10"],
+    "transient_parser_additional": ["G03", "G04"],
+    "capacity_eval_additional": ["G05", "G06", "G07"],
+    "esr_soh_additional": ["G08"],
+    "rul_additional": ["G09", "formal_design_gate", "freeze_b"]
+  }
+}

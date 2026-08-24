@@ -1,0 +1,61 @@
+{
+  "schema": "audit-cap.source-provenance.v1",
+  "created_at": "2026-08-20T14:53:41+08:00",
+  "official_landing_page": "https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/",
+  "large_archive": {
+    "download_url": "https://phm-datasets.s3.amazonaws.com/NASA/12.+Capacitor+Electrical+Stress.zip",
+    "retrieval_completed_at": "2026-08-20T14:22:12+08:00",
+    "http_head_observed_at": "2026-08-20T14:52:00+08:00",
+    "http_status": 200,
+    "content_length": 5038942729,
+    "last_modified": "Sun, 18 Sep 2022 03:42:06 GMT",
+    "etag": "\"3ae2a4dbfeaca17a58e0a6d4df5720c7-294\"",
+    "accept_ranges": "bytes",
+    "local_path": "data/raw/NASA/capacitor_electrical_stress/Capacitor_Electrical_Stress.zip",
+    "local_size_bytes": 5038942729,
+    "sha256": "2e998398a956604c39b4a83146455282886b9d2e80edecd94fe90e565638ad98",
+    "zip_crc_test": "pass_all_members",
+    "uncompressed_member_bytes_total": 5167611427,
+    "members": [
+      {
+        "member": "12. Capacitor Electrical Stress/ES10.mat",
+        "size_bytes": 1209388987,
+        "extracted_sha256": "dc6d527433c6ce1ec5388b1a6a6c66b5601bbf695ba7ecefd80029b98dfa18db",
+        "container": "MATLAB 7.3 HDF5"
+      },
+      {
+        "member": "12. Capacitor Electrical Stress/ES12.mat",
+        "size_bytes": 1863271598,
+        "extracted_sha256": "18109558c6df7cafcba50a71b774367c887b331a09cf8b99ddcef2ddeb3e0a4a",
+        "container": "MATLAB 7.3 HDF5"
+      },
+      {
+        "member": "12. Capacitor Electrical Stress/ES14.mat",
+        "size_bytes": 2094950842,
+        "extracted_sha256": "2d926d4eb7e01e16a8711b98517a69eb98a53b811df5c65db36da584f9f40a90",
+        "container": "MATLAB 7.3 HDF5"
+      }
+    ]
+  },
+  "stress2_archive": {
+    "source_url": "https://data.nasa.gov/docs/legacy/EOS_DataSet.zip",
+    "http_head_observation": null,
+    "http_head_note": "No response headers were captured in the 60-second verification attempt; provenance therefore relies on the downloaded byte hash and the NASA repository evidence ledger.",
+    "local_path": "data/raw/NASA/capacitor_electrical_stress/EOS_DataSet.zip",
+    "local_size_bytes": 1648,
+    "sha256": "944cd2284cd01925088e97e5f5e2f337ee8b37800346fd2610d1bbaa6accacfb",
+    "zip_crc_test": "pass_all_members",
+    "mat_member": "EOS_DataSet.mat",
+    "mat_size_bytes": 1090,
+    "mat_sha256": "9db651a10f92d2046a477838c08fe1cdbaf27d7bc4062a856a373721400cb4a3",
+    "container": "MATLAB 5.0 MAT-file"
+  },
+  "primary_dataset_paper": {
+    "title": "Effects of Accelerated Aging on Capacitors",
+    "authors": ["J. Renwick", "C. S. Kulkarni", "J. R. Celaya"],
+    "year": 2015,
+    "repository_link": "https://pdfs.semanticscholar.org/043d/e954ba4718a4d9e93c5ff2611d3aa9058fa5.pdf",
+    "note": "Used for measurement semantics only; statements that conflict with the released files or NASA landing page remain recorded as conflicts, not silently reconciled."
+  },
+  "integrity_scope_note": "Hashes and CRC establish byte/container integrity only. They do not establish physical-unit identity, target semantics, termination reason, censoring mechanism, or modeling eligibility."
+}

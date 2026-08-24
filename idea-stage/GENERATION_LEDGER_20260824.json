@@ -1,0 +1,825 @@
+{
+  "schema_version": "aris.idea-generation.v1",
+  "run_id": "2026-08-24_run01",
+  "generated_candidates": 32,
+  "dedup_method": {
+    "primary": "exact dedup_key",
+    "secondary": "normalized title-token Jaccard",
+    "secondary_threshold": 0.25
+  },
+  "dedup_result": {
+    "exact_key_collisions": 0,
+    "title_pairs_at_or_above_threshold": 0,
+    "survivors": 32
+  },
+  "candidates": [
+    {
+      "kind": "idea",
+      "title": "Bitemporal Maturity-Gated Evidence Graph",
+      "method_steps": [
+        "Represent every measurement, operating condition, forecast, intervention, and outcome as an immutable node carrying event time, ingestion time, forecast origin, and label-maturity time.",
+        "Use LLM agents only to emit schema-constrained proposals for causal parents, regime boundaries, and feature transformations; accept proposals through numerical likelihood, residual, and stability tests.",
+        "Attach small state-space, gradient-boosting, and survival experts to graph substructures, then combine their predictive distributions using weights learned solely from outcomes mature at the current origin.",
+        "Commit every forecast before observing its target and prohibit deletion or retroactive mutation; invalid graph edits or unavailable agents trigger a frozen numerical-backbone forecast."
+      ],
+      "falsifiable_hypothesis": "Against the same numerical experts using flat chronological memory, maturity gating plus bitemporal provenance reduces the predeclared normalized capacity/ESR/SOH/RUL error by at least 5% and worst-capacitor error by at least 3% in LOCO tests, without reducing 90% interval coverage below 88%.",
+      "minimum_experiment": "Run nested LOCO and leave-condition-out evaluation on at least two run-to-failure capacitor datasets. At each rolling origin expose only records ingested by that origin and update only from matured targets, treating unfinished RUL as right-censored. Score capacity, ESR, and SOH normalized MAE; RUL MAE and CRPS; interval coverage; fallback rate; and API calls. Ablate bitemporal fields, maturity gates, immutable provenance, and LLM graph proposals separately under identical numerical backbones and token budgets.",
+      "contribution_type": "architecture and empirical diagnostic",
+      "risk": "MEDIUM — typed graph proposals may add little beyond a well-engineered numerical temporal model.",
+      "effort": "8–10 weeks; CPU plus one modest GPU, with cached LLM calls.",
+      "closest_prior_families": [
+        "bitemporal databases",
+        "temporal knowledge graphs",
+        "delayed-feedback online learning",
+        "prognostic state-space models",
+        "agent memory architectures"
+      ],
+      "so_what": "It tests whether explicit knowledge-time semantics are an essential architectural primitive for leakage-free agentic prognostics rather than bookkeeping added after model design.",
+      "dedup_key": "bitemporal-maturity-gated-evidence-graph",
+      "source_shard": "lens:temporal-evidence-graph"
+    },
+    {
+      "kind": "idea",
+      "title": "Censoring-Aware Forecast-to-Evidence Credit Graph",
+      "method_steps": [
+        "Create an immutable forecast ledger whose prediction nodes link to the precise future measurements, threshold events, and censoring states that can eventually score them.",
+        "When outcomes mature, assign numerical credit to agent messages and graph edges using out-of-sample loss differences, with inverse-probability-of-censoring weighting or survival likelihood for unresolved RUL targets.",
+        "Update edge reliabilities and ensemble weights prequentially from matured credit only; LLM agents may propose evidence links but cannot assign their own usefulness scores.",
+        "Route through a conservative numerical ensemble whenever credit estimates have low effective sample size, excessive variance, or failed ledger integrity checks."
+      ],
+      "falsifiable_hypothesis": "Censoring-aware delayed credit improves worst-fold LOCO RUL CRPS by at least 7% and the four-target composite score by at least 4% relative to immediate proxy rewards and complete-case credit, while keeping the empirical false-promotion rate of harmful agent edges below 10%.",
+      "minimum_experiment": "Replay full degradation histories as event streams with several artificial reporting delays added to the native RUL censoring. Compare censoring-aware credit, complete-case credit, proxy-label credit, and uniform agent weights in strict rolling-origin LOCO/cross-condition folds. Report target errors, calibration, effective sample size, harmful-edge promotion rate, recovery after delayed labels mature, and fallback frequency.",
+      "contribution_type": "architecture and online credit-assignment method",
+      "risk": "MEDIUM-HIGH — censoring models may be misspecified when test conditions differ sharply from training conditions.",
+      "effort": "7–9 weeks; primarily CPU-scale numerical experiments plus bounded API usage.",
+      "closest_prior_families": [
+        "delayed bandit feedback",
+        "survival analysis with right censoring",
+        "online expert aggregation",
+        "prequential evaluation",
+        "agent contribution attribution"
+      ],
+      "so_what": "Agent systems cannot learn which reasoning paths help long-horizon RUL if the architecture treats unavailable future outcomes as negative, missing, or immediately known.",
+      "dedup_key": "censoring-aware-forecast-evidence-credit-graph",
+      "source_shard": "lens:temporal-evidence-graph"
+    },
+    {
+      "kind": "idea",
+      "title": "Transportable Mechanism–Context Degradation Graph",
+      "method_steps": [
+        "Factor the evidence graph into shared mechanism nodes for stress-to-degradation dynamics and context nodes for capacitor identity, chemistry, manufacturer, sensor setup, and operating regime.",
+        "Have LLM agents translate metadata and observed regime descriptions into typed candidate context edges, while numerical invariance and conditional-independence tests determine whether each edge is retained.",
+        "Fit small hierarchical state-space and survival modules with shared transition mechanisms and capacitor-specific random effects; initialize unseen capacitors through numerical posterior inference rather than semantic similarity alone.",
+        "If no context assignment passes preregistered likelihood and invariance thresholds, fall back to a pooled mechanism model with widened uncertainty."
+      ],
+      "falsifiable_hypothesis": "Mechanism–context factorization reduces worst-capacitor composite error by at least 8% in LOCO and leave-stress-condition-out tests relative to pooled, per-capacitor, and metadata-concatenation models, with gains persisting when all capacitor identifiers are masked.",
+      "minimum_experiment": "Construct outer LOCO folds and separate held-out temperature, ripple-current, and duty-cycle folds where available. Use rolling origins and mature-only updates, with RUL right-censoring. Compare the factorized graph to matched pooled and hierarchical numerical models, then ablate shared mechanism nodes, context edges, invariance tests, and LLM metadata parsing. Score all four targets, worst-group error, calibration, and fallback behavior.",
+      "contribution_type": "causal transport architecture",
+      "risk": "HIGH — available datasets may not contain enough diverse interventions or metadata to identify transportable mechanisms.",
+      "effort": "10–12 weeks; moderate compute, dominated by repeated cross-condition fits.",
+      "closest_prior_families": [
+        "causal transportability",
+        "invariant risk minimization",
+        "hierarchical prognostics",
+        "domain generalization",
+        "structural causal models"
+      ],
+      "so_what": "The architecture targets the central deployment failure mode: accurate interpolation within known units but unreliable extrapolation to a new capacitor or stress regime.",
+      "dedup_key": "transportable-mechanism-context-degradation-graph",
+      "source_shard": "lens:temporal-evidence-graph"
+    },
+    {
+      "kind": "idea",
+      "title": "Versioned Contradiction-Fork Evidence Graph",
+      "method_steps": [
+        "Preserve every accepted degradation explanation as a versioned graph branch instead of overwriting memory when capacity recovery, ESR spikes, maintenance, or regime shifts contradict it.",
+        "Use specialized LLM agents to propose typed alternative explanations and segmentation points; numerical change-point likelihoods, predictive Bayes factors, and mature prequential losses control branch creation, pruning, and merging.",
+        "Maintain branch-specific small dynamical and survival models, combining them as a posterior mixture until mature evidence resolves the contradiction.",
+        "Retain the pre-shift forecast ledger for scoring, and revert to the last stable numerical branch if all new branches violate calibration or physical bounds."
+      ],
+      "falsifiable_hypothesis": "Versioned contradiction forks reduce post-change recovery time by at least 20% and post-change composite error by at least 7% versus overwrite memory and single-model reset strategies, without increasing pre-change false-alarm rate above 5% per life cycle.",
+      "minimum_experiment": "Evaluate native and synthetically injected regime shifts, temporary capacity recovery, sensor recalibration, and ESR outliers under outer LOCO folds. All shift decisions must use only observations available at each rolling origin, and branch quality updates wait for mature labels. Report detection delay, false alarms, post-change error area, RUL calibration, branch count, API cost, and fallback rate. Ablate versioning, contradiction edges, numerical branch tests, and branch mixtures.",
+      "contribution_type": "architecture for revision and non-destructive memory",
+      "risk": "MEDIUM-HIGH — graph branching can become statistically underpowered or computationally unstable on short histories.",
+      "effort": "8–11 weeks; CPU or single-GPU models with bounded branch counts.",
+      "closest_prior_families": [
+        "multiple-model adaptive estimation",
+        "Bayesian online change-point detection",
+        "truth-maintenance systems",
+        "versioned knowledge graphs",
+        "agent memory revision"
+      ],
+      "so_what": "A non-destructive architecture can distinguish genuine mechanism changes from transient contradictions while preserving an auditable record of what the system believed at each forecast origin.",
+      "dedup_key": "versioned-contradiction-fork-evidence-graph",
+      "source_shard": "lens:temporal-evidence-graph"
+    },
+    {
+      "kind": "idea",
+      "title": "Maturity-Calibrated Value-of-Information Agent Scheduler",
+      "method_steps": [
+        "Treat each optional LLM agent call as an action with measured latency, token cost, and potential change to the predictive distribution.",
+        "Learn an online value-of-information estimator from matured ledger entries, using numerical reductions in proper scoring loss as rewards and conditioning on graph state, uncertainty, horizon, and evidence gaps.",
+        "Select an agent subgraph by constrained optimization under per-origin cost and latency budgets; never use an LLM to judge another agent's value.",
+        "Skip optional agents when estimated value is non-positive or unreliable, and always emit the small numerical backbone's calibrated forecast if scheduling or API execution fails."
+      ],
+      "falsifiable_hypothesis": "At a fixed worst-fold LOCO composite error non-inferiority margin of 1%, maturity-calibrated scheduling reduces median API calls by at least 50% relative to always-on agents and improves composite error by at least 4% relative to random or uncertainty-only scheduling at the same call budget.",
+      "minimum_experiment": "Replay strict rolling-origin streams under several token and latency budgets, updating the scheduler only after linked labels mature and handling censored RUL rewards with survival scores. Compare learned value of information, always-on, random, uncertainty-threshold, and static schedules. Score four-target accuracy, worst-capacitor error, CRPS, cost, latency, decision regret computed after maturity, failed-call resilience, and fallback usage. Ablate cost awareness, maturity calibration, graph-state features, and reliability thresholds.",
+      "contribution_type": "resource-aware agent architecture",
+      "risk": "MEDIUM — sparse mature rewards may make marginal utility estimates noisy early in a capacitor's life.",
+      "effort": "6–8 weeks; moderate API budget and lightweight contextual-bandit training.",
+      "closest_prior_families": [
+        "value-of-information computation",
+        "budgeted prediction",
+        "contextual bandits with delayed feedback",
+        "adaptive computation",
+        "LLM routing systems"
+      ],
+      "so_what": "It makes agent activation an auditable numerical decision tied to eventual forecast improvement, permitting useful LLM reasoning without making availability or cost a single point of failure.",
+      "dedup_key": "maturity-calibrated-voi-agent-scheduler",
+      "source_shard": "lens:temporal-evidence-graph"
+    },
+    {
+      "kind": "idea",
+      "title": "Cross-Target First-Passage Consistency Graph",
+      "method_steps": [
+        "Represent latent degradation, capacity, ESR, SOH, and end-of-life threshold crossing as coupled variables in a temporal factor graph rather than four unrelated prediction heads.",
+        "Use LLM agents to propose schema-valid physical relations, operating-regime modifiers, and exception clauses; estimate all factors and proposal weights numerically from training folds only.",
+        "Combine small forecasters through constrained probabilistic inference so RUL distributions equal the latent trajectory's first-passage distribution and SOH remains consistent with capacity definitions while allowing data-driven slack.",
+        "If inference is infeasible, constraints conflict, or calibration degrades on mature recent forecasts, release the unconstrained numerical ensemble with wider intervals."
+      ],
+      "falsifiable_hypothesis": "Joint first-passage consistency reduces RUL CRPS by at least 6% and cross-target contradiction rate by at least 50% in LOCO tests, while keeping capacity, ESR, and SOH normalized MAE no worse than 1% relative to independent heads.",
+      "minimum_experiment": "Use identical numerical experts for independent-head and factor-graph systems in nested LOCO and cross-condition rolling-origin evaluation. Commit multi-horizon distributions to the ledger and update only after relevant targets mature; treat unobserved failure times as censored. Report per-target errors, CRPS, calibration, threshold-crossing consistency, physically implausible trajectory rate, solver failures, and fallback rate. Ablate each coupling factor, slack variables, and LLM-proposed relations.",
+      "contribution_type": "structured probabilistic architecture",
+      "risk": "MEDIUM — incorrect physical constraints can improve coherence while harming accuracy under atypical recovery or measurement behavior.",
+      "effort": "8–10 weeks; moderate probabilistic-inference compute.",
+      "closest_prior_families": [
+        "factor graphs",
+        "multi-task prognostics",
+        "first-passage-time models",
+        "physics-informed forecasting",
+        "structured probabilistic prediction"
+      ],
+      "so_what": "The architecture turns capacity, ESR, SOH, and RUL into mutually testable evidence about one degradation process instead of allowing individually plausible but jointly impossible forecasts.",
+      "dedup_key": "cross-target-first-passage-consistency-graph",
+      "source_shard": "lens:temporal-evidence-graph"
+    },
+    {
+      "kind": "idea",
+      "title": "Provenance-Weighted Sensor Reliability Graph",
+      "method_steps": [
+        "Create explicit nodes for sensors, calibration episodes, missingness mechanisms, derived features, and measurement transformations, linking every forecast input to its provenance.",
+        "Let LLM agents propose typed failure hypotheses such as calibration drift, contact resistance, unit mismatch, or condition-dependent bias; require numerical residual tests and change detectors before changing reliability weights.",
+        "Feed provenance-weighted observations into small robust state-space and survival models, retaining parallel clean and suspect evidence paths until delayed outcomes mature.",
+        "On provenance ambiguity, API failure, or detector disagreement, use a robust numerical model trained with masked sensors and emit an uncertainty inflation flag."
+      ],
+      "falsifiable_hypothesis": "Under native and injected sensor faults, provenance-weighted routing lowers fault-period composite error by at least 10% and clean-period error by at least 3% relative to robust loss alone, while maintaining a sensor-fault false-positive rate below 5%.",
+      "minimum_experiment": "In strict LOCO and leave-sensor-condition-out rolling-origin tests, inject bounded drift, offsets, timestamp swaps, missing blocks, and unit errors only after defining transforms from training data. Mature labels govern reliability updates, and forecasts remain immutable. Compare provenance graphs, robust numerical baselines, generic anomaly filtering, and oracle fault masks. Score all targets, detection precision/recall, calibration, clean-versus-fault error, API usage, and fallback rate. Ablate provenance nodes, hypothesis agents, numerical validators, and parallel evidence paths.",
+      "contribution_type": "fault-tolerant evidence architecture",
+      "risk": "MEDIUM — synthetic corruptions may not represent real sensor and acquisition failures.",
+      "effort": "7–9 weeks; modest compute with substantial data-pipeline engineering.",
+      "closest_prior_families": [
+        "sensor fault diagnosis",
+        "data provenance graphs",
+        "robust state estimation",
+        "missing-not-at-random modeling",
+        "multi-agent anomaly analysis"
+      ],
+      "so_what": "For unseen capacitors, separating degradation evidence from acquisition artifacts may matter more than adding another predictor, and the graph makes that separation auditable and ablatable.",
+      "dedup_key": "provenance-weighted-sensor-reliability-graph",
+      "source_shard": "lens:temporal-evidence-graph"
+    },
+    {
+      "kind": "idea",
+      "title": "Dual-Clock Quarantine Graph for Safe Online Adaptation",
+      "method_steps": [
+        "Maintain an observation clock that can create provisional regime and degradation-state nodes immediately and a maturity clock that alone can promote those nodes into reusable predictive memory.",
+        "Place LLM-generated features, causal explanations, and change hypotheses in a quarantine subgraph whose outputs may influence a bounded residual correction but cannot retrain shared mechanisms before outcome maturity.",
+        "Use small numerical models to assign sequential likelihood ratios, calibration debt, and survival-aware mature loss to quarantined nodes; promote, decay, or discard them through fixed numeric rules.",
+        "Cap every provisional correction and revert to the frozen pre-adaptation backbone if calibration debt, physical bounds, or ledger consistency checks fail."
+      ],
+      "falsifiable_hypothesis": "Dual-clock quarantine recovers at least 15% faster after genuine distribution shifts than mature-only adaptation and reduces catastrophic error episodes by at least 40% relative to immediate self-training, while changing clean-regime composite error by no more than 1%.",
+      "minimum_experiment": "Replay LOCO streams containing both genuine operating-condition changes and transient anomalies. Compare immediate adaptation, mature-only adaptation, dual-clock quarantine, and frozen models under equal numerical and API budgets. Enforce forecast commitment and delayed/censored label handling. Report shift recovery time, clean and shifted target errors, maximum error excursion, calibration debt, erroneous promotion rate, quarantine residence time, and fallback activations. Ablate bounded corrections, separate clocks, promotion rules, and the frozen-backbone safeguard.",
+      "contribution_type": "safe online-learning architecture",
+      "risk": "MEDIUM-HIGH — promotion delays may prevent useful adaptation when degradation accelerates close to end of life.",
+      "effort": "8–10 weeks; moderate streaming simulations and one-GPU training.",
+      "closest_prior_families": [
+        "safe online learning",
+        "delayed-label adaptation",
+        "shadow deployment",
+        "quarantine buffers",
+        "continual prognostics"
+      ],
+      "so_what": "It provides a concrete compromise between adapting quickly to a new capacitor and preventing immature agent conjectures from permanently corrupting the forecasting system.",
+      "dedup_key": "dual-clock-quarantine-safe-online-adaptation",
+      "source_shard": "lens:temporal-evidence-graph"
+    },
+    {
+      "kind": "idea",
+      "title": "Typed Causal Claim Compiler for Joint Capacitor Prognostics",
+      "method_steps": [
+        "Partition agents by non-overlapping information views: an exposure agent receives operating conditions only, a degradation agent receives capacity/ESR histories only, a physics agent receives equivalent-circuit residuals only, and a reliability agent receives missingness and calibration metadata only.",
+        "Require each agent to emit a typed DSL claim such as monotone trend, stress-acceleration coefficient, changepoint, observation unreliability, or uncertainty inflation, with timestamped evidence references rather than a free-form forecast.",
+        "Compile accepted claims into constraints and priors for a small joint state-space model of capacity, ESR, SOH, and RUL; a deterministic verifier tests every claim on matured rolling-origin prefixes and resolves conflicts by minimum-slack constrained optimization.",
+        "Use two independent shadow judges: one evaluates prequential residual improvement and the other evaluates cross-capacitor and cross-condition invariance. Attribute conflicts to individual claim edges through deterministic leave-one-edge-out replay.",
+        "If compilation fails, claims conflict irreconcilably, or both judges reject the graph, return the frozen small-model forecast and its calibrated uncertainty."
+      ],
+      "falsifiable_hypothesis": "Under delayed-label rolling-origin LOCO and cross-condition evaluation, typed compilation reduces the mean normalized capacity/ESR/SOH error and RUL MAE by at least 5% versus a same-call, same-token untyped multi-agent ensemble, while removing any role or claim-edge type causes a measurable degradation and the fallback is no worse than the frozen numerical model.",
+      "minimum_experiment": "Run all forecast origins with immutable maturity masks on at least three capacitor datasets or condition groups. Compare the full compiler against the frozen state-space model, an untyped matched-budget ensemble, shuffled role assignments, and every node/edge-type ablation using identical four-call token ceilings. Report capacity/ESR/SOH NRMSE, RUL MAE and integrated Brier score, interval coverage, fallback frequency, and paired bootstrap confidence intervals over held-out capacitors.",
+      "contribution_type": "architecture and verifiable neuro-symbolic forecasting method",
+      "risk": "MEDIUM — the claim language may omit useful degradation mechanisms or overconstrain the numerical model.",
+      "effort": "6-8 weeks with moderate CPU/GPU compute and four LLM calls per forecast origin.",
+      "closest_prior_families": [
+        "neuro-symbolic claim compilation",
+        "constrained state-space prognostics",
+        "typed evidence graphs",
+        "multi-agent verification",
+        "physics-informed battery and capacitor forecasting"
+      ],
+      "so_what": "The experiment isolates whether LLM agents help unseen-device forecasting by supplying auditable causal structure rather than opaque ensemble weights.",
+      "dedup_key": "typed-causal-claim-compiler",
+      "source_shard": "lens:verifiable-role-interaction"
+    },
+    {
+      "kind": "idea",
+      "title": "Orthogonal Residual Court with Deterministic Reconciliation",
+      "method_steps": [
+        "Fit a compact global numerical forecaster without held-out capacitor identities, using only data available at each rolling origin.",
+        "Cross-fit residual channels and expose disjoint channels to a stress-response agent, a degradation-kinetics agent, a sensor-quality agent, and a regime-transition agent; agents may propose bounded residual operators but cannot issue final target forecasts.",
+        "Numerically test whether each proposed operator explains residual variance not already explained by another role, rejecting redundant operators through conditional-correlation and partial-R2 thresholds computed only from matured labels.",
+        "Reconcile non-redundant corrections in a constrained quadratic program that preserves physical monotonicity and attributes conflicts through constraint dual variables and per-role residual covariance.",
+        "Let independent calibration and transfer shadow judges gate corrections using prior matured origins; if no correction passes or optimization fails, use the untouched global forecaster."
+      ],
+      "falsifiable_hypothesis": "Compared with overlapping-role and no-orthogonality variants under equal LLM budgets, enforcing residual orthogonality improves held-out-capacitor aggregate NRMSE by at least 4% and reduces worst-condition RUL MAE without increasing physical-violation or miscoverage rates.",
+      "minimum_experiment": "Use nested rolling-origin evaluation with delayed maturity and outer LOCO/cross-condition folds. Fix four agent calls and equal token limits for the full model, overlapping-view control, shuffled-view control, no-orthogonality control, and each role/verification-edge ablation. Score capacity/ESR/SOH NRMSE, RUL MAE, integrated Brier score, 90% coverage, constraint violations, and fallback error; use paired capacitor-level bootstrap intervals.",
+      "contribution_type": "architecture and diagnostic method",
+      "risk": "MEDIUM — genuinely orthogonal residual structure may be weak when degradation modes are tightly coupled.",
+      "effort": "5-7 weeks; small forecasters and deterministic optimization require modest compute.",
+      "closest_prior_families": [
+        "residual mixture-of-experts",
+        "orthogonal machine learning",
+        "forecast reconciliation",
+        "multi-view prognostics",
+        "agent debate with numerical verifiers"
+      ],
+      "so_what": "It tests whether non-overlap is a functional source of transfer accuracy rather than merely a prompt-design preference.",
+      "dedup_key": "orthogonal-residual-court",
+      "source_shard": "lens:verifiable-role-interaction"
+    },
+    {
+      "kind": "idea",
+      "title": "Counterfactual Evidence Braid with Negative-Control Roles",
+      "method_steps": [
+        "Create disjoint observational, electrothermal-physics, intervention/event, and negative-control roles. The observational role sees target trajectories, the physics role sees simulator summaries, the intervention role sees operating changes, and the negative-control role sees sensor channels expected not to causally affect degradation.",
+        "Require roles to emit typed signed effects, uncertainty bounds, and evidence provenance for counterfactual questions such as changing temperature, ripple current, or duty cycle, never unrestricted scalar scores.",
+        "Translate effects into a compact structural state-space model and deterministically check sign, unit, conservation, temporal precedence, and negative-control consistency on matured historical prefixes.",
+        "Attribute conflicts to the first failed typed edge and quantify each edge's forecast effect by counterfactual graph replay. Independent shadow judges test historical intervention fit and invariance across capacitor/condition folds.",
+        "Fall back to an identity-blind numerical forecaster whenever a causal path fails verification, negative controls activate, or the structural solver is infeasible."
+      ],
+      "falsifiable_hypothesis": "A verified braid containing physics and negative-control paths yields at least 5% lower worst-fold capacity/ESR/SOH NRMSE or RUL MAE than equal-budget observational-only and untyped graph variants, while placebo edge activation remains at or below the prespecified false-positive rate.",
+      "minimum_experiment": "Backtest immutable rolling origins with realistic label delays in outer LOCO and held-out-condition folds. Match calls and tokens across the full braid, no-negative-control, no-physics, no-intervention, untyped-edge, and shuffled-edge variants. Numerically report all target errors, integrated Brier score, interval coverage, placebo activation, causal-sign violations, and fallback performance with fold-level confidence intervals.",
+      "contribution_type": "causal multi-agent architecture",
+      "risk": "HIGH — available datasets may contain few identifiable interventions, limiting counterfactual verification power.",
+      "effort": "7-10 weeks with a lightweight equivalent-circuit simulator and modest LLM usage.",
+      "closest_prior_families": [
+        "structural causal models for time series",
+        "digital-twin prognostics",
+        "negative-control causal inference",
+        "typed factor graphs",
+        "physics-informed forecasting"
+      ],
+      "so_what": "It determines whether causal counterfactual agreement, including explicit placebo evidence, improves extrapolation to unseen capacitors and operating regimes.",
+      "dedup_key": "counterfactual-evidence-braid",
+      "source_shard": "lens:verifiable-role-interaction"
+    },
+    {
+      "kind": "idea",
+      "title": "Delayed-Maturity Double-Entry Forecast Ledger",
+      "method_steps": [
+        "Assign non-overlapping exposure, degradation-state, censoring/maturity, and sensor-integrity roles, each of which posts timestamped evidence and typed claims to an immutable ledger before the forecast is issued.",
+        "Pair every claim entry with a numerical forecast-impact entry produced by a small prognostic model, preventing agents from revising historical evidence after labels mature.",
+        "When labels become available, run two independent shadow ledgers: a calibration judge computes prequential proper scores, while a transfer judge computes identity-blind cross-condition regret. Neither judge sees the other's outputs.",
+        "Update role and edge reliability using deterministic leave-one-claim-out replay over only previously matured entries; attribute forecast conflicts and delayed errors to the responsible evidence-impact pairs.",
+        "At each origin combine claims using reliability estimates frozen before that origin; if the ledger lacks mature support, detects tampering/inconsistency, or violates uncertainty limits, use the preregistered numerical fallback."
+      ],
+      "falsifiable_hypothesis": "Double-entry maturity accounting lowers held-out-capacitor aggregate forecast error by at least 4% and delayed-label calibration error by at least 10% relative to same-budget agents with mutable memory or immediate-label credit assignment; deleting either shadow ledger eliminates part of the gain.",
+      "minimum_experiment": "Simulate several label-delay schedules and missing-label patterns while preserving true temporal availability. Evaluate rolling-origin outer LOCO and cross-condition folds with fixed four-call budgets. Compare immutable double-entry, mutable memory, premature-label, single-judge, no-attribution, and per-role ablations; report target NRMSE/MAE, RUL integrated Brier score, calibration error, stale-credit rate, conflict attribution accuracy on injected faults, and fallback results.",
+      "contribution_type": "online-learning architecture for delayed supervision",
+      "risk": "MEDIUM — reliability estimates may adapt slowly when only a small number of labels mature.",
+      "effort": "5-7 weeks; ledger replay is inexpensive and needs no large model training.",
+      "closest_prior_families": [
+        "prequential evaluation",
+        "delayed-feedback online learning",
+        "forecast provenance ledgers",
+        "agent memory systems",
+        "expert advice with sleeping or delayed experts"
+      ],
+      "so_what": "It directly addresses the otherwise hidden leakage and credit-assignment failures caused by capacitor labels that mature long after a forecast origin.",
+      "dedup_key": "delayed-maturity-double-entry-ledger",
+      "source_shard": "lens:verifiable-role-interaction"
+    },
+    {
+      "kind": "idea",
+      "title": "Minimum Causal-Cut Agent Graph",
+      "method_steps": [
+        "Call a fixed set of disjoint-view agents at every origin: degradation trajectory, operating stress, electrothermal physics, and sensor trust. Each emits typed evidence-to-claim edges with numerical bounds.",
+        "Construct a target-specific evidence graph whose terminal nodes are capacity, ESR, SOH, and RUL distributions, and mark incompatible claims with explicit conflict edges.",
+        "Use a deterministic minimum-cost flow or cut solver to select the smallest verified evidence path covering every target; edge costs depend only on matured prequential error, uncertainty, and cross-condition instability, not LLM judgment.",
+        "Run independent shadow judges for temporal validity and condition invariance, then attribute disagreements to cut membership and binding conflict constraints. Keep all LLM calls fixed so selection does not change the budget.",
+        "If no feasible verified cut connects evidence to a target, route that target to its frozen small-model forecast rather than extrapolating from unsupported claims."
+      ],
+      "falsifiable_hypothesis": "Selecting a minimal verified causal cut improves mean held-out-capacitor error by at least 5% or worst-condition regret by at least 8% relative to full-graph averaging and random same-size cuts, and at least one typed edge or node ablation causes a reproducible loss under equal call budgets.",
+      "minimum_experiment": "Perform delayed-label rolling-origin backtests with nested LOCO/cross-condition folds. Compare minimum cut, full graph, maximum-evidence graph, random matched-size cuts, untyped costs, and all role/edge-type ablations while always making the same agent calls. Report target-specific NRMSE/MAE, RUL integrated Brier score, coverage, selected-cut stability, conflict counts, solver failures, and fallback scores.",
+      "contribution_type": "graph-selection architecture",
+      "risk": "MEDIUM — a hard minimal cut may discard weak but complementary evidence unless cost calibration is careful.",
+      "effort": "6-8 weeks with standard graph optimization and small forecasting models.",
+      "closest_prior_families": [
+        "minimum-cost evidence graphs",
+        "sparse mixture-of-experts",
+        "causal graphical models",
+        "agent graph orchestration",
+        "forecast combination"
+      ],
+      "so_what": "The cut formulation makes architectural necessity directly testable: each edge must earn its place through measurable transfer evidence.",
+      "dedup_key": "minimum-causal-cut-agent-graph",
+      "source_shard": "lens:verifiable-role-interaction"
+    },
+    {
+      "kind": "idea",
+      "title": "Role-Conditional Conformal Product of Prognostic Experts",
+      "method_steps": [
+        "Factor information into population-transfer, within-device trajectory, physics-residual, and condition-invariance roles, with explicit prohibitions on sharing raw views or capacitor identity.",
+        "Each role uses an LLM to choose from a finite library of small probabilistic models or feature transformations, then the selected numerical tool emits a predictive distribution rather than a subjective confidence score.",
+        "Combine distributions through a deterministic log-opinion pool whose weights use only previously matured prequential log scores; apply rolling conformal calibration separately for capacity, ESR, SOH, and censored RUL.",
+        "Measure conflicts through per-role likelihood ratios and excess nonconformity, and use independent coverage and cross-condition shadow judges to gate each typed product edge.",
+        "If effective sample size is insufficient, judges disagree beyond a fixed tolerance, or conformal coverage fails, revert to a calibrated global numerical distribution."
+      ],
+      "falsifiable_hypothesis": "The role-conditional product reduces aggregate held-out-capacitor CRPS or NRMSE by at least 5% while maintaining nominal 90% coverage, compared with equal-budget overlapping roles, unconformalized pooling, and LLM-generated weights; removing either shadow judge worsens coverage or worst-condition error.",
+      "minimum_experiment": "Use rolling-origin delayed-maturity evaluation with outer LOCO and held-out stress/temperature conditions. Hold agent calls, candidate tool libraries, and tokens constant across full, overlapping-view, arithmetic-pool, unconformalized, learned-LLM-weight, judge-ablation, and role-ablation variants. Report CRPS, NRMSE, RUL MAE and integrated Brier score, empirical coverage/width, fallback rate, and capacitor-level bootstrap intervals.",
+      "contribution_type": "uncertainty-aware multi-agent architecture",
+      "risk": "MEDIUM — conformal sets may become wide under severe distribution shift, trading sharpness for safety.",
+      "effort": "6-9 weeks; model fitting is lightweight and parallelizable on modest hardware.",
+      "closest_prior_families": [
+        "conformal time-series forecasting",
+        "product-of-experts",
+        "online expert aggregation",
+        "distributional prognostics",
+        "role-factorized agents"
+      ],
+      "so_what": "It replaces opaque LLM ensemble confidence with testable predictive distributions and transfer-calibrated uncertainty for unseen devices.",
+      "dedup_key": "role-conditional-conformal-product",
+      "source_shard": "lens:verifiable-role-interaction"
+    },
+    {
+      "kind": "idea",
+      "title": "Verified Correction-Operator Tribunal",
+      "method_steps": [
+        "Keep the final forecaster numerical and restrict LLM agents to four non-overlapping critic roles: measurement anomaly, regime transition, extrapolation risk, and physics violation.",
+        "Critics may select only typed operators from a finite library, such as variance inflation, changepoint reset, monotone projection, stress-coefficient adjustment, or reject-to-fallback; they cannot directly revise forecast values.",
+        "Estimate every operator's magnitude with deterministic numerical tools and require two independent shadow judges to verify matured-prefix error reduction and physical/transfer consistency.",
+        "Resolve incompatible operators with a constrained safety projection, recording which critic, evidence edge, numerical test, or constraint caused acceptance or rejection.",
+        "If no operator passes both judges or the projected correction exceeds a prespecified trust region, return the original small-model forecast unchanged."
+      ],
+      "falsifiable_hypothesis": "A tribunal of bounded, verified operators improves LOCO aggregate NRMSE or RUL MAE by at least 4% over the uncorrected model and same-budget free-form agent revision, while producing fewer catastrophic errors above twice the fallback-model loss; each critic/operator edge has an isolatable effect in ablation.",
+      "minimum_experiment": "Backtest delayed-label rolling origins across unseen capacitors and unseen operating conditions. Compare the full tribunal with free-form last-mile revision, one unrestricted critic, no-shadow-judge, no-trust-region, and every critic/operator-edge ablation under identical four-call token budgets. Score all targets numerically, including tail error, physical violations, coverage, operator acceptance precision on injected faults, and fallback performance.",
+      "contribution_type": "failure-safe corrective architecture",
+      "risk": "MEDIUM — the finite operator library may cap accuracy gains even while improving robustness.",
+      "effort": "4-6 weeks using existing small models and deterministic constrained optimization.",
+      "closest_prior_families": [
+        "last-mile forecast revision",
+        "safe model correction",
+        "runtime assurance",
+        "tool-using agent verification",
+        "physics-constrained prognostics"
+      ],
+      "so_what": "It tests a strong architectural separation: LLMs diagnose and propose bounded actions, while numerical systems retain exclusive control over prediction values.",
+      "dedup_key": "verified-correction-operator-tribunal",
+      "source_shard": "lens:verifiable-role-interaction"
+    },
+    {
+      "kind": "idea",
+      "title": "Falsification-First Shadow Court with Anytime Evidence Tests",
+      "method_steps": [
+        "Partition claim-generating agents into degradation-shape, stress-causation, electrothermal-mechanism, and sensor-validity views, with typed evidence and claim edges and no shared raw inputs.",
+        "For every proposed edge, create explicit falsifiers: lead-lag reversal, temporal placebo, negative-control channel, unit/sign check, and cross-condition instability tests computed only from labels mature before the current origin.",
+        "Send claims to two independent shadow judges with complementary audit views: a temporal judge runs sequential anytime-valid e-tests, while a transfer judge runs identity-blind condition-invariance tests. Judges output statistics and thresholds, not prose scores.",
+        "Admit a claim to a small joint prognostic model only when both judges pass it; attribute conflicts to failed falsifiers and quantify edge necessity by equal-budget deletion and placebo-edge insertion.",
+        "When no claim survives, evidence wealth is insufficient, or judge statistics disagree outside a fixed rule, issue the calibrated small-model fallback forecast."
+      ],
+      "falsifiable_hypothesis": "Requiring dual anytime-valid falsification reduces worst-condition error and false claim admission by at least 10% relative to single-judge, fixed-window, or prose-verifier controls, while retaining or improving mean capacity/ESR/SOH NRMSE and RUL MAE on unseen capacitors.",
+      "minimum_experiment": "Conduct immutable rolling-origin evaluation under multiple delayed-label schedules with outer LOCO and cross-condition folds. Use the same calls and tokens for dual-judge, single-judge, swapped-audit-view, fixed-p-value, no-placebo, no-negative-control, and each node/edge ablation. Report target errors, RUL integrated Brier score, coverage, anytime false-admission rate on injected null edges, detection delay, accepted-edge counts, and fallback loss.",
+      "contribution_type": "statistically verifiable agent architecture",
+      "risk": "HIGH — dual falsification may reject useful weak signals and reduce coverage of rare degradation regimes.",
+      "effort": "7-9 weeks with moderate simulation and backtesting compute.",
+      "closest_prior_families": [
+        "anytime-valid sequential testing",
+        "falsificationist causal discovery",
+        "shadow-model monitoring",
+        "multi-agent verification",
+        "negative-control diagnostics"
+      ],
+      "so_what": "It makes agent claims earn influence through independent numerical attempts to disprove them, yielding a direct test of whether verifiability improves unseen-capacitor accuracy.",
+      "dedup_key": "falsification-first-shadow-court",
+      "source_shard": "lens:verifiable-role-interaction"
+    },
+    {
+      "kind": "idea",
+      "title": "Matched-Budget Randomized Edge-Probe Ledger",
+      "method_steps": [
+        "Instantiate four numerically scored route arms: pure LLM agents directly emit C, ESR, SOH, and RUL; hybrid LLM-plus-small-model direct prediction; hybrid residual correction; and hybrid learned fusion. Enforce the same API-call, token, monetary-cost, and latency envelope, while separately reporting numerical-model compute.",
+        "At selected rolling origins, randomly replace exactly one graph node or edge with an equal-budget alternative using a logged, nonzero propensity; all inputs are limited to information available at that origin.",
+        "Place every target-horizon forecast in a maturity ledger. When its label matures, compute inverse-propensity-weighted marginal edge credit using censoring-aware CRPS or integrated Brier loss and update only the corresponding target-horizon route statistics.",
+        "Apply a predeclared, origin-time RUL-identifiability mask to every arm: output RUL=NA when training history cannot identify a survival endpoint, and score RUL accuracy and eligible-case coverage separately."
+      ],
+      "falsifiable_hypothesis": "Against pooled delayed-bandit and static-routing controls, matched-budget probe credit will recover simulated edge effects with at least 90% coverage by nominal 95% intervals and reduce outer-LOCO mean proper loss by at least 3% without worsening the worst horizon by more than 1%.",
+      "minimum_experiment": "Run strict rolling-origin evaluation with outer leave-one-capacitor-out and cross-condition holdouts, real and synthetically varied label delays, administrative censoring, and at least five routing seeds. Compare all four arms and the adaptive graph at identical budgets; score C/ESR/SOH with CRPS plus calibration, RUL only under the frozen eligibility mask, NA coverage, failures, latency, tokens, and cost. No LLM-based judging is used.",
+      "contribution_type": "method plus finite-sample delayed causal-credit analysis",
+      "risk": "MEDIUM — closest-family risk is reduction to delayed contextual bandits or online DAG path learning. Failure condition: probes have weak overlap, edge interactions dominate one-edge interventions, or informative censoring invalidates the weighting model.",
+      "effort": "4-6 weeks",
+      "closest_prior_families": [
+        "delayed contextual bandits",
+        "online DAG path learning",
+        "REATS-style ensemble routing",
+        "dynamic graph routers such as DynaSwarm, MasRouter, GraphPlanner, CASTER, and SeqRoute"
+      ],
+      "so_what": "It would turn delayed forecast outcomes into auditable, numerically grounded causal credit for individual routing decisions rather than attributing a final error to an entire multi-agent graph.",
+      "dedup_key": "matched_budget_randomized_edge_probe_ledger",
+      "source_shard": "lens:delayed-credit-routing"
+    },
+    {
+      "kind": "idea",
+      "title": "Counterfactual Capsule Replay for Delayed Route Credit",
+      "method_steps": [
+        "At each origin, execute budget-matched pure-LLM-direct, hybrid-direct, hybrid-residual, and hybrid-fusion arms under a common output contract for C, ESR, SOH, and RUL or NA.",
+        "Persist an immutable causal capsule containing timestamped LLM structured outputs, small-model states, fusion inputs, graph version, costs, and the origin-time RUL-identifiability mask; exclude all later observations.",
+        "Construct shadow routes only by recombining cached branch outputs downstream of declared merge points, so no additional LLM calls or imagined messages are introduced. When labels mature, score the deployed and shadow routes on the same observation and assign paired numerical loss differences to changed edges.",
+        "Use a small randomized-probe stream to estimate and report replay bias; stop adapting and return the numerical fallback whenever replay disagreement exceeds a predeclared tolerance."
+      ],
+      "falsifiable_hypothesis": "For downstream merge and gating edges, capsule replay will reduce delayed edge-credit variance by at least 30% relative to unpaired online estimates, achieve correlation of at least 0.7 with randomized-probe effects, and improve matched-budget LOCO proper loss by at least 2%.",
+      "minimum_experiment": "On rolling-origin LOCO and cross-condition splits, retain capsules for all four direct/hybrid arms, replay at least eight legal shadow topologies per origin, and compare paired replay credit with independently randomized edge effects after each horizon matures. Include delayed, missing, and censored labels; report RUL=NA eligibility and coverage separately and count malformed LLM output or deadline misses as fallback events.",
+      "contribution_type": "method and counterfactual-credit diagnostic",
+      "risk": "MEDIUM — closest-family risk is generic bitemporal memory or replay. Failure condition: graph changes alter upstream LLM messages, cached emissions are insufficient counterfactuals, or replay bias remains above tolerance.",
+      "effort": "3-5 weeks",
+      "closest_prior_families": [
+        "generic bitemporal memories",
+        "off-policy evaluation and replay",
+        "CastFSR and CastFlow fast-slow-reflect memory",
+        "TS-Debate trace aggregation"
+      ],
+      "so_what": "It could provide many paired credit observations from each expensive API execution while making the boundary between valid replay and unsupported counterfactuals explicit.",
+      "dedup_key": "counterfactual_capsule_replay_delayed_route_credit",
+      "source_shard": "lens:delayed-credit-routing"
+    },
+    {
+      "kind": "idea",
+      "title": "Maturity-Factored Target-Horizon Credit Tensor",
+      "method_steps": [
+        "Represent routing credit as a masked tensor indexed by node or edge, direct-versus-hybrid arm, target among C/ESR/SOH/RUL, forecast horizon, operating condition, and label maturity state.",
+        "Generate the four required arms under equal budgets: pure LLM direct numerical output, hybrid numerical direct prediction, LLM residual correction, and LLM-numerical fusion. All emit calibrated distributions where possible and RUL=NA under the same origin-time identifiability rule.",
+        "Create a separate obligation for every target-horizon prediction. A tensor cell receives observed loss only after its label matures; low-rank sharing may predict an unobserved cell's credit but may never mark an immature loss as observed.",
+        "Fit the tensor from censoring-aware CRPS, survival Brier, and calibration residuals, then route using target-horizon-specific credit with a frozen numerical fallback for unsupported cells."
+      ],
+      "falsifiable_hypothesis": "Compared with a single pooled reward and per-horizon independent routers, the maturity-factored tensor will reduce long-horizon LOCO proper loss by at least 4% while increasing short-horizon loss by no more than 1%, with no measurable leakage under timestamp-permutation tests.",
+      "minimum_experiment": "Evaluate all four arms plus pooled, independent, and tensor-credit routers using strict rolling origins, outer LOCO, unseen-condition transfer, naturally asynchronous horizons, and controlled delay/censoring sweeps. Audit every update against the origin and maturity timestamps; evaluate RUL only on the predeclared identifiable set and report NA rate, token use, latency, cost, and fallback frequency.",
+      "contribution_type": "method plus analysis of proper risk under asynchronous maturity",
+      "risk": "MEDIUM — closest-family risk is ordinary multi-task routing with missing labels. Failure condition: the tensor rank assumption is wrong, horizon benefits are unrelated, or censoring weights become unstable.",
+      "effort": "4-6 weeks",
+      "closest_prior_families": [
+        "multi-task mixture-of-experts",
+        "delayed multi-output learning",
+        "survival scoring with censoring",
+        "cost-aware dynamic routers"
+      ],
+      "so_what": "It tests whether incorrect temporal pooling, rather than weak forecasters, is a central cause of poor long-horizon and unseen-capacitor routing.",
+      "dedup_key": "maturity_factored_target_horizon_credit_tensor",
+      "source_shard": "lens:delayed-credit-routing"
+    },
+    {
+      "kind": "idea",
+      "title": "Regret-Escrow Graph Adapter with Pending-Loss Reserves",
+      "method_steps": [
+        "Keep a frozen small numerical forecaster as the always-available baseline and expose four equal-budget candidates: pure LLM direct C/ESR/SOH/RUL, hybrid direct, hybrid residual correction, and hybrid fusion.",
+        "Normalize targets and clip predictive distributions so the chosen proper losses are bounded. Express every adaptive forecast as a convex mixture with the fallback, while enforcing the common RUL=NA identifiability mask.",
+        "Maintain a separate escrow account per target and horizon. Matured improvements over the fallback add credit; every immature adaptive forecast reserves its worst-case excess-loss liability, and new node or edge activations are permitted only when the relevant account remains nonnegative.",
+        "On API timeout, schema failure, depleted escrow, unsupported condition, or unidentifiable RUL, emit the numerical fallback immediately and retain the failed activation as a cost and reliability observation."
+      ],
+      "falsifiable_hypothesis": "With bounded losses, the adapter will keep realized cumulative excess loss below the initial escrow allowance on every test stream while obtaining at least a 2% mean proper-loss improvement over the fallback on outer-LOCO capacitors at the same API budget.",
+      "minimum_experiment": "Replay rolling-origin streams with short, long, bursty, and adversarial label delays; inject API failures and condition shifts; and compare fixed fusion, unconstrained adaptation, and escrow adaptation. Run outer LOCO and cross-condition tests, identical token/cost/deadline caps for all direct/hybrid arms, and separate RUL accuracy, NA coverage, regret, reserve utilization, latency, and fallback metrics.",
+      "contribution_type": "safe-routing method with a pathwise baseline-regret bound",
+      "risk": "MEDIUM — closest-family risk is conservative bandits with a baseline. Failure condition: loss bounds are too loose to release escrow, severe delay keeps all liability pending, or a weak fallback makes the guarantee operationally unhelpful.",
+      "effort": "4-6 weeks",
+      "closest_prior_families": [
+        "conservative contextual bandits",
+        "safe online learning",
+        "delayed feedback with outstanding-loss bounds",
+        "cost-aware graph routing"
+      ],
+      "so_what": "The mechanism makes online experimentation possible without allowing immature evidence or failed agents to silently erase the reliability of a known numerical baseline.",
+      "dedup_key": "regret_escrow_graph_adapter_pending_loss_reserves",
+      "source_shard": "lens:delayed-credit-routing"
+    },
+    {
+      "kind": "idea",
+      "title": "Anytime-Valid LOCO Evidence Gate for Edge Promotion",
+      "method_steps": [
+        "Place each new agent node or graph edge in probation and initially run it only in shadow or in a small matched-budget randomized stream spanning pure-LLM-direct, hybrid-direct, hybrid-residual, and hybrid-fusion routes.",
+        "After labels mature, form paired censoring-aware proper-loss differences relative to the frozen numerical fallback, clustered by capacitor and target horizon; never use immature outcomes or held-out test-capacitor labels.",
+        "Feed bounded loss differences into confidence sequences or e-processes that remain valid under optional stopping and asynchronous revelation. Promote an edge only when improvement evidence crosses a predeclared boundary across leave-one-seen-capacitor-out pseudo-target folds; retire it when a harm boundary is crossed.",
+        "Use the same origin-time RUL-identifiability mask across routes, output RUL=NA outside it, and force fallback on deadline, malformed output, or insufficient evidence."
+      ],
+      "falsifiable_hypothesis": "Under simulated null edges, the lifetime false-promotion rate will remain at or below the chosen 5% level despite optional stopping and delayed labels; under useful edges, promoted graphs will improve outer-LOCO proper loss by at least 3% at matched budget.",
+      "minimum_experiment": "Build null, helpful, and condition-specific synthetic edges on top of a real rolling-origin capacitor corpus. Measure false promotion, detection delay, retirement delay, LOCO and cross-condition losses, RUL eligibility and NA coverage, tokens, cost, latency, and fallback rate for all four arms against fixed-sample testing and naive exponential averaging.",
+      "contribution_type": "sequential testing method with anytime-valid graph-adaptation guarantees",
+      "risk": "MEDIUM — closest-family risk is sequential model selection. Failure condition: few independent capacitors make evidence too weak, censoring weights violate boundedness, or edge effects drift faster than the evidence window.",
+      "effort": "4-5 weeks",
+      "closest_prior_families": [
+        "anytime-valid sequential testing",
+        "delayed contextual bandits",
+        "online graph model selection",
+        "LOCO cross-validation"
+      ],
+      "so_what": "It would give every topology change a numerical promotion certificate whose error rate remains interpretable even when feedback arrives late and testing stops adaptively.",
+      "dedup_key": "anytime_valid_loco_edge_promotion_gate",
+      "source_shard": "lens:delayed-credit-routing"
+    },
+    {
+      "kind": "idea",
+      "title": "Transport-Minimax Credit for Unseen Capacitors",
+      "method_steps": [
+        "Run budget-matched pure LLM direct prediction and three LLM-plus-small-model variants—direct numerical prediction, residual correction, and fusion—using an identical C/ESR/SOH/RUL-or-NA output schema and excluding capacitor identity from router features.",
+        "When labels mature, compute each edge's proper-loss gain separately for every source capacitor, condition, target, and horizon rather than pooling examples.",
+        "Cross-fit a small transport model over leave-one-seen-capacitor-out pseudo-targets and update the route from a lower-tail or distributionally robust aggregate of per-capacitor gains, so a large benefit on one familiar capacitor cannot dominate credit.",
+        "Use only origin-time covariates for similarity and the shared RUL-identifiability mask; unseen-support alarms, missing API outputs, and negative robust credit trigger the numerical fallback."
+      ],
+      "falsifiable_hypothesis": "Relative to pooled-credit routing, transport-minimax credit will reduce worst-capacitor outer-LOCO proper loss by at least 5% and median loss by at least 2%, while sacrificing no more than 1% on pooled source-capacitor performance at equal budget.",
+      "minimum_experiment": "Use nested rolling-origin evaluation: inner leave-one-source-capacitor-out folds for transport-credit fitting and untouched outer LOCO capacitors for evaluation, followed by cross-condition holdouts. Compare four direct/hybrid arms, pooled and robust routers, matched API budgets, asynchronous maturity, censoring, C/ESR/SOH proper scores, RUL identifiable-only scores, NA coverage, and fallback frequency.",
+      "contribution_type": "method and empirical study of transport-oriented credit",
+      "risk": "HIGH — closest-family risk is group-DRO or robust mixture-of-experts. Failure condition: too few capacitors make lower-tail credit noisy, target support is disjoint, or robustness collapses to the numerical fallback everywhere.",
+      "effort": "5-7 weeks",
+      "closest_prior_families": [
+        "group distributionally robust optimization",
+        "domain generalization and leave-one-domain-out training",
+        "mixture-of-experts routing",
+        "dynamic multi-agent graph routing"
+      ],
+      "so_what": "It directly aligns online credit with the stated deployment target—an unseen capacitor—rather than optimizing the sample-rich capacitors already present in the stream.",
+      "dedup_key": "transport_minimax_credit_unseen_capacitors",
+      "source_shard": "lens:delayed-credit-routing"
+    },
+    {
+      "kind": "idea",
+      "title": "Orthogonal Delayed Marginal Credit for Agent Nodes and Edges",
+      "method_steps": [
+        "Log probabilistic route choices and pre-outcome context for equal-budget pure-LLM-direct, hybrid-direct, hybrid-residual, and hybrid-fusion arms, all producing C/ESR/SOH/RUL or the shared RUL=NA decision.",
+        "Using only matured source-capacitor data, cross-fit small numerical nuisance models for route propensity, censoring, and expected proper loss; keep all folds separated by capacitor and rolling origin.",
+        "For each node or edge, compute a doubly robust, Neyman-orthogonal marginal loss score that residualizes the frozen numerical baseline and other active graph components. Update graph weights only from these matured scores.",
+        "Monitor overlap and effective sample size by target and horizon; revert to conservative baseline credit and the numerical forecast whenever positivity, censoring, schema, or latency checks fail."
+      ],
+      "falsifiable_hypothesis": "When either the propensity model or conditional-loss model is correctly specified, orthogonal credit will estimate known simulated marginal edge effects with less than half the bias of naive delayed loss attribution and improve matched-budget outer-LOCO proper loss by at least 3%.",
+      "minimum_experiment": "Create semi-synthetic route effects on a real chronological capacitor dataset so ground-truth marginal effects are known, then misspecify propensity and outcome nuisances separately and jointly. Evaluate estimation bias, interval coverage, effective sample size, final LOCO and cross-condition forecasts, all four arms, RUL eligibility and NA coverage, delays, censoring, tokens, latency, and fallback events.",
+      "contribution_type": "causal-credit estimator with double-robustness analysis",
+      "risk": "HIGH — closest-family risk is standard augmented inverse-propensity estimation. Failure condition: both nuisances are wrong, route overlap collapses, edge interference violates the marginal treatment definition, or censoring is nonignorable from logged context.",
+      "effort": "5-7 weeks",
+      "closest_prior_families": [
+        "doubly robust off-policy evaluation",
+        "orthogonal statistical learning",
+        "delayed contextual bandits",
+        "causal attribution in modular predictors"
+      ],
+      "so_what": "It separates an agent's unique numerical contribution from selection bias and from gains already supplied by the small-model baseline or neighboring agents.",
+      "dedup_key": "orthogonal_delayed_marginal_edge_credit",
+      "source_shard": "lens:delayed-credit-routing"
+    },
+    {
+      "kind": "idea",
+      "title": "Mature-Credit Deadline Knapsack with Staleness Pricing",
+      "method_steps": [
+        "Treat pure LLM direct prediction, hybrid numerical direct prediction, LLM residual correction, hybrid fusion, and individual supporting agents as selectable items with measured token, price, and latency distributions; require each completed route to emit C/ESR/SOH/RUL or the common RUL=NA.",
+        "Estimate target-horizon benefit only from matured, censoring-aware numerical loss credits. Apply a staleness haircut based on outstanding-label mass and confidence width so apparently promising but unverified nodes become less attractive as feedback debt grows.",
+        "At each origin, solve a small deadline-aware knapsack using conservative benefit estimates and hard caps on calls, tokens, monetary cost, and predicted tail latency. Reserve enough time to run the numerical baseline and cancel late API calls.",
+        "Evaluate every arm under the same resource envelope; on infeasibility, expired calls, unsupported conditions, or unidentifiable RUL, return the baseline output without asking an LLM to judge quality."
+      ],
+      "falsifiable_hypothesis": "The mature-credit knapsack will produce zero hard token and monetary-budget violations, fewer than 1% deadline violations, and at least a 3% reduction in outer-LOCO proper loss versus static equal-budget routing; removing staleness pricing will increase harmful activations under long delays by at least 20%.",
+      "minimum_experiment": "Profile real API token, cost, and latency traces for all four arms, then replay strict rolling-origin LOCO and cross-condition streams under several hard budgets and delay/censoring regimes. Compare static routers, mean-value knapsack, delayed-bandit routing, and mature-credit knapsack on proper loss, worst horizon, RUL identifiable-only accuracy, NA coverage, constraint violations, fallback rate, and cost.",
+      "contribution_type": "resource-constrained routing method with delayed-feedback regret and feasibility analysis",
+      "risk": "MEDIUM — closest-family risk is cost-aware routing combined with delayed bandits. Failure condition: latency distributions shift abruptly, conservative haircuts suppress all LLM calls, or estimated item values depend strongly on unmodeled graph interactions.",
+      "effort": "4-6 weeks",
+      "closest_prior_families": [
+        "cost-aware graph routing including MasRouter and SeqRoute",
+        "knapsack contextual bandits",
+        "delayed contextual bandits",
+        "deadline-aware mixture-of-experts"
+      ],
+      "so_what": "It ties agent activation to mature numerical evidence per unit resource while preserving an immediate forecast when APIs are slow, expensive, or insufficiently validated.",
+      "dedup_key": "mature_credit_deadline_knapsack_staleness_pricing",
+      "source_shard": "lens:delayed-credit-routing"
+    },
+    {
+      "kind": "idea",
+      "title": "Typed Forecast Contract with Executable PHM Agent Graphs",
+      "method_steps": [
+        "Define a domain manifest that preserves physical meanings and units: capacitor C, ESR, SOH and RUL; battery capacity and resistance; turbofan health and RUL; bearing vibration-derived health and RUL.",
+        "Compile each manifest into a leakage-safe graph grammar with typed observe, validate, numerical-tool, forecast, calibrate, identifiability and fallback nodes; disallow edges from future measurements or outcomes.",
+        "Instantiate four matched arms: a pure LLM agent directly emits C/ESR/SOH/RUL; an LLM agent invokes a numerical model for direct prediction; an LLM agent applies a bounded residual correction to a numerical forecast; and an LLM agent fuses LLM and numerical predictive distributions.",
+        "Require every arm to emit RUL=NA when the endpoint is not identifiable at that rolling origin, while separately scoring valid-RUL error, NA coverage and false-answer rate.",
+        "Compare arms using identical histories, the same LLM backbone and token cap, and per-origin inference cost and latency matched within 5%; use only numerical scoring and a deterministic baseline fallback."
+      ],
+      "falsifiable_hypothesis": "On unseen physical units, the typed graph contract will reduce unit/endpoint-invalid outputs by at least 50% and improve the median normalized proper forecast score of at least one hybrid arm by at least 5% over both an untyped graph and the pure-LLM direct arm, without increasing false non-NA RUL answers.",
+      "minimum_experiment": "Use a public accelerated-aging capacitor dataset as the primary task plus one public battery dataset, C-MAPSS turbofans and PRONOSTIA or XJTU-SY bearings. Run group-held-out-unit, strict rolling-origin evaluation with delayed and right-censored outcomes, three seeds and frozen preprocessing. Report C/ESR/SOH MAE or RMSE, event-time CRPS or integrated Brier score, RUL MAE only on identifiable origins, NA coverage, false-answer rate, calibration, worst-unit score and fallback frequency for all four cost-matched arms.",
+      "contribution_type": "architecture and cross-family empirical benchmark",
+      "risk": "MEDIUM: The nearest-neighbor risk is overlap with typed workflow systems and time-series agent graphs such as REATS, CastFlow and Nexus. The idea fails if typing only reduces formatting errors while leaving unseen-unit accuracy, calibration and safe fallback unchanged.",
+      "effort": "6-8 weeks with moderate single-node GPU compute",
+      "closest_prior_families": [
+        "typed probabilistic workflows",
+        "component-based AutoML",
+        "REATS and CastFlow-style time-series agents",
+        "dynamic graph routers",
+        "multi-domain PHM benchmarks"
+      ],
+      "so_what": "It tests whether a universal agent architecture can be shared across prognostics families without collapsing physically distinct endpoint semantics into generic time-series labels.",
+      "dedup_key": "typed-phm-forecast-contract-graph-grammar",
+      "source_shard": "lens:phm-generalization"
+    },
+    {
+      "kind": "idea",
+      "title": "Mechanism-Signature Numerical Tool Registry",
+      "method_steps": [
+        "Compute past-only mechanism signatures at every origin, including monotonic drift, load-response lag, hysteresis, recovery, change-point evidence, spectral periodicity and uncertainty growth.",
+        "Register small numerical executors by explicit preconditions and outputs: Kalman and particle filters, monotone splines, survival models, Gaussian processes, change-point models, spectral estimators and domain physics residuals.",
+        "Let the agent construct a tool graph from mechanism-compatible registry entries rather than choosing tools from dataset names or free-form role descriptions.",
+        "Evaluate a pure LLM direct-output arm and three hybrid arms in which the registry supplies direct prediction, residual correction or probabilistic fusion; enforce the same C/ESR/SOH/RUL schema for capacitors.",
+        "Apply an identifiability test before RUL emission, returning RUL=NA when observed history and endpoint support are insufficient, then fall back to a fixed domain numerical baseline when registry confidence is low."
+      ],
+      "falsifiable_hypothesis": "At a matched per-origin budget, mechanism-indexed registry execution will improve unseen-unit normalized proper score by at least 5% over a fixed numerical-tool suite and a generic learned router on at least three of four prognostics families; unstable short-history signatures will erase this advantage.",
+      "minimum_experiment": "Construct the registry with six to eight CPU-friendly models and evaluate on public capacitor, battery, turbofan and bearing datasets using group holdout and rolling origins. Compare pure LLM direct, hybrid numerical-direct, hybrid residual and hybrid fusion arms under equal input information, LLM token limits and inference cost within 5%. Include ablations replacing mechanism signatures with dataset identity or generic embeddings, and score only numeric accuracy, calibration, NA behavior, tool cost and worst-unit performance.",
+      "contribution_type": "mechanism-aware architecture and empirical diagnostic",
+      "risk": "HIGH: The nearest-neighbor risk is overlap with mixture-of-experts, AutoML selection and dynamic graph routers. The idea fails if signatures are unreliable before substantial degradation, if one tool dominates every registry choice, or if registry selection does not outperform a fixed strong executor.",
+      "effort": "7-10 weeks with mostly CPU training and limited GPU use",
+      "closest_prior_families": [
+        "mixture-of-experts routing",
+        "algorithm selection and AutoML",
+        "mechanism-informed PHM",
+        "KairosAgent and TimeClaw",
+        "dynamic graph tool registries"
+      ],
+      "so_what": "A positive or negative result directly tests whether cross-domain transfer should occur through mechanism metadata rather than raw sensor similarity or generic agent roles.",
+      "dedup_key": "mechanism-signature-numerical-tool-registry",
+      "source_shard": "lens:phm-generalization"
+    },
+    {
+      "kind": "idea",
+      "title": "Universal Causal Damage Transition with Domain-Locked Observation Heads",
+      "method_steps": [
+        "Represent each unit with a monotone latent damage state whose transition depends on elapsed exposure, operating load and maintenance or recovery indicators.",
+        "Share only the damage-transition operator across domains while keeping capacitor C/ESR emissions, battery capacity/resistance emissions, turbofan sensors and bearing vibration heads domain-specific.",
+        "Expose the transition and observation models as small numerical executors inside the agent graph, with uncertainty propagated to SOH and event-time forecasts.",
+        "Compare pure LLM direct prediction against hybrid numerical-direct, bounded residual-correction and distribution-fusion modes under an equal budget envelope.",
+        "Use an endpoint-support test to force RUL=NA whenever the latent state cannot be mapped to an identifiable failure event; otherwise report calibrated RUL quantiles and use a per-domain state-space fallback on low support."
+      ],
+      "falsifiable_hypothesis": "Sharing the causal transition but not observation heads will reduce median unseen-unit event-time proper score by at least 5% relative to fully separate domain models, whereas sharing observation heads will not; the hypothesis is falsified if transition sharing is neutral or harmful across the family holdouts.",
+      "minimum_experiment": "Fit small monotone state-space or neural-ODE transitions on public capacitor, battery, C-MAPSS and bearing data. Use leave-unit-out rolling origins and a leave-one-family-out transfer variant, preserve delayed/censored labels, and compare separate, transition-shared and fully shared models within each of the four direct/hybrid arms. Match histories, backbone, token cap and total inference cost, and report C/ESR/SOH errors, survival scores, identifiable-RUL error, NA errors, calibration and worst-unit metrics.",
+      "contribution_type": "causal representation method and transfer-boundary study",
+      "risk": "HIGH: The nearest-neighbor risk is overlap with shared-latent state-space models, neural degradation processes and domain adaptation. The idea fails if damage dynamics have no useful invariant after load normalization or if latent-state non-identifiability makes cross-family sharing arbitrary.",
+      "effort": "8-12 weeks with moderate GPU compute",
+      "closest_prior_families": [
+        "deep state-space prognostics",
+        "monotone neural ODEs",
+        "causal representation learning",
+        "multi-domain adaptation",
+        "physics-informed degradation models"
+      ],
+      "so_what": "It isolates a precise candidate for universality, the damage transition, while protecting capacitor-specific C and ESR observation semantics from cross-domain averaging.",
+      "dedup_key": "shared-causal-damage-transition-domain-heads",
+      "source_shard": "lens:phm-generalization"
+    },
+    {
+      "kind": "idea",
+      "title": "Endpoint Algebra and RUL Identifiability Compiler",
+      "method_steps": [
+        "Encode each domain endpoint as a typed predicate over physical variables and time, such as capacitor C or ESR threshold crossing, battery capacity threshold, turbofan terminal cycle or bearing failure declaration.",
+        "Compile predicates into a common event-time interface supporting exact, interval-censored, right-censored and not-yet-identifiable outcomes without treating their raw labels as interchangeable.",
+        "Require the pure LLM agent to directly emit domain variables plus RUL or NA, while hybrid agents obtain the same schema through numerical direct prediction, residual correction or probabilistic fusion.",
+        "Implement a deterministic identifiability node using endpoint definition, remaining observation support and censoring status; it overrides unsupported numeric RUL with NA in every arm.",
+        "Score endpoint forecasts with survival proper scores, and score abstention with coverage, false-answer rate and selective risk rather than rewarding blanket NA outputs."
+      ],
+      "falsifiable_hypothesis": "The endpoint compiler will cut false numeric RUL answers on censored or unsupported origins by at least 50% at no more than a 2% loss in coverage-adjusted event-time score, while preserving or improving capacitor C/ESR/SOH accuracy relative to a single generic RUL target.",
+      "minimum_experiment": "Use the four public prognostics families with their native endpoint definitions and create preregistered censoring levels of 0%, 25%, 50% and 75%. Perform group-held-out rolling-origin evaluation of pure LLM direct, hybrid direct, hybrid residual and hybrid fusion arms under identical information and cost budgets. Compare the compiler against generic normalized-RUL regression and ordinary survival prediction using numerical proper scores, NA coverage, false-answer rate and per-unit calibration.",
+      "contribution_type": "endpoint semantics method and censoring-aware benchmark",
+      "risk": "MEDIUM: The nearest-neighbor risk is overlap with survival analysis, competing risks, task ontologies and multi-task PHM. The idea fails if its gains come only from trivial abstention, if endpoint definitions cannot be harmonized enough for common scoring, or if coverage-adjusted performance deteriorates.",
+      "effort": "5-7 weeks with low-to-moderate compute",
+      "closest_prior_families": [
+        "survival and competing-risk models",
+        "typed task ontologies",
+        "multi-task prognostics",
+        "selective prediction",
+        "censoring-aware PHM"
+      ],
+      "so_what": "It turns RUL=NA from an ad hoc refusal into a testable semantic property and allows cross-family evaluation without pretending that all failure endpoints mean the same thing.",
+      "dedup_key": "endpoint-algebra-rul-identifiability-compiler",
+      "source_shard": "lens:phm-generalization"
+    },
+    {
+      "kind": "idea",
+      "title": "Conformal Do-No-Harm Gate for Direct, Residual and Fusion Agents",
+      "method_steps": [
+        "Train a strong domain-specific numerical executor for each family and retain it as the deterministic safe fallback.",
+        "Have the LLM agent either emit C/ESR/SOH/RUL directly, invoke the executor for direct prediction, propose a bounded residual correction, or fuse its forecast distribution with the executor.",
+        "Calibrate a group-aware conformal risk gate using past units only; accept a hybrid proposal only when its estimated degradation relative to fallback is below a prespecified risk level.",
+        "Use separate gates for physical-variable forecasts and RUL identifiability, forcing RUL=NA when event-time support is absent even if C/ESR/SOH remain predictable.",
+        "Compare all four arms under the same backbone, input history and per-origin cost/latency budget, reporting fallback frequency and numerical selective-risk curves."
+      ],
+      "falsifiable_hypothesis": "At a prespecified 10% risk level, the gate will keep the fraction of unseen units harmed relative to the numerical fallback below 10% while improving coverage-adjusted proper score on accepted predictions; it is falsified by risk undercoverage, near-universal fallback or no accepted-prediction gain.",
+      "minimum_experiment": "Evaluate on public capacitor, battery, C-MAPSS and bearing datasets with nested group splits: training units, calibration units and untouched test units. Use strict rolling origins, delayed/censored outcomes and controlled load-regime shifts. Match inference budgets within 5% across pure LLM direct and the three hybrid modes. Report worst-unit and median accuracy, conformal coverage, harm rate, NA behavior, fallback rate, latency and cost.",
+      "contribution_type": "safe hybrid forecasting method",
+      "risk": "MEDIUM: The nearest-neighbor risk is overlap with conformal time-series forecasting, selective prediction and gated mixtures. The idea fails if nonexchangeable degradation shifts break coverage or if the gate always chooses the baseline, yielding no useful hybrid operating region.",
+      "effort": "6-9 weeks with moderate compute",
+      "closest_prior_families": [
+        "conformal risk control",
+        "selective prediction",
+        "safe mixture-of-experts",
+        "residual hybrid modeling",
+        "PHM fallback systems"
+      ],
+      "so_what": "It makes hybrid agents deployable under a measurable do-no-harm contract and exposes whether LLM participation helps any unseen-unit regime at a fixed budget.",
+      "dedup_key": "conformal-do-no-harm-phm-hybrid-gate",
+      "source_shard": "lens:phm-generalization"
+    },
+    {
+      "kind": "idea",
+      "title": "Delayed-Outcome Causal Credit Ledger for Online Agent Graphs",
+      "method_steps": [
+        "Attach a numerical credit account to each graph node and executor, recording which past-only evidence contributed to every forecast.",
+        "Update credit only when delayed measurements, failure events or censoring information become available, using survival proper loss and inverse-delay weighting rather than immediate proxy labels.",
+        "Transfer the credit-update rule across domains while retaining domain-specific observation and endpoint tools; prohibit retroactive feature changes to earlier rolling-origin predictions.",
+        "Run pure LLM direct, hybrid numerical-direct, hybrid residual and hybrid fusion modes, with the ledger controlling executor weights in the hybrid modes under a common inference budget.",
+        "Suspend event-time credit and output RUL=NA where endpoint identifiability is absent; if ledger uncertainty is high, revert to a fixed per-domain numerical ensemble."
+      ],
+      "falsifiable_hypothesis": "Censoring- and delay-aware credit assignment will improve early-life and worst-unit proper scores by at least 5% over static fusion and naive immediate-feedback credit on unseen units, without increasing false numeric RUL answers.",
+      "minimum_experiment": "Replay public capacitor, battery, turbofan and bearing histories prequentially so outcomes arrive at their recorded times. Hold out complete physical units, simulate additional label delays, and never retrain on future test-unit observations. Compare the four cost-matched arms plus static and naive-credit ablations using cumulative survival loss, C/ESR/SOH error, identifiable-RUL error, NA behavior, regret, fallback frequency and computation.",
+      "contribution_type": "online learning architecture for delayed and censored prognostics",
+      "risk": "HIGH: The nearest-neighbor risk is overlap with delayed-feedback expert advice, online ensembles and adaptive graph routers. The idea fails if terminal outcomes are too sparse for reliable node credit, inverse-delay weighting becomes unstable, or the ledger merely tracks recent domain identity.",
+      "effort": "7-10 weeks with moderate compute and substantial evaluation engineering",
+      "closest_prior_families": [
+        "online learning with delayed feedback",
+        "expert-advice algorithms",
+        "survival-loss ensembles",
+        "Nexus and TS-Debate-style aggregation",
+        "dynamic graph routers"
+      ],
+      "so_what": "It tests whether agent-graph adaptation remains statistically valid when PHM supervision arrives late or never, which is the normal deployment condition rather than a benchmark exception.",
+      "dedup_key": "delayed-outcome-causal-credit-ledger",
+      "source_shard": "lens:phm-generalization"
+    },
+    {
+      "kind": "idea",
+      "title": "Cross-Family Modular Transfer Boundary Atlas",
+      "method_steps": [
+        "Implement a common architecture with separable input validation, state estimation, endpoint mapping, calibration, identifiability, residual correction, fusion and fallback modules.",
+        "Train domain-specific versions, then perform controlled one-module and two-module swaps across capacitor, battery, turbofan and bearing families while keeping capacitor C/ESR/SOH/RUL heads intact.",
+        "For every swap, evaluate pure LLM direct output and hybrid numerical-direct, residual-correction and fusion modes under matched histories, LLM tokens and total inference cost.",
+        "Use strict group-held-out rolling origins and record whether each transferred module changes median score, worst-unit score, calibration, RUL=NA correctness and fallback use.",
+        "Construct a transfer-safe architecture from only modules whose confidence intervals exclude a prespecified harm margin; if none qualify, retain all domain-local modules and report the negative transfer matrix."
+      ],
+      "falsifiable_hypothesis": "At least one non-observation module, such as calibration, identifiability or fallback, will transfer across three or more families without exceeding a 2% harm margin, while raw observation heads will not; the hypothesis is falsified if every module transfer is harmful or indistinguishable from zero.",
+      "minimum_experiment": "Use one public dataset per family, five group splits and three seeds. Fit small executors and one fixed LLM backbone, then run a preregistered fractional-factorial swap design to keep compute moderate. Compare all four direct/hybrid modes at equal cost and use bootstrap unit-level confidence intervals for normalized proper score, C/ESR/SOH error, RUL error where identifiable, NA errors, calibration and runtime.",
+      "contribution_type": "empirical transfer diagnostic and modular architecture study",
+      "risk": "MEDIUM: The nearest-neighbor risk is overlap with transferability studies and modular ablations. The idea fails if dataset heterogeneity makes module effects incomparable, confidence intervals remain too wide, or interactions invalidate the reduced factorial design.",
+      "effort": "8-12 weeks, dominated by standardized data and evaluation pipelines",
+      "closest_prior_families": [
+        "transferability benchmarking",
+        "modular neural systems",
+        "multi-domain ablation studies",
+        "PHM domain adaptation",
+        "tool-augmented forecasting agents"
+      ],
+      "so_what": "Even a fully negative result would quantify which apparently universal agent components should remain domain-local and prevent misleading cross-domain claims while yielding a reusable capacitor-centered benchmark.",
+      "dedup_key": "cross-family-modular-transfer-boundary-atlas",
+      "source_shard": "lens:phm-generalization"
+    },
+    {
+      "kind": "idea",
+      "title": "Causal Counterfactual Graph Grammar with Semantic Stress Tests",
+      "method_steps": [
+        "Define domain manifests with permitted causal productions such as operating condition to latent damage to C/ESR or other measurements to endpoint, while prohibiting unit identifiers and future outcomes as causal parents.",
+        "Let the agent compile an execution graph whose terminals are small numerical estimators and whose intermediate messages retain physical units, uncertainty and censoring provenance.",
+        "Filter candidate graphs using past-only semantic stress tests: load-history perturbation, sensor masking, operating-regime reweighting, unit-ID randomization and impossible-direction checks.",
+        "Evaluate a pure LLM direct graph plus hybrid numerical-direct, residual and fusion graphs under the same history, backbone, token allowance and total cost; use only deterministic test scores to accept or reject graph executions.",
+        "Place an identifiability node before event-time output so unsupported RUL becomes NA, and route stress-test failures or high uncertainty to a domain-specific numerical fallback."
+      ],
+      "falsifiable_hypothesis": "Stress-filtered causal grammars will reduce performance loss under unseen-unit operating-regime shifts by at least 20% relative to unconstrained agent graphs, while preserving in-distribution score and lowering false non-NA RUL responses.",
+      "minimum_experiment": "On public capacitor, battery, C-MAPSS and bearing data, define preregistered natural or reweighted load-regime shifts and group-hold-out units. Run strict rolling-origin tests with delayed/censored endpoints and compare constrained versus unconstrained versions of all four cost-matched direct/hybrid arms. Score physical-variable error, SOH error, survival proper loss, identifiable-RUL error, NA behavior, counterfactual consistency, worst-unit degradation and fallback rate.",
+      "contribution_type": "causal graph architecture and robustness benchmark",
+      "risk": "HIGH: The nearest-neighbor risk is overlap with causal discovery, invariant risk minimization, neural architecture search and graph routers. The idea fails if logged datasets lack enough exposure variation for meaningful stress tests, so the grammar becomes an unverified prior, or if robustness gains arise only from conservative fallback.",
+      "effort": "9-12 weeks with moderate compute and careful stress-test design",
+      "closest_prior_families": [
+        "causal PHM graphs",
+        "invariant prediction",
+        "counterfactual time-series testing",
+        "graph neural architecture search",
+        "REATS, CastFSR and general dynamic graph routers"
+      ],
+      "so_what": "It gives the universal architecture an executable causal contract and tests whether that contract, rather than generic routing, is what improves prognostics on unseen physical units.",
+      "dedup_key": "causal-counterfactual-phm-graph-grammar",
+      "source_shard": "lens:phm-generalization"
+    }
+  ]
+}

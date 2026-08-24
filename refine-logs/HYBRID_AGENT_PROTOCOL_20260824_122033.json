@@ -1,0 +1,85 @@
+{
+  "schema_version": "cap.hybrid.protocol.v0.3-draft",
+  "date": "2026-08-24",
+  "status": "PROPOSED_HUMAN_CHECKPOINT",
+  "auto_proceed": false,
+  "real_api_authorized": false,
+  "logical_model_candidates": [
+    {
+      "id": "kimi-k3",
+      "status": "DRY_RUN_CLIENT_PREVIEW_ONLY"
+    }
+  ],
+  "claims": {
+    "H1": "hybrid_agent_improves_frozen_numeric_controls_on_unseen_physical_capacitors",
+    "H2": "multi_agent_topology_improves_single_agent_under_equal_budget"
+  },
+  "arms": [
+    {"id": "C0", "kind": "last_value", "api_calls_per_origin": 0},
+    {"id": "C1", "kind": "inner_loco_best_numeric", "api_calls_per_origin": 0},
+    {"id": "C2", "kind": "numeric_convex_fusion", "api_calls_per_origin": 0},
+    {"id": "A1", "kind": "single_agent_direct_ablation", "api_calls_per_origin": 1},
+    {"id": "A2", "kind": "single_agent_hybrid", "api_calls_per_origin": 1},
+    {"id": "A3", "kind": "fixed_hierarchy_hybrid", "api_calls_per_origin": 3},
+    {"id": "A4", "kind": "parallel_debate_hybrid", "api_calls_per_origin": 3},
+    {"id": "A5", "kind": "dynamic_route_hybrid", "api_calls_per_origin": "0_or_1"}
+  ],
+  "stage_gates": [
+    "A2_must_beat_A1_and_C2_before_A3",
+    "A3_must_beat_A2_before_A4",
+    "a_static_multi_agent_arm_must_help_before_A5"
+  ],
+  "hybrid_roles": [
+    "regime_analyst",
+    "forecast_critic",
+    "fusion_judge"
+  ],
+  "numeric_experts_initial": [
+    "last_value",
+    "global_drift",
+    "local_linear",
+    "exponential",
+    "local_trend_kf",
+    "ridge"
+  ],
+  "hybrid_action_space": {
+    "production_point_from_llm": false,
+    "convex_candidate_weights_only": true,
+    "llm_interval_allowed": false,
+    "abstain_allowed": true
+  },
+  "causal_request_allowed_fields": [
+    "schema_version",
+    "origin_key",
+    "prefix",
+    "horizons",
+    "candidate_forecasts",
+    "train_only_error_summary",
+    "disagreement_score",
+    "ood_score"
+  ],
+  "api_contract": {
+    "api_key_source": "ARK_API_KEY_environment_only",
+    "base_url_source": "ARK_BASE_URL_environment_only",
+    "store": false,
+    "cache": "disabled",
+    "tools": "none",
+    "strict_json_schema": true,
+    "semantic_repair": false,
+    "network_retry_classes": ["timeout", "429", "5xx"],
+    "late_response_can_replace_prediction": false
+  },
+  "eligibility": {
+    "synthetic_mock": "PASS",
+    "stress2": "SANITY_ONLY",
+    "benchmark_l_capacity": "BLOCKED_G05_G06_G07_G10",
+    "benchmark_l_esr_soh": "BLOCKED_G08",
+    "rul": "BLOCKED_G09_DESIGN_FREEZE_B"
+  },
+  "next_checkpoint": {
+    "runs": ["H010", "H020", "H021", "H022"],
+    "requires_user_approval": true,
+    "requires_rotated_key_in_shell_environment": true
+  }
+}
+

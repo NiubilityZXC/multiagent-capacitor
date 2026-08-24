@@ -1,0 +1,74 @@
+{
+  "schema_version": "audit-cap.experiment-audit.v2",
+  "generated_at": "2026-08-20T17:04:17+08:00",
+  "overall": "WARN",
+  "numerical_integrity": "PASS",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "checks": {
+    "A_ground_truth_provenance": "WARN",
+    "B_score_normalization": "PASS",
+    "C_result_existence_numeric_match": "PASS",
+    "D_dead_code": "WARN",
+    "E_scope": "WARN",
+    "F_evaluation_classification": "PASS"
+  },
+  "evaluation_types": [
+    "real_gt_qualified_column_surrogate",
+    "simulation_only"
+  ],
+  "verified_counts": {
+    "stress_context3_rows": 1512,
+    "stress_context4_rows": 1296,
+    "stress_context5_rows": 1080,
+    "stress_prediction_scoring_failures": 0,
+    "stress_context3_rejected_tuning_evaluations": 144,
+    "design_planned_repeats": 3000,
+    "design_analyzable_repeats": 2987,
+    "design_explicit_failures": 13,
+    "tests_passed": 32,
+    "stress_byte_identical_stable_artifacts": 11,
+    "design_byte_identical_scientific_artifacts": 4
+  },
+  "lineage": {
+    "code_sha256": "36f8a0af273cfbe606f08383a6ea8594d6bf93d5f96d7f6094d60e3e7f240e90",
+    "stress_protocol_sha256": "3b1b447172466fecdab63b4595124d53d3d9f2a0becf73886affb25334d873dc",
+    "design_protocol_sha256": "316c67f74d746102c52577e09bd2645934c753f9d91ea413ca6697707d2ca623",
+    "stress_primary_manifest_sha256": "630529883af0c5ee5751df5aca7567834cf329a4e94eda996e69012a631cf459",
+    "stress_prediction_ledger_sha256": "d18599d0068074d784a89ce9aa16e5fcc2a4adc191dfe4dfbf30358d96f2984a",
+    "stress_prediction_seal_sha256": "867470e36ccbfea8811e8c357b79336879419ccd94d134c908a3e74c9789dc28",
+    "design_primary_manifest_sha256": "70de02aa9afaf670ac5d17fe31b827d5c556091b002e038e6bdd526877aef21a",
+    "design_repeat_ledger_sha256": "b3b2353f9253127b8be997dbe0d54a86ce37be80aa92f2e5a4597af5b0182609",
+    "design_repeat_seal_sha256": "d20a90445693717a668c2ce5aacadf47c058d6c7a77ccae17cddda130d0504d4",
+    "design_cell_ledger_sha256": "c49e94d893c3c76885ae1dcc6df3c9fe4871a00329e5ae5cf563930cf21fcad1",
+    "design_cell_seal_sha256": "f5d48e9b49c775d7482fb9325ffb00ee546fbb9185bde71eb9369237356b325d"
+  },
+  "resolved_round1_reasons": [
+    "DESIGN_CODE_PROTOCOL_LINEAGE_MISSING",
+    "DESIGN_RAW_UNIT_LOSSES_NOT_ARCHIVED",
+    "MISLEADING_DESIGN_SEAL_STATUS",
+    "REVIEW_INDEPENDENCE_UNEVIDENCED",
+    "LOCAL_SOURCE_PROVENANCE_ONLY"
+  ],
+  "permanent_warns": [
+    "UNVERIFIED_PHYSICAL_UNIT_IDENTITY",
+    "CAUSAL_BARRIER_SELF_ATTESTED",
+    "QUICK_DESIGN_NOT_FORMAL_GATE"
+  ],
+  "contained_warns": [
+    "N_LT_12_SELECTION_FLAGGED_NOT_BLOCKED",
+    "NONCLAIMING_UNUSED_HELPERS"
+  ],
+  "supported_claim_scope": "deterministic sanity and simulation diagnostics only",
+  "unsupported_claims": [
+    "model_superiority",
+    "independent_device_LOCO",
+    "RUL_accuracy",
+    "calibrated_intervals",
+    "cross_condition_robustness",
+    "deployment_readiness",
+    "formal_design_gate",
+    "benchmark_L",
+    "multi_agent_advantage"
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "artifacts": {
+    "DESIGN_CELL_SEAL.json": {
+      "bytes": 1197,
+      "sha256": "c11e0c86777b0a60a75047e87c9a96f17b0f613285be47ced380a2521b19d453"
+    },
+    "DESIGN_CELL_SUMMARY.csv": {
+      "bytes": 30871,
+      "sha256": "c49e94d893c3c76885ae1dcc6df3c9fe4871a00329e5ae5cf563930cf21fcad1"
+    },
+    "DESIGN_REPEAT_LEDGER.csv": {
+      "bytes": 3523280,
+      "sha256": "27f4071c88ee29beec3764338169b5ddd34216c4243840e85bfd3f009651f7e8"
+    },
+    "DESIGN_REPEAT_SEAL.json": {
+      "bytes": 1000,
+      "sha256": "071f327e29894f5c9e4c9d7b820e10da79aa4dff0fcdd83740d73983404988e8"
+    },
+    "DESIGN_SIM_SUMMARY.json": {
+      "bytes": 2901,
+      "sha256": "a6cf6da8ffeb8918133acaa4ddf07cccf9d9a55848a6fcad592583d6b038bdc7"
+    }
+  }
+}

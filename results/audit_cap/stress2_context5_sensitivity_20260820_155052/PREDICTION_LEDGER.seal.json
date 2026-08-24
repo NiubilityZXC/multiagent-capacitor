@@ -1,0 +1,80 @@
+{
+  "columns": [
+    "prediction_id",
+    "protocol_hash",
+    "data_zip_hash",
+    "data_mat_hash",
+    "verification_status",
+    "code_hash",
+    "split_hash",
+    "train_set_hash",
+    "training_snapshot_hash",
+    "prefix_hash",
+    "outer_test_unit",
+    "model",
+    "target",
+    "horizon_event_steps",
+    "context_event_steps",
+    "origin_event_index_0based",
+    "origin_time_h",
+    "causal_cutoff_event_index_0based",
+    "expected_target_event_index_0based",
+    "prediction_commit_seq",
+    "expected_label_available_seq",
+    "config_json",
+    "config_hash",
+    "point_prediction",
+    "interval_status",
+    "status",
+    "failure_stage",
+    "error",
+    "seed",
+    "row_payload_json",
+    "prev_row_hash",
+    "row_hash"
+  ],
+  "final_row_hash": "31460b9cca936cd19f0223de2673fbf3e9114cc54b92ebf182d41b5ce9c09bbe",
+  "ledger": "PREDICTION_LEDGER.csv",
+  "ledger_sha256": "3036db80be97653ae76c5758240ffcba9ad7544dee2af1f449001ca6dacb83a9",
+  "lineage": {
+    "causal_checkpoint_evidence": {
+      "final_row_hash": "d29aba6371e32f667a5780bb0b2e6cd186f245f442d35f46118204c0e2bf8096",
+      "row_count": 36,
+      "sha256": "0fed99b5affb41574a8910d97e1385553f9978bcc2f7b37f01cf3464273c2a8c"
+    },
+    "causal_checkpoint_log": "PREDICTION_COMMIT_CHECKPOINTS.jsonl",
+    "code_hash": "fae1423fa604a432713f01f9fc369959c4dbd6fd72d5711a839a8ecfac8981f8",
+    "context": 5,
+    "data_mat_hash": "9db651a10f92d2046a477838c08fe1cdbaf27d7bc4062a856a373721400cb4a3",
+    "data_zip_hash": "944cd2284cd01925088e97e5f5e2f337ee8b37800346fd2610d1bbaa6accacfb",
+    "event_access_log": "EVENT_REVEAL_LEDGER.jsonl",
+    "event_access_log_evidence": {
+      "final_row_hash": "500e9945cb9533b6832b5214ee42205abe3bf82ef44c7fe8bf9b1907643c338e",
+      "row_count": 66,
+      "sha256": "b1469bad1aba90f02b210fc7143c6d4f6dfc25e804769b6174593d1620b1aff5"
+    },
+    "horizons": [
+      1,
+      2,
+      3
+    ],
+    "models": [
+      "last_value",
+      "global_drift",
+      "local_linear",
+      "exponential",
+      "local_trend_kf",
+      "ridge"
+    ],
+    "online_barrier": "per_origin_append_fsync_hash_checkpoint_before_reveal",
+    "protocol_hash": "3b1b447172466fecdab63b4595124d53d3d9f2a0becf73886affb25334d873dc",
+    "seed": 20260813,
+    "targets": [
+      "capacity_ratio",
+      "esr_ratio"
+    ],
+    "verification_status": "VERIFIED"
+  },
+  "row_count": 1080,
+  "seal_status": "SEALED_AFTER_VERIFIED_PER_ORIGIN_CAUSAL_COMMITS"
+}

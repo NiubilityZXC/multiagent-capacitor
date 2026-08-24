@@ -1,0 +1,19 @@
+{
+  "call_number": 2,
+  "purpose": "idea-jury",
+  "timestamp": "2026-08-24T13:18:56+08:00",
+  "tool": "spawn_agent",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "ultra",
+  "files_referenced": [
+    "RESEARCH_BRIEF.md",
+    "idea-stage/GENERATION_LEDGER_20260824.json",
+    "idea-stage/NOVELTY_LEDGER_20260824.json",
+    "idea-stage/EVIDENCE_LEDGER.md",
+    "idea-stage/FROZEN_EVAL_PROTOCOL.md",
+    "idea-stage/ADVERSARIAL_REVIEW.md",
+    "refine-logs/HYBRID_AGENT_PROTOCOL.md",
+    "refine-logs/LARGE_PACK_SCHEMA_PROBE.md"
+  ],
+  "prompt": "Act as a fresh senior NeurIPS/ICML/PHM reviewer. Assume this project is broken until proven otherwise. Read every referenced file directly. Review all 32 indexed candidates; do not silently drop any. The scientific question is whether a maturity-aware typed agent graph with executable counterfactual verification can improve strictly causal online capacitor forecasts over direct LLM agents and strong numerical models under matched API-call, input-information, token, retry, and latency budgets. Required evaluation arms are: numerical-only; single direct LLM numeric forecast; homogeneous direct multi-agent; heterogeneous direct multi-agent; LLM plus numerical model/tool; bounded residual correction; LLM routing/fusion; typed counterfactual verified graph. Stress-2 is only a 6-column/11-point surrogate sanity set with unproven physical independence; Benchmark-L capacity/ESR/RUL modeling remains blocked by target, identity, chronology, and endpoint gates. No LLM judge or self-score may replace numeric held-out loss. The current novelty ledger is same-family provisional and finds candidate 12 strongest, but causal terminology may be unsupported; candidates 16/17/31 may be evaluation or credit mechanisms. Decide whether the core should be (A) a Minimum Verified Evidence Cut, (B) that cut plus a typed executable counterfactual challenger, or (C) an even larger synthesis including randomized edge probes/capsule replay. Favor the smallest defensible contribution. Explicitly separate method contribution from evaluation/audit machinery. Return a self-contained report with: (1) a 32-row disposition table keyed by index; (2) ranked top three pilot designs and why; (3) one exact recommended architecture with typed schemas, deterministic validators, fallback, delayed maturity credit, and budget policy; (4) matched-budget controls and necessary ablations; (5) falsifiable hypotheses and preregistered kill conditions; (6) minimum experiment package and data requirements; (7) claims matrix for positive, mixed, null, and negative results; (8) strongest rejection argument and the minimum evidence that could answer it; (9) top-venue versus PHM/systems empirical-paper positioning; (10) mock review score/confidence. Do not invent data or results. Mark the verdict provisional because this is a same-family review."
+}

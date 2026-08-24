@@ -1,0 +1,10 @@
+{
+  "call_number": 1,
+  "purpose": "temporal-evidence-graph-generation",
+  "timestamp": "2026-08-24T12:34:12+08:00",
+  "tool": "spawn_agent",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "files_referenced": [],
+  "prompt": "You are a senior ML researcher generating candidates only; do NOT rank, reject, assert novelty, or declare publishability. Return exactly one JSON object shaped {\"shard_id\":\"lens:temporal-evidence-graph\",\"candidates\":[{\"kind\":\"idea\",\"title\":...,\"method_steps\":[...],\"falsifiable_hypothesis\":...,\"minimum_experiment\":...,\"contribution_type\":...,\"risk\":...,\"effort\":...,\"closest_prior_families\":[...],\"so_what\":...,\"dedup_key\":...}]} with 6-8 candidates.\nDirection: design a publishable multi-agent architecture for causal online capacitor degradation forecasting (capacity, ESR, SOH, RUL) using LLM API agents combined with small numerical forecasting/prognostic models. Accuracy on unseen capacitors is the first priority. Every candidate must respect strict rolling-origin, delayed label maturity, LOCO/cross-condition tests, no future leakage, numeric scoring, and failure-safe fallback. The architecture—not mere application—must be the research focus.\nLandscape constraints: generic LLM model routing/ensemble is already covered by REATS (arXiv:2608.10149); fast numerical prior + slow LLM/reflection by CastFSR/CastFlow; role-specialized agentic forecasting and memory by CastFlow (2604.27840); macro/micro agents by Nexus (2605.14389); modality debate by TS-Debate (2601.19151); dynamic multi-agent graph selection by DynaSwarm (2507.23261) and MasRouter (2502.11133); graph orchestration by AGORA (2505.24354); last-mile revisions/memory by 2606.02497. Avoid simply repeating those.\nLens: temporal evidence graphs, delayed outcomes/censoring, prequential memory, graph engineering, immutable prediction/maturity ledgers, and value-of-information agent activation. Seek architectural mechanisms whose necessity can be numerically ablated. Moderate compute only; no subjective LLM scoring."
+}

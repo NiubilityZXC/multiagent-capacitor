@@ -1,0 +1,12 @@
+{
+  "call_number": 6,
+  "purpose": "cap-act-round4-empirical-review",
+  "timestamp": "2026-08-24T14:57:42+08:00",
+  "agent_id": "/root/idea_jury",
+  "model": "gpt-5.6-sol",
+  "reviewer_family": "openai",
+  "reasoning_effort": "ultra",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "status": "ok"
+}

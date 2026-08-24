@@ -1,0 +1,66 @@
+{
+  "benchmark": "NASA Stress-2 parser/replay harness",
+  "causal_barrier_status": "PASS",
+  "causal_barrier_verified_before_maturity": true,
+  "checkpoint_rows": 36,
+  "claim_prohibited": true,
+  "claim_status": "NOT_ELIGIBLE_BENCHMARK_S_SANITY_ONLY",
+  "code_hash": "fae1423fa604a432713f01f9fc369959c4dbd6fd72d5711a839a8ecfac8981f8",
+  "command": "experiments/audit_cap/run_stress2_baselines.py --zip data/raw/NASA/capacitor_electrical_stress/EOS_DataSet.zip --protocol idea-stage/FROZEN_EVAL_PROTOCOL.md --output-dir results/audit_cap/stress2_context5_sensitivity_20260820_155052 --context 5 --horizons 1 2 3 --seed 20260813",
+  "context": 5,
+  "created_utc": "2026-08-20T07:51:17.086869+00:00",
+  "data_mat_hash": "9db651a10f92d2046a477838c08fe1cdbaf27d7bc4062a856a373721400cb4a3",
+  "data_zip_hash": "944cd2284cd01925088e97e5f5e2f337ee8b37800346fd2610d1bbaa6accacfb",
+  "dependencies": {
+    "h5py": "3.11.0",
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "scikit_learn": "1.5.1",
+    "scipy": "1.11.4"
+  },
+  "event_access_rows": 66,
+  "failure_rows": 0,
+  "horizons": [
+    1,
+    2,
+    3
+  ],
+  "identity_scope": "six column-surrogate units; physical identity unverified",
+  "maturity_rows": 1080,
+  "models": [
+    "last_value",
+    "global_drift",
+    "local_linear",
+    "exponential",
+    "local_trend_kf",
+    "ridge"
+  ],
+  "online_barrier": "per_origin_append_fsync_hash_checkpoint_before_reveal",
+  "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+  "prediction_failure_rows": 0,
+  "prediction_intervals_status": "NA_insufficient_independent_calibration_units",
+  "prediction_ledger_final_row_hash": "31460b9cca936cd19f0223de2673fbf3e9114cc54b92ebf182d41b5ce9c09bbe",
+  "prediction_ledger_sha256": "3036db80be97653ae76c5758240ffcba9ad7544dee2af1f449001ca6dacb83a9",
+  "prediction_rows": 1080,
+  "prediction_seal_sha256": "b3a8cfdd6eb268d8ae2a659ff770714e7f69421930f64fcc80ba01998b9440ec",
+  "prediction_seal_status": "SEALED_AFTER_VERIFIED_PER_ORIGIN_CAUSAL_COMMITS",
+  "prediction_seal_verified": true,
+  "prediction_seal_verified_before_maturity": true,
+  "protocol_hash": "3b1b447172466fecdab63b4595124d53d3d9f2a0becf73886affb25334d873dc",
+  "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+  "rul_metrics_status": "NA_unknown_termination_and_insufficient_independent_units",
+  "seal_verified_before_maturity": true,
+  "seed": 20260813,
+  "targets": [
+    "capacity_ratio",
+    "esr_ratio"
+  ],
+  "termination_scope": "unknown; RUL numeric scoring disabled",
+  "thread_environment": {
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "verification_status": "VERIFIED"
+}

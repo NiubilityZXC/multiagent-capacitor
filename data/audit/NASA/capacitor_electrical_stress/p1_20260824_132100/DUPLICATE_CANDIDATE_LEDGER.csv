@@ -1,0 +1,2 @@
+candidate_type,item_id_a,item_id_b,content_type,finite_overlap,pearson_r,pooled_rms_nrmse,evidence,resolution,split_group_created
+exact_duplicate_candidate,transient-time:ES12,transient-time:ES14,transient_timestamp,,,0,canonical_content_signature_equal,quarantined_unresolved,false

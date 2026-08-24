@@ -1,0 +1,99 @@
+{
+  "archive": {
+    "archive_name": "Capacitor_Electrical_Stress.zip",
+    "file_crc32": "73f82e66",
+    "member_count": 4,
+    "member_crc_status": "passed",
+    "members": [
+      {
+        "compressed_size_bytes": 0,
+        "compression_method": 0,
+        "declared_crc32": "00000000",
+        "is_dir": true,
+        "name": "12. Capacitor Electrical Stress",
+        "streamed_uncompressed_sha256": null,
+        "uncompressed_size_bytes": 0
+      },
+      {
+        "compressed_size_bytes": 1162261926,
+        "compression_method": 8,
+        "declared_crc32": "e8da00c5",
+        "is_dir": false,
+        "name": "12. Capacitor Electrical Stress/ES10.mat",
+        "streamed_uncompressed_sha256": "dc6d527433c6ce1ec5388b1a6a6c66b5601bbf695ba7ecefd80029b98dfa18db",
+        "uncompressed_size_bytes": 1209388987
+      },
+      {
+        "compressed_size_bytes": 1822397024,
+        "compression_method": 8,
+        "declared_crc32": "2e07ccad",
+        "is_dir": false,
+        "name": "12. Capacitor Electrical Stress/ES12.mat",
+        "streamed_uncompressed_sha256": "18109558c6df7cafcba50a71b774367c887b331a09cf8b99ddcef2ddeb3e0a4a",
+        "uncompressed_size_bytes": 1863271598
+      },
+      {
+        "compressed_size_bytes": 2054282929,
+        "compression_method": 8,
+        "declared_crc32": "cb72c72a",
+        "is_dir": false,
+        "name": "12. Capacitor Electrical Stress/ES14.mat",
+        "streamed_uncompressed_sha256": "2d926d4eb7e01e16a8711b98517a69eb98a53b811df5c65db36da584f9f40a90",
+        "uncompressed_size_bytes": 2094950842
+      }
+    ],
+    "sha256": "2e998398a956604c39b4a83146455282886b9d2e80edecd94fe90e565638ad98",
+    "size_bytes": 5038942729,
+    "source_url": "https://phm-datasets.s3.amazonaws.com/NASA/12.+Capacitor+Electrical+Stress.zip",
+    "total_compressed_bytes": 5038941879,
+    "total_uncompressed_bytes": 5167611427
+  },
+  "schema_version": "audit-cap.b0.v2",
+  "targets": [
+    {
+      "archive_member": "12. Capacitor Electrical Stress/ES10.mat",
+      "archive_member_crc32": "e8da00c5",
+      "archive_member_size_bytes": 1209388987,
+      "archive_member_streamed_sha256": "dc6d527433c6ce1ec5388b1a6a6c66b5601bbf695ba7ecefd80029b98dfa18db",
+      "auxiliary_crc32_match": true,
+      "auxiliary_size_match": true,
+      "hdf5_open_status": "passed",
+      "input_crc32": "e8da00c5",
+      "input_relative_path": "12. Capacitor Electrical Stress/ES10.mat",
+      "input_sha256": "dc6d527433c6ce1ec5388b1a6a6c66b5601bbf695ba7ecefd80029b98dfa18db",
+      "input_size_bytes": 1209388987,
+      "sha256_match": true,
+      "target": "ES10.mat"
+    },
+    {
+      "archive_member": "12. Capacitor Electrical Stress/ES12.mat",
+      "archive_member_crc32": "2e07ccad",
+      "archive_member_size_bytes": 1863271598,
+      "archive_member_streamed_sha256": "18109558c6df7cafcba50a71b774367c887b331a09cf8b99ddcef2ddeb3e0a4a",
+      "auxiliary_crc32_match": true,
+      "auxiliary_size_match": true,
+      "hdf5_open_status": "passed",
+      "input_crc32": "2e07ccad",
+      "input_relative_path": "12. Capacitor Electrical Stress/ES12.mat",
+      "input_sha256": "18109558c6df7cafcba50a71b774367c887b331a09cf8b99ddcef2ddeb3e0a4a",
+      "input_size_bytes": 1863271598,
+      "sha256_match": true,
+      "target": "ES12.mat"
+    },
+    {
+      "archive_member": "12. Capacitor Electrical Stress/ES14.mat",
+      "archive_member_crc32": "cb72c72a",
+      "archive_member_size_bytes": 2094950842,
+      "archive_member_streamed_sha256": "2d926d4eb7e01e16a8711b98517a69eb98a53b811df5c65db36da584f9f40a90",
+      "auxiliary_crc32_match": true,
+      "auxiliary_size_match": true,
+      "hdf5_open_status": "passed",
+      "input_crc32": "cb72c72a",
+      "input_relative_path": "12. Capacitor Electrical Stress/ES14.mat",
+      "input_sha256": "2d926d4eb7e01e16a8711b98517a69eb98a53b811df5c65db36da584f9f40a90",
+      "input_size_bytes": 2094950842,
+      "sha256_match": true,
+      "target": "ES14.mat"
+    }
+  ]
+}

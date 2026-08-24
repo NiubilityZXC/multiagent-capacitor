@@ -1,0 +1,10 @@
+{
+  "call_number": 2,
+  "purpose": "verifiable-role-interaction-generation",
+  "timestamp": "2026-08-24T12:37:10+08:00",
+  "tool": "spawn_agent",
+  "model": "gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "files_referenced": [],
+  "prompt": "You are a senior ML researcher generating candidates only; do NOT rank, reject, assert novelty, or declare publishability. Return exactly one JSON object shaped {\"shard_id\":\"lens:verifiable-role-interaction\",\"candidates\":[{\"kind\":\"idea\",\"title\":...,\"method_steps\":[...],\"falsifiable_hypothesis\":...,\"minimum_experiment\":...,\"contribution_type\":...,\"risk\":...,\"effort\":...,\"closest_prior_families\":[...],\"so_what\":...,\"dedup_key\":...}]} with 6-8 candidates.\nDirection: design a publishable multi-agent architecture for causal online capacitor degradation forecasting (capacity, ESR, SOH, RUL) using LLM API agents combined with small numerical forecasting/prognostic models. Accuracy on unseen capacitors is first priority. Every candidate must respect rolling-origin, delayed label maturity, LOCO/cross-condition tests, no future leakage, numeric scoring, and failure-safe fallback. The architecture—not mere application—must be research focus.\nKnown close work: REATS already does LLM ensemble weighting; CastFSR/CastFlow fast numeric prior + slow LLM/reflection/memory; Nexus macro/micro agents; TS-Debate modality-specialized debate with verifier/code tools; DynaSwarm/MasRouter dynamic agent graphs; AGORA graph orchestration; last-mile agent revision. Avoid simply repeating those.\nLens: role factorization with deliberately non-overlapping causal views, typed evidence/claim edges, deterministic numerical verification, conflict attribution, independent shadow judges, and small-model/physics tool use. Seek mechanisms whose necessity can be isolated by edge/node ablations under equal token/call budgets. Moderate compute only; no subjective LLM scoring."
+}

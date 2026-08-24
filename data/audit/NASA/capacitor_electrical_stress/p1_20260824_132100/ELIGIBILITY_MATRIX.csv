@@ -1,0 +1,16 @@
+gate_id,scope_id,status,evidence,unlocks,parser_release_eligible,modeling_eligible,rul_eligible,benchmark_l_modeling_eligible
+G00,source_bytes,PASS,MAT SHA/CRC/size/HDF5 open bound to required manifest,integrity_only,false,false,false,false
+G01,eis_references,PASS,raw=9316;eligible=8835;quarantined=0;structural_empty=481,parser_reference_layer_if_all_dependencies_pass,false,false,false,false
+G02,eis_columns_frequency,PASS,strict 20-to-18 map; all 58/59 rows retained; 7/8 zero-frequency prefix plus 51-row sweep,raw_eis_schema_if_all_dependencies_pass,false,false,false,false
+G03,eis_acquisition_chronology,PASS,"pair-before-sort; parsed=8835;ties=0;raw_nonchron={'ES10': 16, 'ES12': 13, 'ES14': 10}",chronological_eis_only,false,false,false,false
+G03,eis_causal_availability,BLOCKED,Saved on is empty; finish is only inferred start+max(time/s),none,false,false,false,false
+G03,transient_time_ES10,FAIL,full Serial_Date chronology and exact row-count audit; no repair,condition_transient_time_only_if_PASS,false,false,false,false
+G03,transient_time_ES12,BLOCKED,full Serial_Date chronology and exact row-count audit; no repair,condition_transient_time_only_if_PASS,false,false,false,false
+G03,transient_time_ES14,PASS,full Serial_Date chronology and exact row-count audit; no repair,condition_transient_time_only_if_PASS,false,false,false,false
+G04,transient_missingness,PASS,independent chunked content and NaN-mask geometry for every VL/VO,missingness_audit_only,false,false,false,false
+G05,physical_identity,BLOCKED,no stable serial/board/batch/replacement/reuse evidence,none,false,false,false,false
+G06,content_duplicates,BLOCKED,exact/near scan complete; unresolved_candidates=1,no split group created,false,false,false,false
+G07,capacity_target,BLOCKED,Cs/Cp are audited raw observables; no physical target rule frozen,none,false,false,false,false
+G08,esr_soh_target,BLOCKED,Re(Z) is not renamed ESR; no ESR fit/R0/SOH rule,none,false,false,false,false
+G09,outcome_rul,BLOCKED,termination/censor/EOL semantics absent; sequence end is not EOL,none,false,false,false,false
+G10,deterministic_reproduction,BLOCKED,single run sealed; independent second-run comparison required,none,false,false,false,false

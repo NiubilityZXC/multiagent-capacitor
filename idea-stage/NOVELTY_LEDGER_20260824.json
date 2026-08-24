@@ -1,0 +1,2098 @@
+{
+  "schema_version": "aris-novelty-ledger.v1",
+  "created_at": "2026-08-24T13:17:00+08:00",
+  "source_generation_ledger": "idea-stage/GENERATION_LEDGER_20260824.json",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "shards": [
+    {
+      "shard_id": "novelty:A",
+      "index_range": [
+        0,
+        15
+      ],
+      "response_sha256": "39fad6581d862a0b6c69d81383ce90e30e726e8d2285fc8aa52195a234fe5a97"
+    },
+    {
+      "shard_id": "novelty:B",
+      "index_range": [
+        16,
+        31
+      ],
+      "response_sha256": "399e38570a1d2dedc67e1066006be484195291d85473d792f3deedabc287b4bc"
+    }
+  ],
+  "entries": [
+    {
+      "index": 0,
+      "dedup_key": "bitemporal-maturity-gated-evidence-graph",
+      "title": "Bitemporal Maturity-Gated Evidence Graph",
+      "core_claims": [
+        {
+          "claim": "Store measurements, forecasts, interventions, and outcomes as immutable graph nodes with event, ingestion, forecast-origin, and label-maturity times.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "A Graph-Native Bitemporal Memory Store for Conversational AI Agents",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2607.26520"
+            },
+            {
+              "title": "Quipu: A Governed Bitemporal Knowledge Graph Store",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2608.16813"
+            }
+          ],
+          "delta": "The delta survives only if the graph enforces forecast-origin and label-maturity availability as executable prognostic constraints beyond ordinary valid-time and transaction-time versioning.",
+          "kill_risk": "Novelty is killed if the implementation is merely a bitemporal store with PHM node labels."
+        },
+        {
+          "claim": "Permit LLMs to propose causal parents, regimes, and transformations, but admit proposals only through numerical likelihood, residual, and stability tests.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Improving Constraint-Based Discovery with Robust Propagation and Reliable LLM Priors",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=7K8mS5QNkf"
+            },
+            {
+              "title": "Automated Hypothesis Validation with Agentic Sequential Falsifications",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=iTevNo8PzG"
+            }
+          ],
+          "delta": "The falsifiable delta is proposal admission based on mature-prefix forecast improvement and stability rather than LLM confidence or static conditional-independence tests.",
+          "kill_risk": "Novelty is killed if standard causal discovery tests produce the same accepted graph without the agent layer."
+        },
+        {
+          "claim": "Weight numerical experts solely from outcomes mature at each origin and fall back to a frozen numerical forecast on integrity or agent failure.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Non-stochastic Bandits With Evolving Observations",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=MvGTH3S6rN"
+            },
+            {
+              "title": "A General Framework for Off-Policy Learning with Partially-Observed Reward",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=mUbYof5MKp"
+            }
+          ],
+          "delta": "The delta would require proving that graph-local maturity gating changes expert weights relative to any flat delayed-feedback learner under identical observations.",
+          "kill_risk": "Novelty is killed if delayed-feedback Hedge or ordinary prequential weighting reproduces the mechanism."
+        }
+      ],
+      "overall": "LOW",
+      "recommendation": "ARCHIVE_LOW_NOVELTY",
+      "notes": "The exact PHM integration is specific, but bitemporal immutable agent memory and delayed mature-only weighting are already crowded in 2025-2026."
+    },
+    {
+      "index": 1,
+      "dedup_key": "censoring-aware-forecast-evidence-credit-graph",
+      "title": "Censoring-Aware Forecast-to-Evidence Credit Graph",
+      "core_claims": [
+        {
+          "claim": "Link each committed forecast to the exact future measurement, threshold event, and censoring state that can score it.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "LEDGER: Claim-to-Evidence Trace Graphs for Auditing LLM Agents",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2608.18398"
+            },
+            {
+              "title": "A General Framework for Off-Policy Learning with Partially-Observed Reward",
+              "year": 2025,
+              "url": "https://arxiv.org/abs/2506.14439"
+            }
+          ],
+          "delta": "The delta is a machine-checkable forecast-to-event scoring contract that distinguishes unresolved, censored, and mature outcomes before any credit update.",
+          "kill_risk": "Novelty is killed if the graph is only an audit log and censoring state does not alter scoring or learning."
+        },
+        {
+          "claim": "Assign numerical credit to agent messages and edges using out-of-sample loss differences with IPCW or survival likelihood.",
+          "novelty": "HIGH",
+          "closest": [
+            {
+              "title": "A General Framework for Off-Policy Learning with Partially-Observed Reward",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=mUbYof5MKp"
+            },
+            {
+              "title": "Contextual Linear Bandits with Delay as Payoff",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=zL8O4wWQps"
+            }
+          ],
+          "delta": "The falsifiable delta is censoring-corrected marginal contribution attribution to individual agent edges, not merely policy learning from partially observed rewards.",
+          "kill_risk": "Novelty is killed if IPCW leave-one-edge-out credit is biased or collapses to standard delayed bandit rewards under realistic censoring."
+        },
+        {
+          "claim": "Update edge reliability only from mature credit and trigger fallback when effective sample size, variance, or ledger integrity is inadequate.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Regret Guarantees for Adversarial Contextual Bandits with Delayed Feedback",
+              "year": 2024,
+              "url": "https://openreview.net/forum?id=jlnA0ZRfv1"
+            },
+            {
+              "title": "A General Framework for Off-Policy Learning with Partially-Observed Reward",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=mUbYof5MKp"
+            }
+          ],
+          "delta": "The delta is a preregistered ESS-and-variance gate on edge promotion whose false-promotion rate can be measured under delayed censored outcomes.",
+          "kill_risk": "Novelty is killed if the gate is an ordinary confidence threshold with no censoring-specific calibration."
+        }
+      ],
+      "overall": "MEDIUM",
+      "recommendation": "DEEP_CHECK",
+      "notes": "The graph terminology is not novel, but censoring-corrected credit for individual reasoning edges is a precise mechanism worth deeper checking."
+    },
+    {
+      "index": 2,
+      "dedup_key": "transportable-mechanism-context-degradation-graph",
+      "title": "Transportable Mechanism–Context Degradation Graph",
+      "core_claims": [
+        {
+          "claim": "Factor degradation into shared stress-to-mechanism nodes and context nodes for device, chemistry, sensors, and regime.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Time-Series Forecasting for Out-of-Distribution Generalization Using Invariant Learning",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2406.09130"
+            },
+            {
+              "title": "Disentanglement Learning With Adaptive Centroid Alignment for Multiple Target Domains Fault Diagnosis",
+              "year": 2024,
+              "url": "https://ieeexplore.ieee.org/document/10531759"
+            }
+          ],
+          "delta": "The delta survives only if the factorization identifies stable transition mechanisms, rather than learning generic domain-invariant representations.",
+          "kill_risk": "Novelty is killed if shared and context nodes are equivalent to ordinary feature disentanglement or hierarchical random effects."
+        },
+        {
+          "claim": "Use LLM-parsed metadata to propose typed context edges retained only by invariance and conditional-independence tests.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Improving Constraint-Based Discovery with Robust Propagation and Reliable LLM Priors",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=7K8mS5QNkf"
+            },
+            {
+              "title": "Expert-In-The-Loop Causal Discovery: Iterative Model Refinement Using Expert Knowledge",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=vbKiLBDdUE"
+            }
+          ],
+          "delta": "The falsifiable delta is identity-masked metadata parsing whose retained edges improve leave-condition-out likelihood after invariance testing.",
+          "kill_risk": "Novelty is killed if metadata concatenation or a deterministic ontology yields the same retained edges."
+        },
+        {
+          "claim": "Initialize unseen capacitors by posterior inference in a hierarchical state-space or survival model, with pooled fallback when context assignment fails.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Multi-Source Domain Generalization for Machine Remaining Useful Life Prediction via Risk Minimization-Based Test-Time Adaptation",
+              "year": 2024,
+              "url": "https://ieeexplore.ieee.org/document/10738213"
+            },
+            {
+              "title": "Time-Series Forecasting for Out-of-Distribution Generalization Using Invariant Learning",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2406.09130"
+            }
+          ],
+          "delta": "The delta would require posterior initialization to outperform matched hierarchical and invariant-learning baselines when all device identifiers are masked.",
+          "kill_risk": "Novelty is killed if gains arise from random effects or test-time adaptation already available in non-agent prognostics."
+        }
+      ],
+      "overall": "MEDIUM",
+      "recommendation": "REFRAME",
+      "notes": "Mechanism-context separation and unseen-condition transfer are crowded; position only the tested LLM-to-context-edge interface if it proves indispensable."
+    },
+    {
+      "index": 3,
+      "dedup_key": "versioned-contradiction-fork-evidence-graph",
+      "title": "Versioned Contradiction-Fork Evidence Graph",
+      "core_claims": [
+        {
+          "claim": "Preserve contradictory degradation explanations as immutable versioned branches instead of overwriting memory.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "TOKI: A Bitemporal Operator Algebra for Contradiction Resolution in LLM-Agent Persistent Memory",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2606.06240"
+            },
+            {
+              "title": "WorldDB: A Vector Graph-of-Worlds Memory Engine with Ontology-Aware Write-Time Reconciliation",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2604.18478"
+            }
+          ],
+          "delta": "The delta survives only if branches are probabilistic degradation hypotheses with forecast commitments, not generic contradiction-preserving memory versions.",
+          "kill_risk": "Novelty is killed if TOKI or WorldDB operators can express the same branch lifecycle after renaming node types."
+        },
+        {
+          "claim": "Let agents propose alternative explanations and segmentations while change-point likelihoods, Bayes factors, and mature losses govern branch lifecycle.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Causal Temporal Regime Structure Learning",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=99oYWUq3yx"
+            },
+            {
+              "title": "Bayesian Autoregressive Online Change-Point Detection with Time-Varying Parameters",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2407.16376"
+            }
+          ],
+          "delta": "The falsifiable delta is agent-proposed branch structure whose acceptance is controlled by mature prequential Bayes evidence and beats exhaustive numerical changepoint proposals.",
+          "kill_risk": "Novelty is killed if numerical BOCPD or CASTOR produces the same branches and forecasts without agents."
+        },
+        {
+          "claim": "Maintain a posterior mixture over branches until mature evidence resolves contradictions, then revert to the last calibrated branch if needed.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Causal Temporal Regime Structure Learning",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=99oYWUq3yx"
+            },
+            {
+              "title": "Bayesian Autoregressive Online Change-Point Detection with Time-Varying Parameters",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2407.16376"
+            }
+          ],
+          "delta": "The delta would require a branch-resolution rule tied specifically to delayed label maturity rather than standard posterior regime probabilities.",
+          "kill_risk": "Novelty is killed if the mixture is standard multiple-model adaptive estimation with a fallback wrapper."
+        }
+      ],
+      "overall": "LOW",
+      "recommendation": "ARCHIVE_LOW_NOVELTY",
+      "notes": "Versioned contradiction memory and probabilistic regime branching now have close direct precedents."
+    },
+    {
+      "index": 4,
+      "dedup_key": "maturity-calibrated-voi-agent-scheduler",
+      "title": "Maturity-Calibrated Value-of-Information Agent Scheduler",
+      "core_claims": [
+        {
+          "claim": "Treat each optional LLM call as an action with latency, token cost, and potential predictive-distribution change.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Reasoning Is Not Free: Robust Adaptive Cost-Efficient Router for LLM-as-a-Judge",
+              "year": 2026,
+              "url": "https://openreview.net/forum?id=G3Nm8GYBHd"
+            },
+            {
+              "title": "LLM Bandit: Cost-Efficient LLM Generation via Preference-Conditioned Dynamic Routing",
+              "year": 2025,
+              "url": "https://openreview.net/pdf/3965a78198d6f2123d2e62592cf27641212d9c5a.pdf"
+            }
+          ],
+          "delta": "The delta survives only if value is defined by eventual proper forecast loss rather than immediate task accuracy or preference reward.",
+          "kill_risk": "Novelty is killed if this is a contextual LLM router with forecast features."
+        },
+        {
+          "claim": "Learn agent value from mature proper-score reductions under delayed or censored feedback.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Contextual Linear Bandits with Delay as Payoff",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=zL8O4wWQps"
+            },
+            {
+              "title": "A General Framework for Off-Policy Learning with Partially-Observed Reward",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=mUbYof5MKp"
+            }
+          ],
+          "delta": "The falsifiable delta is survival-aware value-of-information estimation for calls whose reward becomes observable only when a linked forecast matures.",
+          "kill_risk": "Novelty is killed if ordinary delayed contextual-bandit estimators achieve indistinguishable scheduling."
+        },
+        {
+          "claim": "Optimize an agent subgraph under cost and latency constraints, skip unreliable calls, and always preserve calibrated numerical fallback.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Reasoning Is Not Free: Robust Adaptive Cost-Efficient Router for LLM-as-a-Judge",
+              "year": 2026,
+              "url": "https://openreview.net/forum?id=G3Nm8GYBHd"
+            },
+            {
+              "title": "Online Decision Deferral under Budget Constraints",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=xPeqRbcmFj"
+            }
+          ],
+          "delta": "The delta would require subgraph-level complementarities that cannot be represented by independent call utilities or standard constrained routing.",
+          "kill_risk": "Novelty is killed if a greedy budgeted router matches the selected subgraphs and loss-cost frontier."
+        }
+      ],
+      "overall": "LOW",
+      "recommendation": "ARCHIVE_LOW_NOVELTY",
+      "notes": "Delayed contextual bandits and cost-aware LLM routing are explicitly presumed crowded; forecast maturity is currently an adaptation, not a new scheduler class."
+    },
+    {
+      "index": 5,
+      "dedup_key": "cross-target-first-passage-consistency-graph",
+      "title": "Cross-Target First-Passage Consistency Graph",
+      "core_claims": [
+        {
+          "claim": "Model latent degradation, capacity, ESR, SOH, and failure threshold jointly rather than as independent heads.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Joint Prediction of SOH and RUL for Lithium Batteries Considering Capacity Self Recovery and Model Drift",
+              "year": 2025,
+              "url": "https://ieeexplore.ieee.org/document/10922385"
+            },
+            {
+              "title": "Aging and Performance Analysis of 18650 Lithium-Ion Cell Capacity Degradation: Data-Driven Insights and Modeling",
+              "year": 2025,
+              "url": "https://ieeexplore.ieee.org/document/11267446"
+            }
+          ],
+          "delta": "The delta survives only if the same latent process jointly constrains all four predictive distributions, not merely a multi-task network sharing features.",
+          "kill_risk": "Novelty is killed if this reduces to established joint SOH-RUL or multi-health-indicator prediction."
+        },
+        {
+          "claim": "Allow LLMs to propose physical relations and regime modifiers, with all factor weights estimated numerically from training folds.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Domain-Prior-Regularized Graph Modeling for Anomaly Detection in Cyber-Physical Systems",
+              "year": 2026,
+              "url": "https://openreview.net/forum?id=3ho9cVciv8"
+            },
+            {
+              "title": "Learning Verifiable Mathematical Laws for Scientific Agents via Graph-Hamiltonian World Models",
+              "year": 2026,
+              "url": "https://openreview.net/forum?id=JhdK2Uc2fX"
+            }
+          ],
+          "delta": "The falsifiable delta is that schema-limited agent proposals add cross-target relations that survive held-out numerical validation beyond a fixed physics library.",
+          "kill_risk": "Novelty is killed if experts can enumerate the same relations or if proposal weights vanish."
+        },
+        {
+          "claim": "Force the RUL distribution to equal the latent trajectory's first-passage distribution while enforcing SOH-capacity consistency with slack and fallback.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Joint Prediction of SOH and RUL for Lithium Batteries Considering Capacity Self Recovery and Model Drift",
+              "year": 2025,
+              "url": "https://ieeexplore.ieee.org/document/10922385"
+            },
+            {
+              "title": "Consistency Checks for Language Model Forecasters",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=r5IXBlTCGc"
+            }
+          ],
+          "delta": "The precise delta is a probabilistic equality between trajectory first passage and RUL, jointly scored with cross-target contradiction rate under allowed slack.",
+          "kill_risk": "Novelty is killed if established latent degradation or first-hitting-time models already impose the same equality for multiple health targets."
+        }
+      ],
+      "overall": "MEDIUM",
+      "recommendation": "DEEP_CHECK",
+      "notes": "Joint SOH-RUL prediction is crowded, but explicit first-passage distributional consistency across capacity, ESR, SOH, and RUL is a sharper candidate contribution."
+    },
+    {
+      "index": 6,
+      "dedup_key": "provenance-weighted-sensor-reliability-graph",
+      "title": "Provenance-Weighted Sensor Reliability Graph",
+      "core_claims": [
+        {
+          "claim": "Represent sensors, calibration episodes, missingness mechanisms, and transformations as provenance-linked forecast inputs.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "LEDGER: Claim-to-Evidence Trace Graphs for Auditing LLM Agents",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2608.18398"
+            },
+            {
+              "title": "Adaptive Graph Convolutional Network with Attention Fusion for Multivariate Time Series Forecasting with Variable Missing",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=6NPGwIRyrk"
+            }
+          ],
+          "delta": "The delta is that provenance ancestry directly parameterizes observation reliability in the prognostic likelihood, rather than serving only audit or imputation.",
+          "kill_risk": "Novelty is killed if provenance nodes are metadata that do not change numerical inference."
+        },
+        {
+          "claim": "Use LLM-proposed sensor-failure hypotheses only after residual and change-detection validation before changing reliability weights.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Domain-Prior-Regularized Graph Modeling for Anomaly Detection in Cyber-Physical Systems",
+              "year": 2026,
+              "url": "https://openreview.net/forum?id=3ho9cVciv8"
+            },
+            {
+              "title": "Online Fault Tolerant RUL Prediction Strategy for Lithium-Ion Batteries Using Machine Learning",
+              "year": 2025,
+              "url": "https://ieeexplore.ieee.org/document/10938530"
+            }
+          ],
+          "delta": "The delta survives only if typed fault hypotheses and temporal provenance outperform fixed LLM-derived sensor graphs and numerical fault detectors.",
+          "kill_risk": "Novelty is killed if DPR-GM-style LLM sensor priors plus reliability weighting reproduce the method."
+        },
+        {
+          "claim": "Retain parallel clean and suspect evidence paths until outcomes mature, with masked-sensor fallback and explicit uncertainty inflation.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Merlin: Multi-View Representation Learning for Robust Multivariate Time Series Forecasting with Unfixed Missing Rates",
+              "year": 2024,
+              "url": "https://openreview.net/forum?id=JHE4w8q2G2"
+            },
+            {
+              "title": "Monitoring Risks in Test-Time Adaptation",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=TzHX2RWUdE"
+            }
+          ],
+          "delta": "The falsifiable delta is delayed adjudication between paired clean and suspect filtering paths using mature outcomes rather than immediate anomaly scores.",
+          "kill_risk": "Novelty is killed if robust masking or standard interacting filters match performance and decisions."
+        }
+      ],
+      "overall": "MEDIUM",
+      "recommendation": "REFRAME",
+      "notes": "LLM-derived sensor graphs and reliability weighting have a close 2026 precedent; provenance-conditioned parallel filtering is the remaining differentiator."
+    },
+    {
+      "index": 7,
+      "dedup_key": "dual-clock-quarantine-safe-online-adaptation",
+      "title": "Dual-Clock Quarantine Graph for Safe Online Adaptation",
+      "core_claims": [
+        {
+          "claim": "Use an observation clock for provisional nodes and a maturity clock for promotion into reusable predictive memory.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Label Delay in Online Continual Learning",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2312.00923"
+            },
+            {
+              "title": "Monitoring Risks in Test-Time Adaptation",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=TzHX2RWUdE"
+            }
+          ],
+          "delta": "The delta is a formally separate promotion state machine where unlabeled observations can affect bounded predictions but cannot train shared memory until linked labels mature.",
+          "kill_risk": "Novelty is killed if the two clocks are equivalent to a labeled and unlabeled replay buffer."
+        },
+        {
+          "claim": "Quarantine LLM-generated features and hypotheses, allowing only bounded residual influence before maturity and no shared-mechanism retraining.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Test-time Adapted Reinforcement Learning with Action Entropy Regularization",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=Xv1jY6U0pT"
+            },
+            {
+              "title": "CTRL: Control-Based Time Series Forecasting with LLM-Guided Residual Learning",
+              "year": 2026,
+              "url": "https://aclanthology.org/2026.findings-acl.1104/"
+            }
+          ],
+          "delta": "The falsifiable delta is a predeclared influence bound separating provisional forecast correction from delayed promotion into reusable mechanism parameters.",
+          "kill_risk": "Novelty is killed if standard trust-region test-time adaptation provides the same safety-performance behavior."
+        },
+        {
+          "claim": "Promote, decay, or discard quarantined nodes using sequential likelihood, calibration debt, and mature survival loss, with frozen-backbone reversion.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "WATCH: Adaptive Monitoring for AI Deployments via Weighted-Conformal Martingales",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=GMjkK2CKx5"
+            },
+            {
+              "title": "Monitoring Risks in Test-Time Adaptation",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=TzHX2RWUdE"
+            }
+          ],
+          "delta": "The delta is node-level promotion driven jointly by anytime evidence, calibration debt, and survival-aware mature loss rather than system-level alarms.",
+          "kill_risk": "Novelty is killed if the promotion statistic lacks valid sequential error control or behaves like thresholded risk monitoring."
+        }
+      ],
+      "overall": "MEDIUM",
+      "recommendation": "DEEP_CHECK",
+      "notes": "Safe adaptation and delayed labels are established, but provisional bounded influence plus maturity-only memory promotion is a testable, relatively precise combination."
+    },
+    {
+      "index": 8,
+      "dedup_key": "typed-causal-claim-compiler",
+      "title": "Typed Causal Claim Compiler for Joint Capacitor Prognostics",
+      "core_claims": [
+        {
+          "claim": "Disjoint-view agents emit typed DSL claims with timestamped evidence instead of forecasts.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "A Neuro-Symbolic Multi-Agent Framework for Complex Temporal Reasoning",
+              "year": 2026,
+              "url": "https://openreview.net/pdf/1dd8cb6999ed062ced627d2be68894dc6bda2e68.pdf"
+            },
+            {
+              "title": "NESYPROACT: Proactive Neural-Symbolic Control with Verifiable Skills",
+              "year": 2026,
+              "url": "https://openreview.net/pdf?id=9xteuRjHr7"
+            }
+          ],
+          "delta": "The delta survives only if the prognostic DSL has executable semantics for monotonicity, stress acceleration, changepoints, and uncertainty rather than generic structured output.",
+          "kill_risk": "Novelty is killed if fixed roles plus JSON schemas provide the same behavior."
+        },
+        {
+          "claim": "Compile accepted claims into constraints and priors for a joint state-space model and resolve conflicts by deterministic minimum-slack optimization.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "A Probabilistic Neuro-symbolic Layer for Algebraic Constraint Satisfaction",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=9UkxftKU4I"
+            },
+            {
+              "title": "Neuro-Symbolic Agents for Regulated Process Automation",
+              "year": 2026,
+              "url": "https://openreview.net/pdf/12d2767b4b83c36d71636506138d286af61bb996.pdf"
+            }
+          ],
+          "delta": "The falsifiable delta is a compiler mapping each typed claim to a specific probabilistic state-space factor whose slack and forecast effect are independently measurable.",
+          "kill_risk": "Novelty is killed if the compiler is a prompt-to-constraint wrapper with no semantics beyond existing neuro-symbolic layers."
+        },
+        {
+          "claim": "Use independent prequential and transfer judges, leave-one-edge-out attribution, and frozen fallback when compilation or verification fails.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Automated Hypothesis Validation with Agentic Sequential Falsifications",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=iTevNo8PzG"
+            },
+            {
+              "title": "Improving Constraint-Based Discovery with Robust Propagation and Reliable LLM Priors",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=7K8mS5QNkf"
+            }
+          ],
+          "delta": "The delta is dual numerical admission requiring both mature-prefix forecast gain and identity-blind transfer stability for each compiled edge.",
+          "kill_risk": "Novelty is killed if either judge is redundant or if leave-one-edge-out effects are statistically unidentifiable."
+        }
+      ],
+      "overall": "MEDIUM",
+      "recommendation": "REFRAME",
+      "notes": "Typed neuro-symbolic compilation and multi-agent verification are crowded; the contribution must be the executable mapping to state-space factors and dual transfer/prequential admission."
+    },
+    {
+      "index": 9,
+      "dedup_key": "orthogonal-residual-court",
+      "title": "Orthogonal Residual Court with Deterministic Reconciliation",
+      "core_claims": [
+        {
+          "claim": "Expose cross-fitted disjoint residual channels to specialized LLM controllers that propose bounded corrections to a frozen forecaster.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "CTRL: Control-Based Time Series Forecasting with LLM-Guided Residual Learning",
+              "year": 2026,
+              "url": "https://aclanthology.org/2026.findings-acl.1104/"
+            },
+            {
+              "title": "Bridging the Last Mile of Time Series Forecasting with LLM Agents",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2606.02497"
+            }
+          ],
+          "delta": "The delta survives only if cross-fitting and disjoint residual views prevent information leakage and redundancy not addressed by CTRL's decomposed residual agents.",
+          "kill_risk": "Novelty is killed if CTRL with matched residual decompositions reproduces the system."
+        },
+        {
+          "claim": "Reject redundant proposed operators through conditional correlation and partial-R2 thresholds computed only from mature labels.",
+          "novelty": "HIGH",
+          "closest": [
+            {
+              "title": "TimeRM: Multi-Expert Residual Modeling for Long-Term Time Series Forecasting",
+              "year": 2025,
+              "url": "https://openreview.net/pdf?id=63rRQn8d4I"
+            },
+            {
+              "title": "Optimal Forecast Reconciliation with Uncertainty Quantification",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2402.06480"
+            }
+          ],
+          "delta": "The precise delta is mature-only conditional incremental-value testing that admits a residual operator only when it explains variance orthogonal to every already accepted role.",
+          "kill_risk": "Novelty is killed if ordinary sparse regression, stacking, or residual MoE gating selects the same operators."
+        },
+        {
+          "claim": "Reconcile accepted corrections by constrained quadratic programming and attribute conflicts with dual variables, then gate by calibration and transfer judges.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Scaleable Dynamic Forecast Reconciliation",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2409.12856"
+            },
+            {
+              "title": "Optimal Forecast Reconciliation with Uncertainty Quantification",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2402.06480"
+            }
+          ],
+          "delta": "The falsifiable delta is role-level conflict attribution from binding physical constraints and residual covariance, not merely coherent forecast projection.",
+          "kill_risk": "Novelty is killed if standard dynamic reconciliation produces equivalent corrections and dual variables have no reliable causal interpretation."
+        }
+      ],
+      "overall": "MEDIUM",
+      "recommendation": "DEEP_CHECK",
+      "notes": "LLM residual control is directly crowded by CTRL, but orthogonal marginal-value admission and dual-variable conflict attribution remain sharper mechanisms."
+    },
+    {
+      "index": 10,
+      "dedup_key": "counterfactual-evidence-braid",
+      "title": "Counterfactual Evidence Braid with Negative-Control Roles",
+      "core_claims": [
+        {
+          "claim": "Separate observational, physics, intervention, and negative-control information into disjoint roles emitting typed signed effects.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Automated Hypothesis Validation with Agentic Sequential Falsifications",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=iTevNo8PzG"
+            },
+            {
+              "title": "Improving Constraint-Based Discovery with Robust Propagation and Reliable LLM Priors",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=7K8mS5QNkf"
+            }
+          ],
+          "delta": "The delta is an explicit negative-control role whose activation rate is a prespecified false-causal-path diagnostic under matched information views.",
+          "kill_risk": "Novelty is killed if the negative-control channels are not defensibly causally irrelevant or are selected after observing outcomes."
+        },
+        {
+          "claim": "Translate typed effects into a structural state-space model and verify sign, unit, conservation, temporal precedence, and negative-control consistency.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Structural Causal Circuits: Probabilistic Circuits Climbing All Rungs of Pearl's Ladder of Causation",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=25XyUTICdZ"
+            },
+            {
+              "title": "Learning Verifiable Mathematical Laws for Scientific Agents via Graph-Hamiltonian World Models",
+              "year": 2026,
+              "url": "https://openreview.net/forum?id=JhdK2Uc2fX"
+            }
+          ],
+          "delta": "The falsifiable delta is a single compilation path from agent-specified signed effects to executable physical and negative-control checks in a prognostic state-space model.",
+          "kill_risk": "Novelty is killed if observational data cannot identify the claimed intervention effects or physical checks are merely plausibility filters."
+        },
+        {
+          "claim": "Use counterfactual graph replay for edge attribution, independent intervention-fit and invariance judges, and numerical fallback on failed paths.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "The Digital Twin Counterfactual Framework: A Validation Architecture for Simulated Potential Outcomes",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2604.01325"
+            },
+            {
+              "title": "Causal Time-Series Prediction with Interventional and Counterfactual Forecasting",
+              "year": 2026,
+              "url": "https://openreview.net/pdf?id=4IPIhOgVqz"
+            }
+          ],
+          "delta": "The delta is edge-specific replay that measures forecast change and placebo activation while separately validating intervention fit and cross-condition invariance.",
+          "kill_risk": "Novelty is killed if no real or justified synthetic interventions exist, making replay an unvalidated simulator exercise."
+        }
+      ],
+      "overall": "MEDIUM",
+      "recommendation": "DEEP_CHECK",
+      "notes": "Counterfactual time-series and digital-twin validation are active areas; the negative-control role and dual intervention/transfer validation are the potentially novel parts."
+    },
+    {
+      "index": 11,
+      "dedup_key": "delayed-maturity-double-entry-ledger",
+      "title": "Delayed-Maturity Double-Entry Forecast Ledger",
+      "core_claims": [
+        {
+          "claim": "Pair each immutable typed evidence claim with a numerical forecast-impact entry committed before forecast issuance.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "LEDGER: Claim-to-Evidence Trace Graphs for Auditing LLM Agents",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2608.18398"
+            },
+            {
+              "title": "Quipu: A Governed Bitemporal Knowledge Graph Store",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2608.16813"
+            }
+          ],
+          "delta": "The delta is double-entry conservation between a claim and its numerically replayable forecast impact, rather than generic claim-evidence provenance.",
+          "kill_risk": "Novelty is killed if forecast-impact entries are post-hoc explanations or cannot reconstruct the committed prediction."
+        },
+        {
+          "claim": "Maintain independent calibration and transfer shadow ledgers that score only outcomes mature before the current origin.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "A General Framework for Off-Policy Learning with Partially-Observed Reward",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=mUbYof5MKp"
+            },
+            {
+              "title": "Monitoring Risks in Test-Time Adaptation",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=TzHX2RWUdE"
+            }
+          ],
+          "delta": "The delta survives only if ledger separation prevents a measurable information path between calibration and transfer decisions beyond ordinary nested validation.",
+          "kill_risk": "Novelty is killed if the two ledgers are simply two validation metrics computed on the same mature data."
+        },
+        {
+          "claim": "Update role and edge reliability by mature-only leave-one-claim-out replay, freeze weights before each origin, and fall back on insufficient support or tampering.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Learning from Delayed Feedback in Games via Extra Prediction",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=FFEFRQGlsS"
+            },
+            {
+              "title": "LEDGER: Claim-to-Evidence Trace Graphs for Auditing LLM Agents",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2608.18398"
+            }
+          ],
+          "delta": "The falsifiable delta is exact attribution of delayed forecast error to precommitted evidence-impact pairs under origin-frozen reliability weights.",
+          "kill_risk": "Novelty is killed if leave-one-claim-out replay is too unstable to distinguish roles or matches ordinary delayed expert weighting."
+        }
+      ],
+      "overall": "MEDIUM",
+      "recommendation": "REFRAME",
+      "notes": "Immutable ledgers and delayed credit are crowded, but a replayable double-entry claim-impact invariant is more specific than ordinary provenance."
+    },
+    {
+      "index": 12,
+      "dedup_key": "minimum-causal-cut-agent-graph",
+      "title": "Minimum Causal-Cut Agent Graph",
+      "core_claims": [
+        {
+          "claim": "Construct target-specific typed evidence graphs with explicit conflict edges linking disjoint-view evidence to four prognostic distributions.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Automatic Scientific Claims Verification with Pruned Evidence Graph",
+              "year": 2025,
+              "url": "https://openreview.net/pdf?id=cYAFwjY2bY"
+            },
+            {
+              "title": "LEDGER: Claim-to-Evidence Trace Graphs for Auditing LLM Agents",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2608.18398"
+            }
+          ],
+          "delta": "The delta is a numerically bounded evidence graph whose terminals are predictive distributions and whose conflict edges affect feasible forecast construction.",
+          "kill_risk": "Novelty is killed if the graph is only a rationale-selection or audit structure."
+        },
+        {
+          "claim": "Select the smallest verified evidence path covering every target via minimum-cost flow or cut with mature error, uncertainty, and instability costs.",
+          "novelty": "HIGH",
+          "closest": [
+            {
+              "title": "Diverse and Sparse Mixture-of-Experts for Causal Subgraph-Based Out-of-Distribution Graph Learning",
+              "year": 2026,
+              "url": "https://openreview.net/pdf?id=4XVczusV2K"
+            },
+            {
+              "title": "Automatic Scientific Claims Verification with Pruned Evidence Graph",
+              "year": 2025,
+              "url": "https://openreview.net/pdf?id=cYAFwjY2bY"
+            }
+          ],
+          "delta": "The falsifiable delta is a target-covering combinatorial cut whose edge costs are frozen mature predictive statistics and whose selected path is compared with full graphs and matched-size random cuts.",
+          "kill_risk": "Novelty is killed if the optimization is equivalent to top-k sparse routing, or if edge costs do not satisfy assumptions needed for a meaningful minimum cut."
+        },
+        {
+          "claim": "Keep calls fixed, use independent temporal and transfer judges, attribute disagreements to cut membership and binding conflicts, and fall back per target.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Automated Hypothesis Validation with Agentic Sequential Falsifications",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=iTevNo8PzG"
+            },
+            {
+              "title": "Improving Constraint-Based Discovery with Robust Propagation and Reliable LLM Priors",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=7K8mS5QNkf"
+            }
+          ],
+          "delta": "The delta is target-specific feasibility and fallback under fixed call budgets, making every selected edge's necessity testable without routing-cost confounding.",
+          "kill_risk": "Novelty is killed if causal language is unsupported by interventions or if multiple equally optimal cuts make edge attribution unstable."
+        }
+      ],
+      "overall": "HIGH",
+      "recommendation": "DEEP_CHECK",
+      "notes": "Graph pruning and sparse causal experts exist, but no close 2024-2026 source located the exact mature-cost minimum cut covering multiple forecast targets under fixed calls."
+    },
+    {
+      "index": 13,
+      "dedup_key": "role-conditional-conformal-product",
+      "title": "Role-Conditional Conformal Product of Prognostic Experts",
+      "core_claims": [
+        {
+          "claim": "Use disjoint roles to select small probabilistic models or transforms that emit distributions rather than subjective confidence.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "TSci: A Multi-Agent System for Time-Series Forecasting",
+              "year": 2026,
+              "url": "https://openreview.net/pdf?id=Gn4nnY54A7"
+            },
+            {
+              "title": "Efficient Pooling of Predictions via Kernel Embeddings",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=dji9MfONNP"
+            }
+          ],
+          "delta": "The delta survives only if role information restrictions induce demonstrably complementary predictive distributions unavailable to ordinary model selection.",
+          "kill_risk": "Novelty is killed if fixed role prompts or standard model-library selection reproduce the experts."
+        },
+        {
+          "claim": "Combine distributions by a log-opinion pool weighted with mature prequential log scores and apply rolling conformal calibration per target.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "CAPTAIN: Conformal-Prediction-Based Multi-Source Time-Series Forecasting",
+              "year": 2026,
+              "url": "https://openreview.net/forum?id=WJjlXHo4yS"
+            },
+            {
+              "title": "Online Conformal Inference for Multi-Step Time Series Forecasting",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2410.13115"
+            },
+            {
+              "title": "Mixture-of-Experts Distributed Conformal Prediction",
+              "year": 2026,
+              "url": "https://openreview.net/pdf?id=vCmnu4q8C3"
+            }
+          ],
+          "delta": "The delta would require proving that the product pool plus maturity restriction yields validity or sharpness not obtainable from existing conformal multi-source and MoE methods.",
+          "kill_risk": "Novelty is killed if this is standard online expert aggregation followed by conformal calibration."
+        },
+        {
+          "claim": "Gate product edges with coverage and transfer judges and revert to a calibrated global distribution on low ESS or disagreement.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Conformal Prediction under Lévy-Prokhorov Distribution Shifts",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=1ULQvdbZ3X"
+            },
+            {
+              "title": "CAPTAIN: Conformal-Prediction-Based Multi-Source Time-Series Forecasting",
+              "year": 2026,
+              "url": "https://openreview.net/forum?id=WJjlXHo4yS"
+            }
+          ],
+          "delta": "The delta survives only if edge-level gating preserves a stated coverage guarantee under delayed, censored, and shifted data.",
+          "kill_risk": "Novelty is killed if adaptive gating invalidates conformal coverage or is equivalent to subgroup calibration."
+        }
+      ],
+      "overall": "LOW",
+      "recommendation": "ARCHIVE_LOW_NOVELTY",
+      "notes": "Conformal multi-source forecasting, MoE conformal calibration, proper-score pooling, and role-based model selection collectively cover nearly all claimed mechanisms."
+    },
+    {
+      "index": 14,
+      "dedup_key": "verified-correction-operator-tribunal",
+      "title": "Verified Correction-Operator Tribunal",
+      "core_claims": [
+        {
+          "claim": "Restrict specialized LLM critics to selecting typed correction operators from a finite library while retaining a numerical final forecaster.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Bridging the Last Mile of Time Series Forecasting with LLM Agents",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2606.02497"
+            },
+            {
+              "title": "CTRL: Control-Based Time Series Forecasting with LLM-Guided Residual Learning",
+              "year": 2026,
+              "url": "https://aclanthology.org/2026.findings-acl.1104/"
+            }
+          ],
+          "delta": "The delta survives only if the finite operator semantics and prohibition on direct value revision yield safety properties absent from existing LLM forecast-revision actions.",
+          "kill_risk": "Novelty is killed if the library is a renamed set of last-mile revision actions or CTRL control signals."
+        },
+        {
+          "claim": "Estimate operator magnitude numerically and require independent mature-prefix and physics-transfer verification before acceptance.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Learning Verifiable Mathematical Laws for Scientific Agents via Graph-Hamiltonian World Models",
+              "year": 2026,
+              "url": "https://openreview.net/forum?id=JhdK2Uc2fX"
+            },
+            {
+              "title": "DANCE-ST: Why Trustworthy AI Needs Constraint Guidance, Not Constraint Penalties",
+              "year": 2026,
+              "url": "https://openreview.net/forum?id=sokvfawAYu"
+            }
+          ],
+          "delta": "The falsifiable delta is that agents select operator type only, while magnitude and acceptance are independently determined by reproducible numerical tests on mature prefixes.",
+          "kill_risk": "Novelty is killed if LLM-selected operators are rarely accepted or a deterministic diagnostic chooses the same operators."
+        },
+        {
+          "claim": "Resolve incompatible operators through constrained safety projection and return the original forecast unchanged outside a trust region.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Bridging the Last Mile of Time Series Forecasting with LLM Agents",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2606.02497"
+            },
+            {
+              "title": "Exploring Under Constraints with Model-Based Actor-Critic and Safety Filters",
+              "year": 2024,
+              "url": "https://openreview.net/forum?id=s31IWg2kN5"
+            }
+          ],
+          "delta": "The delta is an operator-composition projection with an unchanged-forecast invariant and attributable binding constraints under matched correction budgets.",
+          "kill_risk": "Novelty is killed if ordinary constrained post-processing or runtime assurance already provides the same projection and fallback."
+        }
+      ],
+      "overall": "MEDIUM",
+      "recommendation": "REFRAME",
+      "notes": "Residual and last-mile LLM correction are directly crowded; only typed operator authority separation plus dual numerical verification remains defensible."
+    },
+    {
+      "index": 15,
+      "dedup_key": "falsification-first-shadow-court",
+      "title": "Falsification-First Shadow Court with Anytime Evidence Tests",
+      "core_claims": [
+        {
+          "claim": "Attach explicit lead-lag reversals, temporal placebos, negative controls, unit checks, and cross-condition instability tests to every proposed edge.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Automated Hypothesis Validation with Agentic Sequential Falsifications",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=iTevNo8PzG"
+            },
+            {
+              "title": "Improving Constraint-Based Discovery with Robust Propagation and Reliable LLM Priors",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=7K8mS5QNkf"
+            }
+          ],
+          "delta": "The delta is an edge-type-specific falsifier suite evaluated exclusively on mature prefixes, with injected null edges providing measurable false-admission ground truth.",
+          "kill_risk": "Novelty is killed if falsifiers are chosen post hoc or negative controls are not valid."
+        },
+        {
+          "claim": "Require a temporal judge using anytime-valid e-tests and an identity-blind transfer judge using invariance tests.",
+          "novelty": "HIGH",
+          "closest": [
+            {
+              "title": "WATCH: Adaptive Monitoring for AI Deployments via Weighted-Conformal Martingales",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=GMjkK2CKx5"
+            },
+            {
+              "title": "Monitoring Risks in Test-Time Adaptation",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=TzHX2RWUdE"
+            },
+            {
+              "title": "Automated Hypothesis Validation with Agentic Sequential Falsifications",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=iTevNo8PzG"
+            }
+          ],
+          "delta": "The precise delta is conjunction-based edge admission requiring both anytime-valid temporal evidence and identity-blind cross-condition invariance, with familywise false admission evaluated under repeated monitoring.",
+          "kill_risk": "Novelty is killed if optional edge generation invalidates the e-tests or if the transfer judge reuses data that entered temporal wealth updates."
+        },
+        {
+          "claim": "Admit claims only after both judges pass, quantify necessity by equal-budget edge deletion and placebo insertion, and fall back when evidence wealth is insufficient.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Automated Hypothesis Validation with Agentic Sequential Falsifications",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=iTevNo8PzG"
+            },
+            {
+              "title": "WATCH: Adaptive Monitoring for AI Deployments via Weighted-Conformal Martingales",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=GMjkK2CKx5"
+            }
+          ],
+          "delta": "The delta is a forecast-facing admission protocol that couples valid sequential testing to equal-budget architectural necessity tests rather than merely accepting or rejecting hypotheses.",
+          "kill_risk": "Novelty is killed if dual testing rejects nearly all useful edges, or if deletion and placebo tests do not isolate edge necessity."
+        }
+      ],
+      "overall": "MEDIUM",
+      "recommendation": "DEEP_CHECK",
+      "notes": "Agentic sequential falsification and anytime monitoring are strong precedents; the conjunction of e-value temporal admission, identity-blind transfer admission, and edge-necessity replay is the remaining precise delta."
+    },
+    {
+      "index": 16,
+      "dedup_key": "matched_budget_randomized_edge_probe_ledger",
+      "title": "Matched-Budget Randomized Edge-Probe Ledger",
+      "core_claims": [
+        {
+          "claim": "Equal-budget randomized substitution of one graph node or edge with logged nonzero propensity identifies its marginal effect on forecast loss.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Causal Agent Replay: Counterfactual Attribution for LLM-Agent Failures",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2606.08275"
+            },
+            {
+              "title": "Statistical Inference for Misspecified Contextual Bandits",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2606.22639"
+            }
+          ],
+          "delta": "The distinction is a randomized, equal-budget intervention on one workflow component rather than run-forward replay or query-level treatment, and it disappears if planted edge-effect intervals lack nominal coverage.",
+          "kill_risk": "Message interference, weak propensity overlap, or unlogged route changes would make the IPW edge estimand unidentified."
+        },
+        {
+          "claim": "Each target-horizon obligation is credited only after maturity using censoring-aware proper loss and target-horizon-specific route statistics.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Off-Policy Evaluation and Learning for Survival Outcomes under Censoring",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2603.22900"
+            },
+            {
+              "title": "Budgeted Recommendation with Delayed Feedback",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2405.11417"
+            }
+          ],
+          "delta": "The proposed delta is joint maturity gating, survival censoring, and component-level proper-loss credit, which is falsified as novel if ordinary delay-adjusted OPE reproduces the same estimator after relabeling actions as edges.",
+          "kill_risk": "Informative censoring not captured by origin-time context would invalidate the claimed causal credit."
+        },
+        {
+          "claim": "A shared origin-time identifiability mask forces RUL=NA across every direct and hybrid arm and separates eligible-case error from coverage.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "A probabilistic estimation of remaining useful life from censored time-to-event data",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2405.01614"
+            },
+            {
+              "title": "Teaching Models To Survive: Proper Scoring Rule and Stochastic Optimization with Competing Risks",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2406.14085"
+            }
+          ],
+          "delta": "The only specific delta is applying one frozen support rule to all routing arms, and that is not methodologically distinct if it reduces to standard survival eligibility plus abstention bookkeeping.",
+          "kill_risk": "If the mask is merely a threshold on available follow-up rather than a proved identifiability condition, reviewers can treat it as ordinary selective prediction."
+        }
+      ],
+      "overall": "MEDIUM",
+      "recommendation": "DEEP_CHECK",
+      "notes": "The randomized single-component estimand is the defensible novelty center; delayed feedback, IPW, censoring, and RUL abstention are established ingredients."
+    },
+    {
+      "index": 17,
+      "dedup_key": "counterfactual_capsule_replay_delayed_route_credit",
+      "title": "Counterfactual Capsule Replay for Delayed Route Credit",
+      "core_claims": [
+        {
+          "claim": "An immutable origin-time capsule supports counterfactual routes only by recombining already-cached branch outputs downstream of declared merge points.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Causal Agent Replay: Counterfactual Attribution for LLM-Agent Failures",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2606.08275"
+            },
+            {
+              "title": "TOKI: A Bitemporal Operator Algebra for Contradiction Resolution in LLM-Agent Persistent Memory",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2606.06240"
+            }
+          ],
+          "delta": "Unlike causal run-forward replay, the capsule forbids regenerated messages and permits only merge-local recombination, a distinction that vanishes if route changes require any uncached upstream state.",
+          "kill_risk": "If cached emissions are not sufficient statistics for every legal shadow route, the replayed route is not a valid counterfactual."
+        },
+        {
+          "claim": "Paired mature-label loss differences between deployed and legal shadow routes provide low-variance credit to changed edges.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Counterfactual Effect Decomposition in Multi-Agent Sequential Decision Making",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=jHLSnYNt1m"
+            },
+            {
+              "title": "Causal Agent Replay: Counterfactual Attribution for LLM-Agent Failures",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2606.08275"
+            }
+          ],
+          "delta": "The proposed delta is paired numerical forecast scoring of cached merge-edge alternatives after delayed maturity, and it is falsified if the paired estimator remains biased against randomized edge interventions.",
+          "kill_risk": "Interactions across multiple changed edges or stochastic dependence between cached branches can erase the variance and attribution advantage."
+        },
+        {
+          "claim": "A randomized-probe stream estimates replay bias and disables adaptation when disagreement exceeds a declared tolerance.",
+          "novelty": "HIGH",
+          "closest": [
+            {
+              "title": "Interactive Causal Discovery through Large Language Model Agents",
+              "year": 2024,
+              "url": "https://openreview.net/forum?id=xA8WW2dlTX"
+            },
+            {
+              "title": "Causal Agent Replay: Counterfactual Attribution for LLM-Agent Failures",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2606.08275"
+            }
+          ],
+          "delta": "The falsifiable distinction is an online randomized calibration channel for cached-replay bias with an automatic safety stop, rather than synthetic-only replay validation.",
+          "kill_risk": "Too few probes, nonstationary replay bias, or a tolerance chosen after observing outcomes would destroy the claimed diagnostic guarantee."
+        }
+      ],
+      "overall": "MEDIUM",
+      "recommendation": "DEEP_CHECK",
+      "notes": "The 2026 Causal Agent Replay paper substantially narrows the space; the strongest remaining delta is merge-local cached replay plus randomized bias gating."
+    },
+    {
+      "index": 18,
+      "dedup_key": "maturity_factored_target_horizon_credit_tensor",
+      "title": "Maturity-Factored Target-Horizon Credit Tensor",
+      "core_claims": [
+        {
+          "claim": "Routing credit is represented as a masked tensor over component, arm, target, horizon, condition, and maturity state.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Mixture of Latent Experts Using Tensor Products",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2405.16671"
+            },
+            {
+              "title": "Breaking Silos: Adaptive Model Fusion Unlocks Better Time Series Forecasting",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=sdFRCRk1pP"
+            }
+          ],
+          "delta": "The tensor is distinct only if its maturity axis induces a new identifiable estimator or guarantee; as a bookkeeping factorization it reduces to established multi-task expert routing.",
+          "kill_risk": "If changing the tensor layout leaves the learning rule unchanged, reviewers will regard the tensor as notation rather than a contribution."
+        },
+        {
+          "claim": "Immature cells remain explicitly unobserved while low-rank sharing predicts—but never relabels—their latent credit.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Adversarial Online Learning with Temporal Feedback Graphs",
+              "year": 2024,
+              "url": "https://proceedings.mlr.press/v247/gatmiry24b.html"
+            },
+            {
+              "title": "Budgeted Recommendation with Delayed Feedback",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2405.11417"
+            }
+          ],
+          "delta": "The claimed distinction is a hard separation between imputed credit and observed mature loss, but it disappears if standard masked low-rank completion with delayed feedback yields the same update.",
+          "kill_risk": "A wrong rank assumption or maturity-dependent missingness can make imputed credit systematically misleading."
+        },
+        {
+          "claim": "Routing uses target-horizon-specific censoring-aware proper scores and falls back when tensor support is insufficient.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Teaching Models To Survive: Proper Scoring Rule and Stochastic Optimization with Competing Risks",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2406.14085"
+            },
+            {
+              "title": "Breaking Silos: Adaptive Model Fusion Unlocks Better Time Series Forecasting",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=sdFRCRk1pP"
+            }
+          ],
+          "delta": "Target-horizon-specific proper-loss routing is only distinct if the joint tensor provably outperforms independent per-horizon routers under asynchronous revelation rather than merely sharing parameters.",
+          "kill_risk": "If cross-horizon credit is weak or negative, the mechanism collapses to independent routers plus ordinary fallback."
+        }
+      ],
+      "overall": "LOW",
+      "recommendation": "ARCHIVE_LOW_NOVELTY",
+      "notes": "Low-rank multi-task routing, masked missing feedback, proper scoring, and fallback are crowded; the tensor representation alone does not establish a new method."
+    },
+    {
+      "index": 19,
+      "dedup_key": "regret_escrow_graph_adapter_pending_loss_reserves",
+      "title": "Regret-Escrow Graph Adapter with Pending-Loss Reserves",
+      "core_claims": [
+        {
+          "claim": "Every adaptive forecast is a bounded-loss convex mixture with a frozen numerical baseline and is controlled by a target-horizon escrow account.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Conservative Contextual Bandits: Beyond Linear Representations",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2412.06165"
+            },
+            {
+              "title": "Safe Linear Bandits over Unknown Polytopes",
+              "year": 2024,
+              "url": "https://proceedings.mlr.press/v247/gangrade24a.html"
+            }
+          ],
+          "delta": "The escrow is distinct only if its target-horizon accounting yields a guarantee unavailable from a conservative bandit's baseline budget after a direct change of variables.",
+          "kill_risk": "If the escrow update is algebraically equivalent to standard conservative-bandit budget accounting, the graph framing adds no novelty."
+        },
+        {
+          "claim": "Every immature adaptive forecast reserves its worst-case excess-loss liability before further components may be activated.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Regret Bounds for Adversarial Contextual Bandits with General Function Approximation and Delayed Feedback",
+              "year": 2025,
+              "url": "https://arxiv.org/abs/2510.09127"
+            },
+            {
+              "title": "Budgeted Recommendation with Delayed Feedback",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2405.11417"
+            }
+          ],
+          "delta": "The precise delta is charging unresolved actions their bounded worst-case baseline regret before feedback arrives, and it is falsified if delayed conservative-bandit analyses already imply the same reserve rule.",
+          "kill_risk": "Loose loss bounds or long delays can reserve the entire account and reduce the algorithm to permanent fallback."
+        },
+        {
+          "claim": "Nonnegative escrow provides a pathwise bound on cumulative excess loss while failures and unsupported cases immediately return the baseline.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Conservative Contextual Bandits: Beyond Linear Representations",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2412.06165"
+            },
+            {
+              "title": "Safety in the Face of Adversity: Achieving Zero Constraint Violation in Online Learning with Slowly Changing Constraints",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=UEU6hsCWCC"
+            }
+          ],
+          "delta": "The guarantee is new only if it remains pathwise under asynchronous unresolved liabilities where existing conservative guarantees do not apply.",
+          "kill_risk": "Clipping or normalizing the proper loss after seeing test behavior would make the bound vacuous or protocol-dependent."
+        }
+      ],
+      "overall": "LOW",
+      "recommendation": "REFRAME",
+      "notes": "The pending-liability reserve is worth isolating as a theorem, but the surrounding safe-baseline budget mechanism is close to conservative bandits."
+    },
+    {
+      "index": 20,
+      "dedup_key": "anytime_valid_loco_edge_promotion_gate",
+      "title": "Anytime-Valid LOCO Evidence Gate for Edge Promotion",
+      "core_claims": [
+        {
+          "claim": "New graph edges enter randomized or shadow probation and are scored by paired mature-label loss differences against a fallback.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Semiparametric Efficient Inference in Adaptive Experiments",
+              "year": 2024,
+              "url": "https://proceedings.mlr.press/v236/cook24a.html"
+            },
+            {
+              "title": "Interactive Causal Discovery through Large Language Model Agents",
+              "year": 2024,
+              "url": "https://openreview.net/forum?id=xA8WW2dlTX"
+            }
+          ],
+          "delta": "The edge-probation delta disappears if it is implementable as ordinary adaptive treatment-effect estimation with the edge indicator as treatment.",
+          "kill_risk": "Unrandomized shadow deployment or graph-component interference would invalidate paired causal interpretation."
+        },
+        {
+          "claim": "Confidence sequences or e-processes remain valid under optional stopping and asynchronous label revelation when promoting or retiring edges.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Semiparametric Efficient Inference in Adaptive Experiments",
+              "year": 2024,
+              "url": "https://proceedings.mlr.press/v236/cook24a.html"
+            },
+            {
+              "title": "Anytime-Valid A/B Testing of Counting Processes",
+              "year": 2025,
+              "url": "https://proceedings.mlr.press/v258/lindon25a.html"
+            }
+          ],
+          "delta": "Applying anytime-valid inference to edge losses is distinct only if asynchronous censoring requires a new martingale construction rather than a standard predictable reveal-time filtration.",
+          "kill_risk": "Estimated censoring weights, drifting effects, or unaccounted repeated testing across edges can break the advertised lifetime error rate."
+        },
+        {
+          "claim": "Promotion must succeed across leave-one-seen-capacitor-out pseudo-target folds while harm evidence can retire an edge.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Clustering-Based Validation Splits for Model Selection under Domain Shift",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=Q692C0WtiD"
+            },
+            {
+              "title": "Principled Model Routing for Unknown Mixtures of Source Domains",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=w7Fe5rHLvJ"
+            }
+          ],
+          "delta": "LOCO pseudo-target replication is an evaluation constraint rather than a new statistical mechanism unless it produces a proved group-level promotion guarantee.",
+          "kill_risk": "With few independent capacitors, fold reuse and cross-edge selection can make the evidence process underpowered or invalid."
+        }
+      ],
+      "overall": "LOW",
+      "recommendation": "ARCHIVE_LOW_NOVELTY",
+      "notes": "This is a careful application of established anytime-valid adaptive inference and domain-held-out validation, not yet a distinct method."
+    },
+    {
+      "index": 21,
+      "dedup_key": "transport_minimax_credit_unseen_capacitors",
+      "title": "Transport-Minimax Credit for Unseen Capacitors",
+      "core_claims": [
+        {
+          "claim": "Mature edge gains are retained separately for every source capacitor, condition, target, and horizon rather than pooled.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Structure-informed Risk Minimization for Robust Ensemble Learning",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=GvV9MJs268"
+            },
+            {
+              "title": "Principled Model Routing for Unknown Mixtures of Source Domains",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=w7Fe5rHLvJ"
+            }
+          ],
+          "delta": "Per-capacitor loss stratification is distinct only if it identifies transportable edge effects unavailable to standard group-DRO or robust ensemble weighting.",
+          "kill_risk": "If capacitor strata are merely domain labels with too few units, this becomes ordinary worst-group optimization with unstable estimates."
+        },
+        {
+          "claim": "A cross-fitted transport model over leave-one-source pseudo-targets routes from a lower-tail or DRO aggregate of component gains.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Principled Model Routing for Unknown Mixtures of Source Domains",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=w7Fe5rHLvJ"
+            },
+            {
+              "title": "Structure-informed Risk Minimization for Robust Ensemble Learning",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=GvV9MJs268"
+            }
+          ],
+          "delta": "The falsifiable delta is cross-fitting a source-unit transport model for component credit rather than routing whole models from source-domain risk, and it disappears if both objectives reduce to the same robust weights.",
+          "kill_risk": "Disjoint target support or an unidentifiable transport map would make pseudo-target validation irrelevant to a genuinely unseen capacitor."
+        },
+        {
+          "claim": "Origin-time support alarms and negative robust credit force a numerical fallback without using capacitor identity as a router feature.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Towards Context-Aware Domain Generalization: Understanding the Benefits and Limits of Marginal Transfer Learning",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=AZL2MTHhWU"
+            },
+            {
+              "title": "Principled Model Routing for Unknown Mixtures of Source Domains",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=w7Fe5rHLvJ"
+            }
+          ],
+          "delta": "The support-triggered fallback is not new unless its alarm has a calibrated connection to unseen-unit excess risk rather than being a heuristic OOD threshold.",
+          "kill_risk": "A conservative alarm that fires on most target origins would make apparent robustness a trivial consequence of always using the fallback."
+        }
+      ],
+      "overall": "LOW",
+      "recommendation": "REFRAME",
+      "notes": "Robust domain routing and lower-tail ensemble weighting are close; novelty would require a formal component-credit transport estimand and guarantee."
+    },
+    {
+      "index": 22,
+      "dedup_key": "orthogonal_delayed_marginal_edge_credit",
+      "title": "Orthogonal Delayed Marginal Credit for Agent Nodes and Edges",
+      "core_claims": [
+        {
+          "claim": "Propensity, censoring, and conditional proper-loss nuisance models are cross-fitted using only mature source-unit data.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "CANDOR: Counterfactual ANnotated DOubly Robust Off-Policy Evaluation",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2412.08052"
+            },
+            {
+              "title": "Benchmarking Observational Studies with Experimental Data under Right-Censoring",
+              "year": 2024,
+              "url": "https://proceedings.mlr.press/v238/demirel24a.html"
+            }
+          ],
+          "delta": "Joint nuisance fitting is distinct only if delayed survival loss changes the orthogonal score beyond standard censoring-aware augmented-IPW construction.",
+          "kill_risk": "When censoring depends on unlogged future state or both propensity and outcome models are wrong, double robustness does not protect the estimate."
+        },
+        {
+          "claim": "A Neyman-orthogonal doubly robust score estimates each component's marginal loss after residualizing the fallback and other active graph components.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Causal LLM Routing: End-to-End Regret",
+              "year": 2026,
+              "url": "https://openreview.net/pdf/511a9b68d25f5e15c06a87acb5a057f90f002bf8.pdf"
+            },
+            {
+              "title": "Causal Agent Replay: Counterfactual Attribution for LLM-Agent Failures",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2606.08275"
+            }
+          ],
+          "delta": "The potential novelty is a formally specified edge-level treatment estimand with orthogonal residualization of neighboring components, and it disappears if the score is ordinary AIPW over a flattened route arm.",
+          "kill_risk": "Undefined treatment versions and edge interference can make the claimed component effect incoherent even when nuisance estimation is correct."
+        },
+        {
+          "claim": "Target-horizon overlap and effective-sample-size checks automatically revert credit and forecasting to the conservative baseline.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Calibrated and Conformal Propensity Scores for Causal Effect Estimation",
+              "year": 2024,
+              "url": "https://proceedings.mlr.press/v244/deshpande24a.html"
+            },
+            {
+              "title": "Statistical Inference for Misspecified Contextual Bandits",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2606.22639"
+            }
+          ],
+          "delta": "The diagnostic is distinct only if a predeclared ESS rule yields a proved error bound for edge-credit updates rather than standard OPE overlap screening.",
+          "kill_risk": "Post-hoc overlap thresholds can selectively suppress unfavorable estimates and invalidate inferential claims."
+        }
+      ],
+      "overall": "LOW",
+      "recommendation": "REFRAME",
+      "notes": "Most machinery is standard doubly robust OPE; a precise interference-aware edge estimand is necessary to avoid an application-only contribution."
+    },
+    {
+      "index": 23,
+      "dedup_key": "mature_credit_deadline_knapsack_staleness_pricing",
+      "title": "Mature-Credit Deadline Knapsack with Staleness Pricing",
+      "core_claims": [
+        {
+          "claim": "Routes and supporting agents are selected as items under hard token, monetary, call, and predicted tail-latency budgets.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "AgentRouter: Heterogeneous Model Routing for Cost-Optimal Multi-Step Agentic Workflows",
+              "year": 2026,
+              "url": "https://openreview.net/pdf?id=nu3GPfkyJV"
+            },
+            {
+              "title": "Beyond Accuracy and Cost: Latency-Aware LLM Query Routing for Dynamic Workloads",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2607.18253"
+            }
+          ],
+          "delta": "AgentRouter already formulates agentic model assignment through a multiple-choice knapsack, so novelty would require a materially different stochastic deadline constraint rather than additional cost columns.",
+          "kill_risk": "If the optimizer is a standard knapsack over point estimates, the agent-graph and PHM framing contributes no new mechanism."
+        },
+        {
+          "claim": "Item value uses only mature target-horizon credit and receives a haircut determined by outstanding-label mass and confidence width.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Budgeted Recommendation with Delayed Feedback",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2405.11417"
+            },
+            {
+              "title": "When Offline Evaluation Misleads: A Diagnostic Protocol for Reward and Policy Selection in Delayed-Feedback Contextual Bandits",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2608.11560"
+            }
+          ],
+          "delta": "The specific delta is pricing unresolved feedback debt inside resource allocation, and it is falsified if a standard delayed-bandit confidence bonus or penalty induces the identical selection policy.",
+          "kill_risk": "An arbitrary haircut schedule can suppress all expensive agents or encode untested optimism without statistical justification."
+        },
+        {
+          "claim": "The scheduler reserves sufficient deadline slack for the baseline and cancels calls whose tail latency threatens feasibility.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Beyond Accuracy and Cost: Latency-Aware LLM Query Routing for Dynamic Workloads",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2607.18253"
+            },
+            {
+              "title": "Tail-Optimized Caching for LLM Inference",
+              "year": 2025,
+              "url": "https://arxiv.org/abs/2510.15152"
+            }
+          ],
+          "delta": "Baseline-time reservation is an operational safety policy, not a new routing principle, unless chance-constrained tail-latency feasibility is proved under distribution shift.",
+          "kill_risk": "Abrupt provider-latency shifts make historical tail estimates and the claimed deadline guarantee unreliable."
+        }
+      ],
+      "overall": "LOW",
+      "recommendation": "REFRAME",
+      "notes": "Cost/latency knapsack routing is directly crowded; maturity-derived staleness pricing is the only plausible differentiator."
+    },
+    {
+      "index": 24,
+      "dedup_key": "typed-phm-forecast-contract-graph-grammar",
+      "title": "Typed Forecast Contract with Executable PHM Agent Graphs",
+      "core_claims": [
+        {
+          "claim": "Domain manifests preserve physical variables, units, endpoint meanings, and allowed outputs across capacitor, battery, turbofan, and bearing tasks.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Benchmarking Agentic Workflow Generation",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=vunPXOFmoi"
+            },
+            {
+              "title": "From Agent Loops to Structured Graphs: A Scheduler-Theoretic Framework for LLM Agent Execution",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2604.11378"
+            }
+          ],
+          "delta": "Typed PHM manifests are distinct only if they enforce a formal semantic property beyond schema validation; applying typed workflow interfaces to new variables is not sufficient.",
+          "kill_risk": "If types catch formatting errors but not unit conversion, endpoint substitution, or temporal leakage, the contribution is ordinary interface engineering."
+        },
+        {
+          "claim": "The manifest compiles into a leakage-safe graph grammar with typed observe, validate, numerical-tool, forecast, calibrate, identifiability, and fallback nodes.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Benchmarking Agentic Workflow Generation",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=vunPXOFmoi"
+            },
+            {
+              "title": "From Agent Loops to Structured Graphs: A Scheduler-Theoretic Framework for LLM Agent Execution",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2604.11378"
+            }
+          ],
+          "delta": "The compiler is novel only if a static temporal-and-unit type system can reject leakage-bearing graphs and comes with soundness tests that generic executable DAG frameworks lack.",
+          "kill_risk": "A grammar implemented as a hand-written list of allowed nodes without type soundness or adversarial contract tests will be viewed as configuration."
+        },
+        {
+          "claim": "Four matched direct/hybrid execution modes share RUL identifiability, numerical scoring, and deterministic fallback contracts.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "CastFlow: Learning Role-Specialized Agentic Workflows for Time Series Forecasting",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2604.27840"
+            },
+            {
+              "title": "CastFSR: A Fast--Slow--Reflect Agentic Reasoning Framework for Context-Aware Time Series Forecasting",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2608.03031"
+            }
+          ],
+          "delta": "Matched arms and fallback are rigorous evaluation controls but do not constitute a new method unless the common contract changes which graphs are statically admissible.",
+          "kill_risk": "Accuracy gains attributable only to the numerical baseline or residual correction would leave the typed graph contribution unsupported."
+        }
+      ],
+      "overall": "LOW",
+      "recommendation": "REFRAME",
+      "notes": "Typed executable workflows and numerical-agent forecasting already exist; a formal temporal/unit effect system with soundness is needed for method novelty."
+    },
+    {
+      "index": 25,
+      "dedup_key": "mechanism-signature-numerical-tool-registry",
+      "title": "Mechanism-Signature Numerical Tool Registry",
+      "core_claims": [
+        {
+          "claim": "Past-only signatures quantify drift, lag, hysteresis, recovery, change points, periodicity, and uncertainty growth at each origin.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Why Model Selection Fails in Time Series Forecasting: An Empirical Study of Instability Across Data Regimes",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2605.01608"
+            },
+            {
+              "title": "Intelligent Routing for Sparse Demand Forecasting: A Comparative Evaluation of Selection Strategies",
+              "year": 2025,
+              "url": "https://openreview.net/pdf?id=HDmUOyIGVi"
+            }
+          ],
+          "delta": "The signature is distinct from generic trend-seasonality meta-features only if physically meaningful lag, hysteresis, and recovery tests are operationally defined and predict tool suitability out of domain.",
+          "kill_risk": "Short histories may make the signatures unstable proxies for dataset identity rather than mechanisms."
+        },
+        {
+          "claim": "Numerical executors carry explicit preconditions and outputs, and the agent may compose only mechanism-compatible registry entries.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "TimeSeriesScientist: A General-Purpose AI Agent for Time Series Analysis",
+              "year": 2025,
+              "url": "https://arxiv.org/abs/2510.01538"
+            },
+            {
+              "title": "CastFSR: A Fast--Slow--Reflect Agentic Reasoning Framework for Context-Aware Time Series Forecasting",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2608.03031"
+            }
+          ],
+          "delta": "The falsifiable delta is deterministic compatibility checking between measured mechanisms and tool contracts rather than free-form or learned model selection, and it disappears if a generic router matches every registry choice.",
+          "kill_risk": "If compatibility rules are hand-tuned per dataset or one executor dominates, the registry reduces to fixed AutoML selection."
+        },
+        {
+          "claim": "The mechanism-indexed registry is evaluated across four PHM families with endpoint identifiability and a fixed numerical fallback.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Empowering Time Series Forecasting with LLM-Agents",
+              "year": 2025,
+              "url": "https://arxiv.org/abs/2508.04231"
+            },
+            {
+              "title": "CastFlow: Learning Role-Specialized Agentic Workflows for Time Series Forecasting",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2604.27840"
+            }
+          ],
+          "delta": "Cross-family PHM evaluation is not itself novel and supports the mechanism claim only if registry decisions transfer without domain-name or unit leakage.",
+          "kill_risk": "Gains limited to one family or to fallback frequency would make the cross-family claim an application benchmark rather than a method contribution."
+        }
+      ],
+      "overall": "MEDIUM",
+      "recommendation": "DEEP_CHECK",
+      "notes": "Feature-based forecast selection is crowded, but explicit physical-mechanism preconditions and compositional tool contracts may provide a defensible mechanism if specified independently of datasets."
+    },
+    {
+      "index": 26,
+      "dedup_key": "shared-causal-damage-transition-domain-heads",
+      "title": "Universal Causal Damage Transition with Domain-Locked Observation Heads",
+      "core_claims": [
+        {
+          "claim": "One monotone latent damage-transition operator driven by exposure, load, and recovery indicators is shared across capacitor, battery, turbofan, and bearing families.",
+          "novelty": "HIGH",
+          "closest": [
+            {
+              "title": "Liquid Latent State Dynamics for Interpretable Turbofan Degradation Modeling",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2607.01986"
+            },
+            {
+              "title": "Target-specific Adaptation and Consistent Degradation Alignment for Cross-Domain Remaining Useful Life Prediction",
+              "year": 2025,
+              "url": "https://arxiv.org/abs/2512.02610"
+            }
+          ],
+          "delta": "No located primary paper shares only a load-conditioned monotone damage operator across these four physically distinct PHM families, and the claim is falsified if a shared operator offers no held-family benefit over separate transitions.",
+          "kill_risk": "Latent-state reparameterization can make apparent cross-family invariance arbitrary and scientifically unidentifiable."
+        },
+        {
+          "claim": "Observation and emission heads remain domain-locked while the shared transition propagates uncertainty to SOH and event-time distributions.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Liquid Latent State Dynamics for Interpretable Turbofan Degradation Modeling",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2607.01986"
+            },
+            {
+              "title": "Target-specific Adaptation and Consistent Degradation Alignment for Cross-Domain Remaining Useful Life Prediction",
+              "year": 2025,
+              "url": "https://arxiv.org/abs/2512.02610"
+            }
+          ],
+          "delta": "The precise separation of transferable dynamics from nontransferable measurement heads is distinct only if swapping observation heads does not account for the benefit and transition sharing survives domain-held-out tests.",
+          "kill_risk": "Different failure physics or load normalizations may leave no invariant transition after domain-specific emissions are removed."
+        },
+        {
+          "claim": "Endpoint support controls whether latent damage is mapped to calibrated RUL or to RUL=NA with a per-domain state-space fallback.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "A probabilistic estimation of remaining useful life from censored time-to-event data",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2405.01614"
+            },
+            {
+              "title": "Teaching Models To Survive: Proper Scoring Rule and Stochastic Optimization with Competing Risks",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2406.14085"
+            }
+          ],
+          "delta": "Endpoint support and fallback are established survival safeguards and become novel only if the shared latent transition yields a new cross-domain identifiability result.",
+          "kill_risk": "A latent health state need not identify a family-specific failure event, even when its trajectory is monotone."
+        }
+      ],
+      "overall": "MEDIUM",
+      "recommendation": "DEEP_CHECK",
+      "notes": "The exact cross-family transition-sharing boundary was not located and deserves deeper checking, but latent non-identifiability is a severe novelty and validity risk."
+    },
+    {
+      "index": 27,
+      "dedup_key": "endpoint-algebra-rul-identifiability-compiler",
+      "title": "Endpoint Algebra and RUL Identifiability Compiler",
+      "core_claims": [
+        {
+          "claim": "Typed endpoint predicates compile heterogeneous PHM failure definitions into one interface supporting exact, interval-censored, right-censored, and not-identifiable states.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "A probabilistic estimation of remaining useful life from censored time-to-event data",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2405.01614"
+            },
+            {
+              "title": "Interval-censored linear quantile regression",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2404.11125"
+            }
+          ],
+          "delta": "The compiler is distinct only if it provides formal semantics that prevent invalid conversions among censoring and non-identifiability states rather than wrapping existing survival data types.",
+          "kill_risk": "If domain endpoints cannot be harmonized without changing estimands, the common algebra becomes a misleading label-normalization layer."
+        },
+        {
+          "claim": "A deterministic identifiability node overrides unsupported numeric RUL with NA in every direct and hybrid arm.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "A probabilistic estimation of remaining useful life from censored time-to-event data",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2405.01614"
+            },
+            {
+              "title": "When In Doubt, Abstain: The Impact of Abstention on Strategic Classification",
+              "year": 2025,
+              "url": "https://arxiv.org/abs/2510.13327"
+            }
+          ],
+          "delta": "The node is novel only if it decides statistical identifiability from endpoint semantics and observation support with a soundness guarantee; otherwise it is ordinary deterministic abstention.",
+          "kill_risk": "Using remaining dataset length or post-origin termination metadata would turn the identifiability check into leakage."
+        },
+        {
+          "claim": "Event forecasts use survival proper scores while abstention is evaluated through coverage, false-answer rate, and selective risk to prevent blanket NA.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Teaching Models To Survive: Proper Scoring Rule and Stochastic Optimization with Competing Risks",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2406.14085"
+            },
+            {
+              "title": "CAP: A General Algorithm for Online Selective Conformal Prediction with FCR Control",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2403.07728"
+            }
+          ],
+          "delta": "Combining proper survival scores with selective-risk reporting is sound protocol design but is not new unless the endpoint algebra induces a new proper composite score.",
+          "kill_risk": "A scoring rule that rewards abstention without a prespecified coverage utility can still make blanket NA optimal."
+        }
+      ],
+      "overall": "MEDIUM",
+      "recommendation": "REFRAME",
+      "notes": "The potential contribution is a formally sound endpoint type system, not survival analysis or abstention; specification and proof obligations should lead the framing."
+    },
+    {
+      "index": 28,
+      "dedup_key": "conformal-do-no-harm-phm-hybrid-gate",
+      "title": "Conformal Do-No-Harm Gate for Direct, Residual and Fusion Agents",
+      "core_claims": [
+        {
+          "claim": "A group-aware conformal risk gate accepts a hybrid forecast only when its estimated degradation relative to a numerical fallback is below a declared risk level.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Safe and Efficient In-Context Learning via Risk Control",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=tCjYJ01Jbk"
+            },
+            {
+              "title": "Conformal Policy Control",
+              "year": 2026,
+              "url": "https://openreview.net/pdf/30ea60dc1c6cc0ac907addc5e3a8a7aaa3fddb22.pdf"
+            }
+          ],
+          "delta": "Safe-baseline conformal gating is already explicit in recent risk-control work, so PHM hybrids are distinct only if grouped rolling-unit dependence requires and receives a new guarantee.",
+          "kill_risk": "Unit shift and temporal dependence violate ordinary exchangeability, invalidating a nominal unseen-unit harm guarantee."
+        },
+        {
+          "claim": "Separate gates handle physical-variable forecast harm and RUL identifiability, allowing C/ESR/SOH while forcing unsupported RUL to NA.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "CAP: A General Algorithm for Online Selective Conformal Prediction with FCR Control",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2403.07728"
+            },
+            {
+              "title": "A probabilistic estimation of remaining useful life from censored time-to-event data",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2405.01614"
+            }
+          ],
+          "delta": "Task-specific selective gates are a straightforward decomposition unless their joint calibration controls both forecast harm and false numeric RUL under one finite-sample contract.",
+          "kill_risk": "Independent gates can violate the desired joint risk level or simply encode a deterministic RUL abstention rule."
+        },
+        {
+          "claim": "The operating point reports accepted-prediction gain, selective risk, and fallback frequency under cost-matched direct, residual, and fusion modes.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Adaptive Conformal Prediction via Mixture-of-Experts Gating Similarity",
+              "year": 2026,
+              "url": "https://openreview.net/pdf?id=vCmnu4q8C3"
+            },
+            {
+              "title": "Non-Exchangeable Conformal Risk Control",
+              "year": 2023,
+              "url": "https://arxiv.org/abs/2310.01262"
+            }
+          ],
+          "delta": "Selective-risk curves and matched modes are evaluation controls, not a new conformal method, unless the gate remains valid under the stated nonexchangeable group shift.",
+          "kill_risk": "Near-universal fallback can satisfy the harm target while providing no useful hybrid operating region."
+        }
+      ],
+      "overall": "LOW",
+      "recommendation": "ARCHIVE_LOW_NOVELTY",
+      "notes": "Conformal risk control, baseline safety, selective prediction, and mixture gating already overlap closely; PHM application alone does not restore novelty."
+    },
+    {
+      "index": 29,
+      "dedup_key": "delayed-outcome-causal-credit-ledger",
+      "title": "Delayed-Outcome Causal Credit Ledger for Online Agent Graphs",
+      "core_claims": [
+        {
+          "claim": "Every node and executor receives an auditable numerical credit account tied to the past-only evidence used by each forecast.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Adversarial Online Learning with Temporal Feedback Graphs",
+              "year": 2024,
+              "url": "https://proceedings.mlr.press/v247/gatmiry24b.html"
+            },
+            {
+              "title": "GraphRouter: A Graph-based Router for LLM Selection",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=eU39PDsZtT"
+            }
+          ],
+          "delta": "Per-component ledgers add provenance but no new credit estimator unless their evidence graph defines an identifiable marginal contribution.",
+          "kill_risk": "If ledger weights merely track recent component accuracy, the method is an online ensemble with audit logs."
+        },
+        {
+          "claim": "Credit updates occur only when delayed measurements, failure events, or censoring information arrive and use inverse-delay weighting with survival proper loss.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Off-Policy Evaluation and Learning for Survival Outcomes under Censoring",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2603.22900"
+            },
+            {
+              "title": "Statistical Inference on Multi-armed Bandits with Delayed Feedback",
+              "year": 2023,
+              "url": "https://arxiv.org/abs/2307.00752"
+            }
+          ],
+          "delta": "Delay- and censoring-aware weighting is established, and relabeling graph nodes as experts does not create novelty without a new treatment or regret analysis.",
+          "kill_risk": "Sparse terminal events or reward-dependent delay can make inverse-delay weights unstable and credit dominated by a few observations."
+        },
+        {
+          "claim": "The same credit rule transfers across PHM domains while observation and endpoint tools remain local and uncertain routes fall back to fixed ensembles.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "Breaking Silos: Adaptive Model Fusion Unlocks Better Time Series Forecasting",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=sdFRCRk1pP"
+            },
+            {
+              "title": "Target-specific Adaptation and Consistent Degradation Alignment for Cross-Domain Remaining Useful Life Prediction",
+              "year": 2025,
+              "url": "https://arxiv.org/abs/2512.02610"
+            }
+          ],
+          "delta": "Transferring a generic online update rule across applications is not novel unless a domain-invariance condition yields a testable cross-family guarantee.",
+          "kill_risk": "If credit correlates with domain identity or fallback usage, transfer claims collapse to domain-specific online ensembling."
+        }
+      ],
+      "overall": "LOW",
+      "recommendation": "ARCHIVE_LOW_NOVELTY",
+      "notes": "This candidate combines generic provenance ledgers, delayed expert advice, survival weighting, and adaptive fusion without a precise new causal estimand."
+    },
+    {
+      "index": 30,
+      "dedup_key": "cross-family-modular-transfer-boundary-atlas",
+      "title": "Cross-Family Modular Transfer Boundary Atlas",
+      "core_claims": [
+        {
+          "claim": "One- and two-module swaps systematically test validation, state estimation, endpoint mapping, calibration, identifiability, residual, fusion, and fallback modules across four PHM families.",
+          "novelty": "HIGH",
+          "closest": [
+            {
+              "title": "Do LLM Modules Generalize? A Study on Motion Generation for Autonomous Driving",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=AP7kM1xk2a"
+            },
+            {
+              "title": "Target-specific Adaptation and Consistent Degradation Alignment for Cross-Domain Remaining Useful Life Prediction",
+              "year": 2025,
+              "url": "https://arxiv.org/abs/2512.02610"
+            }
+          ],
+          "delta": "No located work performs this controlled module-swap atlas across capacitor, battery, turbofan, and bearing prognostics, and the contribution is falsified if module effects cannot be compared under common estimands.",
+          "kill_risk": "Incommensurate sensors, endpoints, and dataset quality can make apparent module-transfer boundaries artifacts of benchmark construction."
+        },
+        {
+          "claim": "Every swap is measured under group-held-out rolling origins and matched direct, numerical-direct, residual, and fusion budgets.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Do LLM Modules Generalize? A Study on Motion Generation for Autonomous Driving",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=AP7kM1xk2a"
+            },
+            {
+              "title": "Overview of Publicly Available Degradation Data Sets for Tasks within Prognostics and Health Management",
+              "year": 2024,
+              "url": "https://arxiv.org/abs/2403.13694"
+            }
+          ],
+          "delta": "The protocol is distinct as a cross-family causal ablation design only if matched histories and endpoint-specific scores isolate module effects rather than whole-system differences.",
+          "kill_risk": "Interactions among swapped modules can invalidate conclusions from a reduced one- and two-factor design."
+        },
+        {
+          "claim": "Only modules whose confidence intervals exclude a harm margin enter a transfer-safe architecture, while null results remain a negative transfer matrix.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Clustering-Based Validation Splits for Model Selection under Domain Shift",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=Q692C0WtiD"
+            },
+            {
+              "title": "Towards Context-Aware Domain Generalization: Understanding the Benefits and Limits of Marginal Transfer Learning",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=AZL2MTHhWU"
+            }
+          ],
+          "delta": "The harm-margin admission rule becomes a contribution only if simultaneous uncertainty over all swaps is controlled and predicts untouched-family transfer.",
+          "kill_risk": "Uncorrected multiple comparisons or wide unit-level intervals can yield a misleadingly sparse or unstable transfer-safe architecture."
+        }
+      ],
+      "overall": "MEDIUM",
+      "recommendation": "DEEP_CHECK",
+      "notes": "The exact cross-family modular swap atlas appears comparatively open and could support a novel empirical paper, provided endpoint comparability and interaction control are rigorous."
+    },
+    {
+      "index": 31,
+      "dedup_key": "causal-counterfactual-phm-graph-grammar",
+      "title": "Causal Counterfactual Graph Grammar with Semantic Stress Tests",
+      "core_claims": [
+        {
+          "claim": "Domain manifests constrain executable graphs to causal productions from operating conditions through damage and measurements to endpoints while banning unit IDs and future outcomes.",
+          "novelty": "MEDIUM",
+          "closest": [
+            {
+              "title": "Causal Graph Fuzzy LLMs: A First Introduction and Applications in Time Series Forecasting",
+              "year": 2025,
+              "url": "https://arxiv.org/abs/2507.17016"
+            },
+            {
+              "title": "Benchmarking Agentic Workflow Generation",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=vunPXOFmoi"
+            }
+          ],
+          "delta": "The graph grammar is distinct only if causal and temporal production rules are machine-checkable and reject invalid executable workflows rather than serving as prompt guidance.",
+          "kill_risk": "Without interventions or sufficient exposure variation, the permitted graph remains an unverified causal prior."
+        },
+        {
+          "claim": "Candidate graphs are filtered using past-only load perturbations, sensor masking, regime reweighting, unit-ID randomization, and impossible-direction checks.",
+          "novelty": "HIGH",
+          "closest": [
+            {
+              "title": "Selecting Accurate Subgraphical Models from Possibly Inaccurate Graphical Models",
+              "year": 2025,
+              "url": "https://openreview.net/forum?id=c0qBiyiZ1L"
+            },
+            {
+              "title": "DoFlow: Causal Generative Flows for Interventional and Counterfactual Time-Series Prediction",
+              "year": 2025,
+              "url": "https://arxiv.org/abs/2511.02137"
+            }
+          ],
+          "delta": "The specific novelty is using a preregistered semantic perturbation suite as an admission test for executable forecasting graphs, and it is falsified if passing the suite does not predict robustness to untouched regime shifts.",
+          "kill_risk": "Stress tests can reward conservative fallback or encode the same assumptions as the grammar without validating causal correctness."
+        },
+        {
+          "claim": "Typed numerical terminals propagate units, uncertainty, and censoring provenance, while failed stress tests or unsupported RUL route to a domain-specific fallback.",
+          "novelty": "LOW",
+          "closest": [
+            {
+              "title": "DANCE-ST: Why Trustworthy AI Needs Constraint Guidance, Not Constraint Penalties",
+              "year": 2026,
+              "url": "https://openreview.net/forum?id=sokvfawAYu"
+            },
+            {
+              "title": "CastFlow: Learning Role-Specialized Agentic Workflows for Time Series Forecasting",
+              "year": 2026,
+              "url": "https://arxiv.org/abs/2604.27840"
+            }
+          ],
+          "delta": "Constraint-aware numerical tools and fallback are crowded, so this claim is distinct only if provenance types are required for the semantic tests' validity.",
+          "kill_risk": "If robustness gains are explained by more frequent fallback rather than better accepted graphs, the causal architecture claim fails."
+        }
+      ],
+      "overall": "MEDIUM",
+      "recommendation": "DEEP_CHECK",
+      "notes": "Generic causal graphs and workflow generation are crowded, but the exact executable-grammar admission test built from multiple physical semantic perturbations merits deeper novelty verification."
+    }
+  ],
+  "search_limitations": [
+    "Causal novelty labels assume the proposed methods can state and test identification assumptions; observational LOCO improvement alone would not validate causal edges, transportability, or counterfactual claims.",
+    "Google Scholar and Semantic Scholar APIs were not directly available in this shard; query variants instead targeted primary-source domains and conference repositories.",
+    "Queries were reformulated around each candidate's mechanism, estimator, and safety or PHM component; absence of an exact match is not proof of absence from patents, non-indexed workshops, or papers using different terminology.",
+    "Search coverage emphasized primary arXiv, OpenReview, PMLR, and publisher pages from 2024-2026; Google Scholar and Semantic Scholar result graphs were not directly available in this environment.",
+    "Search covered current indexed primary pages from arXiv, OpenReview, ACL Anthology, ICLR proceedings, and IEEE publisher pages through 2026-08-24; very recent, unindexed, non-English, or paywalled work may be missing.",
+    "Several closest 2026 works are very recent preprints, workshop papers, or under-review submissions, so titles and overlap are current as of 2026-08-24 but publication status may change.",
+    "Some IEEE PHM records exposed title and metadata but limited full-text access, so mechanism-level overlap for those papers is conservative.",
+    "The novelty-check skill requested an independent fresh-agent reviewer, but the collaboration thread limit rejected the reviewer spawn; these decisions therefore lack that independent verification pass.",
+    "The novelty-check skill's fresh-agent verification was attempted but could not run because the collaboration thread limit was reached, so these decisions are provisional single-reviewer assessments.",
+    "The shard was explicitly read-only, so the skill's normal trace files were not created.",
+    "The shard was explicitly read-only, so the skill's normal trace files were not written."
+  ]
+}

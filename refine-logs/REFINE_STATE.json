@@ -1,0 +1,22 @@
+{
+  "run_id": "capacitor_agent_arch_20260824",
+  "phase": "done",
+  "round": 4,
+  "agent_id": "/root/idea_jury",
+  "last_score": 7.35,
+  "last_verdict": "REVISE",
+  "status": "completed",
+  "timestamp": "2026-08-24T15:04:45+08:00",
+  "problem_anchor_sha256": "609523fb547f0092c4461dda2c70e6bfdf9a36a1680b78ddce2cca9829825c6b",
+  "proposal_sha256": "3deaf21a6bb70fee86ce69db9d7c8b90d2e57d0bbff722f64137466dcab0688f",
+  "review_source_sha256": "0a2e3b89347adbeecd422e5a17a2cc346f2e330c0ab2ebabb0a255c6661c621a",
+  "novelty_check_sha256": "0aa826982fb54afe1ed3f0a88deca6c882da86ca813cde14e644df5a6f141f12",
+  "dataset_expansion_sha256": "1435f6b12a6087d9194f978fc09fdfd3acf4ed40fd7cfa7ca852d7d1d1315156",
+  "review_assurance": "same_family_provisional",
+  "mock_implementation": "GO",
+  "scientific_execution": "BLOCKED",
+  "paper_readiness": "NOT_READY",
+  "auto_proceed": false,
+  "human_checkpoint_required": true,
+  "real_api_allowed": false
+}

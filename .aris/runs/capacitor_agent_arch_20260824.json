@@ -1,0 +1,77 @@
+{
+  "run_id": "capacitor_agent_arch_20260824",
+  "executor_model": "codex-gpt-5.6-sol",
+  "executor_family": "openai",
+  "policy": {
+    "provisional_advances": true
+  },
+  "created": "2026-08-24T04:52:38Z",
+  "updated": "2026-08-24T08:54:32Z",
+  "phases": [
+    {
+      "phase": "idea-discovery",
+      "status": "provisional",
+      "artifact": "idea-stage/IDEA_REPORT_20260824_151618.md",
+      "verdict_id": "cap-act-round4-empirical-review",
+      "reviewer": "codex-gpt-5.6-sol",
+      "reviewer_family": "openai",
+      "review_independence": "same-family",
+      "acceptance_status": "provisional",
+      "executor_model": "codex-gpt-5.6-sol",
+      "executor_family": "openai",
+      "updated": "2026-08-24T07:27:55Z"
+    },
+    {
+      "phase": "experiment-bridge",
+      "status": "running",
+      "artifact": "refine-logs/EXPERIMENT_CODE_REVIEW_20260824_165432.md",
+      "verdict_id": "m2-release-round2",
+      "reviewer": "codex-gpt-5.6-sol",
+      "reviewer_family": "openai",
+      "review_independence": "same-family",
+      "acceptance_status": "provisional_mock_only",
+      "executor_model": "codex-gpt-5.6-sol",
+      "executor_family": "openai",
+      "updated": "2026-08-24T08:54:32Z"
+    },
+    {
+      "phase": "auto-review-loop",
+      "status": "pending",
+      "artifact": null,
+      "verdict_id": null,
+      "reviewer": null,
+      "reviewer_family": null,
+      "review_independence": null,
+      "acceptance_status": null,
+      "executor_model": "codex-gpt-5.6-sol",
+      "executor_family": "openai",
+      "updated": "2026-08-24T04:52:38Z"
+    },
+    {
+      "phase": "summary",
+      "status": "pending",
+      "artifact": null,
+      "verdict_id": null,
+      "reviewer": null,
+      "reviewer_family": null,
+      "review_independence": null,
+      "acceptance_status": null,
+      "executor_model": "codex-gpt-5.6-sol",
+      "executor_family": "openai",
+      "updated": "2026-08-24T04:52:38Z"
+    },
+    {
+      "phase": "paper-writing",
+      "status": "pending",
+      "artifact": null,
+      "verdict_id": null,
+      "reviewer": null,
+      "reviewer_family": null,
+      "review_independence": null,
+      "acceptance_status": null,
+      "executor_model": "codex-gpt-5.6-sol",
+      "executor_family": "openai",
+      "updated": "2026-08-24T04:52:38Z"
+    }
+  ]
+}

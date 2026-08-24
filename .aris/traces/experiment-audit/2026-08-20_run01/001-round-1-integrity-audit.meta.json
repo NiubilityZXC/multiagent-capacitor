@@ -1,0 +1,13 @@
+{
+  "call_number": 1,
+  "purpose": "round-1-integrity-audit",
+  "timestamp": "2026-08-20T08:17:35Z",
+  "thread_id": "/root/experiment_integrity_audit",
+  "model": "gpt-5.6-sol",
+  "effort": "ultra",
+  "reviewer_family": "openai",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "fallback_reason": "",
+  "status": "ok"
+}

@@ -1,0 +1,40 @@
+{
+  "columns": [
+    "cell_hash",
+    "scenario_id",
+    "scenario_json",
+    "effect",
+    "repeats",
+    "unit_count_meets_minimum_only",
+    "analyzable_repeats",
+    "failed_repeats",
+    "promotion_rate",
+    "promotion_ci_lower",
+    "promotion_ci_upper",
+    "correct_champion_rate",
+    "correct_champion_ci_lower",
+    "correct_champion_ci_upper",
+    "no_champion_rate",
+    "no_champion_ci_lower",
+    "no_champion_ci_upper",
+    "comparison_ci_coverage",
+    "comparison_ci_coverage_cp_lower",
+    "comparison_ci_coverage_cp_upper",
+    "mean_effect_estimate_analyzable_only",
+    "mean_effect_bias_analyzable_only",
+    "mean_realized_unit_loss_correlation_analyzable_only",
+    "cell_execution_status",
+    "gate_status",
+    "row_payload_json",
+    "prev_row_hash",
+    "row_hash"
+  ],
+  "final_row_hash": "1624aa5bd454fb63506a227c915b0f0972191799fc6f3cd9ceb692823e65352b",
+  "ledger": "DESIGN_CELL_SUMMARY.csv",
+  "ledger_sha256": "c49e94d893c3c76885ae1dcc6df3c9fe4871a00329e5ae5cf563930cf21fcad1",
+  "lineage": {
+    "repeat_ledger_sha256": "27f4071c88ee29beec3764338169b5ddd34216c4243840e85bfd3f009651f7e8"
+  },
+  "row_count": 15,
+  "seal_status": "SEALED_BEFORE_LABEL_ACCESS"
+}

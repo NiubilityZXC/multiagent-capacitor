@@ -1,0 +1,1 @@
+因线程上限无法再启动独立 ranking jury。请在原 JSON 末尾额外加入 candidate_ranking（C1-C6 的证据先验顺序、support/objection/falsification/blocker）与 agent_architecture_ranking（single/fixed/hierarchical/debate/dynamic 的首个实现建议与公平 meta-eval）。明确这与对抗审查同一 reviewer、非额外独立投票。

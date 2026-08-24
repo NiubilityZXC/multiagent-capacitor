@@ -1,0 +1,48 @@
+{
+  "artifacts": {
+    "DESIGN_CELL_SEAL.json": {
+      "bytes": 1675,
+      "sha256": "4da26b324b01a32f30f6c9be93e134a09a045ec5de103688417ef79c2c77c961"
+    },
+    "DESIGN_CELL_SUMMARY.csv": {
+      "bytes": 30871,
+      "sha256": "c49e94d893c3c76885ae1dcc6df3c9fe4871a00329e5ae5cf563930cf21fcad1"
+    },
+    "DESIGN_REPEAT_LEDGER.csv": {
+      "bytes": 6293136,
+      "sha256": "b3b2353f9253127b8be997dbe0d54a86ce37be80aa92f2e5a4597af5b0182609"
+    },
+    "DESIGN_REPEAT_SEAL.json": {
+      "bytes": 1440,
+      "sha256": "b1a44d6442adf01bc5ada1fa4ffabd2be7c9a27a405e445a9e99b49a8599e927"
+    },
+    "DESIGN_SIM_SUMMARY.json": {
+      "bytes": 4680,
+      "sha256": "137cde904c07255b1e0b85232cda8f43e9b2711287207e5d67d7394ccce0a40c"
+    }
+  },
+  "command": "experiments/audit_cap/design_simulation.py --output-dir results/audit_cap/design_quick_final_20260820_161607 --protocol refine-logs/DESIGN_SIM_PROTOCOL.md --repeats 200 --seed 20260813",
+  "dependencies": {
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "scipy": "1.11.4"
+  },
+  "lineage": {
+    "code_hash": "6860ffbf1479e4b2e55ee492a186c1d5233607769d44f75ea3035650dc5b7542",
+    "global_seed": 20260813,
+    "labels": "synthetic_ground_truth",
+    "mode": "quick_trajectory_only",
+    "protocol_hash": "316c67f74d746102c52577e09bd2645934c753f9d91ea413ca6697707d2ca623",
+    "protocol_path": "/home/user/multiagent-capacitor/refine-logs/DESIGN_SIM_PROTOCOL.md",
+    "repeats_per_cell": 200,
+    "schema_version": "audit-cap.design-trajectory.v2"
+  },
+  "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+  "python": "3.12.3 (main, Jun 19 2026, 12:46:00) [GCC 13.3.0]",
+  "thread_environment": {
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  }
+}

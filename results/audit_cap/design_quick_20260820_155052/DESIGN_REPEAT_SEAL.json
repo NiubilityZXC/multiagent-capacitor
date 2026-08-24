@@ -1,0 +1,37 @@
+{
+  "columns": [
+    "cell_hash",
+    "scenario_id",
+    "effect",
+    "repeat",
+    "seed",
+    "availability_failure_units",
+    "analysis_status",
+    "effect_estimate",
+    "effect_bias",
+    "primary_difference_mean",
+    "primary_difference_ci_lower",
+    "primary_difference_ci_upper",
+    "primary_difference_ci_covers_truth",
+    "primary_p_one_sided",
+    "realized_unit_loss_correlation",
+    "selected_candidate",
+    "promoted_any",
+    "correct_champion",
+    "no_champion",
+    "unit_count_meets_minimum_only",
+    "row_payload_json",
+    "prev_row_hash",
+    "row_hash"
+  ],
+  "final_row_hash": "2640b3aa06f327d847905aa3056d93b4d8f7f79850a7189684f7db824c5017a0",
+  "ledger": "DESIGN_REPEAT_LEDGER.csv",
+  "ledger_sha256": "27f4071c88ee29beec3764338169b5ddd34216c4243840e85bfd3f009651f7e8",
+  "lineage": {
+    "global_seed": 20260813,
+    "labels": "synthetic_ground_truth",
+    "mode": "quick_trajectory_only"
+  },
+  "row_count": 3000,
+  "seal_status": "SEALED_BEFORE_LABEL_ACCESS"
+}

@@ -1,0 +1,152 @@
+{
+  "artifacts": {
+    "AGGREGATE_METRICS.csv": {
+      "bytes": 5022,
+      "sha256": "e8760fc6faaaf2ece305107fdf8f7b3b51ea210f8dfbeca15acb9a00939f101b"
+    },
+    "CANONICAL_EVENTS.csv": {
+      "bytes": 18844,
+      "sha256": "ddc5d714bd6329b29b815c9a999b04f68c99e739cc7089401aff92f9b51fbba2"
+    },
+    "ENDPOINT_LABELS.csv": {
+      "bytes": 2495,
+      "sha256": "55f491b0eff304ee2d23900be1f01414d2ff23801f0c84433dd7df2ac8fe37b4"
+    },
+    "EVENT_REVEAL_LEDGER.jsonl": {
+      "bytes": 32718,
+      "sha256": "362900e9f3f7b4412c86ad32cf72ef8d0b4c7afcf4a5d29ac078974b4b984bdc"
+    },
+    "FAILURE_LEDGER.csv": {
+      "bytes": 245,
+      "sha256": "5202c7505880afad80f2af0b769880b4cadaba39c5c10618132bbdd08a9f1287"
+    },
+    "INNER_TUNING_LEDGER.csv": {
+      "bytes": 590864,
+      "sha256": "49e8728f7347d44ae6c8429c6615c758105554770f3f8061363f1643972ec73f"
+    },
+    "MATURITY_LEDGER.csv": {
+      "bytes": 243035,
+      "sha256": "8e032ae4eb99b0210c8fd041613bc9f3de94b248bb8d618ba682d24089edb98a"
+    },
+    "PREDICTION_COMMIT_CHECKPOINTS.jsonl": {
+      "bytes": 23082,
+      "sha256": "b9d02c8cd6ac1032800c82fdda5c8277ebd293e1f28a3c118eef617c8814933f"
+    },
+    "PREDICTION_LEDGER.csv": {
+      "bytes": 3688149,
+      "sha256": "53e9055bdafc9cec785a5234e6c600836e97c830827d05d843fb773c5c55e72e"
+    },
+    "PREDICTION_LEDGER.seal.json": {
+      "bytes": 2445,
+      "sha256": "5c12858e2a5926ea2279abeb6db25469a4da3b8d41851f7a007526a3e33cf209"
+    },
+    "RUN_SUMMARY.json": {
+      "bytes": 2704,
+      "sha256": "f2bdd6c3d2975881c757887ebc91dde5ae8aa1969dbcb0f93e1bc82ac4b4790d"
+    },
+    "UNIT_METRICS.csv": {
+      "bytes": 42003,
+      "sha256": "53a7799c6bdbeaa2a7acafb4bd05c97be917e9a1071ab3e343226ccd1bce3e23"
+    }
+  },
+  "causal_barrier_evidence": {
+    "checkpoint_log": {
+      "final_row_hash": "bae152cb32fae829429998489d1869574436bc615300d9f0ab382262c19db764",
+      "row_count": 48,
+      "sha256": "b9d02c8cd6ac1032800c82fdda5c8277ebd293e1f28a3c118eef617c8814933f"
+    },
+    "event_access_log": {
+      "final_row_hash": "5b7109b4b00275904895cc9c85a94259bb64297853db975e18128bc90fb2ad2c",
+      "row_count": 66,
+      "sha256": "362900e9f3f7b4412c86ad32cf72ef8d0b4c7afcf4a5d29ac078974b4b984bdc"
+    },
+    "prediction_origin_count": 48,
+    "status": "PASS"
+  },
+  "claim_prohibited": true,
+  "claim_status": "NOT_ELIGIBLE_BENCHMARK_S_SANITY_ONLY",
+  "output_dir": "/home/user/multiagent-capacitor/results/audit_cap/stress2_context3_final2_sensitivity_20260820_164848",
+  "prediction_ledger_seal": {
+    "columns": [
+      "prediction_id",
+      "protocol_hash",
+      "data_zip_hash",
+      "data_mat_hash",
+      "verification_status",
+      "code_hash",
+      "split_hash",
+      "train_set_hash",
+      "training_snapshot_hash",
+      "prefix_hash",
+      "outer_test_unit",
+      "model",
+      "target",
+      "horizon_event_steps",
+      "context_event_steps",
+      "origin_event_index_0based",
+      "origin_time_h",
+      "causal_cutoff_event_index_0based",
+      "expected_target_event_index_0based",
+      "prediction_commit_seq",
+      "expected_label_available_seq",
+      "config_json",
+      "config_hash",
+      "point_prediction",
+      "interval_status",
+      "status",
+      "failure_stage",
+      "error",
+      "seed",
+      "row_payload_json",
+      "prev_row_hash",
+      "row_hash"
+    ],
+    "final_row_hash": "f12b97411d373e41a054557d4c3af9e0a2e16a3d2a232961135e11e18b04bf3e",
+    "ledger": "PREDICTION_LEDGER.csv",
+    "ledger_sha256": "53e9055bdafc9cec785a5234e6c600836e97c830827d05d843fb773c5c55e72e",
+    "lineage": {
+      "causal_checkpoint_evidence": {
+        "final_row_hash": "bae152cb32fae829429998489d1869574436bc615300d9f0ab382262c19db764",
+        "row_count": 48,
+        "sha256": "b9d02c8cd6ac1032800c82fdda5c8277ebd293e1f28a3c118eef617c8814933f"
+      },
+      "causal_checkpoint_log": "PREDICTION_COMMIT_CHECKPOINTS.jsonl",
+      "code_hash": "36f8a0af273cfbe606f08383a6ea8594d6bf93d5f96d7f6094d60e3e7f240e90",
+      "context": 3,
+      "data_mat_hash": "9db651a10f92d2046a477838c08fe1cdbaf27d7bc4062a856a373721400cb4a3",
+      "data_zip_hash": "944cd2284cd01925088e97e5f5e2f337ee8b37800346fd2610d1bbaa6accacfb",
+      "event_access_log": "EVENT_REVEAL_LEDGER.jsonl",
+      "event_access_log_evidence": {
+        "final_row_hash": "5b7109b4b00275904895cc9c85a94259bb64297853db975e18128bc90fb2ad2c",
+        "row_count": 66,
+        "sha256": "362900e9f3f7b4412c86ad32cf72ef8d0b4c7afcf4a5d29ac078974b4b984bdc"
+      },
+      "horizons": [
+        1,
+        2,
+        3
+      ],
+      "models": [
+        "last_value",
+        "global_drift",
+        "local_linear",
+        "exponential",
+        "local_trend_kf",
+        "ridge"
+      ],
+      "online_barrier": "per_origin_append_fsync_hash_checkpoint_before_reveal",
+      "protocol_hash": "3b1b447172466fecdab63b4595124d53d3d9f2a0becf73886affb25334d873dc",
+      "seed": 20260813,
+      "targets": [
+        "capacity_ratio",
+        "esr_ratio"
+      ],
+      "verification_status": "VERIFIED"
+    },
+    "row_count": 1512,
+    "seal_status": "SEALED_AFTER_VERIFIED_PER_ORIGIN_CAUSAL_COMMITS"
+  },
+  "protocol": "/home/user/multiagent-capacitor/idea-stage/FROZEN_EVAL_PROTOCOL.md",
+  "source_zip": "/home/user/multiagent-capacitor/data/raw/NASA/capacitor_electrical_stress/EOS_DataSet.zip",
+  "verification_status": "VERIFIED"
+}

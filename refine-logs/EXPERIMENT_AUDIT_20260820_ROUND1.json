@@ -1,0 +1,43 @@
+{
+  "audit_skill": "experiment-audit",
+  "round": 1,
+  "generated_at": "2026-08-20T16:18:47+08:00",
+  "auditor": "gpt-5.6-sol-ultra",
+  "agent_id": "/root/experiment_integrity_audit",
+  "executor_model": "gpt-5.6-sol",
+  "executor_family": "openai",
+  "reviewer_model": "gpt-5.6-sol",
+  "reviewer_family": "openai",
+  "reviewer_reasoning": "ultra",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "overall_verdict": "warn",
+  "integrity_status": "warn",
+  "reason_codes": [
+    "UNVERIFIED_PHYSICAL_UNIT_IDENTITY",
+    "CAUSAL_BARRIER_SELF_ATTESTED",
+    "DESIGN_CODE_PROTOCOL_LINEAGE_MISSING",
+    "DESIGN_RAW_UNIT_LOSSES_NOT_ARCHIVED",
+    "MISLEADING_DESIGN_SEAL_STATUS",
+    "REVIEW_INDEPENDENCE_UNEVIDENCED",
+    "LOCAL_SOURCE_PROVENANCE_ONLY"
+  ],
+  "trace_path": ".aris/traces/experiment-audit/2026-08-20_run01/",
+  "trace_request_sha256": "db27a935c668b98c3a93c55189b462f94145aa62f522931ff1907693d01312ef",
+  "trace_response_sha256": "40f2f641e2757df3e86a73e8b8a7eeb833c37d0f6161a69e5d8435df2ba0bcc8",
+  "checks": {
+    "gt_provenance": {"status": "warn", "details": "Real MAT observations; physical identities and duplicates unknown."},
+    "score_normalization": {"status": "warn", "details": "No fraudulent normalization; design raw unit losses absent in round 1."},
+    "result_existence": {"status": "warn", "details": "All results match; design historical lineage incomplete in round 1."},
+    "dead_code": {"status": "pass", "details": "All claimed metrics executed; blocked families remain NA."},
+    "scope": {"status": "warn", "details": "One six-column harness and quick simulation only."},
+    "eval_type": ["real_gt", "simulation_only"]
+  },
+  "claims": [
+    {"id": "harness_execution", "impact": "supported"},
+    {"id": "ridge_ordering", "impact": "supported_descriptively_only"},
+    {"id": "model_superiority", "impact": "unsupported"},
+    {"id": "rul_or_interval_accuracy", "impact": "unsupported"},
+    {"id": "causal_barrier", "impact": "supported_as_self_attested_software_invariant"}
+  ]
+}
