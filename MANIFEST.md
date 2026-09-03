@@ -165,3 +165,5 @@
 | 2026-09-03 17:39 | /experiment-bridge | refine-logs/M3_RELEASE_EVIDENCE_20260903_173930.md | implementation | M3 evidence with Plan-A closure addendum snapshot |
 | 2026-09-03 17:39 | /experiment-bridge | refine-logs/M3_RELEASE_EVIDENCE.md | implementation | current M3 evidence including preseal addendum |
 | 2026-09-03 17:39 | /experiment-bridge | .aris/traces/experiment-bridge/2026-09-03_run01/ | implementation | stale-pin block and post-repair PASS reviewer traces; same-family provisional |
+| 2026-09-03 18:10 | /experiment-plan | refine-logs/SPECIALIZED_MODEL_STORYLINE_DECISION_20260903_181000.md | implementation | 专用模型可独立成文的预封存选择与证据门快照 |
+| 2026-09-03 18:10 | /experiment-plan | refine-logs/SPECIALIZED_MODEL_STORYLINE_DECISION.md | implementation | 专用模型路线决策 latest copy；不授权执行 |
