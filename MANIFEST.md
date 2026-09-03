@@ -167,3 +167,5 @@
 | 2026-09-03 17:39 | /experiment-bridge | .aris/traces/experiment-bridge/2026-09-03_run01/ | implementation | stale-pin block and post-repair PASS reviewer traces; same-family provisional |
 | 2026-09-03 18:10 | /experiment-plan | refine-logs/SPECIALIZED_MODEL_STORYLINE_DECISION_20260903_181000.md | implementation | 专用模型可独立成文的预封存选择与证据门快照 |
 | 2026-09-03 18:10 | /experiment-plan | refine-logs/SPECIALIZED_MODEL_STORYLINE_DECISION.md | implementation | 专用模型路线决策 latest copy；不授权执行 |
+| 2026-09-03 18:20 | /experiment-plan | refine-logs/SPECIALIZED_MODEL_READINESS_AUDIT_20260903_182000.md | implementation | 静态专用模型实现/候选就绪度审计；无建模执行 |
+| 2026-09-03 18:20 | /experiment-plan | refine-logs/SPECIALIZED_MODEL_READINESS_AUDIT.md | implementation | 专用模型就绪度 latest copy；保持 P2 gate |
