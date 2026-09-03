@@ -1,0 +1,162 @@
+{
+  "schema_version": "cap-act.baseline-adequacy-decision.v1",
+  "generated_at": "2026-08-31T12:42:48+08:00",
+  "artifact_state": "PENDING_HUMAN_DECISION",
+  "execution_authority": "NONE",
+  "selected_option": null,
+  "decision_reason": null,
+  "decided_at": null,
+  "decided_by": null,
+  "human_approval_artifact_sha256": null,
+  "canonical_protocol_hashes": {
+    "refine-logs/EXPERIMENT_PLAN.md": "df968d2e7ba33748043e547165143d9247358afca573946f3dde573c8c04b6d2",
+    "refine-logs/round-3-refinement.md": "d4d40b0a7e3f5c9030bfe80e5ede3d059673c3b3c96122c9cf050097aa54f110"
+  },
+  "evidence": {
+    "baseline_review_path": "refine-logs/BASELINE_ADEQUACY_AND_LITERATURE_REVIEW.md",
+    "baseline_review_sha256": "d653140f510d947ba07de24092a445d666041ddcbf4fdb0abc0ea9b9391b12de",
+    "novelty_score": 5.0,
+    "novelty_recommendation": "PROCEED_WITH_CAUTION"
+  },
+  "options": [
+    {
+      "option_id": "APPROVE_N0_PLUS_FREEZE",
+      "paper_wording_if_selected": "nested-inner-CV-selected numerical champion from the preregistered finite N0+ pool",
+      "selection_rule": {
+        "training_scope": "outer-training physical units only",
+        "resampling": "nested inner whole-unit CV",
+        "common_keys": true,
+        "primary_rank": "eligible-unit macro visible-prefix-origin MASE",
+        "eligibility_gates": [
+          "schema_and_target_support",
+          "finite_output",
+          "planned_key_completion",
+          "interval_support_or_frozen_wrapper",
+          "no_outer_label_or_loss_access"
+        ],
+        "machine_tie_tolerance": 1e-12,
+        "tie_break": "lexicographic candidate_id",
+        "fallback_identity": "selected N0+ champion equals the common FALLBACK object for that outer fold"
+      },
+      "finite_addition_registry": [
+        {
+          "candidate_id": "N0P-AUTOARIMA",
+          "family": "classical",
+          "eligibility": "MECHANICAL_NA_IF_FREQUENCY_OR_MINIMUM_HISTORY_UNSUPPORTED"
+        },
+        {
+          "candidate_id": "N0P-AUTOETS",
+          "family": "classical",
+          "eligibility": "MECHANICAL_NA_IF_FREQUENCY_OR_MINIMUM_HISTORY_UNSUPPORTED"
+        },
+        {
+          "candidate_id": "N0P-THETA",
+          "family": "classical",
+          "eligibility": "MECHANICAL_NA_IF_FREQUENCY_OR_MINIMUM_HISTORY_UNSUPPORTED"
+        },
+        {
+          "candidate_id": "N0P-RLS",
+          "family": "online_state_estimation",
+          "eligibility": "MECHANICAL_NA_IF_OBSERVATION_MODEL_UNSUPPORTED"
+        },
+        {
+          "candidate_id": "N0P-RELS",
+          "family": "online_state_estimation",
+          "eligibility": "MECHANICAL_NA_IF_OBSERVATION_MODEL_UNSUPPORTED"
+        },
+        {
+          "candidate_id": "N0P-PARTICLE-FILTER",
+          "family": "state_space_filtering",
+          "eligibility": "MECHANICAL_NA_IF_LIKELIHOOD_OR_STATE_TRANSITION_CANNOT_BE_FROZEN"
+        },
+        {
+          "candidate_id": "N0P-ELASTIC-NET-TREND",
+          "family": "small_data_ml",
+          "eligibility": "MECHANICAL_NA_IF_OUTER_TRAINING_FEATURE_SCHEMA_UNSUPPORTED"
+        },
+        {
+          "candidate_id": "N0P-GBRT-EARLY-TREND",
+          "family": "small_data_ml",
+          "eligibility": "MECHANICAL_NA_IF_OUTER_TRAINING_FEATURE_SCHEMA_UNSUPPORTED"
+        },
+        {
+          "candidate_id": "N0P-DLINEAR",
+          "family": "learned_forecaster",
+          "eligibility": "MECHANICAL_NA_IF_MINIMUM_TRAINING_WINDOWS_UNSUPPORTED"
+        },
+        {
+          "candidate_id": "N0P-NHITS",
+          "family": "learned_forecaster",
+          "eligibility": "MECHANICAL_NA_IF_MINIMUM_TRAINING_WINDOWS_UNSUPPORTED"
+        },
+        {
+          "candidate_id": "N0P-PATCHTST",
+          "family": "learned_forecaster",
+          "eligibility": "MECHANICAL_NA_IF_MINIMUM_TRAINING_WINDOWS_UNSUPPORTED"
+        },
+        {
+          "candidate_id": "N0P-ITRANSFORMER",
+          "family": "learned_forecaster",
+          "eligibility": "MECHANICAL_NA_IF_MULTIVARIATE_OR_MINIMUM_TRAINING_WINDOWS_UNSUPPORTED"
+        },
+        {
+          "candidate_id": "N0P-S4-REVIN",
+          "family": "dedicated_degradation_sequence",
+          "eligibility": "MECHANICAL_NA_IF_TARGET_OR_MINIMUM_TRAINING_WINDOWS_UNSUPPORTED"
+        },
+        {
+          "candidate_id": "N0P-CHRONOS-ZEROSHOT",
+          "family": "time_series_foundation_model",
+          "eligibility": "MECHANICAL_NA_IF_OFFICIAL_CHECKPOINT_OR_QUANTILE_INTERFACE_UNAVAILABLE"
+        },
+        {
+          "candidate_id": "N0P-TIMESFM-ZEROSHOT",
+          "family": "time_series_foundation_model",
+          "eligibility": "MECHANICAL_NA_IF_OFFICIAL_CHECKPOINT_OR_QUANTILE_INTERFACE_UNAVAILABLE"
+        },
+        {
+          "candidate_id": "N0P-MOIRAI2-ZEROSHOT",
+          "family": "time_series_foundation_model",
+          "eligibility": "MECHANICAL_NA_IF_OFFICIAL_CHECKPOINT_OR_QUANTILE_INTERFACE_UNAVAILABLE"
+        }
+      ],
+      "interval_policy": "Every point-only candidate uses the same fold-local, calibration-only conformal wrapper frozen before outer evaluation; native intervals remain separately identified.",
+      "additional_requirements_before_seal": [
+        "freeze exact package versions, checkpoint hashes, source revisions, hyperparameters, feature definitions, and candidate eligibility outcomes",
+        "record TSFM pretraining-contamination disclosures",
+        "subject every admitted addition to the same pre-frozen Eval, strict temporal splits, causal rolling replay, leave-one-capacitor-out outer testing, cross-condition testing, and shadow validation; no candidate receives a result-driven exception",
+        "obtain a non-null human approval artifact hash",
+        "do not create a new confirmatory arm; N0+ is training-side candidate expansion only"
+      ]
+    },
+    {
+      "option_id": "RETAIN_CANONICAL_N0_NARROW_CLAIMS",
+      "paper_wording_if_selected": "relative to the preregistered six-expert numerical pool",
+      "forbidden_wording": [
+        "strong numerical baseline",
+        "modern forecasting champion",
+        "state-of-the-art numerical baseline",
+        "strongest numerical model"
+      ],
+      "additional_requirements_before_seal": [
+        "freeze the existing six-expert and fusion implementation identities",
+        "obtain a non-null human approval artifact hash"
+      ]
+    }
+  ],
+  "signature_contract": {
+    "required_before_master_seal": true,
+    "signed_fields": [
+      "schema_version",
+      "selected_option",
+      "decision_reason",
+      "decided_at",
+      "decided_by",
+      "canonical_protocol_hashes",
+      "evidence",
+      "options"
+    ],
+    "serialization": "UTF-8 RFC8785-compatible canonical JSON",
+    "approval_binding": "human_approval_artifact_sha256 must identify the immutable signed decision payload; null means no approval and no execution authority"
+  }
+}

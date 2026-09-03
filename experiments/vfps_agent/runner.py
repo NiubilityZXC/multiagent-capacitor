@@ -448,6 +448,7 @@ def _closed_result(
     *,
     expected_policy: PolicySpec | None = None,
     expected_budget: AccuracyBudgetSpec | None = None,
+    expected_registry: CAPActionRegistry | None = None,
 ) -> AttemptResult:
     """Close one consumed slot using runner-owned, fail-closed semantics."""
 
@@ -557,6 +558,17 @@ def _closed_result(
                 expected_budget
             ):
                 raise ValueError("provider budget differs from runner budget")
+            if expected_registry is not None:
+                from .response_schema import build_response_schema_registry
+
+                expected_spec = build_response_schema_registry(expected_registry).spec_for(
+                    attempt.arm
+                )
+                actual_spec = rebuilt_evidence.request_contract.response_schema_spec
+                if actual_spec is None or canonical_bytes(actual_spec) != canonical_bytes(
+                    expected_spec
+                ):
+                    raise ValueError("provider response schema differs from canonical registry")
             rebuilt_audit = rebuilt_evidence.invocation_audit
             if canonical_bytes(audit) != canonical_bytes(rebuilt_audit):
                 raise ValueError("ephemeral audit differs from evidence envelope")
@@ -1334,6 +1346,7 @@ class CAPAccuracyRun:
                 ephemeral,
                 expected_policy=policy,
                 expected_budget=budget,
+                expected_registry=registry,
             )
             self._ledgers[LedgerKind.ATTEMPT].append_finished(start_record["record_hash"], result)
             if result.status is AttemptStatus.SUCCESS and not result.late and ephemeral.response_text is not None:

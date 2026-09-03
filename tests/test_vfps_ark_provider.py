@@ -196,6 +196,7 @@ def invocation_fixture(
         budget=budget,
         contract=contract,
         transport=transport,
+        unsafe_allow_unqualified_mock_schema=True,
     )
     return adapter, attempt, packet, policy, budget
 
@@ -305,6 +306,7 @@ def test_policy_hash_mismatch_fails_before_transport() -> None:
             budget=budget,
             contract=contract,
             transport=transport,
+            unsafe_allow_unqualified_mock_schema=True,
         )
     assert transport.requests == []
 
@@ -322,6 +324,7 @@ def test_arm_specific_schema_version_swap_fails_before_transport() -> None:
             budget=budget,
             contract=contract,
             transport=transport,
+            unsafe_allow_unqualified_mock_schema=True,
         )
     assert transport.requests == []
 
@@ -400,6 +403,41 @@ def test_local_strict_schema_fails_closed_for_every_provider_mode(
     assert result.audit is not None
     assert result.audit.outcome is ArkClosedOutcome.INVALID_RESPONSE
     assert len(transport.requests) == 1
+
+
+def test_huge_json_integer_direct_invocation_has_durable_invalid_response_evidence() -> None:
+    decision_text = (
+        '{"schema_version":"CAPDirectForecastResponse.v1","value":'
+        + "1"
+        + "0" * 400
+        + "}"
+    )
+    transport = CapturingTransport(response_envelope(decision_text=decision_text))
+    adapter, attempt, packet, _, _ = invocation_fixture(transport)
+
+    ephemeral = adapter.invoke(packet, attempt)
+
+    assert ephemeral.status is AttemptStatus.ERROR
+    assert ephemeral.error_code == ArkClosedOutcome.INVALID_RESPONSE.value
+    assert ephemeral.audit is not None
+    assert ephemeral.audit.outcome is ArkClosedOutcome.INVALID_RESPONSE
+    assert ephemeral.evidence is not None
+    ephemeral.evidence.validate_attempt(attempt)
+    restored = ArkProviderEvidenceEnvelope.from_mapping(
+        json.loads(canonical_bytes(ephemeral.evidence))
+    )
+    assert restored.evidence_hash == ephemeral.evidence.evidence_hash
+    restored.validate_attempt(attempt)
+    assert restored.invocation_audit.raw_response_sha256 == hashlib.sha256(
+        transport.result.body
+    ).hexdigest()
+    assert adapter.physical_attempts == 1
+    assert len(transport.requests) == 1
+
+
+def test_huge_integer_decode_parameter_is_a_typed_binding_failure() -> None:
+    with pytest.raises(ArkBindingError, match="invalid decode parameter temperature"):
+        ArkDecodeSpec(temperature=10**400)
 
 
 @pytest.mark.parametrize(

@@ -1,0 +1,62 @@
+{
+  "schema_version": "audit-cap.p1-ren-patrizi-decision-index.v1",
+  "authority_scope": "P1 acquisition/static Data Gate only; no extraction beyond approved metadata operations, no SOH/RUL construction, no model, no API",
+  "generated_at": "2026-08-28T18:02:10+08:00",
+  "canonical_protocol_hashes": {
+    "refine-logs/EXPERIMENT_PLAN.md": "df968d2e7ba33748043e547165143d9247358afca573946f3dde573c8c04b6d2",
+    "refine-logs/round-3-refinement.md": "d4d40b0a7e3f5c9030bfe80e5ede3d059673c3b3c96122c9cf050097aa54f110"
+  },
+  "datasets": {
+    "patrizi_hsc": {
+      "current_bundle": "data/audit/patrizi_hsc/p1_20260828_180200",
+      "legacy_bundle": "data/audit/patrizi_hsc/p1_20260827_151745",
+      "legacy_limitation": "COMPLETE.json was not included in the legacy ARTIFACT_MANIFEST/ARTIFACT_HASHES graph; legacy files are retained without overwrite",
+      "raw_path": "data/raw/patrizi_hsc/Dataset_HSC.mat",
+      "raw_bytes": 225986697,
+      "raw_sha256": "bf9f5c4889ddaa739d04980b97eb37ed3e4990473d376ca9cd928324e5d8e9cb",
+      "script_sha256": "9a63c7147c3e785b8acba2b33de473a60fa483ed57aa9e105da3145dc4407912",
+      "complete_sha256": "140387643564c8df17f4cd683595db778b7cee9e0af7bd5e79d7e39c3083b6ec",
+      "artifact_manifest_sha256": "68fceef2b15ce5593c583afad3a3d64635f7861f075bbb758dc759adfaac065e",
+      "artifact_hashes_sha256": "694c4b7890502dc7222772ee364cf213149c9a5d59b93e44242f69fcd53b8d1a",
+      "decision": "ACQUISITION_INTEGRITY_PASS_ROW_LEVEL_BLOCKED",
+      "scientific_eligibility": "BLOCKED",
+      "soh_status": "BLOCKED",
+      "rul_status": "NA",
+      "esr_status": "NA",
+      "external_b5_status": "NA_BLOCKED_P1_PATRIZI",
+      "next_gate": "human resolution of physical unit identity, documentation/raw conflicts, target semantics, and auditable terminal-event/censor rules"
+    },
+    "ren_scs": {
+      "current_bundle": "data/audit/ren_scs/p1_20260828_180210",
+      "legacy_bundle": "data/audit/ren_scs/p1_20260827_152806",
+      "legacy_limitation": "COMPLETE.json was not included in the legacy ARTIFACT_MANIFEST/ARTIFACT_HASHES graph; legacy files are retained without overwrite",
+      "raw_path": "data/raw/ren_scs/raw.rar",
+      "raw_bytes": 2114703017,
+      "raw_sha256": "a8f1083b887f95483561a94b624b323ff42814654ee7f23e7f95bc042fa258d8",
+      "script_sha256": "af3078a7cea683dddece018288cdffe435a7e23ddeeb5c35811a40da3c255dda",
+      "complete_sha256": "2a5a25d9c8d92583aa6ff137010da0b0c16a13e4bbd5fc57861c0a20edec7f72",
+      "artifact_manifest_sha256": "eef896f082a7b24f4cd1da7d213f90306045c99c3f66fa69ed92f94f6c231510",
+      "artifact_hashes_sha256": "b5ba97584a2c7bff2c76b3a45d7d85282ea81f7e00e1de16ff4db492f7607877",
+      "decision": "ACQUISITION_INTEGRITY_PASS_ARCHIVE_TEST_BLOCKED_NO_EXTRACTION",
+      "scientific_eligibility": "BLOCKED",
+      "soh_status": "BLOCKED",
+      "rul_status": "NA",
+      "esr_status": "NA",
+      "archive_listing": "PASS_LISTING_METADATA_ONLY",
+      "archive_test": "BLOCKED_ARCHIVE_TEST_UNSUPPORTED_METHOD",
+      "extraction": "NOT_ATTEMPTED_STRONG_STOP",
+      "listed_regular_file_count": 233,
+      "listed_uncompressed_bytes": 15223551488,
+      "next_gate": "HUMAN_APPROVAL_FOR_A_NEW_ARCHIVE_TOOL_OR_PARSER_PLAN"
+    }
+  },
+  "joint_decision": "P1_ACQUISITION_BYTES_VERIFIED_BUT_NO_DATASET_IS_SCIENTIFICALLY_ELIGIBLE_FOR_MODEL_OR_RUL_EXECUTION",
+  "downstream_status": {
+    "P2": "BLOCKED_P1",
+    "P3": "BLOCKED_SEPARATE_HUMAN_GATE",
+    "development_api": "BLOCKED_SEPARATE_HUMAN_GATE",
+    "P4_P5": "BLOCKED_SEPARATE_HUMAN_GATE",
+    "outer_evaluation": "BLOCKED",
+    "paper_result_claims": "BLOCKED_NO_NUMERICAL_EXPERIMENT"
+  }
+}

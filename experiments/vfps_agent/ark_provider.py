@@ -44,6 +44,7 @@ from .contracts import (
     UsageStatus,
 )
 from .provider import ProviderResponse
+from .response_schema import ArmResponseSchemaSpec
 from .verifier import (
     ACTION_RESPONSE_SCHEMA_VERSION,
     DIRECT_RESPONSE_SCHEMA_VERSION,
@@ -182,6 +183,14 @@ def _reject_secret_bytes(value: bytes) -> None:
         raise ArkBindingError("secret-like material is forbidden at the adapter boundary")
 
 
+def _is_finite_json_number(value: Any) -> bool:
+    """Classify JSON numbers without coercing unbounded integers to float."""
+
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return False
+    return isinstance(value, int) or math.isfinite(value)
+
+
 def _detached_json_mapping(value: Mapping[str, Any], name: str) -> Mapping[str, Any]:
     if not isinstance(value, Mapping):
         raise ArkBindingError(f"{name} must be an object")
@@ -238,10 +247,8 @@ class ArkDecodeSpec:
         for name, lower, upper in (("temperature", 0.0, 2.0), ("top_p", 0.0, 1.0)):
             value = getattr(self, name)
             if (
-                isinstance(value, bool)
-                or not isinstance(value, (int, float))
-                or not math.isfinite(float(value))
-                or not lower <= float(value) <= upper
+                not _is_finite_json_number(value)
+                or not lower <= value <= upper
             ):
                 raise ArkBindingError(f"invalid decode parameter {name}")
             object.__setattr__(self, name, float(value))
@@ -336,6 +343,8 @@ class ArkProviderRule:
     response_schema_name: str
     endpoint_path: str = "/responses"
     max_raw_response_bytes: int = 2_000_000
+    transport_profile_hash: str | None = None
+    require_transport_receipt: bool = False
     schema_version: str = field(default="ArkProviderRule.v1", init=False)
     http_method: str = field(default="POST", init=False)
     stream: bool = field(default=False, init=False)
@@ -358,6 +367,14 @@ class ArkProviderRule:
             or not 1 <= self.max_raw_response_bytes <= 16_000_000
         ):
             raise ArkBindingError("invalid raw response byte ceiling")
+        if not isinstance(self.require_transport_receipt, bool):
+            raise ArkBindingError("transport receipt requirement must be boolean")
+        if self.transport_profile_hash is not None:
+            _require_sha256(self.transport_profile_hash, "transport profile hash")
+        if self.require_transport_receipt != (self.transport_profile_hash is not None):
+            raise ArkBindingError(
+                "attested transport requires exactly one frozen transport profile hash"
+            )
 
     @property
     def provider_rule_hash(self) -> str:
@@ -373,6 +390,7 @@ class ArkRequestContract:
     model: ArkModelRule
     provider: ArkProviderRule
     response_schema: Mapping[str, Any]
+    response_schema_spec: ArmResponseSchemaSpec | None = None
     schema_version: str = field(default="ArkRequestContract.v1", init=False)
 
     def __post_init__(self) -> None:
@@ -388,6 +406,17 @@ class ArkRequestContract:
         _reject_secret_bytes(canonical_bytes(frozen))
         _check_schema_definition(frozen, root=True)
         object.__setattr__(self, "response_schema", frozen)
+        if self.response_schema_spec is not None:
+            if not isinstance(self.response_schema_spec, ArmResponseSchemaSpec):
+                raise ArkBindingError("response schema spec has the wrong typed authority")
+            if self.response_schema_spec.response_schema is None:
+                raise ArkBindingError("local-only response schema spec cannot bind Ark")
+            if canonical_bytes(frozen) != canonical_bytes(
+                self.response_schema_spec.response_schema
+            ):
+                raise ArkBindingError("response schema differs from its canonical arm spec")
+            if self.response_schema_spec.response_schema_hash != canonical_sha256(frozen):
+                raise ArkBindingError("response schema hash differs from its canonical arm spec")
 
     @property
     def response_schema_hash(self) -> str:
@@ -425,6 +454,8 @@ class ArkBindingManifest:
     registry_hash: str
     decode_parameters_hash: str
     provider_rule_hash: str
+    transport_profile_hash: str | None
+    transport_receipt_required: bool
     model_version_rule_hash: str
     verifier_hash: str
     fallback_hash: str
@@ -458,6 +489,13 @@ class ArkBindingManifest:
             "request_contract_hash",
         ):
             _require_sha256(getattr(self, name), name)
+        if self.transport_profile_hash is not None:
+            _require_sha256(self.transport_profile_hash, "transport_profile_hash")
+        if not isinstance(self.transport_receipt_required, bool) or (
+            self.transport_receipt_required
+            != (self.transport_profile_hash is not None)
+        ):
+            raise ArkBindingError("binding manifest transport profile is inconsistent")
         _require_safe_model(self.requested_model_id, "requested model ID")
         if self.expected_response_schema_version != _expected_response_schema_version(self.arm):
             raise ArkBindingError("response schema version differs from arm authority")
@@ -520,9 +558,14 @@ class ArkTransportResponse:
 
 
 class ArkTransport(Protocol):
-    """One-shot transport protocol.  Implementations must not retry ``send``."""
+    """One-shot transport protocol.  Implementations must not retry ``send``.
 
-    def send(self, request: ArkTransportRequest) -> ArkTransportResponse: ...
+    The production transport returns a typed success/failure union from
+    ``ark_https_transport``.  The deliberately unsafe offline mock lane may
+    return ``ArkTransportResponse`` directly.
+    """
+
+    def send(self, request: ArkTransportRequest) -> object: ...
 
 
 @dataclass(frozen=True, slots=True)
@@ -556,8 +599,12 @@ class ArkInvocationAudit:
     started_unix_ms: int
     deadline_unix_ms: int
     completed_unix_ms: int
+    reserved_slots: int
     physical_attempts: int
     retries: int
+    transport_profile_hash: str | None
+    transport_receipt: Mapping[str, Any] | None
+    transport_receipt_hash: str | None
     outcome: ArkClosedOutcome
     http_status: int | None
     resolved_model_id: str | None
@@ -576,6 +623,11 @@ class ArkInvocationAudit:
     def __post_init__(self) -> None:
         if self.usage is not None:
             object.__setattr__(self, "usage", _detached_json_mapping(self.usage, "usage"))
+        if self.transport_receipt is not None:
+            frozen_receipt = _detached_json_mapping(
+                self.transport_receipt, "transport receipt"
+            )
+            object.__setattr__(self, "transport_receipt", frozen_receipt)
         for name in (
             "policy_hash",
             "binding_manifest_hash",
@@ -604,6 +656,8 @@ class ArkInvocationAudit:
             "provider_response_id_sha256",
             "response_content_sha256",
             "usage_sha256",
+            "transport_profile_hash",
+            "transport_receipt_hash",
         ):
             value = getattr(self, name)
             if value is not None:
@@ -623,8 +677,50 @@ class ArkInvocationAudit:
                 raise ArkBindingError("resolved model hash is inconsistent")
         elif self.resolved_model_hash is not None:
             raise ArkBindingError("resolved model hash lacks its model ID")
-        if self.physical_attempts != 1 or self.retries != 0:
-            raise ArkBindingError("accuracy_v1 audit must bind one attempt and zero retries")
+        if (
+            self.reserved_slots != 1
+            or self.physical_attempts not in {0, 1}
+            or self.retries != 0
+        ):
+            raise ArkBindingError(
+                "accuracy_v1 audit must bind one reserved slot, zero/one wire call, and zero retries"
+            )
+        if (self.transport_receipt is None) != (self.transport_receipt_hash is None) or (
+            self.transport_receipt is None
+        ) != (self.transport_profile_hash is None):
+            raise ArkBindingError("transport receipt, hash, and profile must be paired")
+        if self.transport_receipt is not None:
+            try:
+                from .ark_https_transport import ArkOneShotTransportReceipt
+
+                receipt = ArkOneShotTransportReceipt.from_mapping(
+                    to_primitive(self.transport_receipt)
+                )
+            except Exception as exc:
+                raise ArkBindingError("typed transport receipt is invalid") from exc
+            if (
+                self.transport_receipt_hash != receipt.receipt_hash
+                or self.transport_profile_hash != receipt.profile_hash
+                or self.physical_attempts != receipt.request_calls
+                or self.retries != receipt.retries
+                or self.request_body_sha256 != receipt.request_body_sha256
+                or self.request_body_bytes != receipt.request_body_bytes
+                or self.completed_unix_ms != receipt.completed_unix_ms
+            ):
+                raise ArkBindingError("transport receipt differs from invocation audit")
+            if receipt.response_complete:
+                if (
+                    self.http_status != receipt.http_status
+                    or self.raw_response_sha256 != receipt.observed_response_sha256
+                    or self.raw_response_bytes != receipt.observed_response_bytes
+                ):
+                    raise ArkBindingError(
+                        "complete transport receipt differs from response audit"
+                    )
+            elif self.outcome is not ArkClosedOutcome.TRANSPORT_ERROR:
+                raise ArkBindingError(
+                    "incomplete transport receipt cannot support response evidence"
+                )
         if not isinstance(self.outcome, ArkClosedOutcome):
             raise ArkBindingError("invalid closed adapter outcome")
         usage_values = (self.input_tokens, self.output_tokens, self.total_tokens)
@@ -662,7 +758,8 @@ class ArkInvocationAudit:
         success = self.outcome in {ArkClosedOutcome.SUCCESS, ArkClosedOutcome.LATE_RESPONSE}
         if success:
             if (
-                self.http_status != 200
+                self.physical_attempts != 1
+                or self.http_status != 200
                 or self.resolved_model_id != self.requested_model_id
                 or self.resolved_model_hash is None
                 or self.raw_response_sha256 is None
@@ -672,7 +769,8 @@ class ArkInvocationAudit:
                 raise ArkBindingError("successful audit lacks complete response bindings")
         if self.outcome is ArkClosedOutcome.MODEL_MISMATCH:
             if (
-                self.http_status != 200
+                self.physical_attempts != 1
+                or self.http_status != 200
                 or self.resolved_model_id is None
                 or self.resolved_model_id == self.requested_model_id
                 or self.resolved_model_hash is None
@@ -681,6 +779,22 @@ class ArkInvocationAudit:
                 or self.response_content_sha256 is not None
             ):
                 raise ArkBindingError("model-mismatch audit is inconsistent")
+        if self.outcome is ArkClosedOutcome.HTTP_ERROR:
+            if (
+                self.physical_attempts != 1
+                or self.http_status is None
+                or self.http_status == 200
+                or self.raw_response_sha256 is None
+                or self.response_content_sha256 is not None
+            ):
+                raise ArkBindingError("HTTP-error audit is inconsistent")
+        if self.outcome is ArkClosedOutcome.INVALID_RESPONSE:
+            if (
+                self.physical_attempts != 1
+                or self.raw_response_sha256 is None
+                or self.response_content_sha256 is not None
+            ):
+                raise ArkBindingError("invalid-response audit is inconsistent")
         if self.outcome is ArkClosedOutcome.TRANSPORT_ERROR and any(
             value is not None
             for value in (
@@ -781,6 +895,8 @@ def _parse_provider_rule(raw: Mapping[str, Any]) -> ArkProviderRule:
             response_schema_name=raw["response_schema_name"],
             endpoint_path=raw["endpoint_path"],
             max_raw_response_bytes=raw["max_raw_response_bytes"],
+            transport_profile_hash=raw["transport_profile_hash"],
+            require_transport_receipt=raw["require_transport_receipt"],
         )
         return _roundtrip_typed(raw, value, "provider rule")
     except ArkBindingError:
@@ -797,6 +913,11 @@ def _parse_request_contract(raw: Mapping[str, Any]) -> ArkRequestContract:
             model=_parse_model_rule(raw["model"]),
             provider=_parse_provider_rule(raw["provider"]),
             response_schema=raw["response_schema"],
+            response_schema_spec=(
+                ArmResponseSchemaSpec.from_mapping(raw["response_schema_spec"])
+                if raw["response_schema_spec"] is not None
+                else None
+            ),
         )
         return _roundtrip_typed(raw, value, "request contract")
     except ArkBindingError:
@@ -892,6 +1013,8 @@ def build_binding_manifest(
         registry_hash=policy.registry_hash,
         decode_parameters_hash=policy.decode_parameters_hash,
         provider_rule_hash=policy.provider_rule_hash,
+        transport_profile_hash=contract.provider.transport_profile_hash,
+        transport_receipt_required=contract.provider.require_transport_receipt,
         model_version_rule_hash=policy.model_version_rule_hash,
         verifier_hash=policy.verifier_hash,
         fallback_hash=policy.fallback_hash,
@@ -939,6 +1062,16 @@ class ArkProviderEvidenceEnvelope:
         }
         if any(getattr(self.policy, name) != value for name, value in expected_policy_hashes.items()):
             raise ArkBindingError("evidence policy differs from budget or request contract")
+        spec = self.request_contract.response_schema_spec
+        if spec is not None and (
+            spec.arm_id is not self.policy.arm
+            or spec.physical_calls != 1
+            or spec.action_manifest_hash != self.policy.registry_hash
+            or spec.response_schema_hash != self.policy.response_schema_hash
+            or canonical_bytes(spec.response_schema)
+            != canonical_bytes(self.request_contract.response_schema)
+        ):
+            raise ArkBindingError("evidence canonical schema spec differs from policy authority")
         rebuilt_manifest = build_binding_manifest(
             self.policy,
             self.budget,
@@ -966,11 +1099,31 @@ class ArkProviderEvidenceEnvelope:
             "request_contract_hash": manifest.request_contract_hash,
             "requested_model_id": manifest.requested_model_id,
             "requested_output_tokens": manifest.requested_output_tokens,
-            "physical_attempts": manifest.physical_calls,
+            "reserved_slots": manifest.physical_calls,
             "retries": manifest.retries,
         }
         if any(getattr(audit, name) != value for name, value in expected_audit.items()):
             raise ArkBindingError("invocation audit differs from the rebuilt manifest")
+        if audit.physical_attempts > manifest.physical_calls:
+            raise ArkBindingError("invocation used more wire calls than its reserved slot")
+        if manifest.transport_receipt_required:
+            if (
+                audit.transport_profile_hash != manifest.transport_profile_hash
+                or audit.transport_receipt is None
+                or audit.transport_receipt_hash is None
+            ):
+                raise ArkBindingError(
+                    "attested manifest lacks its typed transport receipt"
+                )
+        elif any(
+            value is not None
+            for value in (
+                audit.transport_profile_hash,
+                audit.transport_receipt,
+                audit.transport_receipt_hash,
+            )
+        ):
+            raise ArkBindingError("unattested manifest contains transport evidence")
 
     @property
     def evidence_hash(self) -> str:
@@ -1150,15 +1303,11 @@ def _check_schema_definition(
     for name in ("minimum", "maximum", "exclusiveMinimum", "exclusiveMaximum"):
         if name in schema:
             value = schema[name]
-            if (
-                isinstance(value, bool)
-                or not isinstance(value, (int, float))
-                or not math.isfinite(float(value))
-            ):
+            if not _is_finite_json_number(value):
                 raise _schema_error()
     lower = schema.get("minimum", schema.get("exclusiveMinimum"))
     upper = schema.get("maximum", schema.get("exclusiveMaximum"))
-    if lower is not None and upper is not None and float(lower) > float(upper):
+    if lower is not None and upper is not None and lower > upper:
         raise _schema_error()
     if "pattern" in schema:
         if not isinstance(schema["pattern"], str) or len(schema["pattern"]) > 1024:
@@ -1197,9 +1346,7 @@ def _validate_local_schema(value: Any, schema: Mapping[str, Any], *, depth: int 
         "object": isinstance(value, Mapping),
         "array": isinstance(value, (list, tuple)) and not isinstance(value, (str, bytes)),
         "string": isinstance(value, str),
-        "number": isinstance(value, (int, float))
-        and not isinstance(value, bool)
-        and math.isfinite(float(value)),
+        "number": _is_finite_json_number(value),
         "integer": isinstance(value, int) and not isinstance(value, bool),
         "boolean": isinstance(value, bool),
         "null": value is None,
@@ -1237,12 +1384,11 @@ def _validate_local_schema(value: Any, schema: Mapping[str, Any], *, depth: int 
         if "pattern" in schema and re.search(schema["pattern"], value) is None:
             raise _schema_error()
     if isinstance(value, (int, float)) and not isinstance(value, bool):
-        number = float(value)
         for name, predicate in (
-            ("minimum", lambda bound: number >= float(bound)),
-            ("maximum", lambda bound: number <= float(bound)),
-            ("exclusiveMinimum", lambda bound: number > float(bound)),
-            ("exclusiveMaximum", lambda bound: number < float(bound)),
+            ("minimum", lambda bound: value >= bound),
+            ("maximum", lambda bound: value <= bound),
+            ("exclusiveMinimum", lambda bound: value > bound),
+            ("exclusiveMaximum", lambda bound: value < bound),
         ):
             if name in schema and not predicate(schema[name]):
                 raise _schema_error()
@@ -1398,11 +1544,15 @@ class ArkProviderAdapter:
         budget: AccuracyBudgetSpec,
         contract: ArkRequestContract,
         transport: ArkTransport,
+        unsafe_allow_unqualified_mock_schema: bool = False,
     ) -> None:
         self._policy = policy
         self._budget = budget
         self._contract = contract
         self._transport = transport
+        if not isinstance(unsafe_allow_unqualified_mock_schema, bool):
+            raise TypeError("mock schema override must be boolean")
+        self._unsafe_allow_unqualified_mock_schema = unsafe_allow_unqualified_mock_schema
         self._lock = threading.Lock()
         self._used = False
         self._physical_attempts = 0
@@ -1422,6 +1572,40 @@ class ArkProviderAdapter:
         policy = self._policy
         budget = self._budget
         contract = self._contract
+        spec = contract.response_schema_spec
+        if spec is None:
+            if not self._unsafe_allow_unqualified_mock_schema:
+                raise ArkBindingError("Ark adapter requires a canonical arm response schema spec")
+        else:
+            if (
+                spec.arm_id is not policy.arm
+                or spec.physical_calls != 1
+                or spec.action_manifest_hash != policy.registry_hash
+                or spec.response_schema_hash != policy.response_schema_hash
+                or canonical_bytes(spec.response_schema) != canonical_bytes(contract.response_schema)
+            ):
+                raise ArkBindingError("canonical response schema spec differs from policy authority")
+        if not self._unsafe_allow_unqualified_mock_schema and (
+            not contract.provider.require_transport_receipt
+            or contract.provider.transport_profile_hash is None
+        ):
+            raise ArkBindingError(
+                "formal Ark adapter requires the frozen attested one-shot transport"
+            )
+        if contract.provider.require_transport_receipt:
+            profile = getattr(self._transport, "profile", None)
+            if (
+                profile is None
+                or getattr(profile, "profile_hash", None)
+                != contract.provider.transport_profile_hash
+                or getattr(profile, "max_response_bytes", None)
+                != contract.provider.max_raw_response_bytes
+                or getattr(profile, "endpoint_path", None)
+                != contract.provider.endpoint_path
+            ):
+                raise ArkBindingError(
+                    "transport instance differs from the frozen provider profile"
+                )
         if policy.protocol is not ProtocolId.ACCURACY_V1:
             raise ArkBindingError("Ark accuracy adapter requires accuracy_v1")
         if FROZEN_ARM_SPECS[policy.arm].physical_calls != 1:
@@ -1522,6 +1706,8 @@ class ArkProviderAdapter:
         attempt: AttemptStart,
         request_body: bytes,
         completed_unix_ms: int,
+        physical_attempts: int,
+        transport_receipt: object | None,
         outcome: ArkClosedOutcome,
         http_status: int | None,
         resolved_model_id: str | None = None,
@@ -1537,6 +1723,17 @@ class ArkProviderAdapter:
     ) -> ArkInvocationAudit:
         policy = self._policy
         contract = self._contract
+        receipt_payload = (
+            to_primitive(transport_receipt) if transport_receipt is not None else None
+        )
+        receipt_hash = (
+            canonical_sha256(receipt_payload) if receipt_payload is not None else None
+        )
+        transport_profile_hash = (
+            getattr(transport_receipt, "profile_hash", None)
+            if transport_receipt is not None
+            else None
+        )
         return ArkInvocationAudit(
             attempt_id=attempt.attempt_id,
             arm=attempt.arm,
@@ -1567,8 +1764,12 @@ class ArkProviderAdapter:
             started_unix_ms=attempt.started_unix_ms,
             deadline_unix_ms=attempt.deadline_unix_ms,
             completed_unix_ms=max(attempt.started_unix_ms, completed_unix_ms),
-            physical_attempts=1,
+            reserved_slots=1,
+            physical_attempts=physical_attempts,
             retries=0,
+            transport_profile_hash=transport_profile_hash,
+            transport_receipt=receipt_payload,
+            transport_receipt_hash=receipt_hash,
             outcome=outcome,
             http_status=http_status,
             resolved_model_id=resolved_model_id,
@@ -1592,6 +1793,8 @@ class ArkProviderAdapter:
         attempt: AttemptStart,
         request_body: bytes,
         completed_unix_ms: int,
+        physical_attempts: int,
+        transport_receipt: object | None,
         outcome: ArkClosedOutcome,
         http_status: int | None,
         status: AttemptStatus = AttemptStatus.ERROR,
@@ -1610,6 +1813,8 @@ class ArkProviderAdapter:
             attempt=attempt,
             request_body=request_body,
             completed_unix_ms=completed_unix_ms,
+            physical_attempts=physical_attempts,
+            transport_receipt=transport_receipt,
             outcome=outcome,
             http_status=http_status,
             resolved_model_id=resolved_model_id,
@@ -1649,6 +1854,32 @@ class ArkProviderAdapter:
             ephemeral_provider_response_id_sha256=provider_response_id_sha256,
         )
 
+    def _unaudited_transport_error(
+        self,
+        *,
+        attempt: AttemptStart,
+        request_body: bytes,
+        completed_unix_ms: int,
+    ) -> AuditedProviderResponse:
+        """Fail closed when the required typed receipt cannot be trusted.
+
+        Fabricating an evidence envelope here would turn an implementation
+        exception or malformed transport result into a false statement about
+        wire-call count.  The runner therefore receives no formal provider
+        evidence and records a closed provider/binding failure.
+        """
+
+        return AuditedProviderResponse(
+            status=AttemptStatus.ERROR,
+            completed_unix_ms=max(attempt.started_unix_ms, completed_unix_ms),
+            response_text=None,
+            error_code=ArkClosedOutcome.TRANSPORT_ERROR.value,
+            late=completed_unix_ms > attempt.deadline_unix_ms,
+            audit=None,
+            evidence=None,
+            ephemeral_request_body_sha256=hashlib.sha256(request_body).hexdigest(),
+        )
+
     def invoke(self, request_bytes: bytes, attempt: AttemptStart) -> AuditedProviderResponse:
         """Make exactly one physical attempt; every failure is terminal and closed."""
 
@@ -1668,24 +1899,92 @@ class ArkProviderAdapter:
             if self._used:
                 raise ArkInvocationError("accuracy_v1 physical slot is already consumed")
             self._used = True
-            self._physical_attempts += 1
         try:
-            transport_response = self._transport.send(transport_request)
+            transport_result = self._transport.send(transport_request)
         except Exception:
             # Deliberately do not stringify or chain a transport exception: it
             # may contain Authorization headers or a request/response body.
+            if self._contract.provider.require_transport_receipt:
+                return self._unaudited_transport_error(
+                    attempt=attempt,
+                    request_body=request_body,
+                    completed_unix_ms=attempt.started_unix_ms,
+                )
+            with self._lock:
+                self._physical_attempts += 1
             return self._closed_response(
                 attempt=attempt,
                 request_body=request_body,
                 completed_unix_ms=attempt.started_unix_ms,
+                physical_attempts=1,
+                transport_receipt=None,
                 outcome=ArkClosedOutcome.TRANSPORT_ERROR,
                 http_status=None,
             )
+
+        transport_receipt: object | None = None
+        physical_attempts = 1
+        if self._contract.provider.require_transport_receipt:
+            try:
+                from .ark_https_transport import (
+                    ArkOneShotTransportFailure,
+                    ArkOneShotTransportReceipt,
+                    ArkOneShotTransportSuccess,
+                )
+
+                if not isinstance(
+                    transport_result,
+                    (ArkOneShotTransportSuccess, ArkOneShotTransportFailure),
+                ):
+                    raise ArkBindingError("transport did not return a typed one-shot result")
+                transport_receipt = ArkOneShotTransportReceipt.from_mapping(
+                    to_primitive(transport_result.receipt)
+                )
+                physical_attempts = transport_receipt.request_calls
+                if (
+                    transport_receipt.profile_hash
+                    != self._contract.provider.transport_profile_hash
+                    or transport_receipt.request_body_sha256
+                    != hashlib.sha256(request_body).hexdigest()
+                    or transport_receipt.request_body_bytes != len(request_body)
+                    or transport_receipt.started_unix_ms < attempt.started_unix_ms
+                    or transport_receipt.request_target
+                    != "/api/plan/v3" + self._contract.provider.endpoint_path
+                ):
+                    raise ArkBindingError(
+                        "typed one-shot receipt differs from the frozen request"
+                    )
+            except Exception:
+                return self._unaudited_transport_error(
+                    attempt=attempt,
+                    request_body=request_body,
+                    completed_unix_ms=attempt.started_unix_ms,
+                )
+            with self._lock:
+                self._physical_attempts += physical_attempts
+            if isinstance(transport_result, ArkOneShotTransportFailure):
+                return self._closed_response(
+                    attempt=attempt,
+                    request_body=request_body,
+                    completed_unix_ms=transport_receipt.completed_unix_ms,
+                    physical_attempts=physical_attempts,
+                    transport_receipt=transport_receipt,
+                    outcome=ArkClosedOutcome.TRANSPORT_ERROR,
+                    http_status=None,
+                )
+            transport_response = transport_result.response
+        else:
+            with self._lock:
+                self._physical_attempts += 1
+            transport_response = transport_result
+
         if not isinstance(transport_response, ArkTransportResponse):
             return self._closed_response(
                 attempt=attempt,
                 request_body=request_body,
                 completed_unix_ms=attempt.started_unix_ms,
+                physical_attempts=physical_attempts,
+                transport_receipt=transport_receipt,
                 outcome=ArkClosedOutcome.TRANSPORT_ERROR,
                 http_status=None,
             )
@@ -1696,16 +1995,31 @@ class ArkProviderAdapter:
         else:
             invalid_transport_time = False
         raw = transport_response.body
-        if transport_response.status_code != 200:
+        status_code = transport_response.status_code
+        if (
+            isinstance(status_code, bool)
+            or not isinstance(status_code, int)
+            or not 100 <= status_code <= 599
+        ):
             return self._closed_response(
                 attempt=attempt,
                 request_body=request_body,
                 completed_unix_ms=completed,
+                physical_attempts=physical_attempts,
+                transport_receipt=transport_receipt,
+                outcome=ArkClosedOutcome.INVALID_RESPONSE,
+                http_status=None,
+                raw_response=raw,
+            )
+        if status_code != 200:
+            return self._closed_response(
+                attempt=attempt,
+                request_body=request_body,
+                completed_unix_ms=completed,
+                physical_attempts=physical_attempts,
+                transport_receipt=transport_receipt,
                 outcome=ArkClosedOutcome.HTTP_ERROR,
-                http_status=transport_response.status_code
-                if isinstance(transport_response.status_code, int)
-                and not isinstance(transport_response.status_code, bool)
-                else None,
+                http_status=status_code,
                 raw_response=raw,
             )
         if (
@@ -1719,6 +2033,8 @@ class ArkProviderAdapter:
                 attempt=attempt,
                 request_body=request_body,
                 completed_unix_ms=completed,
+                physical_attempts=physical_attempts,
+                transport_receipt=transport_receipt,
                 outcome=ArkClosedOutcome.INVALID_RESPONSE,
                 http_status=200,
                 raw_response=raw,
@@ -1772,6 +2088,8 @@ class ArkProviderAdapter:
                     attempt=attempt,
                     request_body=request_body,
                     completed_unix_ms=completed,
+                    physical_attempts=physical_attempts,
+                    transport_receipt=transport_receipt,
                     outcome=ArkClosedOutcome.MODEL_MISMATCH,
                     http_status=200,
                     status=AttemptStatus.MODEL_MISMATCH,
@@ -1790,11 +2108,13 @@ class ArkProviderAdapter:
             _validate_local_schema(decision, self._contract.response_schema)
             canonical_decision = canonical_bytes(decision)
             _reject_secret_bytes(canonical_decision)
-        except (ArkBindingError, StrictJSONError, TypeError, ValueError):
+        except (ArkBindingError, StrictJSONError, TypeError, ValueError, OverflowError):
             return self._closed_response(
                 attempt=attempt,
                 request_body=request_body,
                 completed_unix_ms=completed,
+                physical_attempts=physical_attempts,
+                transport_receipt=transport_receipt,
                 outcome=ArkClosedOutcome.INVALID_RESPONSE,
                 http_status=200,
                 raw_response=raw,
@@ -1809,6 +2129,8 @@ class ArkProviderAdapter:
             attempt=attempt,
             request_body=request_body,
             completed_unix_ms=completed,
+            physical_attempts=physical_attempts,
+            transport_receipt=transport_receipt,
             outcome=outcome,
             http_status=200,
             resolved_model_id=resolved_model,

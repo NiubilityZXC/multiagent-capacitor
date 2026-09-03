@@ -1,0 +1,8 @@
+target,native_field,unit,row_structure,online_availability,numeric_target_emitted,status,reason
+charge_capacity,Cap_ch,Ah,OBSERVED_NUMERIC,BLOCKED_ABSOLUTE_TIME_AND_IDENTITY,NO,BLOCKED_MODELING_GATE,"Ah capacity exists but physical identity, chronology, and split are not eligible"
+discharge_capacity,Cap_dis,Ah,OBSERVED_NUMERIC,BLOCKED_ABSOLUTE_TIME_AND_IDENTITY,NO,BLOCKED_MODELING_GATE,"Ah capacity exists but physical identity, chronology, and split are not eligible"
+farad_capacitance,NA,F,NA,NA,NO,NA,Cap_ch/Cap_dis are Ah and must not be renamed as farad capacitance
+internal_resistance,IR,ohm,OBSERVED_NUMERIC_WITH_MISSING_VALUES,BLOCKED_MEASUREMENT_SEMANTICS_AND_IDENTITY,NO,BLOCKED_NOT_ESR,native IR is not automatically ESR
+ESR,NA,ohm,BLOCKED_STATIC_OPAQUE_EIS,NA,NO,NA,EIS table payload is opaque and no ESR convention is frozen
+SOH,NA_DERIVED_ONLY,ratio,NA_NOT_GENERATED,BLOCKED_C_REF_STABILIZATION_AND_TRAIN_ONLY_RULE,NO,BLOCKED,no frozen per-device C_ref or normalization rule
+RUL,NA,NA,NA_NOT_GENERATED_OR_SCORED,NA,NO,NA,no auditable event/censor semantics; P1 forbids RUL generation and scoring

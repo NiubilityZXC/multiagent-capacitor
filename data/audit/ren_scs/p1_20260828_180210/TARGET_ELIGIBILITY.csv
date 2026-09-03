@@ -1,0 +1,7 @@
+target,unit,row_structure,numeric_target_emitted,status,reason
+native_logged_voltage,V,NOT_AUDITED_ARCHIVE_TEST_BLOCKED,NO,BLOCKED_NOT_EXTRACTED,"P1 stopped before extraction; no row, target, SOH, or RUL construction is permitted"
+native_logged_current,A,NOT_AUDITED_ARCHIVE_TEST_BLOCKED,NO,BLOCKED_NOT_EXTRACTED,"P1 stopped before extraction; no row, target, SOH, or RUL construction is permitted"
+farad_capacitance,F,NOT_AUDITED_ARCHIVE_TEST_BLOCKED,NO,NA_NO_FROZEN_DERIVATION,"P1 stopped before extraction; no row, target, SOH, or RUL construction is permitted"
+ESR,ohm,NOT_AUDITED_ARCHIVE_TEST_BLOCKED,NO,NA_NO_NATIVE_ESR_OR_EIS_EVIDENCE,"P1 stopped before extraction; no row, target, SOH, or RUL construction is permitted"
+SOH,ratio,NOT_AUDITED_ARCHIVE_TEST_BLOCKED,NO,BLOCKED_NO_C_REF_OR_ELIGIBLE_CAPACITANCE,"P1 stopped before extraction; no row, target, SOH, or RUL construction is permitted"
+RUL,NA,NOT_AUDITED_ARCHIVE_TEST_BLOCKED,NO,NA_NO_EVENT_CENSOR_TRUTH,"P1 stopped before extraction; no row, target, SOH, or RUL construction is permitted"

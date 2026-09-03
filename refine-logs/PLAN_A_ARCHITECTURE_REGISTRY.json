@@ -1,0 +1,2282 @@
+{
+  "schema_version": "cap-act.plan-a-architecture-registry.v1",
+  "registry_name": "PLAN_A_ARCHITECTURE_REGISTRY",
+  "registry_version": "1.0.0",
+  "status": "PRESEAL_UNAPPROVED_NO_API",
+  "candidate_count": 3,
+  "authority": {
+    "machine_authority": true,
+    "human_readable_companion": "refine-logs/PLAN_A_ARCHITECTURE_CANDIDATES.md",
+    "canonical_plan_files_modified": false,
+    "execution_authorized": false
+  },
+  "serialization_contract": {
+    "json_schema_dialect": "https://json-schema.org/draft/2020-12/schema",
+    "artifact_encoding": "UTF-8",
+    "canonical_json": "CAP_CANONICAL_JSON_V1_SORTED_UTF8_NO_WHITESPACE",
+    "duplicate_keys": "REJECT",
+    "nonfinite_numbers": "REJECT",
+    "artifact_address": "sha256(experiments.vfps_agent.canonical.canonical_bytes(value))",
+    "prompt_encoding": "UTF-8",
+    "prompt_line_endings": "LF",
+    "prompt_terminal_newline": false,
+    "prompt_hash_rule": "sha256(decoded exact_prompt_bytes UTF-8 bytes)"
+  },
+  "validator_contract": {
+    "validator_path": "experiments/vfps_agent/architecture_registry.py",
+    "validator_sha256": "36e9f718f6a84bc8316e128969ae683334d2db9c439fc29e1836b4e2d17a6dd7",
+    "test_path": "tests/test_vfps_architecture_registry.py",
+    "test_sha256": "78e41ec3767d6126151421e4552d91829800d40cad9dd17e72ff4be22963568a",
+    "artifact_schema_resource_sha256": "a18a53a3a635d5cbc8a01b7dc3e2fbfb8a888a69e8bf126f27e614d54e3273aa",
+    "validator_scope": [
+      "schema reference resolution",
+      "prompt hashes",
+      "route-role-assignment oneOf mappings",
+      "assigned-view action authority",
+      "A03 child and envelope hashes",
+      "reference-only final-decision mappings",
+      "sealed cell identity, exact ordered parent lineage, and full planned-key target/unit domains",
+      "deterministic local action and aggregation execution",
+      "A02 minimum-worker and frozen source-order enforcement",
+      "typed invalid-decision and w4-failure error finalization",
+      "discriminated terminal closure and 0/1 attempt conservation",
+      "immutable terminal closure plus schema-valid orthogonal late-response event"
+    ]
+  },
+  "common_execution_contract": {
+    "planned_physical_slots": 4,
+    "provider_send_attempts_min": 0,
+    "provider_send_attempts_max": 4,
+    "max_provider_send_attempts_per_slot": 1,
+    "accuracy_retry": false,
+    "late_response_can_overwrite": false,
+    "tools_enabled": false,
+    "provider_store_enabled": false,
+    "provider_cache_enabled": false,
+    "cross_origin_memory_enabled": false,
+    "downstream_send_rule": "SEND_ONCE_ONLY_IF_ALL_PARENT_SLOTS_CLOSED_AND_OWN_SUBDEADLINE_OPEN",
+    "closed_parent_failure_rule": "PASS_TYPED_WORKER_FAILURE_OR_LOCAL_DEFAULT_TO_DOWNSTREAM_WHEN_OWN_SUBDEADLINE_OPEN",
+    "closed_deadline_rule": "IF_OWN_SUBDEADLINE_NOT_OPEN_THEN_CLOSE_NOT_STARTED_DEADLINE_WITHOUT_PROVIDER_SEND",
+    "common_fallback_object": "N0=b_star=FALLBACK",
+    "planned_key_policy": "EVERY_DIRECT_OR_ACTION_BUNDLE_COVERS_THE_ENTIRE_FROZEN_PLANNED_KEY_MANIFEST"
+  },
+  "closed_enums": {
+    "confidence_bin": [
+      "LOW",
+      "MEDIUM",
+      "HIGH"
+    ],
+    "slot_closure_state": [
+      "FINISHED_VALID",
+      "FINISHED_SCHEMA_INVALID",
+      "PROVIDER_ERROR",
+      "TRANSPORT_FAILURE_CONSUMED",
+      "TIMEOUT_CONSUMED",
+      "NOT_STARTED_DEADLINE"
+    ],
+    "worker_failure_code": [
+      "SCHEMA_INVALID",
+      "PROVIDER_ERROR",
+      "TRANSPORT_FAILURE_CONSUMED",
+      "TIMEOUT_CONSUMED",
+      "NOT_STARTED_DEADLINE",
+      "PARENT_HASH_MISMATCH",
+      "DATA_HASH_MISMATCH",
+      "IDENTITY_MISMATCH"
+    ],
+    "workflow_execution_state": [
+      "ACTIVE",
+      "DELIBERATE_FALLBACK",
+      "ERROR_FALLBACK"
+    ],
+    "trend_flag": [
+      "STRONG_DOWN",
+      "WEAK_DOWN",
+      "FLAT",
+      "WEAK_UP",
+      "STRONG_UP",
+      "UNKNOWN"
+    ],
+    "curvature_flag": [
+      "ACCELERATING_DOWN",
+      "LINEAR",
+      "DECELERATING_DOWN",
+      "UPWARD_CURVATURE",
+      "UNKNOWN"
+    ],
+    "noise_flag": [
+      "LOW",
+      "MEDIUM",
+      "HIGH",
+      "UNKNOWN"
+    ],
+    "change_flag": [
+      "NONE",
+      "LEVEL_SHIFT",
+      "SLOPE_SHIFT",
+      "VOLATILITY_SHIFT",
+      "UNKNOWN"
+    ],
+    "critique_flag": [
+      "PASS",
+      "SCHEMA_FAIL",
+      "DOMAIN_FAIL",
+      "QUANTILE_FAIL",
+      "PHYSICS_FAIL",
+      "MISSING_KEY",
+      "IDENTITY_FAIL",
+      "HASH_FAIL"
+    ]
+  },
+  "numerical_and_action_registry": {
+    "model_ids": [
+      "M_LAST_VALUE",
+      "M_HELD_PREFIX_DRIFT",
+      "M_LOCAL_LINEAR",
+      "M_LOG_LINEAR_EXP",
+      "M_CAUSAL_LOCAL_TREND_KF",
+      "M_RIDGE_CAUSAL_INCREMENT"
+    ],
+    "fusion_ids": [
+      "F_UNIFORM",
+      "F_INVERSE_INNER_RISK",
+      "F_SIMPLEX_POINT_LOSS",
+      "F_SIMPLEX_INTERVAL_SCORE",
+      "F_WORST_UNIT_MINIMAX"
+    ],
+    "action_ids": [
+      "EMIT_M_LAST_VALUE",
+      "EMIT_M_HELD_PREFIX_DRIFT",
+      "EMIT_M_LOCAL_LINEAR",
+      "EMIT_M_LOG_LINEAR_EXP",
+      "EMIT_M_CAUSAL_LOCAL_TREND_KF",
+      "EMIT_M_RIDGE_CAUSAL_INCREMENT",
+      "FUSE_F_UNIFORM",
+      "FUSE_F_INVERSE_INNER_RISK",
+      "FUSE_F_SIMPLEX_POINT_LOSS",
+      "FUSE_F_SIMPLEX_INTERVAL_SCORE",
+      "FUSE_F_WORST_UNIT_MINIMAX",
+      "FALLBACK",
+      "SHIFT_NEG_1_0",
+      "SHIFT_NEG_0_5",
+      "SHIFT_POS_0_5",
+      "SHIFT_POS_1_0",
+      "INFLATE_1_25",
+      "INFLATE_1_50",
+      "INFLATE_2_00"
+    ],
+    "action_cardinality": 19,
+    "action_semantics": {
+      "SHIFT_NEG_1_0": {
+        "operation": "SHIFT",
+        "base": "FALLBACK",
+        "scale_multiplier": -1.0
+      },
+      "SHIFT_NEG_0_5": {
+        "operation": "SHIFT",
+        "base": "FALLBACK",
+        "scale_multiplier": -0.5
+      },
+      "SHIFT_POS_0_5": {
+        "operation": "SHIFT",
+        "base": "FALLBACK",
+        "scale_multiplier": 0.5
+      },
+      "SHIFT_POS_1_0": {
+        "operation": "SHIFT",
+        "base": "FALLBACK",
+        "scale_multiplier": 1.0
+      },
+      "INFLATE_1_25": {
+        "operation": "INFLATE",
+        "base": "FALLBACK",
+        "interval_width_multiplier": 1.25
+      },
+      "INFLATE_1_50": {
+        "operation": "INFLATE",
+        "base": "FALLBACK",
+        "interval_width_multiplier": 1.5
+      },
+      "INFLATE_2_00": {
+        "operation": "INFLATE",
+        "base": "FALLBACK",
+        "interval_width_multiplier": 2.0
+      }
+    }
+  },
+  "artifact_schemas": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "urn:plan-a:ArtifactSchemas.v1",
+    "$defs": {
+      "sha256": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+      },
+      "identity": {
+        "type": "object",
+        "required": [
+          "generation_id",
+          "outer_fold_id",
+          "origin_id_hash",
+          "request_hash",
+          "data_hash",
+          "schema_hash"
+        ],
+        "properties": {
+          "generation_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "outer_fold_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "origin_id_hash": {
+            "$ref": "#/$defs/sha256"
+          },
+          "request_hash": {
+            "$ref": "#/$defs/sha256"
+          },
+          "data_hash": {
+            "$ref": "#/$defs/sha256"
+          },
+          "schema_hash": {
+            "$ref": "#/$defs/sha256"
+          }
+        },
+        "additionalProperties": false
+      },
+      "quantiles": {
+        "type": "object",
+        "required": [
+          "q10",
+          "q25",
+          "q75",
+          "q90"
+        ],
+        "properties": {
+          "q10": {
+            "type": "number"
+          },
+          "q25": {
+            "type": "number"
+          },
+          "q75": {
+            "type": "number"
+          },
+          "q90": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false
+      },
+      "forecast_entry": {
+        "type": "object",
+        "required": [
+          "key_id",
+          "point",
+          "quantiles",
+          "confidence_bin"
+        ],
+        "properties": {
+          "key_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "point": {
+            "type": "number"
+          },
+          "quantiles": {
+            "$ref": "#/$defs/quantiles"
+          },
+          "confidence_bin": {
+            "enum": [
+              "LOW",
+              "MEDIUM",
+              "HIGH"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "action_entry": {
+        "type": "object",
+        "required": [
+          "key_id",
+          "action_id"
+        ],
+        "properties": {
+          "key_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "action_id": {
+            "enum": [
+              "EMIT_M_LAST_VALUE",
+              "EMIT_M_HELD_PREFIX_DRIFT",
+              "EMIT_M_LOCAL_LINEAR",
+              "EMIT_M_LOG_LINEAR_EXP",
+              "EMIT_M_CAUSAL_LOCAL_TREND_KF",
+              "EMIT_M_RIDGE_CAUSAL_INCREMENT",
+              "FUSE_F_UNIFORM",
+              "FUSE_F_INVERSE_INNER_RISK",
+              "FUSE_F_SIMPLEX_POINT_LOSS",
+              "FUSE_F_SIMPLEX_INTERVAL_SCORE",
+              "FUSE_F_WORST_UNIT_MINIMAX",
+              "FALLBACK",
+              "SHIFT_NEG_1_0",
+              "SHIFT_NEG_0_5",
+              "SHIFT_POS_0_5",
+              "SHIFT_POS_1_0",
+              "INFLATE_1_25",
+              "INFLATE_1_50",
+              "INFLATE_2_00"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "direct_bundle": {
+        "type": "object",
+        "required": [
+          "payload_type",
+          "planned_key_manifest_hash",
+          "forecasts"
+        ],
+        "properties": {
+          "payload_type": {
+            "const": "DIRECT_BUNDLE"
+          },
+          "planned_key_manifest_hash": {
+            "$ref": "#/$defs/sha256"
+          },
+          "forecasts": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/$defs/forecast_entry"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "action_bundle": {
+        "type": "object",
+        "required": [
+          "payload_type",
+          "planned_key_manifest_hash",
+          "actions"
+        ],
+        "properties": {
+          "payload_type": {
+            "const": "ACTION_BUNDLE"
+          },
+          "planned_key_manifest_hash": {
+            "$ref": "#/$defs/sha256"
+          },
+          "actions": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/$defs/action_entry"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "fallback_payload": {
+        "type": "object",
+        "required": [
+          "payload_type",
+          "fallback_id"
+        ],
+        "properties": {
+          "payload_type": {
+            "const": "COMMON_FALLBACK"
+          },
+          "fallback_id": {
+            "const": "N0=b_star=FALLBACK"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "ForecastProposal.v1": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "identity",
+        "candidate_id",
+        "role_id",
+        "parent_artifact_hashes",
+        "planned_key_manifest_hash",
+        "forecasts",
+        "status"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "ForecastProposal.v1"
+        },
+        "identity": {
+          "$ref": "#/$defs/identity"
+        },
+        "candidate_id": {
+          "enum": [
+            "A01-HIER-VERIFY-4H",
+            "A02-PAR-DEBATE-4X"
+          ]
+        },
+        "role_id": {
+          "type": "string",
+          "pattern": "^w[1-3]_[a-z0-9_]+$"
+        },
+        "parent_artifact_hashes": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "$ref": "#/$defs/sha256"
+          }
+        },
+        "planned_key_manifest_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "forecasts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/forecast_entry"
+          }
+        },
+        "status": {
+          "const": "VALID_PROPOSAL"
+        }
+      },
+      "additionalProperties": false
+    },
+    "DiagnosticEvidence.v1": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "identity",
+        "candidate_id",
+        "role_id",
+        "parent_artifact_hashes",
+        "evidence"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "DiagnosticEvidence.v1"
+        },
+        "identity": {
+          "$ref": "#/$defs/identity"
+        },
+        "candidate_id": {
+          "const": "A03-TYPED-ROUTE-4X"
+        },
+        "role_id": {
+          "enum": [
+            "w2_trend_specialist",
+            "w3_uncertainty_specialist"
+          ]
+        },
+        "parent_artifact_hashes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "items": {
+            "$ref": "#/$defs/sha256"
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "key_id",
+              "packet_field_hashes",
+              "trend",
+              "curvature",
+              "noise",
+              "change"
+            ],
+            "properties": {
+              "key_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "packet_field_hashes": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "$ref": "#/$defs/sha256"
+                }
+              },
+              "trend": {
+                "enum": [
+                  "STRONG_DOWN",
+                  "WEAK_DOWN",
+                  "FLAT",
+                  "WEAK_UP",
+                  "STRONG_UP",
+                  "UNKNOWN"
+                ]
+              },
+              "curvature": {
+                "enum": [
+                  "ACCELERATING_DOWN",
+                  "LINEAR",
+                  "DECELERATING_DOWN",
+                  "UPWARD_CURVATURE",
+                  "UNKNOWN"
+                ]
+              },
+              "noise": {
+                "enum": [
+                  "LOW",
+                  "MEDIUM",
+                  "HIGH",
+                  "UNKNOWN"
+                ]
+              },
+              "change": {
+                "enum": [
+                  "NONE",
+                  "LEVEL_SHIFT",
+                  "SLOPE_SHIFT",
+                  "VOLATILITY_SHIFT",
+                  "UNKNOWN"
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "ActionProposal.v1": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "identity",
+        "candidate_id",
+        "role_id",
+        "parent_route_hash",
+        "diagnostic_evidence_hash",
+        "planned_key_manifest_hash",
+        "actions",
+        "status"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "ActionProposal.v1"
+        },
+        "identity": {
+          "$ref": "#/$defs/identity"
+        },
+        "candidate_id": {
+          "const": "A03-TYPED-ROUTE-4X"
+        },
+        "role_id": {
+          "enum": [
+            "w2_trend_specialist",
+            "w3_uncertainty_specialist"
+          ]
+        },
+        "parent_route_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "diagnostic_evidence_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "planned_key_manifest_hash": {
+          "$ref": "#/$defs/sha256"
+        },
+        "actions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/action_entry"
+          }
+        },
+        "status": {
+          "const": "VALID_ACTION_PROPOSAL"
+        }
+      },
+      "additionalProperties": false
+    },
+    "A03SpecialistOutput.v1": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "identity",
+        "candidate_id",
+        "role_id",
+        "parent_route_hash",
+        "assigned_view_id",
+        "diagnostic_evidence",
+        "diagnostic_evidence_hash",
+        "action_proposal",
+        "action_proposal_hash"
+      ],
+      "properties": {
+        "schema_version": {"const": "A03SpecialistOutput.v1"},
+        "identity": {"$ref": "#/$defs/identity"},
+        "candidate_id": {"const": "A03-TYPED-ROUTE-4X"},
+        "role_id": {
+          "enum": ["w2_trend_specialist", "w3_uncertainty_specialist"]
+        },
+        "parent_route_hash": {"$ref": "#/$defs/sha256"},
+        "assigned_view_id": {
+          "enum": [
+            "T_DEFAULT_N0_GLOBAL",
+            "T_PERSISTENCE_DRIFT",
+            "T_LOCAL_SHAPE",
+            "T_STATE_SPACE_REGRESSION",
+            "T_TREND_FUSIONS",
+            "T_LOCATION_CORRECTION",
+            "T_ALL_LOCATION_ACTIONS",
+            "U_DEFAULT_N0_GLOBAL",
+            "U_BASE_INTERVALS",
+            "U_ROBUST_INTERVALS",
+            "U_INTERVAL_FUSIONS",
+            "U_CALIBRATION",
+            "U_ALL_UNCERTAINTY_ACTIONS"
+          ]
+        },
+        "diagnostic_evidence": {"$ref": "#/DiagnosticEvidence.v1"},
+        "diagnostic_evidence_hash": {"$ref": "#/$defs/sha256"},
+        "action_proposal": {"$ref": "#/ActionProposal.v1"},
+        "action_proposal_hash": {"$ref": "#/$defs/sha256"}
+      },
+      "additionalProperties": false
+    },
+    "Critique.v1": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "identity",
+        "candidate_id",
+        "role_id",
+        "parent_artifact_hashes",
+        "assessments",
+        "recommendation"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "Critique.v1"
+        },
+        "identity": {
+          "$ref": "#/$defs/identity"
+        },
+        "candidate_id": {
+          "const": "A01-HIER-VERIFY-4H"
+        },
+        "role_id": {
+          "const": "w3_constraint_critic"
+        },
+        "parent_artifact_hashes": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/sha256"
+          }
+        },
+        "assessments": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "object",
+            "required": [
+              "proposal_hash",
+              "flags"
+            ],
+            "properties": {
+              "proposal_hash": {
+                "$ref": "#/$defs/sha256"
+              },
+              "flags": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "enum": [
+                    "PASS",
+                    "SCHEMA_FAIL",
+                    "DOMAIN_FAIL",
+                    "QUANTILE_FAIL",
+                    "PHYSICS_FAIL",
+                    "MISSING_KEY",
+                    "IDENTITY_FAIL",
+                    "HASH_FAIL"
+                  ]
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "recommendation": {
+          "enum": [
+            "SELECT_W1",
+            "SELECT_W2",
+            "MEDIAN_W1_W2_N0",
+            "DELIBERATE_FALLBACK"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "RoutePlan.v1": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "identity",
+        "candidate_id",
+        "role_id",
+        "parent_artifact_hashes",
+        "route_id",
+        "assignments",
+        "route_origin"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "RoutePlan.v1"
+        },
+        "identity": {
+          "$ref": "#/$defs/identity"
+        },
+        "candidate_id": {
+          "const": "A03-TYPED-ROUTE-4X"
+        },
+        "role_id": {
+          "enum": [
+            "w1_typed_router",
+            "local_route_default"
+          ]
+        },
+        "parent_artifact_hashes": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "$ref": "#/$defs/sha256"
+          }
+        },
+        "route_id": {
+          "enum": [
+            "R00_DEFAULT_N0_GLOBAL",
+            "R01_PERSISTENCE_DRIFT_BASE_INTERVALS",
+            "R02_LOCAL_SHAPE_BASE_INTERVALS",
+            "R03_STATE_SPACE_ROBUST_INTERVALS",
+            "R04_TREND_FUSION_INTERVAL_FUSION",
+            "R05_ROBUST_FUSION_CALIBRATION",
+            "R06_LOCATION_CORRECTION_CALIBRATION",
+            "R07_FULL_ACTION_BALANCED"
+          ]
+        },
+        "assignments": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "type": "object",
+            "required": [
+              "specialist_role_id",
+              "view_id"
+            ],
+            "properties": {
+              "specialist_role_id": {
+                "enum": [
+                  "w2_trend_specialist",
+                  "w3_uncertainty_specialist"
+                ]
+              },
+              "view_id": {
+                "enum": [
+                  "T_DEFAULT_N0_GLOBAL",
+                  "T_PERSISTENCE_DRIFT",
+                  "T_LOCAL_SHAPE",
+                  "T_STATE_SPACE_REGRESSION",
+                  "T_TREND_FUSIONS",
+                  "T_LOCATION_CORRECTION",
+                  "T_ALL_LOCATION_ACTIONS",
+                  "U_DEFAULT_N0_GLOBAL",
+                  "U_BASE_INTERVALS",
+                  "U_ROBUST_INTERVALS",
+                  "U_INTERVAL_FUSIONS",
+                  "U_CALIBRATION",
+                  "U_ALL_UNCERTAINTY_ACTIONS"
+                ]
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "route_origin": {
+          "enum": [
+            "PROVIDER_ROUTER",
+            "LOCAL_DEFAULT_AFTER_W1_FAILURE"
+          ]
+        }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "role_id": {"const": "local_route_default"},
+            "route_id": {"const": "R00_DEFAULT_N0_GLOBAL"},
+            "route_origin": {"const": "LOCAL_DEFAULT_AFTER_W1_FAILURE"},
+            "parent_artifact_hashes": {"minItems": 1, "maxItems": 1},
+            "assignments": {
+              "const": [
+                {"specialist_role_id": "w2_trend_specialist", "view_id": "T_DEFAULT_N0_GLOBAL"},
+                {"specialist_role_id": "w3_uncertainty_specialist", "view_id": "U_DEFAULT_N0_GLOBAL"}
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "role_id": {"const": "w1_typed_router"},
+            "route_id": {"const": "R01_PERSISTENCE_DRIFT_BASE_INTERVALS"},
+            "route_origin": {"const": "PROVIDER_ROUTER"},
+            "parent_artifact_hashes": {"maxItems": 0},
+            "assignments": {
+              "const": [
+                {"specialist_role_id": "w2_trend_specialist", "view_id": "T_PERSISTENCE_DRIFT"},
+                {"specialist_role_id": "w3_uncertainty_specialist", "view_id": "U_BASE_INTERVALS"}
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "role_id": {"const": "w1_typed_router"},
+            "route_id": {"const": "R02_LOCAL_SHAPE_BASE_INTERVALS"},
+            "route_origin": {"const": "PROVIDER_ROUTER"},
+            "parent_artifact_hashes": {"maxItems": 0},
+            "assignments": {
+              "const": [
+                {"specialist_role_id": "w2_trend_specialist", "view_id": "T_LOCAL_SHAPE"},
+                {"specialist_role_id": "w3_uncertainty_specialist", "view_id": "U_BASE_INTERVALS"}
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "role_id": {"const": "w1_typed_router"},
+            "route_id": {"const": "R03_STATE_SPACE_ROBUST_INTERVALS"},
+            "route_origin": {"const": "PROVIDER_ROUTER"},
+            "parent_artifact_hashes": {"maxItems": 0},
+            "assignments": {
+              "const": [
+                {"specialist_role_id": "w2_trend_specialist", "view_id": "T_STATE_SPACE_REGRESSION"},
+                {"specialist_role_id": "w3_uncertainty_specialist", "view_id": "U_ROBUST_INTERVALS"}
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "role_id": {"const": "w1_typed_router"},
+            "route_id": {"const": "R04_TREND_FUSION_INTERVAL_FUSION"},
+            "route_origin": {"const": "PROVIDER_ROUTER"},
+            "parent_artifact_hashes": {"maxItems": 0},
+            "assignments": {
+              "const": [
+                {"specialist_role_id": "w2_trend_specialist", "view_id": "T_TREND_FUSIONS"},
+                {"specialist_role_id": "w3_uncertainty_specialist", "view_id": "U_INTERVAL_FUSIONS"}
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "role_id": {"const": "w1_typed_router"},
+            "route_id": {"const": "R05_ROBUST_FUSION_CALIBRATION"},
+            "route_origin": {"const": "PROVIDER_ROUTER"},
+            "parent_artifact_hashes": {"maxItems": 0},
+            "assignments": {
+              "const": [
+                {"specialist_role_id": "w2_trend_specialist", "view_id": "T_TREND_FUSIONS"},
+                {"specialist_role_id": "w3_uncertainty_specialist", "view_id": "U_CALIBRATION"}
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "role_id": {"const": "w1_typed_router"},
+            "route_id": {"const": "R06_LOCATION_CORRECTION_CALIBRATION"},
+            "route_origin": {"const": "PROVIDER_ROUTER"},
+            "parent_artifact_hashes": {"maxItems": 0},
+            "assignments": {
+              "const": [
+                {"specialist_role_id": "w2_trend_specialist", "view_id": "T_LOCATION_CORRECTION"},
+                {"specialist_role_id": "w3_uncertainty_specialist", "view_id": "U_CALIBRATION"}
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "role_id": {"const": "w1_typed_router"},
+            "route_id": {"const": "R07_FULL_ACTION_BALANCED"},
+            "route_origin": {"const": "PROVIDER_ROUTER"},
+            "parent_artifact_hashes": {"maxItems": 0},
+            "assignments": {
+              "const": [
+                {"specialist_role_id": "w2_trend_specialist", "view_id": "T_ALL_LOCATION_ACTIONS"},
+                {"specialist_role_id": "w3_uncertainty_specialist", "view_id": "U_ALL_UNCERTAINTY_ACTIONS"}
+              ]
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "FinalDecision.v1": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "identity",
+        "candidate_id",
+        "role_id",
+        "parent_artifact_hashes",
+        "decision_code",
+        "aggregation_id",
+        "source_refs"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "FinalDecision.v1"
+        },
+        "identity": {
+          "$ref": "#/$defs/identity"
+        },
+        "candidate_id": {
+          "enum": [
+            "A01-HIER-VERIFY-4H",
+            "A02-PAR-DEBATE-4X",
+            "A03-TYPED-ROUTE-4X"
+          ]
+        },
+        "role_id": {
+          "enum": [
+            "w4_arbiter",
+            "w4_bounded_adjudicator",
+            "w4_typed_arbiter"
+          ]
+        },
+        "parent_artifact_hashes": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "$ref": "#/$defs/sha256"
+          }
+        },
+        "decision_code": {
+          "enum": [
+            "A01_SELECT_W1",
+            "A01_SELECT_W2",
+            "A01_MEDIAN_W1_W2_N0",
+            "A01_DELIBERATE_FALLBACK",
+            "A02_SELECT_W1",
+            "A02_SELECT_W2",
+            "A02_SELECT_W3",
+            "A02_MEDIAN_VALID_WORKERS",
+            "A02_MEDIAN_VALID_WORKERS_N0",
+            "A02_DELIBERATE_FALLBACK",
+            "A03_SELECT_TREND_ACTION",
+            "A03_SELECT_UNCERTAINTY_ACTION",
+            "A03_MEDIAN_SPECIALIST_BUNDLES_N0",
+            "A03_DELIBERATE_FALLBACK"
+          ]
+        },
+        "aggregation_id": {
+          "enum": [
+            "AGG_NONE_SELECT_PARENT",
+            "AGG_COMPONENTWISE_MEDIAN_W1_W2_N0",
+            "AGG_COMPONENTWISE_MEDIAN_VALID_WORKERS",
+            "AGG_COMPONENTWISE_MEDIAN_VALID_WORKERS_N0",
+            "AGG_COMPONENTWISE_MEDIAN_SPECIALIST_BUNDLES_N0",
+            "AGG_COMMON_FALLBACK"
+          ]
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "enum": [
+              "w1",
+              "w2",
+              "w3",
+              "VALID_W1_W2_W3",
+              "w2.action_proposal",
+              "w3.action_proposal",
+              "N0"
+            ]
+          }
+        }
+      },
+      "oneOf": [
+        {"properties": {"candidate_id": {"const": "A01-HIER-VERIFY-4H"}, "role_id": {"const": "w4_arbiter"}, "decision_code": {"const": "A01_SELECT_W1"}, "aggregation_id": {"const": "AGG_NONE_SELECT_PARENT"}, "source_refs": {"const": ["w1"]}}},
+        {"properties": {"candidate_id": {"const": "A01-HIER-VERIFY-4H"}, "role_id": {"const": "w4_arbiter"}, "decision_code": {"const": "A01_SELECT_W2"}, "aggregation_id": {"const": "AGG_NONE_SELECT_PARENT"}, "source_refs": {"const": ["w2"]}}},
+        {"properties": {"candidate_id": {"const": "A01-HIER-VERIFY-4H"}, "role_id": {"const": "w4_arbiter"}, "decision_code": {"const": "A01_MEDIAN_W1_W2_N0"}, "aggregation_id": {"const": "AGG_COMPONENTWISE_MEDIAN_W1_W2_N0"}, "source_refs": {"const": ["w1", "w2", "N0"]}}},
+        {"properties": {"candidate_id": {"const": "A01-HIER-VERIFY-4H"}, "role_id": {"const": "w4_arbiter"}, "decision_code": {"const": "A01_DELIBERATE_FALLBACK"}, "aggregation_id": {"const": "AGG_COMMON_FALLBACK"}, "source_refs": {"const": ["N0"]}}},
+        {"properties": {"candidate_id": {"const": "A02-PAR-DEBATE-4X"}, "role_id": {"const": "w4_bounded_adjudicator"}, "decision_code": {"const": "A02_SELECT_W1"}, "aggregation_id": {"const": "AGG_NONE_SELECT_PARENT"}, "source_refs": {"const": ["w1"]}}},
+        {"properties": {"candidate_id": {"const": "A02-PAR-DEBATE-4X"}, "role_id": {"const": "w4_bounded_adjudicator"}, "decision_code": {"const": "A02_SELECT_W2"}, "aggregation_id": {"const": "AGG_NONE_SELECT_PARENT"}, "source_refs": {"const": ["w2"]}}},
+        {"properties": {"candidate_id": {"const": "A02-PAR-DEBATE-4X"}, "role_id": {"const": "w4_bounded_adjudicator"}, "decision_code": {"const": "A02_SELECT_W3"}, "aggregation_id": {"const": "AGG_NONE_SELECT_PARENT"}, "source_refs": {"const": ["w3"]}}},
+        {"properties": {"candidate_id": {"const": "A02-PAR-DEBATE-4X"}, "role_id": {"const": "w4_bounded_adjudicator"}, "decision_code": {"const": "A02_MEDIAN_VALID_WORKERS"}, "aggregation_id": {"const": "AGG_COMPONENTWISE_MEDIAN_VALID_WORKERS"}, "source_refs": {"const": ["VALID_W1_W2_W3"]}}},
+        {"properties": {"candidate_id": {"const": "A02-PAR-DEBATE-4X"}, "role_id": {"const": "w4_bounded_adjudicator"}, "decision_code": {"const": "A02_MEDIAN_VALID_WORKERS_N0"}, "aggregation_id": {"const": "AGG_COMPONENTWISE_MEDIAN_VALID_WORKERS_N0"}, "source_refs": {"const": ["VALID_W1_W2_W3", "N0"]}}},
+        {"properties": {"candidate_id": {"const": "A02-PAR-DEBATE-4X"}, "role_id": {"const": "w4_bounded_adjudicator"}, "decision_code": {"const": "A02_DELIBERATE_FALLBACK"}, "aggregation_id": {"const": "AGG_COMMON_FALLBACK"}, "source_refs": {"const": ["N0"]}}},
+        {"properties": {"candidate_id": {"const": "A03-TYPED-ROUTE-4X"}, "role_id": {"const": "w4_typed_arbiter"}, "decision_code": {"const": "A03_SELECT_TREND_ACTION"}, "aggregation_id": {"const": "AGG_NONE_SELECT_PARENT"}, "source_refs": {"const": ["w2.action_proposal"]}}},
+        {"properties": {"candidate_id": {"const": "A03-TYPED-ROUTE-4X"}, "role_id": {"const": "w4_typed_arbiter"}, "decision_code": {"const": "A03_SELECT_UNCERTAINTY_ACTION"}, "aggregation_id": {"const": "AGG_NONE_SELECT_PARENT"}, "source_refs": {"const": ["w3.action_proposal"]}}},
+        {"properties": {"candidate_id": {"const": "A03-TYPED-ROUTE-4X"}, "role_id": {"const": "w4_typed_arbiter"}, "decision_code": {"const": "A03_MEDIAN_SPECIALIST_BUNDLES_N0"}, "aggregation_id": {"const": "AGG_COMPONENTWISE_MEDIAN_SPECIALIST_BUNDLES_N0"}, "source_refs": {"const": ["w2.action_proposal", "w3.action_proposal", "N0"]}}},
+        {"properties": {"candidate_id": {"const": "A03-TYPED-ROUTE-4X"}, "role_id": {"const": "w4_typed_arbiter"}, "decision_code": {"const": "A03_DELIBERATE_FALLBACK"}, "aggregation_id": {"const": "AGG_COMMON_FALLBACK"}, "source_refs": {"const": ["N0"]}}}
+      ],
+      "additionalProperties": false
+    },
+    "FinalOutput.v1": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "identity",
+        "candidate_id",
+        "local_executor_sha256",
+        "finalization_trigger_type",
+        "finalization_trigger_hash",
+        "source_artifact_hashes",
+        "planned_key_manifest_hash",
+        "execution_status",
+        "payload"
+      ],
+      "properties": {
+        "schema_version": {"const": "FinalOutput.v1"},
+        "identity": {"$ref": "#/$defs/identity"},
+        "candidate_id": {
+          "enum": ["A01-HIER-VERIFY-4H", "A02-PAR-DEBATE-4X", "A03-TYPED-ROUTE-4X"]
+        },
+        "local_executor_sha256": {"$ref": "#/$defs/sha256"},
+        "finalization_trigger_type": {
+          "enum": ["VALID_FINAL_DECISION", "INVALID_FINAL_DECISION", "W4_WORKER_FAILURE"]
+        },
+        "finalization_trigger_hash": {"$ref": "#/$defs/sha256"},
+        "source_artifact_hashes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {"$ref": "#/$defs/sha256"}
+        },
+        "planned_key_manifest_hash": {"$ref": "#/$defs/sha256"},
+        "execution_status": {
+          "enum": ["ACTIVE", "DELIBERATE_FALLBACK", "ERROR_FALLBACK"]
+        },
+        "payload": {
+          "oneOf": [
+            {"$ref": "#/$defs/direct_bundle"},
+            {"$ref": "#/$defs/fallback_payload"}
+          ]
+        }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "execution_status": {"const": "ACTIVE"},
+            "finalization_trigger_type": {"const": "VALID_FINAL_DECISION"},
+            "payload": {"$ref": "#/$defs/direct_bundle"}
+          }
+        },
+        {
+          "properties": {
+            "execution_status": {"const": "DELIBERATE_FALLBACK"},
+            "finalization_trigger_type": {"const": "VALID_FINAL_DECISION"},
+            "payload": {"$ref": "#/$defs/fallback_payload"}
+          }
+        },
+        {
+          "properties": {
+            "execution_status": {"const": "ERROR_FALLBACK"},
+            "finalization_trigger_type": {
+              "enum": ["INVALID_FINAL_DECISION", "W4_WORKER_FAILURE"]
+            },
+            "payload": {"$ref": "#/$defs/fallback_payload"}
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "WorkerFailure.v1": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "identity",
+        "candidate_id",
+        "slot_id",
+        "role_id",
+        "prompt_sha256",
+        "failure_code",
+        "provider_send_attempts",
+        "slot_closure_state",
+        "parent_artifact_hashes"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "WorkerFailure.v1"
+        },
+        "identity": {
+          "$ref": "#/$defs/identity"
+        },
+        "candidate_id": {
+          "enum": [
+            "A01-HIER-VERIFY-4H",
+            "A02-PAR-DEBATE-4X",
+            "A03-TYPED-ROUTE-4X"
+          ]
+        },
+        "slot_id": {
+          "enum": [
+            "w1",
+            "w2",
+            "w3",
+            "w4"
+          ]
+        },
+        "role_id": {
+          "type": "string",
+          "pattern": "^w[1-4]_[a-z0-9_]+$"
+        },
+        "prompt_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "failure_code": {
+          "enum": [
+            "SCHEMA_INVALID",
+            "PROVIDER_ERROR",
+            "TRANSPORT_FAILURE_CONSUMED",
+            "TIMEOUT_CONSUMED",
+            "NOT_STARTED_DEADLINE",
+            "PARENT_HASH_MISMATCH",
+            "DATA_HASH_MISMATCH",
+            "IDENTITY_MISMATCH"
+          ]
+        },
+        "provider_send_attempts": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "slot_closure_state": {
+          "enum": [
+            "FINISHED_SCHEMA_INVALID",
+            "PROVIDER_ERROR",
+            "TRANSPORT_FAILURE_CONSUMED",
+            "TIMEOUT_CONSUMED",
+            "NOT_STARTED_DEADLINE"
+          ]
+        },
+        "parent_artifact_hashes": {
+          "type": "array",
+          "maxItems": 3,
+          "items": {
+            "$ref": "#/$defs/sha256"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "oneOf": [
+            {"properties": {"candidate_id": {"const": "A01-HIER-VERIFY-4H"}, "slot_id": {"const": "w1"}, "role_id": {"const": "w1_trend_forecaster"}}},
+            {"properties": {"candidate_id": {"const": "A01-HIER-VERIFY-4H"}, "slot_id": {"const": "w2"}, "role_id": {"const": "w2_robust_risk_forecaster"}}},
+            {"properties": {"candidate_id": {"const": "A01-HIER-VERIFY-4H"}, "slot_id": {"const": "w3"}, "role_id": {"const": "w3_constraint_critic"}}},
+            {"properties": {"candidate_id": {"const": "A01-HIER-VERIFY-4H"}, "slot_id": {"const": "w4"}, "role_id": {"const": "w4_arbiter"}}},
+            {"properties": {"candidate_id": {"const": "A02-PAR-DEBATE-4X"}, "slot_id": {"const": "w1"}, "role_id": {"const": "w1_extrapolation_forecaster"}}},
+            {"properties": {"candidate_id": {"const": "A02-PAR-DEBATE-4X"}, "slot_id": {"const": "w2"}, "role_id": {"const": "w2_robust_change_forecaster"}}},
+            {"properties": {"candidate_id": {"const": "A02-PAR-DEBATE-4X"}, "slot_id": {"const": "w3"}, "role_id": {"const": "w3_uncertainty_forecaster"}}},
+            {"properties": {"candidate_id": {"const": "A02-PAR-DEBATE-4X"}, "slot_id": {"const": "w4"}, "role_id": {"const": "w4_bounded_adjudicator"}}},
+            {"properties": {"candidate_id": {"const": "A03-TYPED-ROUTE-4X"}, "slot_id": {"const": "w1"}, "role_id": {"const": "w1_typed_router"}}},
+            {"properties": {"candidate_id": {"const": "A03-TYPED-ROUTE-4X"}, "slot_id": {"const": "w2"}, "role_id": {"const": "w2_trend_specialist"}}},
+            {"properties": {"candidate_id": {"const": "A03-TYPED-ROUTE-4X"}, "slot_id": {"const": "w3"}, "role_id": {"const": "w3_uncertainty_specialist"}}},
+            {"properties": {"candidate_id": {"const": "A03-TYPED-ROUTE-4X"}, "slot_id": {"const": "w4"}, "role_id": {"const": "w4_typed_arbiter"}}}
+          ]
+        },
+        {
+          "oneOf": [
+            {"properties": {"slot_closure_state": {"const": "FINISHED_SCHEMA_INVALID"}, "provider_send_attempts": {"const": 1}, "failure_code": {"enum": ["SCHEMA_INVALID", "PARENT_HASH_MISMATCH", "DATA_HASH_MISMATCH", "IDENTITY_MISMATCH"]}}},
+            {"properties": {"slot_closure_state": {"const": "PROVIDER_ERROR"}, "provider_send_attempts": {"const": 1}, "failure_code": {"const": "PROVIDER_ERROR"}}},
+            {"properties": {"slot_closure_state": {"const": "TRANSPORT_FAILURE_CONSUMED"}, "provider_send_attempts": {"const": 1}, "failure_code": {"const": "TRANSPORT_FAILURE_CONSUMED"}}},
+            {"properties": {"slot_closure_state": {"const": "TIMEOUT_CONSUMED"}, "provider_send_attempts": {"const": 1}, "failure_code": {"const": "TIMEOUT_CONSUMED"}}},
+            {"properties": {"slot_closure_state": {"const": "NOT_STARTED_DEADLINE"}, "provider_send_attempts": {"const": 0}, "failure_code": {"const": "NOT_STARTED_DEADLINE"}}}
+          ]
+        }
+      ],
+      "additionalProperties": false
+    },
+    "SlotClosure.v1": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "identity",
+        "candidate_id",
+        "slot_id",
+        "role_id",
+        "provider_send_attempts",
+        "slot_closure_state",
+        "output_artifact_schema",
+        "output_artifact_hash"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "SlotClosure.v1"
+        },
+        "identity": {
+          "$ref": "#/$defs/identity"
+        },
+        "candidate_id": {
+          "enum": [
+            "A01-HIER-VERIFY-4H",
+            "A02-PAR-DEBATE-4X",
+            "A03-TYPED-ROUTE-4X"
+          ]
+        },
+        "slot_id": {
+          "enum": [
+            "w1",
+            "w2",
+            "w3",
+            "w4"
+          ]
+        },
+        "role_id": {
+          "type": "string",
+          "pattern": "^w[1-4]_[a-z0-9_]+$"
+        },
+        "provider_send_attempts": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "slot_closure_state": {
+          "enum": [
+            "FINISHED_VALID",
+            "FINISHED_SCHEMA_INVALID",
+            "PROVIDER_ERROR",
+            "TRANSPORT_FAILURE_CONSUMED",
+            "TIMEOUT_CONSUMED",
+            "NOT_STARTED_DEADLINE"
+          ]
+        },
+        "output_artifact_schema": {
+          "enum": [
+            "ForecastProposal.v1",
+            "Critique.v1",
+            "RoutePlan.v1",
+            "A03SpecialistOutput.v1",
+            "FinalDecision.v1",
+            "WorkerFailure.v1"
+          ]
+        },
+        "output_artifact_hash": {
+          "$ref": "#/$defs/sha256"
+        }
+      },
+      "allOf": [
+        {
+          "oneOf": [
+            {"properties": {"candidate_id": {"const": "A01-HIER-VERIFY-4H"}, "slot_id": {"const": "w1"}, "role_id": {"const": "w1_trend_forecaster"}}},
+            {"properties": {"candidate_id": {"const": "A01-HIER-VERIFY-4H"}, "slot_id": {"const": "w2"}, "role_id": {"const": "w2_robust_risk_forecaster"}}},
+            {"properties": {"candidate_id": {"const": "A01-HIER-VERIFY-4H"}, "slot_id": {"const": "w3"}, "role_id": {"const": "w3_constraint_critic"}}},
+            {"properties": {"candidate_id": {"const": "A01-HIER-VERIFY-4H"}, "slot_id": {"const": "w4"}, "role_id": {"const": "w4_arbiter"}}},
+            {"properties": {"candidate_id": {"const": "A02-PAR-DEBATE-4X"}, "slot_id": {"const": "w1"}, "role_id": {"const": "w1_extrapolation_forecaster"}}},
+            {"properties": {"candidate_id": {"const": "A02-PAR-DEBATE-4X"}, "slot_id": {"const": "w2"}, "role_id": {"const": "w2_robust_change_forecaster"}}},
+            {"properties": {"candidate_id": {"const": "A02-PAR-DEBATE-4X"}, "slot_id": {"const": "w3"}, "role_id": {"const": "w3_uncertainty_forecaster"}}},
+            {"properties": {"candidate_id": {"const": "A02-PAR-DEBATE-4X"}, "slot_id": {"const": "w4"}, "role_id": {"const": "w4_bounded_adjudicator"}}},
+            {"properties": {"candidate_id": {"const": "A03-TYPED-ROUTE-4X"}, "slot_id": {"const": "w1"}, "role_id": {"const": "w1_typed_router"}}},
+            {"properties": {"candidate_id": {"const": "A03-TYPED-ROUTE-4X"}, "slot_id": {"const": "w2"}, "role_id": {"const": "w2_trend_specialist"}}},
+            {"properties": {"candidate_id": {"const": "A03-TYPED-ROUTE-4X"}, "slot_id": {"const": "w3"}, "role_id": {"const": "w3_uncertainty_specialist"}}},
+            {"properties": {"candidate_id": {"const": "A03-TYPED-ROUTE-4X"}, "slot_id": {"const": "w4"}, "role_id": {"const": "w4_typed_arbiter"}}}
+          ]
+        },
+        {
+          "oneOf": [
+            {"properties": {"candidate_id": {"const": "A01-HIER-VERIFY-4H"}, "slot_id": {"const": "w1"}, "slot_closure_state": {"const": "FINISHED_VALID"}, "provider_send_attempts": {"const": 1}, "output_artifact_schema": {"const": "ForecastProposal.v1"}}},
+            {"properties": {"candidate_id": {"const": "A01-HIER-VERIFY-4H"}, "slot_id": {"const": "w2"}, "slot_closure_state": {"const": "FINISHED_VALID"}, "provider_send_attempts": {"const": 1}, "output_artifact_schema": {"const": "ForecastProposal.v1"}}},
+            {"properties": {"candidate_id": {"const": "A01-HIER-VERIFY-4H"}, "slot_id": {"const": "w3"}, "slot_closure_state": {"const": "FINISHED_VALID"}, "provider_send_attempts": {"const": 1}, "output_artifact_schema": {"const": "Critique.v1"}}},
+            {"properties": {"candidate_id": {"const": "A01-HIER-VERIFY-4H"}, "slot_id": {"const": "w4"}, "slot_closure_state": {"const": "FINISHED_VALID"}, "provider_send_attempts": {"const": 1}, "output_artifact_schema": {"const": "FinalDecision.v1"}}},
+            {"properties": {"candidate_id": {"const": "A02-PAR-DEBATE-4X"}, "slot_id": {"const": "w1"}, "slot_closure_state": {"const": "FINISHED_VALID"}, "provider_send_attempts": {"const": 1}, "output_artifact_schema": {"const": "ForecastProposal.v1"}}},
+            {"properties": {"candidate_id": {"const": "A02-PAR-DEBATE-4X"}, "slot_id": {"const": "w2"}, "slot_closure_state": {"const": "FINISHED_VALID"}, "provider_send_attempts": {"const": 1}, "output_artifact_schema": {"const": "ForecastProposal.v1"}}},
+            {"properties": {"candidate_id": {"const": "A02-PAR-DEBATE-4X"}, "slot_id": {"const": "w3"}, "slot_closure_state": {"const": "FINISHED_VALID"}, "provider_send_attempts": {"const": 1}, "output_artifact_schema": {"const": "ForecastProposal.v1"}}},
+            {"properties": {"candidate_id": {"const": "A02-PAR-DEBATE-4X"}, "slot_id": {"const": "w4"}, "slot_closure_state": {"const": "FINISHED_VALID"}, "provider_send_attempts": {"const": 1}, "output_artifact_schema": {"const": "FinalDecision.v1"}}},
+            {"properties": {"candidate_id": {"const": "A03-TYPED-ROUTE-4X"}, "slot_id": {"const": "w1"}, "slot_closure_state": {"const": "FINISHED_VALID"}, "provider_send_attempts": {"const": 1}, "output_artifact_schema": {"const": "RoutePlan.v1"}}},
+            {"properties": {"candidate_id": {"const": "A03-TYPED-ROUTE-4X"}, "slot_id": {"const": "w2"}, "slot_closure_state": {"const": "FINISHED_VALID"}, "provider_send_attempts": {"const": 1}, "output_artifact_schema": {"const": "A03SpecialistOutput.v1"}}},
+            {"properties": {"candidate_id": {"const": "A03-TYPED-ROUTE-4X"}, "slot_id": {"const": "w3"}, "slot_closure_state": {"const": "FINISHED_VALID"}, "provider_send_attempts": {"const": 1}, "output_artifact_schema": {"const": "A03SpecialistOutput.v1"}}},
+            {"properties": {"candidate_id": {"const": "A03-TYPED-ROUTE-4X"}, "slot_id": {"const": "w4"}, "slot_closure_state": {"const": "FINISHED_VALID"}, "provider_send_attempts": {"const": 1}, "output_artifact_schema": {"const": "FinalDecision.v1"}}},
+            {"properties": {"slot_closure_state": {"const": "FINISHED_SCHEMA_INVALID"}, "provider_send_attempts": {"const": 1}, "output_artifact_schema": {"const": "WorkerFailure.v1"}}},
+            {"properties": {"slot_closure_state": {"const": "PROVIDER_ERROR"}, "provider_send_attempts": {"const": 1}, "output_artifact_schema": {"const": "WorkerFailure.v1"}}},
+            {"properties": {"slot_closure_state": {"const": "TRANSPORT_FAILURE_CONSUMED"}, "provider_send_attempts": {"const": 1}, "output_artifact_schema": {"const": "WorkerFailure.v1"}}},
+            {"properties": {"slot_closure_state": {"const": "TIMEOUT_CONSUMED"}, "provider_send_attempts": {"const": 1}, "output_artifact_schema": {"const": "WorkerFailure.v1"}}},
+            {"properties": {"slot_closure_state": {"const": "NOT_STARTED_DEADLINE"}, "provider_send_attempts": {"const": 0}, "output_artifact_schema": {"const": "WorkerFailure.v1"}}}
+          ]
+        }
+      ],
+      "additionalProperties": false
+    },
+    "LateResponseEvent.v1": {
+      "type": "object",
+      "required": [
+        "schema_version",
+        "identity",
+        "candidate_id",
+        "slot_id",
+        "event_state",
+        "original_terminal_closure_hash",
+        "late_response_sha256",
+        "observed_at_monotonic_ns",
+        "closure_mutation_allowed",
+        "provider_send_delta",
+        "prediction_overwrite_allowed"
+      ],
+      "properties": {
+        "schema_version": {"const": "LateResponseEvent.v1"},
+        "identity": {"$ref": "#/$defs/identity"},
+        "candidate_id": {
+          "enum": [
+            "A01-HIER-VERIFY-4H",
+            "A02-PAR-DEBATE-4X",
+            "A03-TYPED-ROUTE-4X"
+          ]
+        },
+        "slot_id": {"enum": ["w1", "w2", "w3", "w4"]},
+        "event_state": {"const": "LATE_RESPONSE_DISCARDED"},
+        "original_terminal_closure_hash": {"$ref": "#/$defs/sha256"},
+        "late_response_sha256": {"$ref": "#/$defs/sha256"},
+        "observed_at_monotonic_ns": {"type": "integer", "minimum": 0},
+        "closure_mutation_allowed": {"const": false},
+        "provider_send_delta": {"const": 0},
+        "prediction_overwrite_allowed": {"const": false}
+      },
+      "additionalProperties": false
+    },
+    "oneOf": [
+      {"$ref": "#/ForecastProposal.v1"},
+      {"$ref": "#/DiagnosticEvidence.v1"},
+      {"$ref": "#/ActionProposal.v1"},
+      {"$ref": "#/A03SpecialistOutput.v1"},
+      {"$ref": "#/Critique.v1"},
+      {"$ref": "#/RoutePlan.v1"},
+      {"$ref": "#/FinalDecision.v1"},
+      {"$ref": "#/FinalOutput.v1"},
+      {"$ref": "#/WorkerFailure.v1"},
+      {"$ref": "#/SlotClosure.v1"},
+      {"$ref": "#/LateResponseEvent.v1"}
+    ]
+  },
+  "prompt_registry": {
+    "A01-HIER-VERIFY-4H": {
+      "w1": {
+        "role_id": "w1_trend_forecaster",
+        "exact_prompt_bytes": "You are A01 slot 1, the Trend Forecaster. Use only the supplied OriginPacketRaw.v1 and planned-key manifest. Emit exactly one ForecastProposal.v1 covering every planned key. Emphasize past-only level, drift, and trend evidence. Do not use future values, labels, losses, tools, memory, prose, or new keys. If evidence is weak, express uncertainty only through the required quantiles and confidence_bin. Return JSON only.",
+      "prompt_sha256": "63b35a6e7ef28024348b598f0a20649452f5e7e02b02d46566c66665e71f8a3e"
+      },
+      "w2": {
+        "role_id": "w2_robust_risk_forecaster",
+        "exact_prompt_bytes": "You are A01 slot 2, the Robust Risk Forecaster. Use only the supplied OriginPacketRaw.v1 and planned-key manifest. Emit exactly one ForecastProposal.v1 covering every planned key. Emphasize robustness to noise, recent change, and conservative interval width. Do not use future values, labels, losses, tools, memory, prose, or new keys. If evidence is weak, express uncertainty only through the required quantiles and confidence_bin. Return JSON only.",
+      "prompt_sha256": "1eca681a3f0fc3c91d9b0aab1290e5826912c5579a5083b00cd53610ad29a2e7"
+      },
+      "w3": {
+        "role_id": "w3_constraint_critic",
+        "exact_prompt_bytes": "You are A01 slot 3, the Constraint Critic. Use only OriginPacketRaw.v1, the two closed parent artifacts, their hashes, and the planned-key manifest. Emit exactly one Critique.v1. Check identity, parent hashes, schema completeness, domain validity, physical direction, and quantile nesting using only the closed critique_flag enum. Recommend exactly one of SELECT_W1, SELECT_W2, MEDIAN_W1_W2_N0, or DELIBERATE_FALLBACK. Do not create or modify forecast numbers. Return JSON only.",
+      "prompt_sha256": "c78730e6028a70429d220bf3abac0db5923dead660bc0286446d0a0c85a5f1c2"
+      },
+      "w4": {
+        "role_id": "w4_arbiter",
+        "exact_prompt_bytes": "You are A01 slot 4, the Arbiter. Use only OriginPacketRaw.v1, the three closed parent artifacts, their hashes, N0, and the planned-key manifest. Emit exactly one reference-only FinalDecision.v1. Choose exactly one decision_code from A01_SELECT_W1, A01_SELECT_W2, A01_MEDIAN_W1_W2_N0, or A01_DELIBERATE_FALLBACK, and copy its exact aggregation_id and source_refs mapping from the frozen registry. Do not emit payload values, invent forecasts, or alter a parent. The local executor creates FinalOutput.v1. Return JSON only.",
+      "prompt_sha256": "3c5ec4ce59037913eb21550c51157167b535cdf2ab53a26d459a105e7a0a9e5f"
+      }
+    },
+    "A02-PAR-DEBATE-4X": {
+      "w1": {
+        "role_id": "w1_extrapolation_forecaster",
+        "exact_prompt_bytes": "You are A02 slot 1, the Extrapolation Forecaster. Use only the supplied OriginPacketRaw.v1 and planned-key manifest. Emit exactly one ForecastProposal.v1 covering every planned key. Focus on level, drift, and smooth extrapolation from the causal prefix. Do not use future values, labels, losses, tools, memory, other workers, prose, or new keys. Return JSON only.",
+      "prompt_sha256": "e68a040a5a8973371cfce89483e5f96dd8a3ee1d765b3cbfe88492faf8a8366c"
+      },
+      "w2": {
+        "role_id": "w2_robust_change_forecaster",
+        "exact_prompt_bytes": "You are A02 slot 2, the Robust Change Forecaster. Use only the supplied OriginPacketRaw.v1 and planned-key manifest. Emit exactly one ForecastProposal.v1 covering every planned key. Focus on robust recent-change behavior and avoid reacting to isolated noise. Do not use future values, labels, losses, tools, memory, other workers, prose, or new keys. Return JSON only.",
+      "prompt_sha256": "51c217bb6fac3613cf84a1d65b8204a32d759d614ff45193df4f12afa0272fc3"
+      },
+      "w3": {
+        "role_id": "w3_uncertainty_forecaster",
+        "exact_prompt_bytes": "You are A02 slot 3, the Uncertainty Forecaster. Use only the supplied OriginPacketRaw.v1 and planned-key manifest. Emit exactly one ForecastProposal.v1 covering every planned key. Focus on calibrated ordering of q10, q25, point, q75, and q90 under prefix uncertainty. Do not use future values, labels, losses, tools, memory, other workers, prose, or new keys. Return JSON only.",
+      "prompt_sha256": "24064e3e4e85767c6220277f1784808b709e0ef4b2d9bf7934f3c795d8ae8b96"
+      },
+      "w4": {
+        "role_id": "w4_bounded_adjudicator",
+        "exact_prompt_bytes": "You are A02 slot 4, the Bounded Adjudicator. Use only OriginPacketRaw.v1, the three closed proposal-or-failure artifacts, their hashes, N0, and the planned-key manifest. Emit exactly one reference-only FinalDecision.v1. Choose exactly one decision_code from A02_SELECT_W1, A02_SELECT_W2, A02_SELECT_W3, A02_MEDIAN_VALID_WORKERS, A02_MEDIAN_VALID_WORKERS_N0, or A02_DELIBERATE_FALLBACK, and copy its exact aggregation_id and source_refs mapping from the frozen registry. Do not emit payload values or invent or edit forecasts. The local executor creates FinalOutput.v1. Return JSON only.",
+      "prompt_sha256": "170d84ea4d21aa933207271ca90eafc86088dc2fbcde79d234638338124fd82c"
+      }
+    },
+    "A03-TYPED-ROUTE-4X": {
+      "w1": {
+        "role_id": "w1_typed_router",
+        "exact_prompt_bytes": "You are A03 slot 1, the Typed Router. Use only the supplied OriginPacketHybrid.v1, candidate hashes, and route registry. Emit exactly one RoutePlan.v1 by selecting one provider-selectable route_id from the closed R01 through R07 registry and copying its two assignments exactly. R00_DEFAULT_N0_GLOBAL is reserved for the local default and is never provider-selectable. Do not forecast, create features, modify actions, call tools, use labels or losses, or emit prose. Return JSON only.",
+      "prompt_sha256": "330d70463f69cef24ccd6b883bb476736764966a62078c0dda88b27d502c27b0"
+      },
+      "w2": {
+        "role_id": "w2_trend_specialist",
+        "exact_prompt_bytes": "You are A03 slot 2, the Trend Specialist. Use only OriginPacketHybrid.v1 and the closed RoutePlan.v1 assigned view. Emit exactly one A03SpecialistOutput.v1 envelope containing one DiagnosticEvidence.v1, its canonical hash, one ActionProposal.v1, and its canonical hash, covering every planned key. Every action_id must belong to the assigned view allowed_action_ids. Use only finite diagnostic enums and referenced packet field hashes. Do not emit forecast numbers, new actions, prose, labels, or losses. Return one JSON object only.",
+      "prompt_sha256": "a0238d7603cca0f781dab70f06b4e2de0db8afd0ed705f3b99c49b608632edc2"
+      },
+      "w3": {
+        "role_id": "w3_uncertainty_specialist",
+        "exact_prompt_bytes": "You are A03 slot 3, the Uncertainty Specialist. Use only OriginPacketHybrid.v1 and the closed RoutePlan.v1 assigned view. Emit exactly one A03SpecialistOutput.v1 envelope containing one DiagnosticEvidence.v1, its canonical hash, one ActionProposal.v1, and its canonical hash, covering every planned key. Every action_id must belong to the assigned view allowed_action_ids. Use only finite diagnostic enums and referenced packet field hashes. Do not emit forecast numbers, new actions, prose, labels, or losses. Return one JSON object only.",
+      "prompt_sha256": "15adf06815fba7c201d17b1f4ffbf93f417dc501a752e353cc5e135a6a5ff743"
+      },
+      "w4": {
+        "role_id": "w4_typed_arbiter",
+        "exact_prompt_bytes": "You are A03 slot 4, the Typed Arbiter. Use only OriginPacketHybrid.v1, the closed route, the two specialist-output-envelope-or-failure artifacts, their exact hashes, N0, and the planned-key manifest. Emit exactly one reference-only FinalDecision.v1. Choose exactly one decision_code from A03_SELECT_TREND_ACTION, A03_SELECT_UNCERTAINTY_ACTION, A03_MEDIAN_SPECIALIST_BUNDLES_N0, or A03_DELIBERATE_FALLBACK, and copy its exact aggregation_id and source_refs mapping from the frozen registry. Do not emit actions, payload values, or forecast numbers. The local executor creates FinalOutput.v1. Return JSON only.",
+      "prompt_sha256": "663be130e654ecd697344686e6b1fd7ecaf0c76d88158573703cb9cf4e793d0e"
+      }
+    }
+  },
+  "a03_assignment_views": {
+    "T_DEFAULT_N0_GLOBAL": {
+      "specialist_role_id": "w2_trend_specialist",
+      "visible_candidate_ids": [
+        "FALLBACK",
+        "M_HELD_PREFIX_DRIFT",
+        "F_SIMPLEX_POINT_LOSS"
+      ],
+      "allowed_action_ids": [
+        "FALLBACK",
+        "EMIT_M_HELD_PREFIX_DRIFT",
+        "FUSE_F_SIMPLEX_POINT_LOSS"
+      ]
+    },
+    "T_PERSISTENCE_DRIFT": {
+      "specialist_role_id": "w2_trend_specialist",
+      "visible_candidate_ids": [
+        "M_LAST_VALUE",
+        "M_HELD_PREFIX_DRIFT"
+      ],
+      "allowed_action_ids": [
+        "EMIT_M_LAST_VALUE",
+        "EMIT_M_HELD_PREFIX_DRIFT",
+        "FALLBACK"
+      ]
+    },
+    "T_LOCAL_SHAPE": {
+      "specialist_role_id": "w2_trend_specialist",
+      "visible_candidate_ids": [
+        "M_LOCAL_LINEAR",
+        "M_LOG_LINEAR_EXP"
+      ],
+      "allowed_action_ids": [
+        "EMIT_M_LOCAL_LINEAR",
+        "EMIT_M_LOG_LINEAR_EXP",
+        "FALLBACK"
+      ]
+    },
+    "T_STATE_SPACE_REGRESSION": {
+      "specialist_role_id": "w2_trend_specialist",
+      "visible_candidate_ids": [
+        "M_CAUSAL_LOCAL_TREND_KF",
+        "M_RIDGE_CAUSAL_INCREMENT"
+      ],
+      "allowed_action_ids": [
+        "EMIT_M_CAUSAL_LOCAL_TREND_KF",
+        "EMIT_M_RIDGE_CAUSAL_INCREMENT",
+        "FALLBACK"
+      ]
+    },
+    "T_TREND_FUSIONS": {
+      "specialist_role_id": "w2_trend_specialist",
+      "visible_candidate_ids": [
+        "F_UNIFORM",
+        "F_INVERSE_INNER_RISK",
+        "F_SIMPLEX_POINT_LOSS"
+      ],
+      "allowed_action_ids": [
+        "FUSE_F_UNIFORM",
+        "FUSE_F_INVERSE_INNER_RISK",
+        "FUSE_F_SIMPLEX_POINT_LOSS",
+        "FALLBACK"
+      ]
+    },
+    "T_LOCATION_CORRECTION": {
+      "specialist_role_id": "w2_trend_specialist",
+      "visible_candidate_ids": [
+        "FALLBACK",
+        "scale_train"
+      ],
+      "allowed_action_ids": [
+        "FALLBACK",
+        "SHIFT_NEG_1_0",
+        "SHIFT_NEG_0_5",
+        "SHIFT_POS_0_5",
+        "SHIFT_POS_1_0"
+      ]
+    },
+    "T_ALL_LOCATION_ACTIONS": {
+      "specialist_role_id": "w2_trend_specialist",
+      "visible_candidate_ids": [
+        "ALL_SIX_MODELS",
+        "ALL_FIVE_FUSIONS",
+        "FALLBACK",
+        "scale_train"
+      ],
+      "allowed_action_ids": [
+        "EMIT_M_LAST_VALUE",
+        "EMIT_M_HELD_PREFIX_DRIFT",
+        "EMIT_M_LOCAL_LINEAR",
+        "EMIT_M_LOG_LINEAR_EXP",
+        "EMIT_M_CAUSAL_LOCAL_TREND_KF",
+        "EMIT_M_RIDGE_CAUSAL_INCREMENT",
+        "FUSE_F_UNIFORM",
+        "FUSE_F_INVERSE_INNER_RISK",
+        "FUSE_F_SIMPLEX_POINT_LOSS",
+        "FUSE_F_SIMPLEX_INTERVAL_SCORE",
+        "FUSE_F_WORST_UNIT_MINIMAX",
+        "FALLBACK",
+        "SHIFT_NEG_1_0",
+        "SHIFT_NEG_0_5",
+        "SHIFT_POS_0_5",
+        "SHIFT_POS_1_0"
+      ]
+    },
+    "U_DEFAULT_N0_GLOBAL": {
+      "specialist_role_id": "w3_uncertainty_specialist",
+      "visible_candidate_ids": [
+        "FALLBACK",
+        "F_SIMPLEX_INTERVAL_SCORE",
+        "F_WORST_UNIT_MINIMAX"
+      ],
+      "allowed_action_ids": [
+        "FALLBACK",
+        "FUSE_F_SIMPLEX_INTERVAL_SCORE",
+        "FUSE_F_WORST_UNIT_MINIMAX",
+        "INFLATE_1_25"
+      ]
+    },
+    "U_BASE_INTERVALS": {
+      "specialist_role_id": "w3_uncertainty_specialist",
+      "visible_candidate_ids": [
+        "FALLBACK",
+        "M_LAST_VALUE",
+        "M_HELD_PREFIX_DRIFT"
+      ],
+      "allowed_action_ids": [
+        "FALLBACK",
+        "EMIT_M_LAST_VALUE",
+        "EMIT_M_HELD_PREFIX_DRIFT",
+        "INFLATE_1_25"
+      ]
+    },
+    "U_ROBUST_INTERVALS": {
+      "specialist_role_id": "w3_uncertainty_specialist",
+      "visible_candidate_ids": [
+        "M_CAUSAL_LOCAL_TREND_KF",
+        "M_RIDGE_CAUSAL_INCREMENT",
+        "F_WORST_UNIT_MINIMAX"
+      ],
+      "allowed_action_ids": [
+        "EMIT_M_CAUSAL_LOCAL_TREND_KF",
+        "EMIT_M_RIDGE_CAUSAL_INCREMENT",
+        "FUSE_F_WORST_UNIT_MINIMAX",
+        "FALLBACK"
+      ]
+    },
+    "U_INTERVAL_FUSIONS": {
+      "specialist_role_id": "w3_uncertainty_specialist",
+      "visible_candidate_ids": [
+        "F_UNIFORM",
+        "F_INVERSE_INNER_RISK",
+        "F_SIMPLEX_INTERVAL_SCORE",
+        "F_WORST_UNIT_MINIMAX"
+      ],
+      "allowed_action_ids": [
+        "FUSE_F_UNIFORM",
+        "FUSE_F_INVERSE_INNER_RISK",
+        "FUSE_F_SIMPLEX_INTERVAL_SCORE",
+        "FUSE_F_WORST_UNIT_MINIMAX",
+        "FALLBACK"
+      ]
+    },
+    "U_CALIBRATION": {
+      "specialist_role_id": "w3_uncertainty_specialist",
+      "visible_candidate_ids": [
+        "FALLBACK",
+        "calibrated_intervals"
+      ],
+      "allowed_action_ids": [
+        "FALLBACK",
+        "INFLATE_1_25",
+        "INFLATE_1_50",
+        "INFLATE_2_00"
+      ]
+    },
+    "U_ALL_UNCERTAINTY_ACTIONS": {
+      "specialist_role_id": "w3_uncertainty_specialist",
+      "visible_candidate_ids": [
+        "ALL_SIX_MODELS",
+        "ALL_FIVE_FUSIONS",
+        "FALLBACK",
+        "calibrated_intervals"
+      ],
+      "allowed_action_ids": [
+        "EMIT_M_LAST_VALUE",
+        "EMIT_M_HELD_PREFIX_DRIFT",
+        "EMIT_M_LOCAL_LINEAR",
+        "EMIT_M_LOG_LINEAR_EXP",
+        "EMIT_M_CAUSAL_LOCAL_TREND_KF",
+        "EMIT_M_RIDGE_CAUSAL_INCREMENT",
+        "FUSE_F_UNIFORM",
+        "FUSE_F_INVERSE_INNER_RISK",
+        "FUSE_F_SIMPLEX_POINT_LOSS",
+        "FUSE_F_SIMPLEX_INTERVAL_SCORE",
+        "FUSE_F_WORST_UNIT_MINIMAX",
+        "FALLBACK",
+        "INFLATE_1_25",
+        "INFLATE_1_50",
+        "INFLATE_2_00"
+      ]
+    }
+  },
+  "a03_route_registry": {
+    "R00_DEFAULT_N0_GLOBAL": {
+      "router_selectable": false,
+      "local_default": true,
+      "assignments": [
+        {
+          "specialist_role_id": "w2_trend_specialist",
+          "view_id": "T_DEFAULT_N0_GLOBAL"
+        },
+        {
+          "specialist_role_id": "w3_uncertainty_specialist",
+          "view_id": "U_DEFAULT_N0_GLOBAL"
+        }
+      ]
+    },
+    "R01_PERSISTENCE_DRIFT_BASE_INTERVALS": {
+      "router_selectable": true,
+      "local_default": false,
+      "assignments": [
+        {
+          "specialist_role_id": "w2_trend_specialist",
+          "view_id": "T_PERSISTENCE_DRIFT"
+        },
+        {
+          "specialist_role_id": "w3_uncertainty_specialist",
+          "view_id": "U_BASE_INTERVALS"
+        }
+      ]
+    },
+    "R02_LOCAL_SHAPE_BASE_INTERVALS": {
+      "router_selectable": true,
+      "local_default": false,
+      "assignments": [
+        {
+          "specialist_role_id": "w2_trend_specialist",
+          "view_id": "T_LOCAL_SHAPE"
+        },
+        {
+          "specialist_role_id": "w3_uncertainty_specialist",
+          "view_id": "U_BASE_INTERVALS"
+        }
+      ]
+    },
+    "R03_STATE_SPACE_ROBUST_INTERVALS": {
+      "router_selectable": true,
+      "local_default": false,
+      "assignments": [
+        {
+          "specialist_role_id": "w2_trend_specialist",
+          "view_id": "T_STATE_SPACE_REGRESSION"
+        },
+        {
+          "specialist_role_id": "w3_uncertainty_specialist",
+          "view_id": "U_ROBUST_INTERVALS"
+        }
+      ]
+    },
+    "R04_TREND_FUSION_INTERVAL_FUSION": {
+      "router_selectable": true,
+      "local_default": false,
+      "assignments": [
+        {
+          "specialist_role_id": "w2_trend_specialist",
+          "view_id": "T_TREND_FUSIONS"
+        },
+        {
+          "specialist_role_id": "w3_uncertainty_specialist",
+          "view_id": "U_INTERVAL_FUSIONS"
+        }
+      ]
+    },
+    "R05_ROBUST_FUSION_CALIBRATION": {
+      "router_selectable": true,
+      "local_default": false,
+      "assignments": [
+        {
+          "specialist_role_id": "w2_trend_specialist",
+          "view_id": "T_TREND_FUSIONS"
+        },
+        {
+          "specialist_role_id": "w3_uncertainty_specialist",
+          "view_id": "U_CALIBRATION"
+        }
+      ]
+    },
+    "R06_LOCATION_CORRECTION_CALIBRATION": {
+      "router_selectable": true,
+      "local_default": false,
+      "assignments": [
+        {
+          "specialist_role_id": "w2_trend_specialist",
+          "view_id": "T_LOCATION_CORRECTION"
+        },
+        {
+          "specialist_role_id": "w3_uncertainty_specialist",
+          "view_id": "U_CALIBRATION"
+        }
+      ]
+    },
+    "R07_FULL_ACTION_BALANCED": {
+      "router_selectable": true,
+      "local_default": false,
+      "assignments": [
+        {
+          "specialist_role_id": "w2_trend_specialist",
+          "view_id": "T_ALL_LOCATION_ACTIONS"
+        },
+        {
+          "specialist_role_id": "w3_uncertainty_specialist",
+          "view_id": "U_ALL_UNCERTAINTY_ACTIONS"
+        }
+      ]
+    }
+  },
+  "aggregation_registry": {
+    "componentwise_median": {
+      "sort_order": "ASCENDING_NUMERIC",
+      "odd_count": "MIDDLE_VALUE",
+      "even_count": "ARITHMETIC_MEAN_OF_TWO_MIDDLE_VALUES",
+      "fields": [
+        "point",
+        "q10",
+        "q25",
+        "q75",
+        "q90"
+      ],
+      "post_validation_order": [
+        "FINITE",
+        "FULL_PLANNED_KEY_COVERAGE",
+        "TARGET_UNIT_DOMAIN",
+        "Q10_LE_Q25_LE_POINT_LE_Q75_LE_Q90"
+      ],
+      "post_validation_failure": "COMMON_ERROR_FALLBACK"
+    },
+    "A01-HIER-VERIFY-4H": {
+      "decision_codes": [
+        "A01_SELECT_W1",
+        "A01_SELECT_W2",
+        "A01_MEDIAN_W1_W2_N0",
+        "A01_DELIBERATE_FALLBACK"
+      ],
+      "median_members": [
+        "w1",
+        "w2",
+        "N0"
+      ],
+      "median_requires_valid_workers": [
+        "w1",
+        "w2"
+      ],
+      "invalid_decision": "COMMON_ERROR_FALLBACK"
+    },
+    "A02-PAR-DEBATE-4X": {
+      "decision_codes": [
+        "A02_SELECT_W1",
+        "A02_SELECT_W2",
+        "A02_SELECT_W3",
+        "A02_MEDIAN_VALID_WORKERS",
+        "A02_MEDIAN_VALID_WORKERS_N0",
+        "A02_DELIBERATE_FALLBACK"
+      ],
+      "median_valid_workers_minimum": 2,
+      "median_valid_workers_n0_minimum_valid_workers": 1,
+      "valid_worker_order_for_reproducibility": [
+        "w1",
+        "w2",
+        "w3"
+      ],
+      "invalid_decision": "COMMON_ERROR_FALLBACK"
+    },
+    "A03-TYPED-ROUTE-4X": {
+      "decision_codes": [
+        "A03_SELECT_TREND_ACTION",
+        "A03_SELECT_UNCERTAINTY_ACTION",
+        "A03_MEDIAN_SPECIALIST_BUNDLES_N0",
+        "A03_DELIBERATE_FALLBACK"
+      ],
+      "median_execution_order": [
+        "VALIDATE_ACTION_PROPOSALS",
+        "EXECUTE_TREND_ACTION_BUNDLE",
+        "EXECUTE_UNCERTAINTY_ACTION_BUNDLE",
+        "LOAD_N0_BUNDLE",
+        "COMPONENTWISE_MEDIAN",
+        "VALIDATE_FINAL_BUNDLE"
+      ],
+      "median_requires_valid_specialists": [
+        "w2",
+        "w3"
+      ],
+      "action_conflict_tie_break": [
+        "IDENTICAL_ACTION_ID",
+        "LOWER_ACTION_INDEX_IN_NUMERICAL_AND_ACTION_REGISTRY",
+        "SPECIALIST_ROLE_ORDER_W2_THEN_W3"
+      ],
+      "invalid_decision": "COMMON_ERROR_FALLBACK"
+    }
+  },
+  "slot_failure_state_machine": {
+    "states": [
+      "PLANNED",
+      "READY",
+      "STARTED",
+      "FINISHED_VALID",
+      "FINISHED_SCHEMA_INVALID",
+      "PROVIDER_ERROR",
+      "TRANSPORT_FAILURE_CONSUMED",
+      "TIMEOUT_CONSUMED",
+      "NOT_STARTED_DEADLINE"
+    ],
+    "transitions": [
+      {
+        "from": "PLANNED",
+        "condition": "ALL_PARENT_SLOTS_CLOSED_AND_OWN_SUBDEADLINE_OPEN",
+        "to": "READY",
+        "provider_send_delta": 0
+      },
+      {
+        "from": "PLANNED",
+        "condition": "ALL_PARENT_SLOTS_CLOSED_AND_OWN_SUBDEADLINE_NOT_OPEN",
+        "to": "NOT_STARTED_DEADLINE",
+        "provider_send_delta": 0
+      },
+      {
+        "from": "READY",
+        "condition": "DURABLE_STARTED_COMMIT_THEN_SINGLE_PROVIDER_SEND",
+        "to": "STARTED",
+        "provider_send_delta": 1
+      },
+      {
+        "from": "STARTED",
+        "condition": "RESPONSE_BEFORE_SUBDEADLINE_AND_SCHEMA_VALID",
+        "to": "FINISHED_VALID",
+        "provider_send_delta": 0
+      },
+      {
+        "from": "STARTED",
+        "condition": "RESPONSE_BEFORE_SUBDEADLINE_AND_SCHEMA_INVALID",
+        "to": "FINISHED_SCHEMA_INVALID",
+        "provider_send_delta": 0
+      },
+      {
+        "from": "STARTED",
+        "condition": "PROVIDER_RETURNS_ERROR",
+        "to": "PROVIDER_ERROR",
+        "provider_send_delta": 0
+      },
+      {
+        "from": "STARTED",
+        "condition": "TRANSPORT_CLOSE_WITH_AMBIGUOUS_CONSUMPTION",
+        "to": "TRANSPORT_FAILURE_CONSUMED",
+        "provider_send_delta": 0
+      },
+      {
+        "from": "STARTED",
+        "condition": "SUBDEADLINE_EXPIRES_WITHOUT_ACCEPTED_RESPONSE",
+        "to": "TIMEOUT_CONSUMED",
+        "provider_send_delta": 0
+      }
+    ],
+    "terminal_states": [
+      "FINISHED_VALID",
+      "FINISHED_SCHEMA_INVALID",
+      "PROVIDER_ERROR",
+      "TRANSPORT_FAILURE_CONSUMED",
+      "TIMEOUT_CONSUMED",
+      "NOT_STARTED_DEADLINE"
+    ],
+    "retry_transition_exists": false,
+    "terminal_output_rule": {
+      "FINISHED_VALID": "SCHEMA_VALID_ROLE_ARTIFACT",
+      "FINISHED_SCHEMA_INVALID": "WorkerFailure.v1",
+      "PROVIDER_ERROR": "WorkerFailure.v1",
+      "TRANSPORT_FAILURE_CONSUMED": "WorkerFailure.v1",
+      "TIMEOUT_CONSUMED": "WorkerFailure.v1",
+      "NOT_STARTED_DEADLINE": "WorkerFailure.v1"
+    }
+  },
+  "late_response_event_contract": {
+    "schema_version": "LateResponseEvent.v1",
+    "event_state": "LATE_RESPONSE_DISCARDED",
+    "precondition": "SLOT_ALREADY_HAS_DURABLE_TIMEOUT_CONSUMED_CLOSURE_AND_PROVIDER_SEND_ATTEMPTS_EQUALS_1",
+    "required_fields": [
+      "identity",
+      "candidate_id",
+      "slot_id",
+      "event_state",
+      "original_terminal_closure_hash",
+      "late_response_sha256",
+      "observed_at_monotonic_ns",
+      "closure_mutation_allowed",
+      "provider_send_delta",
+      "prediction_overwrite_allowed"
+    ],
+    "closure_mutation_allowed": false,
+    "provider_send_delta": 0,
+    "prediction_overwrite_allowed": false,
+    "rule": "Append one orthogonal immutable event; preserve the original terminal closure state and output artifact hash."
+  },
+  "candidates": {
+    "A01-HIER-VERIFY-4H": {
+      "candidate_id": "A01-HIER-VERIFY-4H",
+      "planned_physical_slots": 4,
+      "provider_send_attempts_range": [
+        0,
+        4
+      ],
+      "packet_schema": "OriginPacketRaw.v1",
+      "model_mapping": {
+        "w1": "M_H",
+        "w2": "M_H",
+        "w3": "M_H",
+        "w4": "M_H"
+      },
+      "slots": [
+        {
+          "slot_id": "w1",
+          "role_id": "w1_trend_forecaster",
+          "parents": [],
+          "open_condition": "WORKFLOW_STARTED_AND_W1_SUBDEADLINE_OPEN",
+          "closed_without_send_condition": "W1_SUBDEADLINE_NOT_OPEN",
+          "valid_output_schema": "ForecastProposal.v1",
+          "data_hash_visibility": [
+            "origin_packet_raw_data_hash",
+            "planned_key_manifest_hash"
+          ],
+          "parent_hash_visibility": []
+        },
+        {
+          "slot_id": "w2",
+          "role_id": "w2_robust_risk_forecaster",
+          "parents": [],
+          "open_condition": "WORKFLOW_STARTED_AND_W2_SUBDEADLINE_OPEN",
+          "closed_without_send_condition": "W2_SUBDEADLINE_NOT_OPEN",
+          "valid_output_schema": "ForecastProposal.v1",
+          "data_hash_visibility": [
+            "origin_packet_raw_data_hash",
+            "planned_key_manifest_hash"
+          ],
+          "parent_hash_visibility": []
+        },
+        {
+          "slot_id": "w3",
+          "role_id": "w3_constraint_critic",
+          "parents": [
+            "w1",
+            "w2"
+          ],
+          "open_condition": "W1_AND_W2_CLOSED_AND_W3_SUBDEADLINE_OPEN",
+          "closed_without_send_condition": "W1_AND_W2_CLOSED_AND_W3_SUBDEADLINE_NOT_OPEN",
+          "valid_output_schema": "Critique.v1",
+          "data_hash_visibility": [
+            "origin_packet_raw_data_hash",
+            "planned_key_manifest_hash"
+          ],
+          "parent_hash_visibility": [
+            "w1_output_artifact_hash",
+            "w2_output_artifact_hash"
+          ],
+          "parent_content_visibility": [
+            "w1_closed_artifact",
+            "w2_closed_artifact"
+          ]
+        },
+        {
+          "slot_id": "w4",
+          "role_id": "w4_arbiter",
+          "parents": [
+            "w1",
+            "w2",
+            "w3"
+          ],
+          "open_condition": "W1_W2_W3_CLOSED_AND_W4_SUBDEADLINE_OPEN",
+          "closed_without_send_condition": "W1_W2_W3_CLOSED_AND_W4_SUBDEADLINE_NOT_OPEN",
+          "valid_output_schema": "FinalDecision.v1",
+          "data_hash_visibility": [
+            "origin_packet_raw_data_hash",
+            "planned_key_manifest_hash",
+            "common_fallback_hash"
+          ],
+          "parent_hash_visibility": [
+            "w1_output_artifact_hash",
+            "w2_output_artifact_hash",
+            "w3_output_artifact_hash"
+          ],
+          "parent_content_visibility": [
+            "w1_closed_artifact",
+            "w2_closed_artifact",
+            "w3_closed_artifact"
+          ]
+        }
+      ],
+      "local_finalization": {
+        "valid_w4_decision": "EXECUTE_DECLARED_A01_DECISION_AND_VALIDATE",
+        "deliberate_fallback": "COMMIT_COMMON_FALLBACK_AS_DELIBERATE_FALLBACK",
+        "invalid_or_absent_w4": "COMMIT_COMMON_FALLBACK_AS_ERROR_FALLBACK"
+      }
+    },
+    "A02-PAR-DEBATE-4X": {
+      "candidate_id": "A02-PAR-DEBATE-4X",
+      "planned_physical_slots": 4,
+      "provider_send_attempts_range": [
+        0,
+        4
+      ],
+      "packet_schema": "OriginPacketRaw.v1",
+      "model_mapping": {
+        "w1": "M_X1",
+        "w2": "M_X2",
+        "w3": "M_X3",
+        "w4": "M_X4"
+      },
+      "returned_model_constraint": "M_X1_M_X2_M_X3_M_X4_PAIRWISE_DISTINCT",
+      "slots": [
+        {
+          "slot_id": "w1",
+          "role_id": "w1_extrapolation_forecaster",
+          "parents": [],
+          "open_condition": "WORKFLOW_STARTED_AND_W1_SUBDEADLINE_OPEN",
+          "closed_without_send_condition": "W1_SUBDEADLINE_NOT_OPEN",
+          "valid_output_schema": "ForecastProposal.v1",
+          "data_hash_visibility": [
+            "origin_packet_raw_data_hash",
+            "planned_key_manifest_hash"
+          ],
+          "parent_hash_visibility": []
+        },
+        {
+          "slot_id": "w2",
+          "role_id": "w2_robust_change_forecaster",
+          "parents": [],
+          "open_condition": "WORKFLOW_STARTED_AND_W2_SUBDEADLINE_OPEN",
+          "closed_without_send_condition": "W2_SUBDEADLINE_NOT_OPEN",
+          "valid_output_schema": "ForecastProposal.v1",
+          "data_hash_visibility": [
+            "origin_packet_raw_data_hash",
+            "planned_key_manifest_hash"
+          ],
+          "parent_hash_visibility": []
+        },
+        {
+          "slot_id": "w3",
+          "role_id": "w3_uncertainty_forecaster",
+          "parents": [],
+          "open_condition": "WORKFLOW_STARTED_AND_W3_SUBDEADLINE_OPEN",
+          "closed_without_send_condition": "W3_SUBDEADLINE_NOT_OPEN",
+          "valid_output_schema": "ForecastProposal.v1",
+          "data_hash_visibility": [
+            "origin_packet_raw_data_hash",
+            "planned_key_manifest_hash"
+          ],
+          "parent_hash_visibility": []
+        },
+        {
+          "slot_id": "w4",
+          "role_id": "w4_bounded_adjudicator",
+          "parents": [
+            "w1",
+            "w2",
+            "w3"
+          ],
+          "open_condition": "W1_W2_W3_CLOSED_AND_W4_SUBDEADLINE_OPEN",
+          "closed_without_send_condition": "W1_W2_W3_CLOSED_AND_W4_SUBDEADLINE_NOT_OPEN",
+          "valid_output_schema": "FinalDecision.v1",
+          "data_hash_visibility": [
+            "origin_packet_raw_data_hash",
+            "planned_key_manifest_hash",
+            "common_fallback_hash"
+          ],
+          "parent_hash_visibility": [
+            "w1_output_artifact_hash",
+            "w2_output_artifact_hash",
+            "w3_output_artifact_hash"
+          ],
+          "parent_content_visibility": [
+            "w1_closed_artifact",
+            "w2_closed_artifact",
+            "w3_closed_artifact"
+          ]
+        }
+      ],
+      "local_finalization": {
+        "valid_w4_decision": "EXECUTE_DECLARED_A02_DECISION_AND_VALIDATE",
+        "deliberate_fallback": "COMMIT_COMMON_FALLBACK_AS_DELIBERATE_FALLBACK",
+        "invalid_or_absent_w4": "COMMIT_COMMON_FALLBACK_AS_ERROR_FALLBACK"
+      }
+    },
+    "A03-TYPED-ROUTE-4X": {
+      "candidate_id": "A03-TYPED-ROUTE-4X",
+      "planned_physical_slots": 4,
+      "provider_send_attempts_range": [
+        0,
+        4
+      ],
+      "packet_schema": "OriginPacketHybrid.v1",
+      "model_mapping": {
+        "w1": "M_X1",
+        "w2": "M_X2",
+        "w3": "M_X3",
+        "w4": "M_X4"
+      },
+      "returned_model_constraint": "M_X1_M_X2_M_X3_M_X4_PAIRWISE_DISTINCT",
+      "slots": [
+        {
+          "slot_id": "w1",
+          "role_id": "w1_typed_router",
+          "parents": [],
+          "open_condition": "WORKFLOW_STARTED_AND_W1_SUBDEADLINE_OPEN",
+          "closed_without_send_condition": "W1_SUBDEADLINE_NOT_OPEN",
+          "valid_output_schema": "RoutePlan.v1",
+          "data_hash_visibility": [
+            "origin_packet_hybrid_data_hash",
+            "planned_key_manifest_hash",
+            "numerical_candidate_registry_hash",
+            "action_registry_hash",
+            "route_registry_hash"
+          ],
+          "parent_hash_visibility": []
+        },
+        {
+          "slot_id": "w2",
+          "role_id": "w2_trend_specialist",
+          "parents": [
+            "w1"
+          ],
+          "open_condition": "W1_CLOSED_AND_W2_SUBDEADLINE_OPEN",
+          "closed_without_send_condition": "W1_CLOSED_AND_W2_SUBDEADLINE_NOT_OPEN",
+          "valid_output_schema": "A03SpecialistOutput.v1",
+          "output_artifact_hash_semantics": "SHA256_OF_CANONICAL_A03_SPECIALIST_OUTPUT_ENVELOPE",
+          "data_hash_visibility": [
+            "origin_packet_hybrid_data_hash",
+            "planned_key_manifest_hash",
+            "assigned_view_hash"
+          ],
+          "parent_hash_visibility": [
+            "w1_route_plan_or_local_default_hash"
+          ],
+          "parent_content_visibility": [
+            "w1_route_plan_or_local_route_default"
+          ]
+        },
+        {
+          "slot_id": "w3",
+          "role_id": "w3_uncertainty_specialist",
+          "parents": [
+            "w1"
+          ],
+          "open_condition": "W1_CLOSED_AND_W3_SUBDEADLINE_OPEN",
+          "closed_without_send_condition": "W1_CLOSED_AND_W3_SUBDEADLINE_NOT_OPEN",
+          "valid_output_schema": "A03SpecialistOutput.v1",
+          "output_artifact_hash_semantics": "SHA256_OF_CANONICAL_A03_SPECIALIST_OUTPUT_ENVELOPE",
+          "data_hash_visibility": [
+            "origin_packet_hybrid_data_hash",
+            "planned_key_manifest_hash",
+            "assigned_view_hash"
+          ],
+          "parent_hash_visibility": [
+            "w1_route_plan_or_local_default_hash"
+          ],
+          "parent_content_visibility": [
+            "w1_route_plan_or_local_route_default"
+          ]
+        },
+        {
+          "slot_id": "w4",
+          "role_id": "w4_typed_arbiter",
+          "parents": [
+            "w1",
+            "w2",
+            "w3"
+          ],
+          "open_condition": "W1_W2_W3_CLOSED_AND_W4_SUBDEADLINE_OPEN",
+          "closed_without_send_condition": "W1_W2_W3_CLOSED_AND_W4_SUBDEADLINE_NOT_OPEN",
+          "valid_output_schema": "FinalDecision.v1",
+          "data_hash_visibility": [
+            "origin_packet_hybrid_data_hash",
+            "planned_key_manifest_hash",
+            "action_registry_hash",
+            "common_fallback_hash"
+          ],
+          "parent_hash_visibility": [
+            "w1_route_plan_or_local_default_hash",
+            "w2_specialist_output_envelope_hash",
+            "w3_specialist_output_envelope_hash"
+          ],
+          "parent_content_visibility": [
+            "w1_route_plan_or_local_route_default",
+            "w2_specialist_output_envelope_or_worker_failure",
+            "w3_specialist_output_envelope_or_worker_failure"
+          ]
+        }
+      ],
+      "router_failure_transition": {
+        "trigger_states": [
+          "FINISHED_SCHEMA_INVALID",
+          "PROVIDER_ERROR",
+          "TRANSPORT_FAILURE_CONSUMED",
+          "TIMEOUT_CONSUMED",
+          "NOT_STARTED_DEADLINE"
+        ],
+        "local_artifact_schema": "RoutePlan.v1",
+        "local_role_id": "local_route_default",
+        "route_id": "R00_DEFAULT_N0_GLOBAL",
+        "route_origin": "LOCAL_DEFAULT_AFTER_W1_FAILURE",
+        "additional_provider_send_attempts": 0
+      },
+      "local_finalization": {
+        "valid_w4_decision": "EXECUTE_DECLARED_A03_ACTIONS_OR_AGGREGATION_AND_VALIDATE",
+        "deliberate_fallback": "COMMIT_COMMON_FALLBACK_AS_DELIBERATE_FALLBACK",
+        "invalid_or_absent_w4": "COMMIT_COMMON_FALLBACK_AS_ERROR_FALLBACK"
+      }
+    }
+  },
+  "registry_invariants": [
+    "EXACTLY_THREE_CANDIDATES",
+    "EACH_CANDIDATE_PLANS_EXACTLY_FOUR_PHYSICAL_SLOTS",
+    "EACH_SLOT_HAS_ZERO_OR_ONE_PROVIDER_SEND",
+    "EACH_CANDIDATE_HAS_ZERO_TO_FOUR_PROVIDER_SEND_ATTEMPTS",
+    "EVERY_PLANNED_SLOT_REACHES_ONE_TERMINAL_CLOSURE_STATE",
+    "FINALIZATION_DERIVES_ITS_SOLE_PARENT_LEDGER_FROM_THE_SAME_FOUR_DURABLE_CLOSURES",
+    "A03_R00_HASH_BINDS_THE_SAME_CELL_DURABLE_W1_WORKER_FAILURE_TRIGGER",
+    "FINISHED_VALID_FORECASTS_PASS_FULL_MANIFEST_QUANTILE_AND_DOMAIN_VALIDATION",
+    "DOWNSTREAM_SEND_REQUIRES_ALL_PARENT_CLOSURES_AND_OPEN_OWN_SUBDEADLINE",
+    "CLOSED_PARENT_FAILURE_DOES_NOT_SKIP_DOWNSTREAM_WHEN_OWN_SUBDEADLINE_OPEN",
+    "CLOSED_OWN_SUBDEADLINE_PRODUCES_NOT_STARTED_DEADLINE_AND_ZERO_SENDS",
+    "NO_RETRY_OR_CONTINUATION",
+    "LATE_RESPONSE_NEVER_OVERWRITES_CLOSURE",
+    "ALL_ARTIFACT_OBJECT_SCHEMAS_REJECT_ADDITIONAL_PROPERTIES",
+    "ALL_PROVIDER_PROMPTS_HAVE_EXACT_BYTES_AND_SHA256",
+    "ALL_A03_ROUTES_AND_ASSIGNMENTS_ARE_FINITE_AND_ENUMERATED",
+    "ALL_FINAL_DECISIONS_USE_CLOSED_ENUMS_AND_LOCAL_DETERMINISTIC_EXECUTION",
+    "COMMON_FALLBACK_IS_IDENTICAL_ACROSS_CANDIDATES"
+  ]
+}

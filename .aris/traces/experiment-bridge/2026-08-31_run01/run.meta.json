@@ -1,0 +1,17 @@
+{
+  "skill": "experiment-bridge",
+  "run_id": "2026-08-31_run01",
+  "started_at": "2026-08-31T04:51:51Z",
+  "executor": "codex",
+  "executor_model": null,
+  "executor_model_source": "unavailable",
+  "executor_family": "unknown",
+  "reviewer_model_source": "backend-reported",
+  "reviewer_family": "openai",
+  "reviewer_backend": "codex",
+  "native_evidence_id": null,
+  "native_evidence_path": null,
+  "family_relation": "unknown",
+  "independence_verified": "unverified",
+  "project_dir": "/home/user/multiagent-capacitor"
+}

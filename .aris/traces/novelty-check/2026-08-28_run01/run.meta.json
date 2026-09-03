@@ -1,0 +1,17 @@
+{
+  "skill": "novelty-check",
+  "run_id": "2026-08-28_run01",
+  "started_at": "2026-08-28T10:12:22Z",
+  "executor": "codex",
+  "executor_model": null,
+  "executor_model_source": "unavailable",
+  "executor_family": "unknown",
+  "reviewer_model_source": "backend-reported",
+  "reviewer_family": "openai",
+  "reviewer_backend": "codex",
+  "native_evidence_id": null,
+  "native_evidence_path": null,
+  "family_relation": "unknown",
+  "independence_verified": "unverified",
+  "project_dir": "/home/user/multiagent-capacitor"
+}

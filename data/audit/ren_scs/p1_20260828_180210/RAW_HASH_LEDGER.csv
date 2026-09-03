@@ -1,0 +1,2 @@
+item_id,filename,direct_url,expected_bytes,observed_bytes,published_md5,observed_md5,project_sha256,status
+figshare_file_20691603,raw.rar,https://ndownloader.figshare.com/files/20691603,2114703017,2114703017,26a7a663217c59377c83fb2a8274466b,26a7a663217c59377c83fb2a8274466b,a8f1083b887f95483561a94b624b323ff42814654ee7f23e7f95bc042fa258d8,PASS_EXACT_BYTES_MD5_SHA256

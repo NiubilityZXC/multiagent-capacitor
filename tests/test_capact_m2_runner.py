@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import json
 from dataclasses import replace
 
@@ -9,6 +10,7 @@ import experiments.vfps_agent.runner as runner_module
 
 from experiments.vfps_agent.actions import ActionSpace, BaseAction, BaseOperator
 from experiments.vfps_agent.ark_provider import (
+    ArkBindingError,
     ArkCapabilitySnapshot,
     ArkDecodeSpec,
     ArkModelRule,
@@ -18,6 +20,13 @@ from experiments.vfps_agent.ark_provider import (
     ArkRequestContract,
     ArkResponseFormat,
     ArkTransportResponse,
+)
+from experiments.vfps_agent.ark_https_transport import (
+    ArkOneShotHTTPSProfile,
+    ArkOneShotTransportOutcome,
+    ArkOneShotTransportReceipt,
+    ArkOneShotTransportSuccess,
+    ArkOneShotWireState,
 )
 from experiments.vfps_agent.canonical import canonical_bytes, canonical_sha256
 from experiments.vfps_agent.contracts import (
@@ -54,6 +63,7 @@ from experiments.vfps_agent.registry import (
     TargetContract,
     WeightTemplate,
 )
+from experiments.vfps_agent.response_schema import build_response_schema_registry
 from experiments.vfps_agent.runner import (
     CAP_M2_VERIFIER_HASH,
     CAPAccuracyRun,
@@ -384,8 +394,8 @@ def test_started_short_write_never_returns_or_sends_provider_request(tmp_path) -
         run.close()
 
 
-def test_same_version_weak_ark_schema_still_formally_falls_back(tmp_path) -> None:
-    """Local schema acceptance cannot replace the frozen CAP semantic verifier."""
+def test_same_version_weak_ark_schema_is_rejected_before_transport(tmp_path) -> None:
+    """A same-version toy schema cannot enter the formal CAP provider path."""
 
     registry = registry_fixture()
     packet, schema = packet_fixture(registry)
@@ -463,13 +473,128 @@ def test_same_version_weak_ark_schema_still_formally_falls_back(tmp_path) -> Non
             return ArkTransportResponse(200, raw_envelope, 1050)
 
     transport = OneShotTransport()
+    with pytest.raises(ArkBindingError, match="canonical arm response schema spec"):
+        ArkProviderAdapter(
+            policy=policy,
+            budget=budget,
+            contract=contract,
+            transport=transport,
+        )
+    assert transport.calls == 0
+
+
+def test_canonical_arm_schema_runs_through_formal_durable_provider_path(tmp_path) -> None:
+    registry = registry_fixture()
+    packet, schema = packet_fixture(registry)
+    budget = AccuracyBudgetSpec(96, 100, 1, 0)
+    capability = ArkCapabilitySnapshot(
+        model_list_artifact_sha256="a" * 64,
+        text_resources_artifact_sha256="b" * 64,
+        authenticated_model_ids=("kimi-k3",),
+        text_resource_model_ids=("kimi-k3",),
+        eligible_model_ids=("kimi-k3",),
+    )
+    spec = build_response_schema_registry(registry).spec_for(ArmId.D1_PACKET)
+    assert spec.response_schema is not None
+    transport_profile = ArkOneShotHTTPSProfile()
+    contract = ArkRequestContract(
+        prompt=ArkPromptSpec(
+            instructions="Return the canonical direct forecast object.",
+            packet_preamble="Causal packet follows.",
+        ),
+        decode=ArkDecodeSpec(),
+        model=ArkModelRule("kimi-k3", capability),
+        provider=ArkProviderRule(
+            ArkResponseFormat.PROMPT_ONLY,
+            "canonical_direct",
+            transport_profile_hash=transport_profile.profile_hash,
+            require_transport_receipt=True,
+        ),
+        response_schema=spec.response_schema,
+        response_schema_spec=spec,
+    )
+    policy = PolicySpec(
+        policy_id="provider-canonical-schema-formal-gate",
+        generation=1,
+        protocol=ProtocolId.ACCURACY_V1,
+        arm=ArmId.D1_PACKET,
+        provider_rule_hash=contract.provider.provider_rule_hash,
+        model_version_rule_hash=contract.model.model_version_rule_hash,
+        prompt_hash=contract.prompt.prompt_hash,
+        packet_schema_hash=schema.schema_hash,
+        response_schema_hash=contract.response_schema_hash,
+        grammar_hash=registry.action_manifest_hash,
+        registry_hash=registry.registry_hash,
+        decode_parameters_hash=contract.decode.decode_parameters_hash,
+        one_call_budget_hash=budget.budget_hash,
+        verifier_hash=CAP_M2_VERIFIER_HASH,
+        fallback_hash=registry.numerical.fallback_bundle.bundle_hash,
+        capability_snapshot_hash=capability.snapshot_hash,
+    )
+    raw_envelope = canonical_bytes(
+        {
+            "id": "resp_canonical_schema",
+            "model": "kimi-k3",
+            "object": "response",
+            "output": [
+                {
+                    "type": "message",
+                    "status": "completed",
+                    "role": "assistant",
+                    "content": [
+                        {
+                            "type": "output_text",
+                            "text": direct_response(registry),
+                        }
+                    ],
+                }
+            ],
+            "status": "completed",
+            "store": False,
+        }
+    )
+
+    class OneShotTransport:
+        calls = 0
+        profile = transport_profile
+
+        def send(self, request):
+            self.calls += 1
+            response = ArkTransportResponse(200, raw_envelope, 1050)
+            receipt = ArkOneShotTransportReceipt(
+                profile_hash=self.profile.profile_hash,
+                request_target=self.profile.request_target,
+                request_body_sha256=request.body_sha256,
+                request_body_bytes=len(request.body),
+                nonsecret_headers_sha256="c" * 64,
+                started_unix_ms=1000,
+                completed_unix_ms=1050,
+                auth_header_attached=True,
+                connection_objects=1,
+                request_calls=1,
+                getresponse_calls=1,
+                body_read_calls=1,
+                retries=0,
+                redirects_followed=0,
+                outcome=ArkOneShotTransportOutcome.RESPONSE_COMPLETE,
+                wire_state=ArkOneShotWireState.RESPONSE_COMPLETE,
+                failure_code=None,
+                http_status=200,
+                response_complete=True,
+                observed_response_sha256=hashlib.sha256(raw_envelope).hexdigest(),
+                observed_response_bytes=len(raw_envelope),
+                response_media_type="application/json",
+            )
+            return ArkOneShotTransportSuccess(response, receipt)
+
+    transport = OneShotTransport()
     adapter = ArkProviderAdapter(
         policy=policy,
         budget=budget,
         contract=contract,
         transport=transport,
     )
-    run_dir = tmp_path / "weak-schema"
+    run_dir = tmp_path / "canonical-schema"
     with CAPAccuracyRun(run_dir) as run:
         result = run.run_origin(
             provider=adapter,
@@ -480,9 +605,12 @@ def test_same_version_weak_ark_schema_still_formally_falls_back(tmp_path) -> Non
             started_unix_ms=1000,
         )
         assert result.attempt.status.value == "SUCCESS"
-        assert result.commit.disposition.value == "FALLBACK"
-        assert result.commit.reason_code.value == "INVALID_RESPONSE"
-        assert result.commit.prediction["error_fallback"] is True
+        assert result.commit.disposition.value == "PREDICTION"
+        assert result.commit.prediction["error_fallback"] is False
+        assert result.attempt.provider_evidence is not None
+        assert result.attempt.provider_evidence["request_contract"][
+            "response_schema_spec"
+        ]["arm_id"] == ArmId.D1_PACKET.value
         run.seal_prediction_phase()
     assert transport.calls == adapter.physical_attempts == 1
     assert verify_prediction_phase(run_dir)["status"] == "PASS"

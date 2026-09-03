@@ -1,0 +1,678 @@
+{
+  "schema_version": "cap-act.plan-a-hypothesis-registry.v1",
+  "status": "UNAPPROVED_P2_BLOCKED",
+  "generated_at": "2026-08-28T20:30:00+08:00",
+  "authority": {
+    "current_scope": "offline protocol specification only",
+    "does_not_authorize": [
+      "P2 fitting or scoring",
+      "P3",
+      "development API",
+      "P4/P5",
+      "model training",
+      "SOH/RUL construction or scoring",
+      "formal outer evaluation",
+      "real LLM capacitor prediction"
+    ]
+  },
+  "canonical_pins": {
+    "refine-logs/EXPERIMENT_PLAN.md": "df968d2e7ba33748043e547165143d9247358afca573946f3dde573c8c04b6d2",
+    "refine-logs/round-3-refinement.md": "d4d40b0a7e3f5c9030bfe80e5ede3d059673c3b3c96122c9cf050097aa54f110"
+  },
+  "p2_parameter_slots": {
+    "P2_SLOT_DELTA_MIN": {
+      "status": "UNFROZEN_BLOCKED_P1_REN",
+      "type": "positive_number",
+      "required_basis": "engineering minimum effect plus numerical-only power audit"
+    },
+    "P2_SLOT_DELTA_NI": {
+      "status": "UNFROZEN_BLOCKED_P1_REN_AND_ENGINEERING_ACCEPTANCE",
+      "type": "positive_number",
+      "required_basis": "explicit engineering-owner acceptable degradation bound"
+    },
+    "P2_SLOT_WIS_HARM_MARGIN": {
+      "status": "UNFROZEN_BLOCKED_P1_REN",
+      "type": "number",
+      "required_basis": "pre-API interval-quality harm bound"
+    },
+    "P2_SLOT_ERROR_FALLBACK_HARM_MARGIN": {
+      "status": "UNFROZEN_BLOCKED_P1_REN",
+      "type": "number",
+      "required_basis": "pre-API absolute comparative-rate harm bound"
+    },
+    "P2_SLOT_DEADLINE_COMPLETION_HARM_LOWER_BOUND": {
+      "status": "UNFROZEN_BLOCKED_P1_REN",
+      "type": "number",
+      "required_basis": "pre-API lower bound for ARCH1 minus comparator completion"
+    },
+    "P2_SLOT_R_MAX": {
+      "status": "UNFROZEN_BLOCKED_P1_REN",
+      "type": "probability",
+      "required_basis": "absolute ARCH1 ERROR_FALLBACK ceiling"
+    },
+    "P2_SLOT_R_REC": {
+      "status": "UNFROZEN_REQUIRES_RESILIENCE_V1_MANIFEST",
+      "type": "probability",
+      "required_basis": "absolute no-retransmission crash-closure recovery floor"
+    },
+    "P2_SLOT_Q_MIN": {
+      "status": "UNFROZEN_BLOCKED_P1_REN",
+      "type": "probability",
+      "required_basis": "absolute ARCH1 error-free closed completion floor"
+    },
+    "P2_SLOT_OPERATIONAL_SUPERIORITY_MARGIN": {
+      "status": "UNFROZEN_BLOCKED_P1_REN",
+      "type": "number",
+      "required_basis": "pre-API comparative operational improvement margin"
+    },
+    "P2_SLOT_TARGET_HORIZON_REGISTRY_HASH": {
+      "status": "UNFROZEN_BLOCKED_P1_REN",
+      "type": "sha256"
+    },
+    "P2_SLOT_COMMON_MATURED_KEY_RULE_HASH": {
+      "status": "UNFROZEN_BLOCKED_P1_REN",
+      "type": "sha256"
+    },
+    "P2_SLOT_REPLICATE_AGGREGATION_RULE_HASH": {
+      "status": "UNFROZEN_BLOCKED_P1_REN",
+      "type": "sha256"
+    },
+    "P2_SLOT_WIS_NORMALIZATION_RULE_HASH": {
+      "status": "UNFROZEN_BLOCKED_P1_REN",
+      "type": "sha256"
+    },
+    "P2_SLOT_ACCURACY_BATCH_PROTOCOL_STRATA_MANIFEST_HASH": {
+      "status": "UNFROZEN_BLOCKED_P1_REN",
+      "type": "sha256"
+    },
+    "P2_SLOT_PRIMARY_BOOTSTRAP_SEED_MANIFEST_HASH": {
+      "status": "UNFROZEN_P2",
+      "type": "sha256"
+    },
+    "P2_SLOT_RESILIENCE_V1_FAULT_MANIFEST_HASH": {
+      "status": "UNFROZEN_P2",
+      "type": "sha256",
+      "required_contents": [
+        "fault_case_id",
+        "fault_cluster_id",
+        "fault_class",
+        "injection_point",
+        "expected_attempt_consumption",
+        "expected_no-retry_closure",
+        "seed",
+        "implementation_hash"
+      ]
+    },
+    "P2_SLOT_RESILIENCE_BOOTSTRAP_SEED_MANIFEST_HASH": {
+      "status": "UNFROZEN_P2",
+      "type": "sha256"
+    },
+    "P2_SLOT_CK_ELIGIBILITY_LEDGER_HASH": {
+      "status": "UNFROZEN_REQUIRES_P3_AND_FOLD_LOCAL_DEVELOPMENT",
+      "type": "sha256"
+    },
+    "P2_SLOT_SECONDARY_C2_PROCEDURE_HASH": {
+      "status": "UNFROZEN_P2",
+      "type": "sha256"
+    },
+    "P2_SLOT_SECONDARY_ARCH_D1RAW_PROCEDURE_HASH": {
+      "status": "UNFROZEN_P2",
+      "type": "sha256"
+    },
+    "P2_SLOT_SECONDARY_IF_PROCEDURE_HASH": {
+      "status": "UNFROZEN_P2",
+      "type": "sha256"
+    },
+    "P2_SLOT_SECONDARY_D4_PROCEDURE_HASH": {
+      "status": "UNFROZEN_P2",
+      "type": "sha256"
+    },
+    "P2_SLOT_SECONDARY_COVERAGE_PROCEDURE_HASH": {
+      "status": "UNFROZEN_P2",
+      "type": "sha256"
+    }
+  },
+  "resampling_registry": {
+    "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1": {
+      "lane": "accuracy_v1",
+      "independent_cluster": "physical_capacitor_unit",
+      "within_cluster_aggregation": "aggregate common matured planned keys within physical unit after the frozen API-replicate rule",
+      "strata_manifest": "P2_SLOT_ACCURACY_BATCH_PROTOCOL_STRATA_MANIFEST_HASH",
+      "stratum_weight": "n_s / sum_s(n_s), fixed from the sealed eligible-unit registry",
+      "resampling": "sample n_s physical-unit clusters with replacement within every stratum s",
+      "resamples": 10000,
+      "seed_manifest": "P2_SLOT_PRIMARY_BOOTSTRAP_SEED_MANIFEST_HASH",
+      "forbidden_independent_samples": [
+        "origin",
+        "window",
+        "horizon",
+        "row",
+        "API replicate"
+      ]
+    },
+    "RESILIENCE_FAULT_CLUSTER_STRATIFIED_V1": {
+      "lane": "resilience_v1",
+      "source_manifest": "P2_SLOT_RESILIENCE_V1_FAULT_MANIFEST_HASH",
+      "independent_cluster": "fault_cluster_id",
+      "within_cluster_aggregation": "mean verified no-retransmission closure over admitted fault cases in the fault cluster",
+      "stratification": "fault_class from the frozen resilience_v1 manifest",
+      "stratum_weight": "n_s / sum_s(n_s), fixed from the sealed admitted fault-cluster registry",
+      "resampling": "sample n_s fault clusters with replacement within every fault-class stratum s",
+      "resamples": 10000,
+      "seed_manifest": "P2_SLOT_RESILIENCE_BOOTSTRAP_SEED_MANIFEST_HASH",
+      "natural_accuracy_failures": "reported separately and never pooled into this resampling frame"
+    }
+  },
+  "component_p_value_algorithm": {
+    "id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1",
+    "effect_estimator": "theta_hat = sum_s((n_s/N) * mean_s(z_c)), where z_c is the sealed cluster-level contribution",
+    "standard_error": "se_hat = sqrt(sum_s((n_s/N)^2 * sample_variance_s(z_c) / n_s))",
+    "orientation": {
+      "less_than": -1,
+      "greater_than": 1
+    },
+    "observed_statistic": "T_obs = orientation * (theta_hat - margin) / se_hat",
+    "bootstrap_statistic": "T_b = orientation * (theta_hat_b - theta_hat) / se_hat_b",
+    "p_value": "(1 + count_b(T_b >= T_obs)) / (10000 + 1)",
+    "invalid_rule": "if any required stratum has fewer than two independent clusters, theta/se is nonfinite, se_hat is not positive, a required manifest/hash is missing, or the component is mechanically NA, set component p=1 and emit a typed BLOCKED/NA reason",
+    "no_posthoc_changes": "component direction, margin expression, cluster, strata, seed, and estimator are frozen before any confirmatory result"
+  },
+  "simultaneous_component_bounds": {
+    "label": "BONFERRONI_SIMULTANEOUS_COMPONENT_BOUND_NOT_HOLM_CI",
+    "family_alpha": 0.05,
+    "fixed_unique_component_count": 20,
+    "per_component_alpha_expression": "0.05 / 20",
+    "fixed_unique_component_ids": [
+      "A_POINT_SUP_N0",
+      "A_POINT_SUP_CK",
+      "A_POINT_NI_N0",
+      "A_POINT_NI_CK",
+      "A_WIS_HARM_N0",
+      "A_WIS_HARM_CK",
+      "A_ERROR_HARM_N0",
+      "A_ERROR_HARM_CK",
+      "A_DEADLINE_HARM_N0",
+      "A_DEADLINE_HARM_CK",
+      "A_ERROR_ABSOLUTE",
+      "A_DEADLINE_ABSOLUTE",
+      "A_RECOVERY_ABSOLUTE",
+      "A_OPERATIONAL_CK",
+      "B_D1_POINT_SUP_N0",
+      "B_D1_WIS_HARM_N0",
+      "B_D1_ERROR_HARM_N0",
+      "B_ACT_POINT_SUP_N0",
+      "B_ACT_WIS_HARM_N0",
+      "B_ACT_ERROR_HARM_N0"
+    ],
+    "bootstrap_pivot": "V_b = (theta_hat_b - theta_hat) / se_hat_b using the same 10000 sealed resamples as the component p-value",
+    "empirical_quantile": "sort V_b ascending and use Q(q)=V_(min(10000,max(1,ceil(q*10000))))",
+    "less_than_bound": "upper = theta_hat - Q(0.05/20) * se_hat",
+    "greater_than_bound": "lower = theta_hat - Q(1-0.05/20) * se_hat",
+    "na_policy": "NA components remain in the fixed count of 20; report an unfavorable infinite bound and do not recycle alpha",
+    "prohibition": "these are Bonferroni simultaneous component bounds, never Holm confidence intervals"
+  },
+  "holm_algorithm": {
+    "family_alpha": 0.05,
+    "fixed_hypothesis_slots": 7,
+    "sort": "ascending by (composite_p_value, hypothesis_id)",
+    "sequential_rejection": "at rank i=1..7, reject if p_(i) <= 0.05/(7-i+1); stop at the first non-rejection and reject no later hypotheses",
+    "adjusted_p_value": "holm_p_adj_(i) = min(1, max_{j<=i}((7-j+1)*p_(j))); map back to the fixed hypothesis_id",
+    "na_policy": "a mechanically NA hypothesis has composite p=1, remains one of seven slots, and never returns or reallocates alpha",
+    "ci_statement": "Holm applies only to seven composite p-values; no output may be labeled Holm CI"
+  },
+  "primary_registry": [
+    {
+      "slot": 1,
+      "hypothesis_id": "A-SUP-N0",
+      "claim_role": "Plan A superiority versus N0",
+      "required_components": [
+        {
+          "component_id": "A_POINT_SUP_N0",
+          "estimand": "unit-macro MASE(ARCH1) - unit-macro MASE(N0) on common matured planned keys",
+          "direction": "less_than",
+          "margin_slot": "P2_SLOT_DELTA_MIN",
+          "margin_expression": "-value(P2_SLOT_DELTA_MIN)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "A_WIS_HARM_N0",
+          "estimand": "unit-macro normalized WIS(ARCH1) - unit-macro normalized WIS(N0)",
+          "direction": "less_than",
+          "margin_slot": "P2_SLOT_WIS_HARM_MARGIN",
+          "margin_expression": "value(P2_SLOT_WIS_HARM_MARGIN)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "A_ERROR_HARM_N0",
+          "estimand": "unit-macro ERROR_FALLBACK fraction(ARCH1) - unit-macro ERROR_FALLBACK fraction(N0)",
+          "direction": "less_than",
+          "margin_slot": "P2_SLOT_ERROR_FALLBACK_HARM_MARGIN",
+          "margin_expression": "value(P2_SLOT_ERROR_FALLBACK_HARM_MARGIN)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "A_DEADLINE_HARM_N0",
+          "estimand": "unit-macro error-free closed completion by deadline(ARCH1) - corresponding fraction(N0)",
+          "direction": "greater_than",
+          "margin_slot": "P2_SLOT_DEADLINE_COMPLETION_HARM_LOWER_BOUND",
+          "margin_expression": "value(P2_SLOT_DEADLINE_COMPLETION_HARM_LOWER_BOUND)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        }
+      ],
+      "composite_p_value": "max(required component p-values)",
+      "na_rule": "if ARCH1 is BLOCKED_ARCH_DEV or this comparison is unavailable, composite p=1 with typed status"
+    },
+    {
+      "slot": 2,
+      "hypothesis_id": "A-SUP-CK",
+      "claim_role": "Plan A superiority versus exact fold-local C_k",
+      "required_components": [
+        {
+          "component_id": "A_POINT_SUP_CK",
+          "estimand": "unit-macro MASE(ARCH1) - unit-macro MASE(C_k) on common matured planned keys",
+          "direction": "less_than",
+          "margin_slot": "P2_SLOT_DELTA_MIN",
+          "margin_expression": "-value(P2_SLOT_DELTA_MIN)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "A_WIS_HARM_CK",
+          "estimand": "unit-macro normalized WIS(ARCH1) - unit-macro normalized WIS(C_k)",
+          "direction": "less_than",
+          "margin_slot": "P2_SLOT_WIS_HARM_MARGIN",
+          "margin_expression": "value(P2_SLOT_WIS_HARM_MARGIN)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "A_ERROR_HARM_CK",
+          "estimand": "unit-macro ERROR_FALLBACK fraction(ARCH1) - unit-macro ERROR_FALLBACK fraction(C_k)",
+          "direction": "less_than",
+          "margin_slot": "P2_SLOT_ERROR_FALLBACK_HARM_MARGIN",
+          "margin_expression": "value(P2_SLOT_ERROR_FALLBACK_HARM_MARGIN)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "A_DEADLINE_HARM_CK",
+          "estimand": "unit-macro error-free closed completion by deadline(ARCH1) - corresponding fraction(C_k)",
+          "direction": "greater_than",
+          "margin_slot": "P2_SLOT_DEADLINE_COMPLETION_HARM_LOWER_BOUND",
+          "margin_expression": "value(P2_SLOT_DEADLINE_COMPLETION_HARM_LOWER_BOUND)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        }
+      ],
+      "composite_p_value": "max(required component p-values)",
+      "na_rule": "if any required fold has C_k=NA_NO_MATCH or ARCH1 is blocked, composite p=1; do not form a subset-fold estimate"
+    },
+    {
+      "slot": 3,
+      "hypothesis_id": "A-NI-N0",
+      "claim_role": "Plan A noninferiority versus N0 with absolute reliability gates",
+      "required_components": [
+        {
+          "component_id": "A_POINT_NI_N0",
+          "estimand": "unit-macro MASE(ARCH1) - unit-macro MASE(N0) on common matured planned keys",
+          "direction": "less_than",
+          "margin_slot": "P2_SLOT_DELTA_NI",
+          "margin_expression": "value(P2_SLOT_DELTA_NI)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "A_WIS_HARM_N0",
+          "estimand": "unit-macro normalized WIS(ARCH1) - unit-macro normalized WIS(N0)",
+          "direction": "less_than",
+          "margin_slot": "P2_SLOT_WIS_HARM_MARGIN",
+          "margin_expression": "value(P2_SLOT_WIS_HARM_MARGIN)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "A_ERROR_HARM_N0",
+          "estimand": "unit-macro ERROR_FALLBACK fraction(ARCH1) - unit-macro ERROR_FALLBACK fraction(N0)",
+          "direction": "less_than",
+          "margin_slot": "P2_SLOT_ERROR_FALLBACK_HARM_MARGIN",
+          "margin_expression": "value(P2_SLOT_ERROR_FALLBACK_HARM_MARGIN)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "A_DEADLINE_HARM_N0",
+          "estimand": "unit-macro error-free closed completion by deadline(ARCH1) - corresponding fraction(N0)",
+          "direction": "greater_than",
+          "margin_slot": "P2_SLOT_DEADLINE_COMPLETION_HARM_LOWER_BOUND",
+          "margin_expression": "value(P2_SLOT_DEADLINE_COMPLETION_HARM_LOWER_BOUND)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "A_ERROR_ABSOLUTE",
+          "estimand": "unit-macro absolute ERROR_FALLBACK fraction(ARCH1)",
+          "direction": "less_than",
+          "margin_slot": "P2_SLOT_R_MAX",
+          "margin_expression": "value(P2_SLOT_R_MAX)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "A_DEADLINE_ABSOLUTE",
+          "estimand": "unit-macro absolute error-free closed completion by deadline(ARCH1)",
+          "direction": "greater_than",
+          "margin_slot": "P2_SLOT_Q_MIN",
+          "margin_expression": "value(P2_SLOT_Q_MIN)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "A_RECOVERY_ABSOLUTE",
+          "estimand": "absolute no-retransmission verified closure fraction on admitted resilience_v1 fault cases",
+          "direction": "greater_than",
+          "margin_slot": "P2_SLOT_R_REC",
+          "margin_expression": "value(P2_SLOT_R_REC)",
+          "resampling_id": "RESILIENCE_FAULT_CLUSTER_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        }
+      ],
+      "composite_p_value": "max(required component p-values)",
+      "na_rule": "if ARCH1 is blocked, any required parameter/manifest is missing, or resilience_v1 has no qualified exposure, composite p=1"
+    },
+    {
+      "slot": 4,
+      "hypothesis_id": "A-NI-CK",
+      "claim_role": "Plan A noninferiority versus exact fold-local C_k with absolute reliability gates",
+      "required_components": [
+        {
+          "component_id": "A_POINT_NI_CK",
+          "estimand": "unit-macro MASE(ARCH1) - unit-macro MASE(C_k) on common matured planned keys",
+          "direction": "less_than",
+          "margin_slot": "P2_SLOT_DELTA_NI",
+          "margin_expression": "value(P2_SLOT_DELTA_NI)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "A_WIS_HARM_CK",
+          "estimand": "unit-macro normalized WIS(ARCH1) - unit-macro normalized WIS(C_k)",
+          "direction": "less_than",
+          "margin_slot": "P2_SLOT_WIS_HARM_MARGIN",
+          "margin_expression": "value(P2_SLOT_WIS_HARM_MARGIN)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "A_ERROR_HARM_CK",
+          "estimand": "unit-macro ERROR_FALLBACK fraction(ARCH1) - unit-macro ERROR_FALLBACK fraction(C_k)",
+          "direction": "less_than",
+          "margin_slot": "P2_SLOT_ERROR_FALLBACK_HARM_MARGIN",
+          "margin_expression": "value(P2_SLOT_ERROR_FALLBACK_HARM_MARGIN)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "A_DEADLINE_HARM_CK",
+          "estimand": "unit-macro error-free closed completion by deadline(ARCH1) - corresponding fraction(C_k)",
+          "direction": "greater_than",
+          "margin_slot": "P2_SLOT_DEADLINE_COMPLETION_HARM_LOWER_BOUND",
+          "margin_expression": "value(P2_SLOT_DEADLINE_COMPLETION_HARM_LOWER_BOUND)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "A_ERROR_ABSOLUTE",
+          "estimand": "unit-macro absolute ERROR_FALLBACK fraction(ARCH1)",
+          "direction": "less_than",
+          "margin_slot": "P2_SLOT_R_MAX",
+          "margin_expression": "value(P2_SLOT_R_MAX)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "A_DEADLINE_ABSOLUTE",
+          "estimand": "unit-macro absolute error-free closed completion by deadline(ARCH1)",
+          "direction": "greater_than",
+          "margin_slot": "P2_SLOT_Q_MIN",
+          "margin_expression": "value(P2_SLOT_Q_MIN)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "A_RECOVERY_ABSOLUTE",
+          "estimand": "absolute no-retransmission verified closure fraction on admitted resilience_v1 fault cases",
+          "direction": "greater_than",
+          "margin_slot": "P2_SLOT_R_REC",
+          "margin_expression": "value(P2_SLOT_R_REC)",
+          "resampling_id": "RESILIENCE_FAULT_CLUSTER_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        }
+      ],
+      "composite_p_value": "max(required component p-values)",
+      "na_rule": "if any required fold has C_k=NA_NO_MATCH, ARCH1 is blocked, a required parameter/manifest is missing, or resilience_v1 has no qualified exposure, composite p=1"
+    },
+    {
+      "slot": 5,
+      "hypothesis_id": "A-OP-CK",
+      "claim_role": "Plan A comparative primary operational improvement with absolute reliability gates",
+      "required_components": [
+        {
+          "component_id": "A_OPERATIONAL_CK",
+          "estimand": "unit-macro ERROR_FREE_CLOSED_COMPLETION_BY_DEADLINE(ARCH1) - corresponding fraction(C_k)",
+          "direction": "greater_than",
+          "margin_slot": "P2_SLOT_OPERATIONAL_SUPERIORITY_MARGIN",
+          "margin_expression": "value(P2_SLOT_OPERATIONAL_SUPERIORITY_MARGIN)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "A_ERROR_ABSOLUTE",
+          "estimand": "unit-macro absolute ERROR_FALLBACK fraction(ARCH1)",
+          "direction": "less_than",
+          "margin_slot": "P2_SLOT_R_MAX",
+          "margin_expression": "value(P2_SLOT_R_MAX)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "A_DEADLINE_ABSOLUTE",
+          "estimand": "unit-macro absolute error-free closed completion by deadline(ARCH1)",
+          "direction": "greater_than",
+          "margin_slot": "P2_SLOT_Q_MIN",
+          "margin_expression": "value(P2_SLOT_Q_MIN)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "A_RECOVERY_ABSOLUTE",
+          "estimand": "absolute no-retransmission verified closure fraction on admitted resilience_v1 fault cases",
+          "direction": "greater_than",
+          "margin_slot": "P2_SLOT_R_REC",
+          "margin_expression": "value(P2_SLOT_R_REC)",
+          "resampling_id": "RESILIENCE_FAULT_CLUSTER_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        }
+      ],
+      "composite_p_value": "max(required component p-values)",
+      "na_rule": "if any required fold has C_k=NA_NO_MATCH, ARCH1 is blocked, a required parameter/manifest is missing, or resilience_v1 has no qualified exposure, composite p=1"
+    },
+    {
+      "slot": 6,
+      "hypothesis_id": "B-D1-N0",
+      "claim_role": "Plan B canonical D1-RAW superiority versus N0",
+      "required_components": [
+        {
+          "component_id": "B_D1_POINT_SUP_N0",
+          "estimand": "unit-macro MASE(D1-RAW) - unit-macro MASE(N0) on common matured planned keys",
+          "direction": "less_than",
+          "margin_slot": "P2_SLOT_DELTA_MIN",
+          "margin_expression": "-value(P2_SLOT_DELTA_MIN)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "B_D1_WIS_HARM_N0",
+          "estimand": "unit-macro normalized WIS(D1-RAW) - unit-macro normalized WIS(N0)",
+          "direction": "less_than",
+          "margin_slot": "P2_SLOT_WIS_HARM_MARGIN",
+          "margin_expression": "value(P2_SLOT_WIS_HARM_MARGIN)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "B_D1_ERROR_HARM_N0",
+          "estimand": "unit-macro ERROR_FALLBACK fraction(D1-RAW) - unit-macro ERROR_FALLBACK fraction(N0)",
+          "direction": "less_than",
+          "margin_slot": "P2_SLOT_ERROR_FALLBACK_HARM_MARGIN",
+          "margin_expression": "value(P2_SLOT_ERROR_FALLBACK_HARM_MARGIN)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        }
+      ],
+      "composite_p_value": "max(required component p-values)",
+      "na_rule": "if canonical Stop/Go or capability status makes the comparison unavailable, composite p=1 with typed status"
+    },
+    {
+      "slot": 7,
+      "hypothesis_id": "B-ACT-N0",
+      "claim_role": "Plan B canonical ACT1 superiority versus N0",
+      "required_components": [
+        {
+          "component_id": "B_ACT_POINT_SUP_N0",
+          "estimand": "unit-macro MASE(ACT1) - unit-macro MASE(N0) on common matured planned keys",
+          "direction": "less_than",
+          "margin_slot": "P2_SLOT_DELTA_MIN",
+          "margin_expression": "-value(P2_SLOT_DELTA_MIN)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "B_ACT_WIS_HARM_N0",
+          "estimand": "unit-macro normalized WIS(ACT1) - unit-macro normalized WIS(N0)",
+          "direction": "less_than",
+          "margin_slot": "P2_SLOT_WIS_HARM_MARGIN",
+          "margin_expression": "value(P2_SLOT_WIS_HARM_MARGIN)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        },
+        {
+          "component_id": "B_ACT_ERROR_HARM_N0",
+          "estimand": "unit-macro ERROR_FALLBACK fraction(ACT1) - unit-macro ERROR_FALLBACK fraction(N0)",
+          "direction": "less_than",
+          "margin_slot": "P2_SLOT_ERROR_FALLBACK_HARM_MARGIN",
+          "margin_expression": "value(P2_SLOT_ERROR_FALLBACK_HARM_MARGIN)",
+          "resampling_id": "ACCURACY_PAIRED_PHYSICAL_UNIT_STRATIFIED_V1",
+          "p_value_algorithm_id": "CENTERED_STUDENTIZED_STRATIFIED_CLUSTER_BOOTSTRAP_ONE_SIDED_V1"
+        }
+      ],
+      "composite_p_value": "max(required component p-values)",
+      "na_rule": "if canonical Stop/Go or capability status makes the comparison unavailable, composite p=1 with typed status"
+    }
+  ],
+  "tier_mapping": {
+    "PLAN_A_BASE": {
+      "required_rejections": [
+        "A-NI-N0",
+        "A-NI-CK",
+        "A-OP-CK"
+      ],
+      "required_simultaneous_component_bounds": [
+        "upper(A_POINT_NI_N0) < value(P2_SLOT_DELTA_NI)",
+        "upper(A_POINT_NI_CK) < value(P2_SLOT_DELTA_NI)",
+        "upper(A_WIS_HARM_N0) < value(P2_SLOT_WIS_HARM_MARGIN)",
+        "upper(A_WIS_HARM_CK) < value(P2_SLOT_WIS_HARM_MARGIN)",
+        "upper(A_ERROR_HARM_N0) < value(P2_SLOT_ERROR_FALLBACK_HARM_MARGIN)",
+        "upper(A_ERROR_HARM_CK) < value(P2_SLOT_ERROR_FALLBACK_HARM_MARGIN)",
+        "lower(A_DEADLINE_HARM_N0) > value(P2_SLOT_DEADLINE_COMPLETION_HARM_LOWER_BOUND)",
+        "lower(A_DEADLINE_HARM_CK) > value(P2_SLOT_DEADLINE_COMPLETION_HARM_LOWER_BOUND)",
+        "upper(A_ERROR_ABSOLUTE) <= value(P2_SLOT_R_MAX)",
+        "lower(A_DEADLINE_ABSOLUTE) >= value(P2_SLOT_Q_MIN)",
+        "lower(A_RECOVERY_ABSOLUTE) >= value(P2_SLOT_R_REC)",
+        "lower(A_OPERATIONAL_CK) > value(P2_SLOT_OPERATIONAL_SUPERIORITY_MARGIN)"
+      ],
+      "bound_family": "BONFERRONI_SIMULTANEOUS_COMPONENT_BOUND_NOT_HOLM_CI",
+      "additional_requirement": "P6 independent audit PASS",
+      "no_match_rule": "C_k=NA_NO_MATCH fixes two required slots at p=1, so base cannot trigger"
+    },
+    "PLAN_A_AGGRESSIVE": {
+      "required_tier": "PLAN_A_BASE",
+      "additional_required_rejections": [
+        "A-SUP-N0",
+        "A-SUP-CK"
+      ],
+      "additional_required_simultaneous_component_bounds": [
+        "upper(A_POINT_SUP_N0) < -value(P2_SLOT_DELTA_MIN)",
+        "upper(A_POINT_SUP_CK) < -value(P2_SLOT_DELTA_MIN)"
+      ],
+      "bound_family": "BONFERRONI_SIMULTANEOUS_COMPONENT_BOUND_NOT_HOLM_CI",
+      "additional_requirement": "P6 independent audit PASS"
+    }
+  },
+  "plan_b_storyline_state_machine": {
+    "after_frozen_statistics": "PENDING_P6",
+    "p6_pass_and_plan_a_base_not_met": "PLAN_B_TRIGGERED_AFTER_P6_PASS",
+    "p6_pass_and_plan_a_base_met": "PLAN_A_STORYLINE_AT_ACHIEVED_TIER",
+    "p6_fail_or_blocked": "STOP_P6_AUDIT",
+    "prohibition": "Plan B trigger never creates a new execution, arm, hypothesis, seal, or unseal"
+  },
+  "secondary_family_registry": [
+    {
+      "family_id": "SECONDARY_ARCH1_D1RAW",
+      "status": "UNAPPROVED_P2_PARAMETER_SLOT_PENDING",
+      "procedure_hash_slot": "P2_SLOT_SECONDARY_ARCH_D1RAW_PROCEDURE_HASH",
+      "contrasts": [
+        "ARCH1-D1-RAW"
+      ],
+      "primary_family_membership": false
+    },
+    {
+      "family_id": "SECONDARY_C2_CANONICAL",
+      "status": "UNAPPROVED_P2_PARAMETER_SLOT_PENDING",
+      "procedure_hash_slot": "P2_SLOT_SECONDARY_C2_PROCEDURE_HASH",
+      "contrasts": [
+        "D1-PACKET-D1-RAW",
+        "ACT1-D1-PACKET",
+        "ACT1-ENUM-ACTION",
+        "ACT1-H1",
+        "ACT1-RF1",
+        "ACT1-RC1"
+      ],
+      "primary_family_membership": false
+    },
+    {
+      "family_id": "SECONDARY_IF_REPRESENTATION",
+      "status": "UNAPPROVED_P2_PARAMETER_SLOT_PENDING",
+      "procedure_hash_slot": "P2_SLOT_SECONDARY_IF_PROCEDURE_HASH",
+      "contrasts": [
+        "IF1-ACT1"
+      ],
+      "primary_family_membership": false,
+      "claim_ceiling": "representation/schema effect only"
+    },
+    {
+      "family_id": "SECONDARY_D4_ROSTER",
+      "status": "UNAPPROVED_P2_PARAMETER_SLOT_PENDING",
+      "procedure_hash_slot": "P2_SLOT_SECONDARY_D4_PROCEDURE_HASH",
+      "contrasts": [
+        "D4-X-D4-H"
+      ],
+      "primary_family_membership": false,
+      "claim_ceiling": "sealed roster effect; not diversity causality"
+    },
+    {
+      "family_id": "SECONDARY_COVERAGE_HARM",
+      "status": "UNAPPROVED_P2_PARAMETER_SLOT_PENDING",
+      "procedure_hash_slot": "P2_SLOT_SECONDARY_COVERAGE_PROCEDURE_HASH",
+      "contrasts": [
+        "50-percent coverage deviation",
+        "80-percent coverage deviation",
+        "90-percent coverage deviation"
+      ],
+      "primary_family_membership": false
+    }
+  ]
+}

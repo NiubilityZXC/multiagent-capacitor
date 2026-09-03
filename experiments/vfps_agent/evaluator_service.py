@@ -35,6 +35,16 @@ from .contracts import (
     RevealedObservation,
     SealedSplitProvenance,
 )
+from .generation_barrier import (
+    FormalGenerationBinding,
+    GenerationBarrierError,
+    GenerationFinalizePermit,
+    make_finalize_permit,
+    verify_generation_plan,
+    verify_generation_prediction_barrier,
+    verify_finalize_permit,
+    verify_formal_generation_binding,
+)
 from .registry import CAPActionRegistry
 from .replay import BlindReplayService, HiddenEvent, verify_complete_run
 from .runner import CAPM2Error, build_causal_packet
@@ -110,6 +120,36 @@ _ERROR_CODES = frozenset(
         "INTERNAL_REJECTED",
     }
 )
+_JOINT_CELL_KEYS = frozenset(
+    {"schema_version", "cell_id", "session_id", "formal_binding_hash"}
+)
+_JOINT_UNSEAL_BODY_KEYS = frozenset(
+    {
+        "schema_version",
+        "generation_id",
+        "generation_plan_hash",
+        "generation_barrier_hash",
+        "master_seal_hash",
+        "human_approval_hash",
+        "outcome_availability_hash",
+        "statistics_executable_hash",
+        "joint_key_id",
+        "cells",
+    }
+)
+_JOINT_UNSEAL_KEYS = _JOINT_UNSEAL_BODY_KEYS | frozenset(
+    {"joint_unseal_hash", "auth_tag"}
+)
+_FORMAL_FINALIZE_KEYS = frozenset(
+    {
+        "schema_version",
+        "session_id",
+        "formal_binding_hash",
+        "permit",
+        "joint_unseal",
+        "auth_tag",
+    }
+)
 
 
 def _is_nonnegative_int(value: Any) -> bool:
@@ -126,6 +166,214 @@ def _hmac_hex(key: bytes, value: Mapping[str, Any]) -> str:
     return hmac.new(key, canonical_bytes(value), hashlib.sha256).hexdigest()
 
 
+@dataclass(frozen=True, slots=True)
+class GenerationJointUnsealCell:
+    """One evaluator session admitted into the single generation unseal."""
+
+    cell_id: str
+    session_id: str
+    formal_binding_hash: str
+
+    def __post_init__(self) -> None:
+        _require_hash(self.cell_id, "joint cell_id")
+        _require_hash(self.session_id, "joint session_id")
+        _require_hash(self.formal_binding_hash, "joint formal_binding_hash")
+
+    def record(self) -> dict[str, Any]:
+        return {
+            "schema_version": "CAPGenerationJointUnsealCell.v1",
+            "cell_id": self.cell_id,
+            "session_id": self.session_id,
+            "formal_binding_hash": self.formal_binding_hash,
+        }
+
+    @classmethod
+    def from_record(cls, record: Any) -> "GenerationJointUnsealCell":
+        if not isinstance(record, Mapping) or set(record) != _JOINT_CELL_KEYS:
+            raise EvaluatorProtocolError("joint-unseal cell schema mismatch")
+        if record["schema_version"] != "CAPGenerationJointUnsealCell.v1":
+            raise EvaluatorProtocolError("joint-unseal cell version mismatch")
+        return cls(
+            cell_id=record["cell_id"],
+            session_id=record["session_id"],
+            formal_binding_hash=record["formal_binding_hash"],
+        )
+
+
+@dataclass(frozen=True, slots=True)
+class GenerationJointUnsealAuthorization:
+    """Single HMAC-authorized transition from all-prediction to label access.
+
+    The authorization binds the complete admitted cell/session set and the
+    frozen aggregate-statistics executable.  It is issued once to an
+    exclusive durable path by the trusted evaluation plane.  Per-cell state
+    keys subsequently wrap this same immutable record; they cannot substitute
+    a different statistics program or a partial generation.
+    """
+
+    generation_id: str
+    generation_plan_hash: str
+    generation_barrier_hash: str
+    master_seal_hash: str
+    human_approval_hash: str
+    outcome_availability_hash: str
+    statistics_executable_hash: str
+    joint_key_id: str
+    cells: tuple[GenerationJointUnsealCell, ...]
+    auth_tag: str
+
+    def __post_init__(self) -> None:
+        for name in (
+            "generation_id",
+            "generation_plan_hash",
+            "generation_barrier_hash",
+            "master_seal_hash",
+            "human_approval_hash",
+            "outcome_availability_hash",
+            "statistics_executable_hash",
+            "joint_key_id",
+            "auth_tag",
+        ):
+            _require_hash(getattr(self, name), name)
+        if not isinstance(self.cells, tuple) or not self.cells or not all(
+            isinstance(item, GenerationJointUnsealCell) for item in self.cells
+        ):
+            raise EvaluatorProtocolError("joint-unseal requires typed cells")
+        if self.cells != tuple(sorted(self.cells, key=lambda item: item.cell_id)):
+            raise EvaluatorProtocolError("joint-unseal cells are not canonical")
+        if len({item.cell_id for item in self.cells}) != len(self.cells):
+            raise EvaluatorProtocolError("joint-unseal contains duplicate cells")
+        if len({item.session_id for item in self.cells}) != len(self.cells):
+            raise EvaluatorProtocolError("joint-unseal contains duplicate sessions")
+
+    def body(self) -> dict[str, Any]:
+        return {
+            "schema_version": "CAPGenerationJointUnsealAuthorization.v1",
+            "generation_id": self.generation_id,
+            "generation_plan_hash": self.generation_plan_hash,
+            "generation_barrier_hash": self.generation_barrier_hash,
+            "master_seal_hash": self.master_seal_hash,
+            "human_approval_hash": self.human_approval_hash,
+            "outcome_availability_hash": self.outcome_availability_hash,
+            "statistics_executable_hash": self.statistics_executable_hash,
+            "joint_key_id": self.joint_key_id,
+            "cells": [item.record() for item in self.cells],
+        }
+
+    @property
+    def joint_unseal_hash(self) -> str:
+        return canonical_sha256(self.body())
+
+    def record(self) -> dict[str, Any]:
+        result = self.body()
+        result["joint_unseal_hash"] = self.joint_unseal_hash
+        result["auth_tag"] = self.auth_tag
+        return result
+
+    @classmethod
+    def from_record(cls, record: Any) -> "GenerationJointUnsealAuthorization":
+        if not isinstance(record, Mapping) or set(record) != _JOINT_UNSEAL_KEYS:
+            raise EvaluatorProtocolError("joint-unseal authorization schema mismatch")
+        if record["schema_version"] != "CAPGenerationJointUnsealAuthorization.v1":
+            raise EvaluatorProtocolError("joint-unseal authorization version mismatch")
+        if not isinstance(record["cells"], list):
+            raise EvaluatorProtocolError("joint-unseal cells must be a list")
+        value = cls(
+            generation_id=record["generation_id"],
+            generation_plan_hash=record["generation_plan_hash"],
+            generation_barrier_hash=record["generation_barrier_hash"],
+            master_seal_hash=record["master_seal_hash"],
+            human_approval_hash=record["human_approval_hash"],
+            outcome_availability_hash=record["outcome_availability_hash"],
+            statistics_executable_hash=record["statistics_executable_hash"],
+            joint_key_id=record["joint_key_id"],
+            cells=tuple(
+                GenerationJointUnsealCell.from_record(item)
+                for item in record["cells"]
+            ),
+            auth_tag=record["auth_tag"],
+        )
+        if record["joint_unseal_hash"] != value.joint_unseal_hash:
+            raise EvaluatorProtocolError("joint-unseal authorization hash mismatch")
+        return value
+
+    def cell_by_id(self, cell_id: str) -> GenerationJointUnsealCell:
+        matches = [item for item in self.cells if item.cell_id == cell_id]
+        if len(matches) != 1:
+            raise EvaluatorProtocolError("joint-unseal cell is not exactly once")
+        return matches[0]
+
+
+@dataclass(frozen=True, slots=True)
+class EvaluatorFormalFinalizeAuthorization:
+    """Supervisor-authenticated release of one frozen generation cell.
+
+    The evaluator ``state_key`` authenticates this wrapper, which must contain
+    the already verified generation-wide joint-unseal record. Prediction code
+    receives neither signing key and cannot turn the HMAC-free deterministic
+    permit into a formal FINALIZE authorization by itself.
+    """
+
+    session_id: str
+    formal_binding_hash: str
+    permit: GenerationFinalizePermit
+    joint_unseal: GenerationJointUnsealAuthorization
+    auth_tag: str
+
+    def __post_init__(self) -> None:
+        _require_hash(self.session_id, "formal authorization session_id")
+        _require_hash(self.formal_binding_hash, "formal_binding_hash")
+        if not isinstance(self.permit, GenerationFinalizePermit):
+            raise EvaluatorProtocolError("formal authorization permit is not typed")
+        if not isinstance(self.joint_unseal, GenerationJointUnsealAuthorization):
+            raise EvaluatorProtocolError("formal authorization joint unseal is not typed")
+        _require_hash(self.auth_tag, "formal authorization auth_tag")
+
+    def body(self) -> dict[str, Any]:
+        return {
+            "schema_version": "CAPEvaluatorFormalFinalizeAuthorization.v1",
+            "session_id": self.session_id,
+            "formal_binding_hash": self.formal_binding_hash,
+            "permit": self.permit.record(),
+            "joint_unseal": self.joint_unseal.record(),
+        }
+
+    def record(self) -> dict[str, Any]:
+        result = self.body()
+        result["auth_tag"] = self.auth_tag
+        return result
+
+    @classmethod
+    def from_record(cls, record: Any) -> "EvaluatorFormalFinalizeAuthorization":
+        if not isinstance(record, Mapping) or set(record) != _FORMAL_FINALIZE_KEYS:
+            raise EvaluatorProtocolError("formal FINALIZE authorization schema mismatch")
+        if record["schema_version"] != "CAPEvaluatorFormalFinalizeAuthorization.v1":
+            raise EvaluatorProtocolError("formal FINALIZE authorization version mismatch")
+        try:
+            permit = GenerationFinalizePermit.from_record(record["permit"])
+            joint_unseal = GenerationJointUnsealAuthorization.from_record(
+                record["joint_unseal"]
+            )
+        except GenerationBarrierError as exc:
+            raise EvaluatorProtocolError("formal FINALIZE permit is invalid") from exc
+        return cls(
+            session_id=record["session_id"],
+            formal_binding_hash=record["formal_binding_hash"],
+            permit=permit,
+            joint_unseal=joint_unseal,
+            auth_tag=record["auth_tag"],
+        )
+
+
+def _formal_finalize_payload_shape(payload: Any) -> bool:
+    return (
+        isinstance(payload, Mapping)
+        and set(payload) == _FORMAL_FINALIZE_KEYS
+        and isinstance(payload.get("permit"), Mapping)
+        and isinstance(payload.get("joint_unseal"), Mapping)
+    )
+
+
 def _launch_binding_payload(
     *,
     event_payloads: Sequence[Mapping[str, Any]],
@@ -139,8 +387,9 @@ def _launch_binding_payload(
     allowed_conditions: Mapping[str, Any],
     train_error_summaries: Mapping[str, Any],
     diagnostic_bins: Mapping[str, Any],
+    formal_generation: FormalGenerationBinding | None = None,
 ) -> dict[str, Any]:
-    return {
+    payload = {
         "schema_version": "CAPEvaluatorLaunchBinding.v1",
         "events": list(event_payloads),
         "context": context,
@@ -160,6 +409,9 @@ def _launch_binding_payload(
         "train_error_summaries": dict(train_error_summaries),
         "diagnostic_bins": dict(diagnostic_bins),
     }
+    if formal_generation is not None:
+        payload["formal_generation"] = formal_generation.payload()
+    return payload
 
 
 def _secure_read(path: Path) -> bytes:
@@ -386,6 +638,11 @@ class _SessionJournal:
                         request_payload["checkpoint_record_hash"],
                         "state checkpoint_record_hash",
                     )
+                elif operation == "FINALIZE":
+                    if request_payload and not _formal_finalize_payload_shape(request_payload):
+                        raise EvaluatorProtocolError(
+                            "invalid formal FINALIZE payload in evaluator state"
+                        )
                 elif request_payload:
                     raise EvaluatorProtocolError("non-REVEAL evaluator state payload must be empty")
                 _require_hash(request_hash, "state request hash")
@@ -657,9 +914,12 @@ def _validate_request(
         raise EvaluatorProtocolError("request identity, order, chain, hash, or HMAC mismatch")
     operation = request["operation"]
     payload = request["payload"]
-    if operation in {"BOOTSTRAP", "FINALIZE"}:
+    if operation == "BOOTSTRAP":
         if payload:
             raise EvaluatorProtocolError(f"{operation} request payload must be empty")
+    elif operation == "FINALIZE":
+        if payload and not _formal_finalize_payload_shape(payload):
+            raise EvaluatorProtocolError("formal FINALIZE request payload schema mismatch")
     elif set(payload) != {"checkpoint_record_hash"}:
         raise EvaluatorProtocolError("REVEAL request payload schema mismatch")
     else:
@@ -757,12 +1017,326 @@ def _validate_ready(raw: bytes, capability: bytes, session_id: str) -> int:
     return frame["pid"]
 
 
+def _verify_formal_launch(
+    formal_generation: FormalGenerationBinding | None,
+    *,
+    run_dir: str | os.PathLike[str],
+    context: int,
+    event_count: int,
+    split: SealedSplitProvenance,
+    registry: CAPActionRegistry,
+    allowed_policy_hashes: Sequence[str],
+) -> None:
+    if formal_generation is None:
+        return
+    try:
+        cell = verify_formal_generation_binding(formal_generation, run_dir=run_dir)
+    except GenerationBarrierError as exc:
+        raise EvaluatorProtocolError("formal generation launch binding is invalid") from exc
+    planned_manifest_hash = canonical_sha256(
+        [item.token for item in registry.numerical.planned_keys]
+    )
+    if (
+        cell.context != context
+        or cell.expected_revealed_count != event_count
+        or cell.split_hash != split.seal_hash
+        or cell.registry_hash != registry.registry_hash
+        or cell.planned_manifest_hash != planned_manifest_hash
+        or tuple(allowed_policy_hashes) != (cell.policy_hash,)
+    ):
+        raise EvaluatorProtocolError(
+            "formal generation launch configuration differs from its frozen cell"
+        )
+
+
+def _write_joint_unseal_exclusive(
+    path: str | os.PathLike[str],
+    authorization: GenerationJointUnsealAuthorization,
+) -> None:
+    target = Path(path)
+    parent = target.parent
+    try:
+        parent_metadata = parent.lstat()
+    except OSError as exc:
+        raise EvaluatorProtocolError("joint-unseal artifact parent is unavailable") from exc
+    if stat.S_ISLNK(parent_metadata.st_mode) or not stat.S_ISDIR(
+        parent_metadata.st_mode
+    ):
+        raise EvaluatorProtocolError("joint-unseal artifact parent is unsafe")
+    if target.exists() or target.is_symlink():
+        raise EvaluatorProtocolError("joint-unseal authorization already exists")
+    raw = canonical_bytes(authorization.record())
+    flags = os.O_WRONLY | os.O_CREAT | os.O_EXCL | getattr(os, "O_NOFOLLOW", 0)
+    try:
+        descriptor = os.open(target, flags, 0o600)
+        try:
+            offset = 0
+            while offset < len(raw):
+                written = os.write(descriptor, raw[offset:])
+                if written <= 0:
+                    raise EvaluatorProtocolError("short joint-unseal artifact write")
+                offset += written
+            os.fsync(descriptor)
+        finally:
+            os.close(descriptor)
+        _fsync_directory(parent)
+    except FileExistsError as exc:
+        raise EvaluatorProtocolError("joint-unseal authorization already exists") from exc
+
+
+def verify_generation_joint_unseal_authorization(
+    authorization: GenerationJointUnsealAuthorization | Mapping[str, Any],
+    *,
+    joint_key: bytes,
+) -> GenerationJointUnsealAuthorization:
+    """Verify the one global HMAC without exposing the key to predictors."""
+
+    if not isinstance(joint_key, bytes) or len(joint_key) < 32:
+        raise EvaluatorProtocolError("joint-unseal key must contain at least 256 bits")
+    typed = (
+        authorization
+        if isinstance(authorization, GenerationJointUnsealAuthorization)
+        else GenerationJointUnsealAuthorization.from_record(authorization)
+    )
+    if (
+        typed.joint_key_id != hashlib.sha256(joint_key).hexdigest()
+        or not hmac.compare_digest(_hmac_hex(joint_key, typed.body()), typed.auth_tag)
+    ):
+        raise EvaluatorProtocolError("joint-unseal HMAC mismatch")
+    return typed
+
+
+def issue_generation_joint_unseal_authorization(
+    supervisors: Sequence["EvaluatorSupervisor"],
+    *,
+    joint_key: bytes,
+    statistics_executable_hash: str,
+    authorization_path: str | os.PathLike[str],
+) -> GenerationJointUnsealAuthorization:
+    """Atomically authorize the exact complete generation once.
+
+    No cell receives a maturity permit here.  This function first proves that
+    every admitted cell has a distinct live evaluator session and that the
+    label-free generation barrier is complete, then publishes one HMAC-bound
+    artifact.  Individual supervisors may wrap only this exact artifact.
+    """
+
+    _require_hash(statistics_executable_hash, "statistics_executable_hash")
+    if not isinstance(joint_key, bytes) or len(joint_key) < 32:
+        raise EvaluatorProtocolError("joint-unseal key must contain at least 256 bits")
+    if not isinstance(supervisors, Sequence) or isinstance(supervisors, (str, bytes)):
+        raise EvaluatorProtocolError("joint-unseal supervisors must be a sequence")
+    typed_supervisors = tuple(supervisors)
+    if not typed_supervisors or not all(
+        isinstance(item, EvaluatorSupervisor) for item in typed_supervisors
+    ):
+        raise EvaluatorProtocolError("joint-unseal supervisors are not typed")
+    formal_bindings = [item._formal_generation for item in typed_supervisors]
+    if any(item is None for item in formal_bindings):
+        raise EvaluatorProtocolError("joint-unseal cannot include a local evaluator")
+    first = formal_bindings[0]
+    assert first is not None
+    if any(
+        item is None
+        or item.plan_path != first.plan_path
+        or item.barrier_path != first.barrier_path
+        or item.generation_plan_hash != first.generation_plan_hash
+        for item in formal_bindings
+    ):
+        raise EvaluatorProtocolError("joint-unseal evaluators differ by generation")
+
+    try:
+        plan = verify_generation_plan(first.plan_path)
+        barrier = verify_generation_prediction_barrier(
+            first.plan_path, first.barrier_path
+        )
+    except GenerationBarrierError as exc:
+        raise EvaluatorProtocolError("joint-unseal generation barrier is not ready") from exc
+    expected_cell_ids = {item.cell_id for item in plan.cells}
+    actual_cell_ids = {
+        item.cell_id for item in formal_bindings if item is not None
+    }
+    if len(actual_cell_ids) != len(formal_bindings) or actual_cell_ids != expected_cell_ids:
+        raise EvaluatorProtocolError(
+            "joint-unseal requires the exact complete admitted cell/session set"
+        )
+    if statistics_executable_hash != plan.statistics_executable_hash:
+        raise EvaluatorProtocolError(
+            "joint-unseal statistics executable differs from the frozen plan"
+        )
+    expected_authorization_path = Path(first.plan_path).parent / "GENERATION_JOINT_UNSEAL.json"
+    try:
+        supplied_authorization_path = Path(authorization_path)
+    except TypeError as exc:
+        raise EvaluatorProtocolError("joint-unseal authorization path is invalid") from exc
+    if (
+        not supplied_authorization_path.is_absolute()
+        or os.path.normpath(os.fspath(supplied_authorization_path))
+        != os.fspath(supplied_authorization_path)
+        or supplied_authorization_path != expected_authorization_path
+    ):
+        raise EvaluatorProtocolError(
+            "joint-unseal authorization must use the frozen generation path"
+        )
+    if any(item._joint_unseal_hash is not None for item in typed_supervisors):
+        raise EvaluatorProtocolError("generation joint-unseal was already issued")
+
+    cells: list[GenerationJointUnsealCell] = []
+    for supervisor in typed_supervisors:
+        binding = supervisor._formal_generation
+        assert binding is not None
+        if not supervisor._process.is_alive():
+            raise EvaluatorProtocolError("joint-unseal evaluator process is not alive")
+        try:
+            cell = verify_formal_generation_binding(
+                binding, run_dir=supervisor._run_dir
+            )
+        except GenerationBarrierError as exc:
+            raise EvaluatorProtocolError("joint-unseal formal binding drifted") from exc
+        _verify_formal_launch(
+            binding,
+            run_dir=supervisor._run_dir,
+            context=supervisor._context_length,
+            event_count=cell.expected_revealed_count,
+            split=supervisor._split,
+            registry=supervisor._registry,
+            allowed_policy_hashes=supervisor._allowed_policy_hashes,
+        )
+        cells.append(
+            GenerationJointUnsealCell(
+                cell_id=binding.cell_id,
+                session_id=supervisor._session_id,
+                formal_binding_hash=canonical_sha256(binding.payload()),
+            )
+        )
+    unsigned = GenerationJointUnsealAuthorization(
+        generation_id=plan.generation_id,
+        generation_plan_hash=plan.plan_hash,
+        generation_barrier_hash=barrier.barrier_hash,
+        master_seal_hash=plan.master_seal_hash,
+        human_approval_hash=plan.human_approval_hash,
+        outcome_availability_hash=plan.outcome_availability_hash,
+        statistics_executable_hash=statistics_executable_hash,
+        joint_key_id=hashlib.sha256(joint_key).hexdigest(),
+        cells=tuple(sorted(cells, key=lambda item: item.cell_id)),
+        auth_tag=_ZERO_HASH,
+    )
+    authorization = GenerationJointUnsealAuthorization(
+        generation_id=unsigned.generation_id,
+        generation_plan_hash=unsigned.generation_plan_hash,
+        generation_barrier_hash=unsigned.generation_barrier_hash,
+        master_seal_hash=unsigned.master_seal_hash,
+        human_approval_hash=unsigned.human_approval_hash,
+        outcome_availability_hash=unsigned.outcome_availability_hash,
+        statistics_executable_hash=unsigned.statistics_executable_hash,
+        joint_key_id=unsigned.joint_key_id,
+        cells=unsigned.cells,
+        auth_tag=_hmac_hex(joint_key, unsigned.body()),
+    )
+    _write_joint_unseal_exclusive(authorization_path, authorization)
+    for supervisor in typed_supervisors:
+        supervisor._joint_unseal_hash = authorization.joint_unseal_hash
+    return authorization
+
+
+def _issue_formal_finalize_authorization(
+    *,
+    formal_generation: FormalGenerationBinding,
+    state_key: bytes,
+    session_id: str,
+    joint_unseal: GenerationJointUnsealAuthorization,
+) -> EvaluatorFormalFinalizeAuthorization:
+    try:
+        permit = make_finalize_permit(
+            formal_generation.plan_path,
+            formal_generation.barrier_path,
+            cell_id=formal_generation.cell_id,
+        )
+        verify_finalize_permit(
+            formal_generation.plan_path,
+            formal_generation.barrier_path,
+            permit,
+            expected_cell_id=formal_generation.cell_id,
+            reverify_cell=True,
+        )
+    except GenerationBarrierError as exc:
+        raise EvaluatorProtocolError(
+            "formal generation prediction barrier is not ready"
+        ) from exc
+    binding_hash = canonical_sha256(formal_generation.payload())
+    unsigned = EvaluatorFormalFinalizeAuthorization(
+        session_id=session_id,
+        formal_binding_hash=binding_hash,
+        permit=permit,
+        joint_unseal=joint_unseal,
+        auth_tag="0" * 64,
+    )
+    return EvaluatorFormalFinalizeAuthorization(
+        session_id=session_id,
+        formal_binding_hash=binding_hash,
+        permit=permit,
+        joint_unseal=joint_unseal,
+        auth_tag=_hmac_hex(state_key, unsigned.body()),
+    )
+
+
+def _verify_formal_finalize_authorization(
+    payload: Mapping[str, Any],
+    *,
+    formal_generation: FormalGenerationBinding,
+    state_key: bytes,
+    session_id: str,
+    run_dir: str | os.PathLike[str],
+) -> None:
+    authorization = EvaluatorFormalFinalizeAuthorization.from_record(payload)
+    binding_hash = canonical_sha256(formal_generation.payload())
+    joint_cell = authorization.joint_unseal.cell_by_id(formal_generation.cell_id)
+    if (
+        authorization.session_id != session_id
+        or authorization.formal_binding_hash != binding_hash
+        or joint_cell.session_id != session_id
+        or joint_cell.formal_binding_hash != binding_hash
+        or authorization.joint_unseal.generation_id
+        != formal_generation.generation_id
+        or authorization.joint_unseal.generation_plan_hash
+        != formal_generation.generation_plan_hash
+        or authorization.joint_unseal.master_seal_hash
+        != formal_generation.master_seal_hash
+        or authorization.joint_unseal.human_approval_hash
+        != formal_generation.human_approval_hash
+        or authorization.joint_unseal.outcome_availability_hash
+        != formal_generation.outcome_availability_hash
+        or authorization.joint_unseal.statistics_executable_hash
+        != formal_generation.statistics_executable_hash
+        or not hmac.compare_digest(
+            _hmac_hex(state_key, authorization.body()), authorization.auth_tag
+        )
+    ):
+        raise EvaluatorProtocolError("formal FINALIZE authorization HMAC mismatch")
+    try:
+        verify_formal_generation_binding(formal_generation, run_dir=run_dir)
+        verify_finalize_permit(
+            formal_generation.plan_path,
+            formal_generation.barrier_path,
+            authorization.permit,
+            expected_cell_id=formal_generation.cell_id,
+            reverify_cell=True,
+        )
+    except GenerationBarrierError as exc:
+        raise EvaluatorProtocolError(
+            "formal FINALIZE plan, barrier, or cell receipt is invalid"
+        ) from exc
+
+
 def _run_operation(
     service: BlindReplayService,
     operation: str,
     payload: Mapping[str, Any],
     *,
     context: int,
+    formal_generation: FormalGenerationBinding | None,
+    state_key: bytes,
+    session_id: str,
 ) -> dict[str, Any]:
     if operation == "BOOTSTRAP":
         return {
@@ -772,6 +1346,23 @@ def _run_operation(
         observation = service.reveal_next_after_checkpoint(payload["checkpoint_record_hash"])
         return {"observation": _observation_payload(observation)}
     if operation == "FINALIZE":
+        if formal_generation is None:
+            if payload:
+                raise EvaluatorProtocolError(
+                    "legacy FINALIZE cannot carry formal generation authorization"
+                )
+        else:
+            if not payload:
+                raise EvaluatorProtocolError(
+                    "formal generation FINALIZE requires supervisor authorization"
+                )
+            _verify_formal_finalize_authorization(
+                payload,
+                formal_generation=formal_generation,
+                state_key=state_key,
+                session_id=session_id,
+                run_dir=service.paths.root,
+            )
         run_seal_hash = service.seal_access_and_mature()
         report = verify_complete_run(service.paths.root, context=context)
         return {
@@ -868,6 +1459,7 @@ def _evaluator_main(
     allowed_conditions: Mapping[str, Any],
     train_error_summaries: Mapping[str, Any],
     diagnostic_bins: Mapping[str, Any],
+    formal_generation: FormalGenerationBinding | None,
     session_id: str,
     capability: bytes,
     state_key: bytes,
@@ -879,6 +1471,15 @@ def _evaluator_main(
     journal: _SessionJournal | None = None
     try:
         events = _events_from_payload(event_payloads)
+        _verify_formal_launch(
+            formal_generation,
+            run_dir=run_dir,
+            context=context,
+            event_count=len(events),
+            split=split,
+            registry=registry,
+            allowed_policy_hashes=allowed_policy_hashes,
+        )
         launch_binding = _launch_binding_payload(
             event_payloads=event_payloads,
             context=context,
@@ -891,6 +1492,7 @@ def _evaluator_main(
             allowed_conditions=allowed_conditions,
             train_error_summaries=train_error_summaries,
             diagnostic_bins=diagnostic_bins,
+            formal_generation=formal_generation,
         )
         hidden_binding_tag = hmac.new(
             state_key, canonical_bytes(launch_binding), hashlib.sha256
@@ -988,7 +1590,13 @@ def _evaluator_main(
                 )
             try:
                 result = _run_operation(
-                    service, request["operation"], request["payload"], context=context
+                    service,
+                    request["operation"],
+                    request["payload"],
+                    context=context,
+                    formal_generation=formal_generation,
+                    state_key=state_key,
+                    session_id=session_id,
                 )
                 if fault_after_inflight == request["operation"] and not replaying_completed:
                     # Test hook: the operation's durable side effect (notably
@@ -1099,6 +1707,9 @@ class EvaluatorClient:
         "_conditions",
         "_train",
         "_diagnostics",
+        "_formal_generation_plan_hash",
+        "_formal_generation_cell_id",
+        "_formal_binding_hash",
         "_closed",
         "_evaluator_pid",
     )
@@ -1117,6 +1728,7 @@ class EvaluatorClient:
         allowed_conditions: Mapping[str, Any],
         train_error_summaries: Mapping[str, Any],
         diagnostic_bins: Mapping[str, Any],
+        formal_generation: FormalGenerationBinding | None,
         evaluator_pid: int,
     ) -> None:
         self._connection = connection
@@ -1136,6 +1748,19 @@ class EvaluatorClient:
         self._conditions = dict(allowed_conditions)
         self._train = dict(train_error_summaries)
         self._diagnostics = dict(diagnostic_bins)
+        self._formal_generation_plan_hash = (
+            formal_generation.generation_plan_hash
+            if formal_generation is not None
+            else None
+        )
+        self._formal_generation_cell_id = (
+            formal_generation.cell_id if formal_generation is not None else None
+        )
+        self._formal_binding_hash = (
+            canonical_sha256(formal_generation.payload())
+            if formal_generation is not None
+            else None
+        )
         self._closed = False
         self._evaluator_pid = evaluator_pid
 
@@ -1301,8 +1926,49 @@ class EvaluatorClient:
             raise EvaluatorProtocolError("evaluator returned a non-causal reveal")
         return observation
 
-    def finalize_and_score(self, *, timeout: float = 30.0) -> EvaluatorResult:
-        payload = self._request("FINALIZE", {}, timeout=timeout)
+    def finalize_and_score(
+        self,
+        *,
+        formal_authorization: (
+            EvaluatorFormalFinalizeAuthorization | Mapping[str, Any] | None
+        ) = None,
+        timeout: float = 30.0,
+    ) -> EvaluatorResult:
+        if self._formal_generation_plan_hash is None:
+            if formal_authorization is not None:
+                raise EvaluatorProtocolError(
+                    "legacy evaluator cannot accept formal generation authorization"
+                )
+            request_payload: dict[str, Any] = {}
+        else:
+            if formal_authorization is None:
+                raise EvaluatorProtocolError(
+                    "formal generation evaluator requires supervisor authorization"
+                )
+            authorization = (
+                formal_authorization
+                if isinstance(
+                    formal_authorization, EvaluatorFormalFinalizeAuthorization
+                )
+                else EvaluatorFormalFinalizeAuthorization.from_record(
+                    formal_authorization
+                )
+            )
+            if (
+                authorization.session_id != self._session_id
+                or authorization.formal_binding_hash != self._formal_binding_hash
+                or authorization.permit.generation_plan_hash
+                != self._formal_generation_plan_hash
+                or authorization.permit.cell_id
+                != self._formal_generation_cell_id
+                or authorization.joint_unseal.generation_plan_hash
+                != self._formal_generation_plan_hash
+            ):
+                raise EvaluatorProtocolError(
+                    "formal generation authorization differs from this client"
+                )
+            request_payload = authorization.record()
+        payload = self._request("FINALIZE", request_payload, timeout=timeout)
         expected = {
             "run_seal_hash", "prediction_count", "execution_count", "maturity_count",
             "matured_count", "never_matured_count",
@@ -1343,7 +2009,8 @@ class EvaluatorSupervisor:
         "_context_length", "_causal_schema", "_split", "_registry", "_packet_kind",
         "_allowed_policy_hashes",
         "_normalization", "_conditions", "_train", "_diagnostics", "_fault_after_inflight",
-        "_fault_after_completed",
+        "_fault_after_completed", "_formal_generation",
+        "_formal_authorization_issued", "_joint_unseal_hash",
     )
 
     def __init__(
@@ -1365,6 +2032,7 @@ class EvaluatorSupervisor:
         allowed_conditions: Mapping[str, Any],
         train_error_summaries: Mapping[str, Any],
         diagnostic_bins: Mapping[str, Any],
+        formal_generation: FormalGenerationBinding | None,
         fault_after_inflight: str | None,
         fault_after_completed: str | None,
     ) -> None:
@@ -1384,6 +2052,9 @@ class EvaluatorSupervisor:
         self._conditions = dict(allowed_conditions)
         self._train = dict(train_error_summaries)
         self._diagnostics = dict(diagnostic_bins)
+        self._formal_generation = formal_generation
+        self._formal_authorization_issued = False
+        self._joint_unseal_hash: str | None = None
         self._fault_after_inflight = fault_after_inflight
         self._fault_after_completed = fault_after_completed
 
@@ -1399,6 +2070,82 @@ class EvaluatorSupervisor:
         if self._process.is_alive():
             self._process.kill()
         self._process.join(timeout=5.0)
+
+    def issue_formal_finalize_authorization(
+        self,
+        *,
+        joint_unseal: GenerationJointUnsealAuthorization | Mapping[str, Any],
+        joint_key: bytes,
+    ) -> EvaluatorFormalFinalizeAuthorization:
+        """Sign one FINALIZE only after the complete generation barrier passes.
+
+        The supervisor is trusted and must not cross into prediction code.  The
+        returned authorization is session/cell/barrier bound and cannot be
+        generated from the prediction client's capability.
+        """
+
+        if self._formal_generation is None:
+            raise EvaluatorProtocolError("evaluator was not launched in formal generation mode")
+        if self._formal_authorization_issued:
+            raise EvaluatorProtocolError("formal FINALIZE authorization was already issued")
+        if not self._process.is_alive():
+            raise EvaluatorProtocolError("formal evaluator process is not alive")
+        try:
+            cell = verify_formal_generation_binding(
+                self._formal_generation, run_dir=self._run_dir
+            )
+        except GenerationBarrierError as exc:
+            raise EvaluatorProtocolError("formal generation binding is no longer valid") from exc
+        _verify_formal_launch(
+            self._formal_generation,
+            run_dir=self._run_dir,
+            context=self._context_length,
+            event_count=cell.expected_revealed_count,
+            split=self._split,
+            registry=self._registry,
+            allowed_policy_hashes=self._allowed_policy_hashes,
+        )
+        verified_joint = verify_generation_joint_unseal_authorization(
+            joint_unseal, joint_key=joint_key
+        )
+        if self._joint_unseal_hash != verified_joint.joint_unseal_hash:
+            raise EvaluatorProtocolError(
+                "formal FINALIZE does not use this generation's issued joint unseal"
+            )
+        joint_cell = verified_joint.cell_by_id(self._formal_generation.cell_id)
+        binding_hash = canonical_sha256(self._formal_generation.payload())
+        try:
+            plan = verify_generation_plan(self._formal_generation.plan_path)
+            barrier = verify_generation_prediction_barrier(
+                self._formal_generation.plan_path,
+                self._formal_generation.barrier_path,
+            )
+        except GenerationBarrierError as exc:
+            raise EvaluatorProtocolError("formal generation barrier drifted") from exc
+        if (
+            verified_joint.generation_id != plan.generation_id
+            or verified_joint.generation_plan_hash != plan.plan_hash
+            or verified_joint.generation_barrier_hash != barrier.barrier_hash
+            or verified_joint.master_seal_hash != plan.master_seal_hash
+            or verified_joint.human_approval_hash != plan.human_approval_hash
+            or verified_joint.outcome_availability_hash
+            != plan.outcome_availability_hash
+            or {item.cell_id for item in verified_joint.cells}
+            != {item.cell_id for item in plan.cells}
+            or joint_cell.session_id != self._session_id
+            or joint_cell.formal_binding_hash != binding_hash
+        ):
+            raise EvaluatorProtocolError(
+                "joint-unseal authorization differs from the complete generation"
+            )
+        result = _issue_formal_finalize_authorization(
+            formal_generation=self._formal_generation,
+            state_key=self._state_key,
+            session_id=self._session_id,
+            joint_unseal=verified_joint,
+        )
+        self._formal_authorization_issued = True
+        return result
 
     def restart(
         self,
@@ -1455,6 +2202,7 @@ class EvaluatorSupervisor:
                 "allowed_conditions": self._conditions,
                 "train_error_summaries": self._train,
                 "diagnostic_bins": self._diagnostics,
+                "formal_generation": self._formal_generation,
                 "session_id": self._session_id,
                 "capability": self._capability,
                 "state_key": self._state_key,
@@ -1511,6 +2259,7 @@ def start_isolated_evaluator(
     allowed_conditions: Mapping[str, Any] | None = None,
     train_error_summaries: Mapping[str, Any] | None = None,
     diagnostic_bins: Mapping[str, Any] | None = None,
+    formal_generation: FormalGenerationBinding | None = None,
     start_method: str = "spawn",
     timeout: float = 10.0,
     _fault_after_inflight: str | None = None,
@@ -1538,6 +2287,15 @@ def start_isolated_evaluator(
         raise EvaluatorProtocolError(
             "isolated evaluator requires a non-empty unique frozen policy-hash authority"
         )
+    _verify_formal_launch(
+        formal_generation,
+        run_dir=root,
+        context=context,
+        event_count=len(event_payloads),
+        split=split,
+        registry=registry,
+        allowed_policy_hashes=policy_hashes,
+    )
     process_context = multiprocessing.get_context(start_method)
     parent_connection, child_connection = process_context.Pipe(duplex=True)
     capability = secrets.token_bytes(32)
@@ -1568,6 +2326,7 @@ def start_isolated_evaluator(
         allowed_conditions=conditions,
         train_error_summaries=train,
         diagnostic_bins=diagnostics,
+        formal_generation=formal_generation,
         fault_after_inflight=_fault_after_inflight,
         fault_after_completed=_fault_after_completed,
     )
@@ -1598,6 +2357,7 @@ def start_isolated_evaluator(
         allowed_conditions=conditions,
         train_error_summaries=train,
         diagnostic_bins=diagnostics,
+        formal_generation=formal_generation,
         evaluator_pid=evaluator_pid,
     )
     try:

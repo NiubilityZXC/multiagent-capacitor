@@ -1,0 +1,165 @@
+{
+  "schema_version": "cap-act.plan-a-preseal-bundle-manifest.v1",
+  "generated_at": "2026-09-03T17:33:17+08:00",
+  "generation": {
+    "label": "GENERATION_1",
+    "generation_id": "9d27f1c89870c44542921622cf79199abdadf9e3cb718b0467f90665435c0947",
+    "generation_id_derivation": {
+      "serialization": "UTF-8 bytes with no terminal newline",
+      "payload": "{\"arm_registry\":\"CANONICAL_11_PLUS_ARCH1\",\"generation_label\":\"GENERATION_1\",\"protocol_lineage\":\"dual_storyline_v1\"}",
+      "algorithm": "SHA-256"
+    },
+    "arm_registry": "canonical 11 arms plus unique ARCH1",
+    "formal_generation_created": false
+  },
+  "approval": {
+    "state": "UNAPPROVED_HUMAN_GATE_REQUIRED",
+    "human_approval_artifact_sha256": null,
+    "master_seal_sha256": null,
+    "execution_authority": "NONE",
+    "rule": "File existence, this manifest, hashes, tests, mock results, or reviewer PASS cannot substitute for an explicit immutable human approval artifact."
+  },
+  "current_authority": {
+    "allowed": [
+      "read-only reverification of existing P1 Ren and Patrizi artifacts",
+      "execution of already-existing static audit checks without extraction or repair",
+      "documents and code changes that do not perform prediction",
+      "offline tests, secret scans, diff review, and independent release review"
+    ],
+    "prohibited_without_new_approval": [
+      "new download",
+      "Ren extraction",
+      "new decoder, archive tool, parser, author script, or repair",
+      "P2 fitting, training, scoring, power computation, SOH/RUL construction, or RUL scoring",
+      "P3 authenticated discovery or probes",
+      "development API",
+      "P4/P5",
+      "formal outer evaluation",
+      "real LLM capacitor prediction"
+    ]
+  },
+  "files": [
+    {
+      "path": "refine-logs/EXPERIMENT_PLAN.md",
+      "sha256": "df968d2e7ba33748043e547165143d9247358afca573946f3dde573c8c04b6d2",
+      "role": "canonical_plan_read_only"
+    },
+    {
+      "path": "refine-logs/round-3-refinement.md",
+      "sha256": "d4d40b0a7e3f5c9030bfe80e5ede3d059673c3b3c96122c9cf050097aa54f110",
+      "role": "canonical_refinement_read_only"
+    },
+    {
+      "path": "data/audit/P1_REN_PATRIZI_DECISION_INDEX.json",
+      "sha256": "69cb57366da92252232bc219eb95ff62084859fede921e582ad2118d0e46fad6",
+      "role": "p1_machine_decision_index"
+    },
+    {
+      "path": "refine-logs/P1_REN_PATRIZI_DECISION_INDEX.md",
+      "sha256": "7dea7484b66f1c1af9620a4a0ecd2f27250a798631261a170e32bc15ef0cc7df",
+      "role": "p1_human_decision_index"
+    },
+    {
+      "path": "refine-logs/PLAN_A_PROBLEM_ANCHOR_ADDENDUM.md",
+      "sha256": "644b2459b3fd3feb97df7c174077331bd3b86791cc4f11c6d8df43234eaee9c6",
+      "role": "problem_anchor_addendum"
+    },
+    {
+      "path": "refine-logs/PLAN_A_PROTOCOL_ADDENDUM.md",
+      "sha256": "d6fcee7cb7bc2857cf93c4edffc4aafdb252ac518d2ea627412b9e8127654369",
+      "role": "dual_storyline_protocol_addendum"
+    },
+    {
+      "path": "refine-logs/MASTER_JOINT_SEAL_PROTOCOL.md",
+      "sha256": "1fbd373b705f08adfc09232f53fd79b792f661a966fd0a5dbb68a579a82a9947",
+      "role": "master_joint_seal_specification"
+    },
+    {
+      "path": "refine-logs/CANONICAL_SUPERSESSION_LEDGER.md",
+      "sha256": "c517dd056d0bd7784aab411b9b40a263a08db7c5c03a96337f40f1f06b6a7709",
+      "role": "finite_supersession_ledger"
+    },
+    {
+      "path": "refine-logs/PLAN_A_ARCHITECTURE_CANDIDATES.md",
+      "sha256": "a618c5cad6669052ce85cbadd0f0310233256d6e93861b46c051be27d1e91e93",
+      "role": "architecture_human_specification"
+    },
+    {
+      "path": "refine-logs/PLAN_A_ARCHITECTURE_REGISTRY.json",
+      "sha256": "f49618251056940496038edf0e19968624a6b7c61684a75097b503c7370e1e8f",
+      "role": "architecture_machine_registry"
+    },
+    {
+      "path": "experiments/vfps_agent/architecture_registry.py",
+      "sha256": "36e9f718f6a84bc8316e128969ae683334d2db9c439fc29e1836b4e2d17a6dd7",
+      "role": "architecture_offline_validator_and_local_executor"
+    },
+    {
+      "path": "tests/test_vfps_architecture_registry.py",
+      "sha256": "78e41ec3767d6126151421e4552d91829800d40cad9dd17e72ff4be22963568a",
+      "role": "architecture_validator_contract_tests"
+    },
+    {
+      "path": "refine-logs/PLAN_A_CK_MATCHING_PROTOCOL.md",
+      "sha256": "fd3edb51260258e866daca240ed07aacda99727a07ad388b5b737a1c1537d3fe",
+      "role": "matched_control_protocol"
+    },
+    {
+      "path": "refine-logs/PLAN_A_P2_FREEZE_PROPOSAL.md",
+      "sha256": "3b4c2b2d51d2e5490e1d1760a3b5216133d42bd21b56c5aef7b529b13ca8b3a2",
+      "role": "joint_p2_unapproved_proposal"
+    },
+    {
+      "path": "refine-logs/PLAN_A_HYPOTHESIS_REGISTRY.json",
+      "sha256": "c32e6a03930819b2a007b57517237ac213fd09e622abade04626731e6453fe25",
+      "role": "seven_slot_machine_hypothesis_registry"
+    },
+    {
+      "path": "refine-logs/PLAN_A_EXECUTION_ENVELOPE.md",
+      "sha256": "86c90439c7c44fb8127a5d3df77d9d91f352ba888fc660cddbaa373d07a51736",
+      "role": "unresolved_execution_envelope"
+    },
+    {
+      "path": "refine-logs/BASELINE_ADEQUACY_AND_LITERATURE_REVIEW.md",
+      "sha256": "d653140f510d947ba07de24092a445d666041ddcbf4fdb0abc0ea9b9391b12de",
+      "role": "baseline_and_novelty_evidence"
+    },
+    {
+      "path": "refine-logs/BASELINE_ADEQUACY_DECISION.json",
+      "sha256": "cfb5f39a83defcce89068bf7b816dac52a3e2d28ff120357691c426243c0533d",
+      "role": "pending_human_baseline_decision"
+    },
+    {
+      "path": "refine-logs/DUAL_STORYLINE_PAPER_OUTLINE.md",
+      "sha256": "e2a68d97e0a0dc030f0c06563d493904096c92dc3635db01ffe1387770f68dca",
+      "role": "pre_result_paper_outline"
+    }
+  ],
+  "p1_bundle_roots": {
+    "patrizi_hsc": {
+      "status": "ACQUISITION_INTEGRITY_PASS_ROW_LEVEL_BLOCKED",
+      "bundle_path": "data/audit/patrizi_hsc/p1_20260828_180200",
+      "complete_sha256": "140387643564c8df17f4cd683595db778b7cee9e0af7bd5e79d7e39c3083b6ec",
+      "artifact_manifest_sha256": "68fceef2b15ce5593c583afad3a3d64635f7861f075bbb758dc759adfaac065e",
+      "artifact_hashes_sha256": "694c4b7890502dc7222772ee364cf213149c9a5d59b93e44242f69fcd53b8d1a"
+    },
+    "ren_scs": {
+      "status": "ACQUISITION_INTEGRITY_PASS_ARCHIVE_TEST_BLOCKED_NO_EXTRACTION",
+      "bundle_path": "data/audit/ren_scs/p1_20260828_180210",
+      "complete_sha256": "2a5a25d9c8d92583aa6ff137010da0b0c16a13e4bbd5fc57861c0a20edec7f72",
+      "artifact_manifest_sha256": "eef896f082a7b24f4cd1da7d213f90306045c99c3f66fa69ed92f94f6c231510",
+      "artifact_hashes_sha256": "b5ba97584a2c7bff2c76b3a45d7d85282ea81f7e00e1de16ff4db492f7607877"
+    }
+  },
+  "unresolved_required_artifacts": [
+    "explicit signed baseline decision",
+    "approved P2 parameter and statistics executable hashes",
+    "approved resilience_v1 fault manifest and statistic",
+    "authenticated P3 model/capability registry",
+    "fold-local candidate qualification and actual C4 eligibility ledger",
+    "approved exact integer execution envelope",
+    "human approval artifact",
+    "master seal"
+  ],
+  "integrity_rule": "The SHA-256 of this manifest is computed and recorded externally after write. Any listed file change invalidates this draft; it must not be silently updated or treated as an approval."
+}

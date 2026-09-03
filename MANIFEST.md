@@ -156,3 +156,12 @@
 | 2026-08-24 18:23 | /experiment-bridge | refine-logs/EXPERIMENT_TRACKER.md | implementation | current experiment tracker latest copy |
 | 2026-08-24 18:23 | /research-refine-pipeline | refine-logs/PIPELINE_SUMMARY_20260824_182331.md | implementation | M3 offline engineering handoff与paper-not-ready边界 |
 | 2026-08-24 18:23 | /research-refine-pipeline | refine-logs/PIPELINE_SUMMARY.md | implementation | current pipeline summary latest copy |
+| 2026-09-03 17:39 | /experiment-bridge | refine-logs/PLAN_A_ARCHITECTURE_CANDIDATES_20260903_173317.md | implementation | Plan-A durable-ledger/R00/valid-closure contract pin snapshot |
+| 2026-09-03 17:39 | /experiment-bridge | refine-logs/PLAN_A_ARCHITECTURE_CANDIDATES.md | implementation | current human architecture specification with reviewed hash pins |
+| 2026-09-03 17:39 | /experiment-bridge | refine-logs/EXPERIMENT_CODE_REVIEW_20260903_173930.md | implementation | independent offline Plan-A preseal review snapshot; PASS without execution authority |
+| 2026-09-03 17:39 | /experiment-bridge | refine-logs/EXPERIMENT_CODE_REVIEW.md | implementation | current preseal code-review latest copy |
+| 2026-09-03 17:39 | /experiment-bridge | refine-logs/PLAN_A_PRESEAL_REVIEW_20260903_173930.md | implementation | preseal release review snapshot with human-gate boundary |
+| 2026-09-03 17:39 | /experiment-bridge | refine-logs/PLAN_A_PRESEAL_REVIEW.md | implementation | current preseal release review latest copy |
+| 2026-09-03 17:39 | /experiment-bridge | refine-logs/M3_RELEASE_EVIDENCE_20260903_173930.md | implementation | M3 evidence with Plan-A closure addendum snapshot |
+| 2026-09-03 17:39 | /experiment-bridge | refine-logs/M3_RELEASE_EVIDENCE.md | implementation | current M3 evidence including preseal addendum |
+| 2026-09-03 17:39 | /experiment-bridge | .aris/traces/experiment-bridge/2026-09-03_run01/ | implementation | stale-pin block and post-repair PASS reviewer traces; same-family provisional |
