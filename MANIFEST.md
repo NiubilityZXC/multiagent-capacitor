@@ -206,3 +206,11 @@
 | 2026-09-04 14:54 | /experiment-plan | refine-logs/REN_P1R1_ARCHIVE_RECOVERY_PLAN.md | data-audit | Ren P1-R1 recovery plan latest copy；无执行权 |
 | 2026-09-04 14:54 | /experiment-plan | refine-logs/REN_P1R1_APPROVAL_PACKET_20260904_145423.json | data-audit | 绑定 recovery plan 与七项 frozen inputs 的 exact human gate |
 | 2026-09-04 14:54 | /experiment-plan | refine-logs/REN_P1R1_APPROVAL_PACKET.json | data-audit | Ren P1-R1 approval packet latest copy；automatic next stage=false |
+| 2026-09-04 21:31 | /experiment-bridge | refine-logs/REN_P1R1_APPROVAL_RECORD_20260904_213130.json | data-audit | exact human token 与 P1-R1 scope-only 权限记录；P2+ 仍未授权 |
+| 2026-09-04 22:04 | /experiment-bridge | experiments/audit_cap/ren_p1r1_recovery.py | implementation | R1A/B/C seal 与隔离恢复 remediation draft；复审 BLOCKING，禁止运行 |
+| 2026-09-04 22:04 | /experiment-bridge | experiments/audit_cap/verify_ren_p1r1_recovery.py | implementation | 独立 listing/prior/CRC verifier draft；复审仍要求逐字段增强 |
+| 2026-09-04 22:04 | /experiment-bridge | tests/test_ren_p1r1_recovery.py | implementation | 13 项合计定向测试的一部分；尚缺 mocked end-to-end failure suite |
+| 2026-09-04 22:04 | /experiment-bridge | refine-logs/REN_P1R1_CODE_REVIEW_20260904_220422.md | audit | fresh xhigh 首审→一次修复→复审仍 BLOCKING 的完整裁决 |
+| 2026-09-04 22:04 | /experiment-bridge | refine-logs/REN_P1R1_EXECUTION_TRACKER_20260904_220422.md | data-audit | R1B/R1C/XLS/Data Gate 未运行与下一 generation 阻断追踪 |
+| 2026-09-04 22:04 | /experiment-bridge | refine-logs/REN_P1R1_BLOCKED_MANIFEST_20260904_220422.json | audit | 批准、两轮 BLOCKING、零执行边界、13/379 tests 与工件哈希清单 |
+| 2026-09-04 22:04 | /experiment-bridge | .aris/traces/experiment-bridge/2026-09-04_run01/003-*、004-* | audit | 两轮完整 reviewer trace；local-only 不提交 Git |

@@ -1,0 +1,54 @@
+{
+  "schema_version": "RenP1R1BlockedManifest.v1",
+  "created_at": "2026-09-04T22:04:22+08:00",
+  "status": "CODE_RELEASE_BLOCKED_R1B_R1C_NOT_RUN",
+  "approval": {
+    "token": "APPROVE_REN_P1R1:a7a8f5521b6b249af59a9ded0971cb02f912d9f46e8babfe3d60777cbfcc3c6d",
+    "record_sha256": "314dc2e62acf35eccf0053a8fd77591a1bc90d82fae9e70e1dbc4820f882f2d8",
+    "automatic_next_stage": false
+  },
+  "review": {
+    "initial_verdict": "BLOCKING",
+    "post_fix_verdict": "BLOCKING",
+    "reviewer": "gpt-5.6-sol",
+    "effort": "xhigh",
+    "family_relation": "same",
+    "independence_verified": false,
+    "trace_scope": "local_only_.aris/traces/experiment-bridge/2026-09-04_run01/003_and_004"
+  },
+  "execution": {
+    "formal_r1a_seal_created": false,
+    "full_archive_test_executed": false,
+    "extraction_executed": false,
+    "workbook_opened_or_parsed": false,
+    "model_or_api_executed": false,
+    "numeric_target_emitted": false,
+    "rul_generated_or_scored": false,
+    "gpu_executed": false
+  },
+  "local_unsealed_probe": {
+    "claim_ceiling": "LOCAL_EXPLORATORY_LISTING_ONLY_NO_RELEASE",
+    "tool_tarball_sha256": "759b4b6aa0d9f77131882162951193f3a0e54bf60e1d8dc4255aa308accab588",
+    "unrar_sha256": "926d3a00775ed96afccfdef69c3781334b71ccdb733931edf30f4866e4f08410",
+    "listing_stdout_sha256": "ff4d360640cf85660e879b022253fa3958b70a2d3e891c67b7095032b9b957cb",
+    "member_count": 237,
+    "regular_xls_count": 233,
+    "directory_count": 4,
+    "listed_uncompressed_bytes": 15223551488,
+    "prior_listing_member_differences": 0
+  },
+  "tests": {
+    "targeted": {
+      "command": ".venv-audit-cap/bin/pytest -q tests/test_ren_p1r1_recovery.py tests/test_verify_ren_p1r1_recovery.py",
+      "passed": 13,
+      "failed": 0
+    },
+    "project_comparable": {
+      "command": ".venv-n0-plus-sn0/bin/pytest -q tests",
+      "passed": 379,
+      "failed": 0
+    },
+    "non_comparable_environment_note": ".venv-audit-cap full suite had 2 N0+ dependency failures because statsforecast is absent; not counted as regression verdict"
+  },
+  "snapshot": "refine-logs/REN_P1R1_BLOCKED_MANIFEST_20260904_220422.json"
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "RenP1R1ApprovalRecord.v1",
+  "recorded_at": "2026-09-04T21:31:30+08:00",
+  "status": "APPROVED_P1R1_SCOPE_ONLY",
+  "human_message": "APPROVE_REN_P1R1:a7a8f5521b6b249af59a9ded0971cb02f912d9f46e8babfe3d60777cbfcc3c6d",
+  "approval_token": "APPROVE_REN_P1R1:a7a8f5521b6b249af59a9ded0971cb02f912d9f46e8babfe3d60777cbfcc3c6d",
+  "proposal": {
+    "path": "refine-logs/REN_P1R1_ARCHIVE_RECOVERY_PLAN_20260904_145423.md",
+    "sha256": "a7a8f5521b6b249af59a9ded0971cb02f912d9f46e8babfe3d60777cbfcc3c6d"
+  },
+  "approval_packet": {
+    "path": "refine-logs/REN_P1R1_APPROVAL_PACKET_20260904_145423.json",
+    "sha256": "8ea05474bf90609a89e2c6e1725777e6c9030c2dae5067d94c3ad6b54511c365"
+  },
+  "authorized": [
+    "download_and_hash_rarlab_rar_for_linux_x64_7_23",
+    "create_isolated_ren_audit_environment",
+    "archive_listing_diff_and_full_test",
+    "isolated_append_only_extraction_after_test_pass",
+    "static_xls_container_and_row_audit",
+    "identity_chronology_duplicate_target_censor_split_data_gate",
+    "deterministic_tests_and_independent_verifier"
+  ],
+  "not_authorized": [
+    "model_fit_or_selection",
+    "forecast_or_outer_score",
+    "rul_generation_or_scoring",
+    "ark_or_external_model_api",
+    "gpu_execution",
+    "p2_p3_p4_p5_execution",
+    "paper_performance_claim"
+  ],
+  "automatic_next_stage": false
+}
