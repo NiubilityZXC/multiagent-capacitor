@@ -202,3 +202,7 @@
 | 2026-09-04 14:42 | /experiment-bridge | tests/test_n0_plus_sn1_manifest.py | implementation | manifest hash/authority/P2 gate/path 反篡改测试 |
 | 2026-09-04 14:42 | /experiment-bridge | refine-logs/N0_PLUS_SN1_MANIFEST_20260904_144233.json | implementation | SN1 13-artifact sealed manifest；49 定向与 366 全项目测试 |
 | 2026-09-04 14:42 | /experiment-bridge | refine-logs/N0_PLUS_SN1_MANIFEST.json | implementation | N0+ SN1 manifest latest copy；verifier PASS |
+| 2026-09-04 14:54 | /experiment-plan | refine-logs/REN_P1R1_ARCHIVE_RECOVERY_PLAN_20260904_145423.md | data-audit | RARLAB 7.23 test→隔离提取→静态 XLS 行级审计的强停止计划 |
+| 2026-09-04 14:54 | /experiment-plan | refine-logs/REN_P1R1_ARCHIVE_RECOVERY_PLAN.md | data-audit | Ren P1-R1 recovery plan latest copy；无执行权 |
+| 2026-09-04 14:54 | /experiment-plan | refine-logs/REN_P1R1_APPROVAL_PACKET_20260904_145423.json | data-audit | 绑定 recovery plan 与七项 frozen inputs 的 exact human gate |
+| 2026-09-04 14:54 | /experiment-plan | refine-logs/REN_P1R1_APPROVAL_PACKET.json | data-audit | Ren P1-R1 approval packet latest copy；automatic next stage=false |

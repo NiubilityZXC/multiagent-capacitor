@@ -1,0 +1,39 @@
+{
+  "schema_version": "RenP1R1ApprovalPacket.v1",
+  "created_at": "2026-09-04T14:54:23+08:00",
+  "status": "AWAITING_EXACT_HUMAN_APPROVAL",
+  "approval_token": "APPROVE_REN_P1R1:a7a8f5521b6b249af59a9ded0971cb02f912d9f46e8babfe3d60777cbfcc3c6d",
+  "proposal": {
+    "path": "refine-logs/REN_P1R1_ARCHIVE_RECOVERY_PLAN_20260904_145423.md",
+    "bytes": 7568,
+    "sha256": "a7a8f5521b6b249af59a9ded0971cb02f912d9f46e8babfe3d60777cbfcc3c6d"
+  },
+  "frozen_inputs": {
+    "raw_rar_sha256": "a8f1083b887f95483561a94b624b323ff42814654ee7f23e7f95bc042fa258d8",
+    "p1_data_gate_summary_sha256": "86a9b296d750f1e715e93b4bde58272cc2f302d56a6a8a6cb6465e72ee4021ab",
+    "archive_safety_report_sha256": "66417bad251e88ee897293edc7d7062bbf59ced6c15d5b3d6c1507515ddd1311",
+    "local_raw_manifest_sha256": "e5c7f42dabec9de86abaf524ea956d609e8c062c69f0b3de1742771ce197e02e",
+    "n0_plus_sn1_manifest_sha256": "ec33bdf2ee5b146bae3c09403d09f2b703bb0da0f52c2874dbaaa9fcc2cbc6f3",
+    "canonical_experiment_plan_sha256": "df968d2e7ba33748043e547165143d9247358afca573946f3dde573c8c04b6d2",
+    "canonical_round3_sha256": "d4d40b0a7e3f5c9030bfe80e5ede3d059673c3b3c96122c9cf050097aa54f110"
+  },
+  "authorized_if_exactly_approved": [
+    "download_and_hash_rarlab_rar_for_linux_x64_7_23",
+    "create_isolated_ren_audit_environment",
+    "archive_listing_diff_and_full_test",
+    "isolated_append_only_extraction_after_test_pass",
+    "static_xls_container_and_row_audit",
+    "identity_chronology_duplicate_target_censor_split_data_gate",
+    "deterministic_tests_and_independent_verifier"
+  ],
+  "not_authorized": [
+    "model_fit_or_selection",
+    "forecast_or_outer_score",
+    "rul_generation_or_scoring",
+    "ark_or_external_model_api",
+    "gpu_execution",
+    "p2_p3_p4_p5_execution",
+    "paper_performance_claim"
+  ],
+  "automatic_next_stage": false
+}
