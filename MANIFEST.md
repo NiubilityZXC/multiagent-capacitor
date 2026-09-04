@@ -188,3 +188,17 @@
 | 2026-09-04 14:22 | /experiment-plan | refine-logs/SPECIALIZED_MODEL_EXECUTION_TRACKER.md | implementation | N0+ 执行追踪器 latest copy；真实模型仍 blocked |
 | 2026-09-04 14:24 | /experiment-plan | refine-logs/N0_PLUS_SN0_MANIFEST_20260904_142406.json | implementation | SN0 10-artifact 哈希清单；19 定向与 317 全仓测试记录 |
 | 2026-09-04 14:24 | /experiment-plan | refine-logs/N0_PLUS_SN0_MANIFEST.json | implementation | N0+ SN0 manifest latest copy；verifier PASS |
+| 2026-09-04 14:42 | /experiment-bridge | experiments/n0_plus/sn1_synthetic_models.py | implementation | 7 个 Tier-A CPU 合成原型；prefix-only、冻结 state、fixed quantiles、无真实数据入口 |
+| 2026-09-04 14:42 | /experiment-bridge | experiments/n0_plus/run_sn1_synthetic_qualification.py | implementation | held-out synthetic unit 资格 runner；不计算 accuracy、calibration 或模型排名 |
+| 2026-09-04 14:42 | /experiment-bridge | tests/test_n0_plus_sn1_synthetic_models.py | implementation | PF horizon oracle、suffix/order invariance、全候选 gate、one-attempt failure 测试 |
+| 2026-09-04 14:42 | /experiment-bridge | tests/test_n0_plus_sn1_runner.py | implementation | qualification schema、零真实数据/API/GPU 和非校准声明测试 |
+| 2026-09-04 14:42 | /experiment-bridge | refine-logs/N0_PLUS_SN1_SYNTHETIC_QUALIFICATION_20260904_144233.json | implementation | 7 候选合成契约 PASS 快照；SHA-256 `f5071538…fac38` |
+| 2026-09-04 14:42 | /experiment-bridge | refine-logs/N0_PLUS_SN1_SYNTHETIC_QUALIFICATION.json | implementation | N0+ SN1 synthetic qualification latest copy；无科学结果 |
+| 2026-09-04 14:42 | /experiment-bridge | refine-logs/N0_PLUS_SN1_CODE_REVIEW_20260904_144233.md | implementation | fresh xhigh 首审 BLOCKED、修补、二审 narrow PASS 记录 |
+| 2026-09-04 14:42 | /experiment-bridge | refine-logs/N0_PLUS_SN1_CODE_REVIEW.md | implementation | N0+ SN1 code review latest copy；same-family provisional |
+| 2026-09-04 14:42 | /experiment-bridge | .aris/traces/experiment-bridge/2026-09-04_run01/ | audit | 两轮 reviewer 完整 trace；local-only 不提交 Git |
+| 2026-09-04 14:42 | /experiment-bridge | refine-logs/SPECIALIZED_MODEL_EXECUTION_TRACKER_20260904_144233.md | implementation | SN1 合成契约完成、真实建模与 P2 仍 blocked 的追踪快照 |
+| 2026-09-04 14:42 | /experiment-bridge | experiments/n0_plus/verify_sn1_manifest.py | implementation | 资格权限、claim ceiling、13-artifact hash 和 P2 replacement gate verifier |
+| 2026-09-04 14:42 | /experiment-bridge | tests/test_n0_plus_sn1_manifest.py | implementation | manifest hash/authority/P2 gate/path 反篡改测试 |
+| 2026-09-04 14:42 | /experiment-bridge | refine-logs/N0_PLUS_SN1_MANIFEST_20260904_144233.json | implementation | SN1 13-artifact sealed manifest；49 定向与 366 全项目测试 |
+| 2026-09-04 14:42 | /experiment-bridge | refine-logs/N0_PLUS_SN1_MANIFEST.json | implementation | N0+ SN1 manifest latest copy；verifier PASS |

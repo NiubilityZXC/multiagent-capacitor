@@ -1,0 +1,117 @@
+{
+  "schema_version": "N0PlusSN1Manifest.v1",
+  "created_at": "2026-09-04T14:42:33+08:00",
+  "status": "SN1_SYNTHETIC_CONTRACT_COMPLETE_NO_SCIENTIFIC_RESULT",
+  "parent_protocol_sha256": "df968d2e7ba33748043e547165143d9247358afca573946f3dde573c8c04b6d2",
+  "proposal_sha256": "81da8aa72b79fb43d5c3bb94686b497c6fea5245ca02dcf7f6e63c4193c74b33",
+  "registry_payload_sha256": "37db56f94533df47ff1eb44524af9db62887bfc4c8bbe5792f2a86a18a9a702b",
+  "sn0_manifest_sha256": "5985eab5572f4eec4ebee23d050ea432dcb248ae4c0e078eb62475799d3d9e46",
+  "qualification_payload_sha256": "f5071538bf7cc8523e7fc0a00c354459e197a45a17a2c16a7ff191c3ee2fac38",
+  "environment": {
+    "python": "3.12.3",
+    "numpy": "1.26.4",
+    "scikit_learn": "1.5.1",
+    "statsforecast": "2.1.1",
+    "tier_b_installed": false
+  },
+  "checks": {
+    "targeted_sn1": "44 passed",
+    "full_project_tests": "366 passed",
+    "reviewer_recheck": "PASS_SYNTHETIC_CONTRACT_ONLY",
+    "manifest_verifier": "PASS"
+  },
+  "review": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "xhigh",
+    "independence": "same-family",
+    "acceptance": "provisional"
+  },
+  "claim_ceiling": "Seven CPU candidate prototypes pass synthetic-only checks for prefix input, held-out-unit isolation, fixed quantile completeness/nesting, within-environment repeatability, unit-order invariance, gated-candidate rejection, state identity and one-attempt failure behavior.",
+  "artifacts": [
+    {
+      "path": "experiments/n0_plus/run_sn1_synthetic_qualification.py",
+      "bytes": 5834,
+      "sha256": "e9a4b66354e066d37499486f89fd68974c21e411f9133e50a6f6c9677c55bd8b"
+    },
+    {
+      "path": "experiments/n0_plus/sn1_synthetic_models.py",
+      "bytes": 20955,
+      "sha256": "f14c0cb708a99beb95abb10e0682dc1903ad8cef5553af4e6057cf82a85f4ad3"
+    },
+    {
+      "path": "experiments/n0_plus/verify_sn1_manifest.py",
+      "bytes": 11513,
+      "sha256": "1acdd283d3c3c47b58dc761706c1e75fd32af4efb4289efb985e264f3d6f1919"
+    },
+    {
+      "path": "refine-logs/N0_PLUS_APPROVAL_RECORD_20260904_141528.json",
+      "bytes": 1334,
+      "sha256": "efbcd010b16f03db70bdd685fb2e86b9e40c28435a4e68ef56275fa6a45e666e"
+    },
+    {
+      "path": "refine-logs/N0_PLUS_CANDIDATE_REGISTRY_20260904_142140.json",
+      "bytes": 4410,
+      "sha256": "85cfcbc77eecb9a70b26491efb1d6fae95b37ecd85dd33eb333cd305d2faf2a9"
+    },
+    {
+      "path": "refine-logs/N0_PLUS_SN0_MANIFEST_20260904_142406.json",
+      "bytes": 2711,
+      "sha256": "5985eab5572f4eec4ebee23d050ea432dcb248ae4c0e078eb62475799d3d9e46"
+    },
+    {
+      "path": "refine-logs/N0_PLUS_SN1_CODE_REVIEW_20260904_144233.md",
+      "bytes": 3558,
+      "sha256": "31bfc9d8870e535384a8123343b1e53324db20123f6fe9df42c3f1e2f9bd2378"
+    },
+    {
+      "path": "refine-logs/N0_PLUS_SN1_SYNTHETIC_QUALIFICATION_20260904_144233.json",
+      "bytes": 2456,
+      "sha256": "f5071538bf7cc8523e7fc0a00c354459e197a45a17a2c16a7ff191c3ee2fac38"
+    },
+    {
+      "path": "refine-logs/SPECIALIZED_MODEL_EXECUTION_TRACKER_20260904_144233.md",
+      "bytes": 3936,
+      "sha256": "072c1c737f6779137ac39782bd2d4f5e4e18d2a114559f8b1727c890de8af4b9"
+    },
+    {
+      "path": "requirements-n0-plus-tier-a.lock",
+      "bytes": 779,
+      "sha256": "696cdc637f6baa74db5c98c356a77f7d2095c5f72780d64eeaef3f5a9423b062"
+    },
+    {
+      "path": "tests/test_n0_plus_sn1_manifest.py",
+      "bytes": 1893,
+      "sha256": "1c4a93c65ac2cde9d42b413cd5a392dde1f2eadb6e8bf0d1d999e6a56c82db6d"
+    },
+    {
+      "path": "tests/test_n0_plus_sn1_runner.py",
+      "bytes": 1389,
+      "sha256": "bc55fe3a0107a35fd3e57ecefbdb9fd92aafc841195796060933631db5e862db"
+    },
+    {
+      "path": "tests/test_n0_plus_sn1_synthetic_models.py",
+      "bytes": 7825,
+      "sha256": "723c4741599af0c3d4e1f65b43b1016359dfb5f0705fd4db79940149948cf61a"
+    }
+  ],
+  "not_authorized": [
+    "real_data_model_fit",
+    "outer_test_score_or_reveal",
+    "accuracy_or_calibration_claim",
+    "rul_prediction",
+    "ark_or_external_model_api",
+    "gpu_execution",
+    "p2_execution"
+  ],
+  "required_before_p2": [
+    "unit_origin_target_cutoff_identity",
+    "train_evaluation_disjointness",
+    "irregular_grid_and_target_domain_gate",
+    "frozen_degradation_direction",
+    "failure_ledger_and_whole_origin_fallback",
+    "nested_loco_selection",
+    "held_out_unit_balanced_calibration",
+    "legacy_n0_integration",
+    "dependency_artifact_hashes"
+  ]
+}
