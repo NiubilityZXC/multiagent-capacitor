@@ -1,0 +1,79 @@
+{
+  "schema_version": "N0PlusSN0Manifest.v1",
+  "created_at": "2026-09-04T14:24:06+08:00",
+  "status": "SN0_REGISTRY_AND_TIER_A_LOCK_COMPLETE_NO_MODEL_RUN",
+  "parent_protocol_sha256": "df968d2e7ba33748043e547165143d9247358afca573946f3dde573c8c04b6d2",
+  "proposal_sha256": "81da8aa72b79fb43d5c3bb94686b497c6fea5245ca02dcf7f6e63c4193c74b33",
+  "registry_payload_sha256": "37db56f94533df47ff1eb44524af9db62887bfc4c8bbe5792f2a86a18a9a702b",
+  "environment": {
+    "python": "3.12.3",
+    "pip": "24.0",
+    "lock_path": "requirements-n0-plus-tier-a.lock",
+    "tier_b_installed": false
+  },
+  "checks": {
+    "registry_tests": "14 passed",
+    "full_regression": "317 passed",
+    "pip_check": "PASS",
+    "tier_a_imports": "PASS"
+  },
+  "artifacts": [
+    {
+      "path": "experiments/n0_plus/__init__.py",
+      "bytes": 319,
+      "sha256": "fc2d9cae675190775fdc712d044c7b35f62905cfb790bb669f746b9f3356740c"
+    },
+    {
+      "path": "experiments/n0_plus/registry.py",
+      "bytes": 16437,
+      "sha256": "51462476c513c056358a1da692713e0741f4957d8463bdd2467f47927e4b9951"
+    },
+    {
+      "path": "experiments/n0_plus/verify_sn0_manifest.py",
+      "bytes": 8069,
+      "sha256": "0a18b88aa2ffbdd50958c5b608d169b9c778eb39ed0da0b4ef805b86ed5b268a"
+    },
+    {
+      "path": "refine-logs/N0_PLUS_APPROVAL_RECORD_20260904_141528.json",
+      "bytes": 1334,
+      "sha256": "efbcd010b16f03db70bdd685fb2e86b9e40c28435a4e68ef56275fa6a45e666e"
+    },
+    {
+      "path": "refine-logs/N0_PLUS_CANDIDATE_REGISTRY_20260904_142140.json",
+      "bytes": 4410,
+      "sha256": "85cfcbc77eecb9a70b26491efb1d6fae95b37ecd85dd33eb333cd305d2faf2a9"
+    },
+    {
+      "path": "refine-logs/SPECIALIZED_MODEL_EXECUTION_TRACKER_20260904_142237.md",
+      "bytes": 3562,
+      "sha256": "b9cb2735cf471e99cd6a77f3d4bc9a18709893329d20ee90e0e8483d72d858f1"
+    },
+    {
+      "path": "refine-logs/SPECIALIZED_MODEL_NOVELTY_CHECK_20260904_141528.md",
+      "bytes": 7178,
+      "sha256": "a23e4eee7f30dc4aa2b30c11b3e98f92c699a5102e10b473aeaedbd963f1445c"
+    },
+    {
+      "path": "requirements-n0-plus-tier-a.lock",
+      "bytes": 779,
+      "sha256": "696cdc637f6baa74db5c98c356a77f7d2095c5f72780d64eeaef3f5a9423b062"
+    },
+    {
+      "path": "tests/test_n0_plus_registry.py",
+      "bytes": 3292,
+      "sha256": "080f2750e3a7ab65d1729a2bc315b1c9398da36e9a1e160b9ae6b8663a3f4bc0"
+    },
+    {
+      "path": "tests/test_n0_plus_sn0_manifest.py",
+      "bytes": 1887,
+      "sha256": "f61f0c717aef1c29236687dfe6c664c6f5343ba523474559a7c77122998cf53e"
+    }
+  ],
+  "not_authorized": [
+    "real_data_model_fit",
+    "outer_test_score_or_reveal",
+    "rul_prediction",
+    "ark_or_external_model_api",
+    "gpu_execution"
+  ]
+}

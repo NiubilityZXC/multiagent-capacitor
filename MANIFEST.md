@@ -175,3 +175,16 @@
 | 2026-09-04 13:46 | /experiment-plan | refine-logs/SPECIALIZED_MODEL_EXECUTION_TRACKER_DRAFT.md | implementation | N0+ 执行追踪器 latest copy；无实验结果 |
 | 2026-09-04 13:46 | /experiment-plan | refine-logs/SPECIALIZED_MODEL_N0_PLUS_APPROVAL_PACKET_20260904_134614.json | implementation | 绑定父协议、草案与追踪器 SHA-256 的人工批准包 |
 | 2026-09-04 13:46 | /experiment-plan | refine-logs/SPECIALIZED_MODEL_N0_PLUS_APPROVAL_PACKET.json | implementation | N0+ 人工批准包 latest copy；不授予执行权 |
+| 2026-09-04 14:15 | /experiment-plan | refine-logs/N0_PLUS_APPROVAL_RECORD_20260904_141528.json | implementation | 用户明确批准当前 N0+ 草案的 SN0-only 记录；保留未授权边界 |
+| 2026-09-04 14:15 | /experiment-plan | refine-logs/N0_PLUS_APPROVAL_RECORD.json | implementation | N0+ SN0-only 人工批准记录 latest copy |
+| 2026-09-04 14:15 | /experiment-plan | refine-logs/SPECIALIZED_MODEL_EXECUTION_TRACKER_20260904_141528.md | implementation | N0+ 批准后初始执行状态快照；真实模型仍 blocked |
+| 2026-09-04 14:15 | /novelty-check | refine-logs/SPECIALIZED_MODEL_NOVELTY_CHECK_20260904_141528.md | idea-discovery | 固定 hierarchical/PF/conformal 专用模型查新；方法主张 2/10，不建议作为新方法 |
+| 2026-09-04 14:15 | /novelty-check | refine-logs/SPECIALIZED_MODEL_NOVELTY_CHECK.md | idea-discovery | 专用模型查新 latest copy；保留为 N0+ 强基线 |
+| 2026-09-04 14:15 | /novelty-check | .aris/traces/novelty-check/2026-09-04_run01/ | idea-discovery | fresh GPT-5.6-Sol xhigh same-family provisional review trace；local-only 不提交 Git |
+| 2026-09-04 14:21 | /experiment-plan | refine-logs/N0_PLUS_CANDIDATE_REGISTRY_20260904_142140.json | implementation | 15 个 spec-only 候选、10 个 selectable；Tier-C/RUL fail-closed |
+| 2026-09-04 14:21 | /experiment-plan | refine-logs/N0_PLUS_CANDIDATE_REGISTRY.json | implementation | N0+ typed candidate registry latest copy |
+| 2026-09-04 14:21 | /experiment-plan | requirements-n0-plus-tier-a.lock | implementation | 隔离 Python 3.12 Tier-A 精确版本锁；排除 Torch/NeuralForecast |
+| 2026-09-04 14:22 | /experiment-plan | refine-logs/SPECIALIZED_MODEL_EXECUTION_TRACKER_20260904_142237.md | implementation | SN0 registry 与 Tier-A lock 完成状态快照 |
+| 2026-09-04 14:22 | /experiment-plan | refine-logs/SPECIALIZED_MODEL_EXECUTION_TRACKER.md | implementation | N0+ 执行追踪器 latest copy；真实模型仍 blocked |
+| 2026-09-04 14:24 | /experiment-plan | refine-logs/N0_PLUS_SN0_MANIFEST_20260904_142406.json | implementation | SN0 10-artifact 哈希清单；19 定向与 317 全仓测试记录 |
+| 2026-09-04 14:24 | /experiment-plan | refine-logs/N0_PLUS_SN0_MANIFEST.json | implementation | N0+ SN0 manifest latest copy；verifier PASS |

@@ -1,0 +1,141 @@
+{
+  "schema_version": "N0PlusCandidateRegistry.v1",
+  "parent_protocol_sha256": "df968d2e7ba33748043e547165143d9247358afca573946f3dde573c8c04b6d2",
+  "proposal_sha256": "81da8aa72b79fb43d5c3bb94686b497c6fea5245ca02dcf7f6e63c4193c74b33",
+  "execution_authority": "SN0_SPEC_ONLY_NO_MODEL_RUN",
+  "candidates": [
+    {
+      "candidate_id": "classical_autoarima",
+      "family_id": "classical",
+      "implementation_status": "SPEC_ONLY_NOT_EXECUTABLE",
+      "role": "SELECTABLE",
+      "tier": "TIER_A_CPU_REQUIRED"
+    },
+    {
+      "candidate_id": "classical_autoets",
+      "family_id": "classical",
+      "implementation_status": "SPEC_ONLY_NOT_EXECUTABLE",
+      "role": "SELECTABLE",
+      "tier": "TIER_A_CPU_REQUIRED"
+    },
+    {
+      "candidate_id": "classical_dynamic_optimized_theta",
+      "family_id": "classical",
+      "implementation_status": "SPEC_ONLY_NOT_EXECUTABLE",
+      "role": "SELECTABLE",
+      "tier": "TIER_A_CPU_REQUIRED"
+    },
+    {
+      "candidate_id": "dlinear_direct",
+      "family_id": "dlinear",
+      "implementation_status": "SPEC_ONLY_NOT_EXECUTABLE",
+      "role": "SELECTABLE",
+      "tier": "TIER_B_COMPUTE_GATE"
+    },
+    {
+      "candidate_id": "legacy_n0_v1",
+      "family_id": "legacy",
+      "implementation_status": "SPEC_ONLY_NOT_EXECUTABLE",
+      "role": "SELECTABLE",
+      "tier": "TIER_A_CPU_REQUIRED"
+    },
+    {
+      "candidate_id": "nhits_direct",
+      "family_id": "nhits",
+      "implementation_status": "SPEC_ONLY_NOT_EXECUTABLE",
+      "role": "SELECTABLE",
+      "tier": "TIER_B_COMPUTE_GATE"
+    },
+    {
+      "candidate_id": "online_ssm_rls_rels_trend",
+      "family_id": "online_ssm",
+      "implementation_status": "SPEC_ONLY_NOT_EXECUTABLE",
+      "role": "SELECTABLE",
+      "tier": "TIER_A_CPU_REQUIRED"
+    },
+    {
+      "candidate_id": "online_ssm_robust_local_trend_pf",
+      "family_id": "online_ssm",
+      "implementation_status": "SPEC_ONLY_NOT_EXECUTABLE",
+      "role": "SELECTABLE",
+      "tier": "TIER_A_CPU_REQUIRED"
+    },
+    {
+      "candidate_id": "rul_physics_constrained",
+      "family_id": "conditional_rul",
+      "implementation_status": "SPEC_ONLY_NOT_EXECUTABLE",
+      "role": "ENDPOINT_GATED",
+      "tier": "CONDITIONAL_RUL_ADDENDUM"
+    },
+    {
+      "candidate_id": "rul_s4_revin",
+      "family_id": "conditional_rul",
+      "implementation_status": "SPEC_ONLY_NOT_EXECUTABLE",
+      "role": "ENDPOINT_GATED",
+      "tier": "CONDITIONAL_RUL_ADDENDUM"
+    },
+    {
+      "candidate_id": "small_ml_elastic_net_direct",
+      "family_id": "small_ml",
+      "implementation_status": "SPEC_ONLY_NOT_EXECUTABLE",
+      "role": "SELECTABLE",
+      "tier": "TIER_A_CPU_REQUIRED"
+    },
+    {
+      "candidate_id": "small_ml_hist_gradient_boosting_direct",
+      "family_id": "small_ml",
+      "implementation_status": "SPEC_ONLY_NOT_EXECUTABLE",
+      "role": "SELECTABLE",
+      "tier": "TIER_A_CPU_REQUIRED"
+    },
+    {
+      "candidate_id": "tsfm_chronos_zero_shot",
+      "family_id": "tsfm_stress",
+      "implementation_status": "SPEC_ONLY_NOT_EXECUTABLE",
+      "role": "DIAGNOSTIC_ONLY",
+      "tier": "TIER_C_SEPARATE_STRESS"
+    },
+    {
+      "candidate_id": "tsfm_moirai_zero_shot",
+      "family_id": "tsfm_stress",
+      "implementation_status": "SPEC_ONLY_NOT_EXECUTABLE",
+      "role": "DIAGNOSTIC_ONLY",
+      "tier": "TIER_C_SEPARATE_STRESS"
+    },
+    {
+      "candidate_id": "tsfm_timesfm_zero_shot",
+      "family_id": "tsfm_stress",
+      "implementation_status": "SPEC_ONLY_NOT_EXECUTABLE",
+      "role": "DIAGNOSTIC_ONLY",
+      "tier": "TIER_C_SEPARATE_STRESS"
+    }
+  ],
+  "selection_policy": {
+    "schema_version": "N0PlusSelectionPolicy.v1",
+    "selectable_candidate_ids": [
+      "classical_autoarima",
+      "classical_autoets",
+      "classical_dynamic_optimized_theta",
+      "dlinear_direct",
+      "legacy_n0_v1",
+      "nhits_direct",
+      "online_ssm_rls_rels_trend",
+      "online_ssm_robust_local_trend_pf",
+      "small_ml_elastic_net_direct",
+      "small_ml_hist_gradient_boosting_direct"
+    ],
+    "family_tie_order": [
+      "legacy",
+      "classical",
+      "online_ssm",
+      "small_ml",
+      "dlinear",
+      "nhits"
+    ],
+    "final_fallback_candidate_id": "legacy_n0_v1",
+    "inner_split": "NESTED_WHOLE_UNIT_LOCO",
+    "aggregation": "UNIT_MACRO_PRIMARY_RISK",
+    "outer_labels_visible_to_selection": false,
+    "retry_on_failure": false
+  }
+}

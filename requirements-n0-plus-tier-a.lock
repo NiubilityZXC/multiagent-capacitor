@@ -1,0 +1,36 @@
+# N0+ Tier-A environment lock
+# Resolved 2026-09-04 in isolated Python 3.12 venv.
+# Scope: registry tests and CPU Tier-A classical/small-ML preparation only.
+# Excluded by gate: torch, neuralforecast, DLinear, N-HiTS, TSFM checkpoints.
+adagio==0.2.6
+cloudpickle==3.1.2
+coreforecast==0.0.18
+formulaic==1.2.2
+fsspec==2026.7.0
+fugue==0.9.7
+h5py==3.11.0
+iniconfig==2.3.0
+interface_meta==2.0.1
+joblib==1.6.0
+narwhals==2.25.0
+numpy==1.26.4
+packaging==26.3
+pandas==2.2.2
+patsy==1.0.3
+pluggy==1.6.0
+pyarrow==25.0.1
+pytest==8.3.2
+python-dateutil==2.9.0.post0
+pytz==2026.3.post1
+scikit-learn==1.5.1
+scipy==1.11.4
+six==1.17.0
+statsforecast==2.1.1
+statsmodels==0.15.0
+threadpoolctl==3.6.0
+tqdm==4.70.0
+triad==1.0.2
+typing_extensions==4.16.0
+tzdata==2026.3
+utilsforecast==0.2.16
+wrapt==2.4.0

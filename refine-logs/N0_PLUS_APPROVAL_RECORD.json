@@ -1,0 +1,31 @@
+{
+  "schema_version": "n0_plus_human_approval_record.v1",
+  "recorded_at": "2026-09-04T14:15:28+08:00",
+  "status": "APPROVED_SN0_SCOPE_ONLY",
+  "user_utterance": "批准然后继续科研",
+  "exact_packet_phrase_match": false,
+  "binding_basis": "The approval immediately followed the sole pending N0+ approval packet and explicitly requested research continuation; no competing approval object was pending.",
+  "bound_git_commit": "3ee747faef807f5bb7231ee54d01e9fc1c9ffbd3",
+  "approval_packet": {
+    "path": "refine-logs/SPECIALIZED_MODEL_N0_PLUS_APPROVAL_PACKET_20260904_134614.json",
+    "sha256": "ec8bcf0890e44f2565ce86bbd98fc89dffcc05a5777dd32013760614f1108df0"
+  },
+  "proposal": {
+    "path": "refine-logs/SPECIALIZED_MODEL_N0_PLUS_PRESEAL_DRAFT_20260904_134614.md",
+    "sha256": "81da8aa72b79fb43d5c3bb94686b497c6fea5245ca02dcf7f6e63c4193c74b33"
+  },
+  "authorized_scope": [
+    "SN0 candidate registry implementation",
+    "dependency resolution and lock generation",
+    "offline synthetic causal and leakage tests",
+    "new preseal generation preparation"
+  ],
+  "not_authorized": [
+    "real-data model fitting",
+    "outer-test scoring or reveal",
+    "RUL construction or prediction",
+    "Ark or any external model API call",
+    "GPU execution",
+    "modification of the currently sealed parent protocol"
+  ]
+}
