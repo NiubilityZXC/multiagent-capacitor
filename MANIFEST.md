@@ -169,3 +169,9 @@
 | 2026-09-03 18:10 | /experiment-plan | refine-logs/SPECIALIZED_MODEL_STORYLINE_DECISION.md | implementation | 专用模型路线决策 latest copy；不授权执行 |
 | 2026-09-03 18:20 | /experiment-plan | refine-logs/SPECIALIZED_MODEL_READINESS_AUDIT_20260903_182000.md | implementation | 静态专用模型实现/候选就绪度审计；无建模执行 |
 | 2026-09-03 18:20 | /experiment-plan | refine-logs/SPECIALIZED_MODEL_READINESS_AUDIT.md | implementation | 专用模型就绪度 latest copy；保持 P2 gate |
+| 2026-09-04 13:46 | /experiment-plan | refine-logs/SPECIALIZED_MODEL_N0_PLUS_PRESEAL_DRAFT_20260904_134614.md | implementation | N0+ 专用模型有限候选池、claim、消融与执行门预封存草案；未获批准 |
+| 2026-09-04 13:46 | /experiment-plan | refine-logs/SPECIALIZED_MODEL_N0_PLUS_PRESEAL_DRAFT.md | implementation | N0+ 专用模型预封存草案 latest copy；不修改 canonical plan |
+| 2026-09-04 13:46 | /experiment-plan | refine-logs/SPECIALIZED_MODEL_EXECUTION_TRACKER_DRAFT_20260904_134614.md | implementation | N0+ 分阶段执行追踪器草案；全部真实运行 blocked |
+| 2026-09-04 13:46 | /experiment-plan | refine-logs/SPECIALIZED_MODEL_EXECUTION_TRACKER_DRAFT.md | implementation | N0+ 执行追踪器 latest copy；无实验结果 |
+| 2026-09-04 13:46 | /experiment-plan | refine-logs/SPECIALIZED_MODEL_N0_PLUS_APPROVAL_PACKET_20260904_134614.json | implementation | 绑定父协议、草案与追踪器 SHA-256 的人工批准包 |
+| 2026-09-04 13:46 | /experiment-plan | refine-logs/SPECIALIZED_MODEL_N0_PLUS_APPROVAL_PACKET.json | implementation | N0+ 人工批准包 latest copy；不授予执行权 |

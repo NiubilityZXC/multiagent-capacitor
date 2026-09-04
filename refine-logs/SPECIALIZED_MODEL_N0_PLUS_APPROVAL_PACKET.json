@@ -1,0 +1,33 @@
+{
+  "schema_version": "specialized_model_n0_plus_approval_packet.v1",
+  "created_at": "2026-09-04T13:46:14+08:00",
+  "status": "DRAFT_NOT_APPROVED_NO_EXECUTION_AUTHORITY",
+  "parent_protocol": {
+    "path": "refine-logs/EXPERIMENT_PLAN.md",
+    "sha256": "df968d2e7ba33748043e547165143d9247358afca573946f3dde573c8c04b6d2",
+    "modified": false
+  },
+  "proposal": {
+    "path": "refine-logs/SPECIALIZED_MODEL_N0_PLUS_PRESEAL_DRAFT_20260904_134614.md",
+    "sha256": "81da8aa72b79fb43d5c3bb94686b497c6fea5245ca02dcf7f6e63c4193c74b33"
+  },
+  "tracker": {
+    "path": "refine-logs/SPECIALIZED_MODEL_EXECUTION_TRACKER_DRAFT_20260904_134614.md",
+    "sha256": "e36a3d78d86acfb240dedbf0102ee809fce8ec17bdc2ba02847363dd37a2b8b5"
+  },
+  "approval_phrase": "APPROVE_N0_PLUS_POLICY:81da8aa72b79fb43d5c3bb94686b497c6fea5245ca02dcf7f6e63c4193c74b33",
+  "approval_scope": [
+    "SN0 candidate registry implementation",
+    "dependency resolution and lock generation",
+    "offline synthetic causal and leakage tests",
+    "new preseal generation preparation"
+  ],
+  "explicitly_not_authorized": [
+    "real-data model fitting",
+    "outer-test scoring or reveal",
+    "RUL construction or prediction",
+    "Ark or any external model API call",
+    "GPU execution",
+    "modification of the currently sealed parent protocol"
+  ]
+}
