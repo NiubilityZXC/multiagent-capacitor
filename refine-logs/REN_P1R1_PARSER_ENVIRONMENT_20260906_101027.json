@@ -1,0 +1,53 @@
+{
+  "schema_version": "RenP1R1ParserEnvironment.v1",
+  "recorded_at": "2026-09-06T10:10:27+08:00",
+  "status": "PASS_DEPENDENCY_INSTALL_AND_IMPORT_ONLY",
+  "approval_record_sha256": "314dc2e62acf35eccf0053a8fd77591a1bc90d82fae9e70e1dbc4820f882f2d8",
+  "venv": ".venv-ren-p1r1",
+  "python": "3.12.3",
+  "pip": "24.0",
+  "lock": {
+    "path": "requirements-ren-p1r1-audit.lock",
+    "sha256": "9c4c5b0d486a661813021a2eee67be8706520df465cddf28c05ebd05d31f256d",
+    "frozen_before_installation": true
+  },
+  "wheels": [
+    {
+      "name": "xlrd",
+      "version": "2.0.2",
+      "filename": "xlrd-2.0.2-py2.py3-none-any.whl",
+      "bytes": 96555,
+      "sha256": "ea762c3d29f4cca48d82df517b6d89fbce4db3107f9d78713e48cd321d5c9aa9",
+      "source": "https://pypi.org/project/xlrd/2.0.2/",
+      "published_hash_matches": true
+    },
+    {
+      "name": "olefile",
+      "version": "0.47",
+      "filename": "olefile-0.47-py2.py3-none-any.whl",
+      "bytes": 114565,
+      "sha256": "543c7da2a7adadf21214938bb79c83ea12b473a4b6ee4ad4bf854e7715e13d1f",
+      "source": "https://pypi.org/project/olefile/0.47/",
+      "published_hash_matches": true
+    }
+  ],
+  "installation": {
+    "index_disabled": true,
+    "require_hashes": true,
+    "report_local": "data/raw/ren_scs/parser_env_r2_20260906/PIP_INSTALL_REPORT.json",
+    "report_sha256": "2127fc13b658781ef9bfdad74225c253c36326753f0157d393bf60b8fc4de56c"
+  },
+  "pip_check": {
+    "return_code": 0,
+    "output": "No broken requirements found."
+  },
+  "import_smoke": {
+    "return_code": 0,
+    "xlrd": "2.0.2",
+    "olefile": "0.47"
+  },
+  "workbook_opened_or_parsed": false,
+  "model_or_api_executed": false,
+  "numeric_target_emitted": false,
+  "automatic_next_stage": false
+}

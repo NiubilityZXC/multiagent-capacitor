@@ -1,0 +1,6 @@
+# Ren P1-R1 isolated static/row audit dependencies; no model dependencies.
+# PyPI release sources: https://pypi.org/project/xlrd/2.0.2/
+# https://pypi.org/project/olefile/0.47/
+# Freeze wheel hashes before installation; install with --no-index --require-hashes.
+xlrd==2.0.2 --hash=sha256:ea762c3d29f4cca48d82df517b6d89fbce4db3107f9d78713e48cd321d5c9aa9
+olefile==0.47 --hash=sha256:543c7da2a7adadf21214938bb79c83ea12b473a4b6ee4ad4bf854e7715e13d1f

@@ -214,3 +214,5 @@
 | 2026-09-04 22:04 | /experiment-bridge | refine-logs/REN_P1R1_EXECUTION_TRACKER_20260904_220422.md | data-audit | R1B/R1C/XLS/Data Gate 未运行与下一 generation 阻断追踪 |
 | 2026-09-04 22:04 | /experiment-bridge | refine-logs/REN_P1R1_BLOCKED_MANIFEST_20260904_220422.json | audit | 批准、两轮 BLOCKING、零执行边界、13/379 tests 与工件哈希清单 |
 | 2026-09-04 22:04 | /experiment-bridge | .aris/traces/experiment-bridge/2026-09-04_run01/003-*、004-* | audit | 两轮完整 reviewer trace；local-only 不提交 Git |
+| 2026-09-06 10:10 | /experiment-bridge | requirements-ren-p1r1-audit.lock | implementation | 安装前冻结 xlrd 2.0.2 / olefile 0.47 的 wheel SHA-256；独立审计环境，无模型依赖 |
+| 2026-09-06 10:10 | /experiment-bridge | refine-logs/REN_P1R1_PARSER_ENVIRONMENT_20260906_101027.json | data-audit | 离线 require-hashes 安装、pip check、import smoke PASS；尚未打开工作簿 |
