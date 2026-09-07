@@ -216,3 +216,9 @@
 | 2026-09-04 22:04 | /experiment-bridge | .aris/traces/experiment-bridge/2026-09-04_run01/003-*、004-* | audit | 两轮完整 reviewer trace；local-only 不提交 Git |
 | 2026-09-06 10:10 | /experiment-bridge | requirements-ren-p1r1-audit.lock | implementation | 安装前冻结 xlrd 2.0.2 / olefile 0.47 的 wheel SHA-256；独立审计环境，无模型依赖 |
 | 2026-09-06 10:10 | /experiment-bridge | refine-logs/REN_P1R1_PARSER_ENVIRONMENT_20260906_101027.json | data-audit | 离线 require-hashes 安装、pip check、import smoke PASS；尚未打开工作簿 |
+| 2026-09-07 17:06 | /experiment-bridge | refine-logs/REN_P1R1_R2_REPAIR_20260907_170600.md | implementation | R2 修复、62 定向/479 回归、fresh pre-run review pending；无真实恢复执行 |
+| 2026-09-07 17:06 | /experiment-bridge | experiments/audit_cap/ren_p1r1_recovery.py | implementation | v3 ignored transcripts、code/test/ignore seals、失败隔离、完整成员路径核验；待复审放行 |
+| 2026-09-07 17:06 | /experiment-bridge | experiments/audit_cap/verify_ren_p1r1_recovery.py | implementation | R1ABC 全字段重建及 raw/source/CRC 独立校验；待复审 |
+| 2026-09-07 17:06 | /experiment-bridge | tests/test_ren_p1r1_recovery.py; tests/test_verify_ren_p1r1_recovery.py | implementation | 完整 mock R1ABC + verifier、re-sealed report mutation 和强停止测试 |
+| 2026-09-07 17:06 | /experiment-bridge | experiments/audit_cap/ren_p1r1_xls_static.py; experiments/audit_cap/ren_p1r1_static_gate.py | implementation | R1D 静态组件/caller 草稿，真实数据运行仍需独立 pre-run release |
+| 2026-09-07 17:06 | /experiment-bridge | tests/test_ren_p1r1_xls_static.py; tests/test_ren_p1r1_static_gate.py | implementation | 54 项静态合成测试，未打开实际 XLS |

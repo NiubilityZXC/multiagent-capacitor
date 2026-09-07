@@ -17,7 +17,6 @@ import json
 import os
 from pathlib import Path, PurePosixPath
 import re
-import shutil
 import stat
 import subprocess
 import tarfile
@@ -26,7 +25,7 @@ from urllib.parse import urlsplit, urlunsplit
 import zlib
 
 
-SCHEMA_VERSION = "audit-cap.ren-p1r1-recovery.v2"
+SCHEMA_VERSION = "audit-cap.ren-p1r1-recovery.v3"
 ARCHIVE_BYTES = 2_114_703_017
 ARCHIVE_MD5 = "26a7a663217c59377c83fb2a8274466b"
 ARCHIVE_SHA256 = "a8f1083b887f95483561a94b624b323ff42814654ee7f23e7f95bc042fa258d8"
@@ -58,15 +57,29 @@ EXPECTED_TAR_MEMBERS = {
     "rar/rarfiles.lst": ("file", 1_223), "rar/license.txt": ("file", 6_753),
 }
 R1A_ARTIFACTS = (
-    "DOWNLOAD_PAGE.curl.json", "DOWNLOAD_PAGE.headers.txt", "DOWNLOAD_PAGE.html",
-    "TOOL_DOWNLOAD.curl.json", "TOOL_DOWNLOAD.headers.txt", "TOOL_IDENTITY.json",
-    "TOOL_HASH_LEDGER.csv", "RAR_VERSION.stdout.txt", "RAR_VERSION.stderr.txt",
-    "UNRAR_VERSION.stdout.txt", "UNRAR_VERSION.stderr.txt",
-    "OFFICIAL_LISTING.stdout.txt", "OFFICIAL_LISTING.stderr.txt",
+    "DOWNLOAD_PAGE_RECEIPT.json", "TOOL_DOWNLOAD_RECEIPT.json", "TOOL_IDENTITY.json",
+    "TOOL_HASH_LEDGER.csv",
     "OFFICIAL_ARCHIVE_MEMBER_LEDGER.csv", "ARCHIVE_LISTING_DIFF.json", "R1A_PREFLIGHT.json",
 )
-R1B_ARTIFACTS = ("ARCHIVE_TEST.stdout.txt", "ARCHIVE_TEST.stderr.txt", "ARCHIVE_TEST_REPORT.json")
-R1C_ARTIFACTS = ("EXTRACTION.stdout.txt", "EXTRACTION.stderr.txt", "EXTRACTION_MEMBER_LEDGER.csv", "EXTRACTION_MANIFEST.json")
+R1B_ARTIFACTS = ("ARCHIVE_TEST_REPORT.json",)
+R1C_ARTIFACTS = ("EXTRACTION_MEMBER_LEDGER.csv", "EXTRACTION_MANIFEST.json")
+R1A_LOCAL_EVIDENCE = (
+    "DOWNLOAD_PAGE.headers.raw", "DOWNLOAD_PAGE.curl.stdout.raw", "DOWNLOAD_PAGE.curl.stderr.raw",
+    "DOWNLOAD_PAGE.curl.command.json",
+    "DOWNLOAD_PAGE.html.raw", "TOOL_DOWNLOAD.headers.raw", "TOOL_DOWNLOAD.curl.stdout.raw",
+    "TOOL_DOWNLOAD.curl.stderr.raw", "TOOL_DOWNLOAD.curl.command.json",
+    "RAR_VERSION.stdout.raw", "RAR_VERSION.stderr.raw",
+    "RAR_VERSION.command.json", "UNRAR_VERSION.stdout.raw", "UNRAR_VERSION.stderr.raw",
+    "UNRAR_VERSION.command.json", "OFFICIAL_LISTING.stdout.raw", "OFFICIAL_LISTING.stderr.raw",
+    "OFFICIAL_LISTING.command.json",
+    "DISK_PREFLIGHT.stdout.raw", "DISK_PREFLIGHT.stderr.raw", "DISK_PREFLIGHT.command.json",
+)
+R1B_LOCAL_EVIDENCE = (
+    "ARCHIVE_TEST.stdout.raw", "ARCHIVE_TEST.stderr.raw", "ARCHIVE_TEST.command.json",
+)
+R1C_LOCAL_EVIDENCE = (
+    "EXTRACTION.stdout.raw", "EXTRACTION.stderr.raw", "EXTRACTION.command.json",
+)
 PRIOR_HEADER = (
     "member_path", "member_type", "batch_path_component", "provisional_filename_stem",
     "segment_suffix", "uncompressed_bytes", "packed_bytes", "crc", "compression_method",
@@ -163,20 +176,71 @@ def _write_csv(path: Path, rows: Sequence[Mapping[str, Any]], fields: Sequence[s
 def _strict_json(path: Path) -> dict[str, Any]:
     def reject(value: str) -> NoReturn:
         _fail(f"non-finite JSON token in {path}: {value}")
-    value = json.loads(path.read_text(encoding="utf-8"), parse_constant=reject)
+    def pairs(items: Sequence[tuple[str, Any]]) -> dict[str, Any]:
+        result = {}
+        for key, value in items:
+            if key in result:
+                _fail(f"duplicate JSON key in {path.name}: {key}")
+            result[key] = value
+        return result
+    try:
+        value = json.loads(path.read_text(encoding="utf-8"), parse_constant=reject, object_pairs_hook=pairs)
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        raise RecoveryError(f"invalid strict JSON artifact: {path}") from exc
     if not isinstance(value, dict):
         _fail(f"JSON artifact must be an object: {path}")
     return value
 
 
-def _run(argv: Sequence[str], timeout: int) -> subprocess.CompletedProcess[bytes]:
+@dataclass(frozen=True)
+class CommandResult:
+    args: tuple[str, ...]
+    returncode: int
+    stdout: bytes
+    stderr: bytes
+    timed_out: bool
+    execution_error: bool
+
+
+def _run(argv: Sequence[str], timeout: int) -> CommandResult:
+    command = tuple(str(item) for item in argv)
     try:
-        return subprocess.run(list(argv), check=False, capture_output=True, timeout=timeout,
-                              env={"PATH": "/usr/bin:/bin", "LANG": "C", "LC_ALL": "C"})
+        completed = subprocess.run(list(command), check=False, capture_output=True, timeout=timeout,
+                                   env={"PATH": "/usr/bin:/bin", "LANG": "C", "LC_ALL": "C"})
+        return CommandResult(command, completed.returncode, completed.stdout, completed.stderr, False, False)
     except subprocess.TimeoutExpired as exc:
-        raise RecoveryError(f"command timeout after {timeout}s: {Path(argv[0]).name}") from exc
+        stdout = exc.stdout if isinstance(exc.stdout, bytes) else (exc.stdout or "").encode()
+        stderr = exc.stderr if isinstance(exc.stderr, bytes) else (exc.stderr or "").encode()
+        return CommandResult(command, 124, stdout, stderr, True, False)
     except OSError as exc:
-        raise RecoveryError(f"command execution failed: {Path(argv[0]).name}") from exc
+        return CommandResult(command, 127, b"", str(exc).encode("utf-8", errors="replace"), False, True)
+
+
+def _command_record(result: CommandResult, *, argv_label: Sequence[str]) -> dict[str, Any]:
+    return {
+        "schema_version": SCHEMA_VERSION,
+        "argv": list(argv_label),
+        "return_code": result.returncode,
+        "timed_out": result.timed_out,
+        "execution_error": result.execution_error,
+        "stdout_bytes": len(result.stdout),
+        "stdout_sha256": hashlib.sha256(result.stdout).hexdigest(),
+        "stderr_bytes": len(result.stderr),
+        "stderr_sha256": hashlib.sha256(result.stderr).hexdigest(),
+        "model_or_api_executed": False,
+        "numeric_target_emitted": False,
+    }
+
+
+def _persist_command(local: Path, prefix: str, result: CommandResult, *, argv_label: Sequence[str]) -> dict[str, Any]:
+    stdout = local / f"{prefix}.stdout.raw"
+    stderr = local / f"{prefix}.stderr.raw"
+    command = local / f"{prefix}.command.json"
+    _write_bytes(stdout, result.stdout)
+    _write_bytes(stderr, result.stderr)
+    record = _command_record(result, argv_label=argv_label)
+    _write_json(command, record)
+    return {"stdout": _digests(stdout), "stderr": _digests(stderr), "command": _digests(command), **record}
 
 
 @dataclass(frozen=True)
@@ -190,6 +254,7 @@ class Paths:
     plan: Path
     packet: Path
     approval: Path
+    release: Path
     tool_tar: Path
     tool_root: Path
     extraction: Path
@@ -206,11 +271,12 @@ class Paths:
             project / "refine-logs/REN_P1R1_ARCHIVE_RECOVERY_PLAN_20260904_145423.md",
             project / "refine-logs/REN_P1R1_APPROVAL_PACKET_20260904_145423.json",
             project / "refine-logs/REN_P1R1_APPROVAL_RECORD_20260904_213130.json",
+            project / "refine-logs/REN_P1R1_R2_RELEASE.json",
             project / "data/raw/ren_scs" / run_id / "tool/rarlinux-x64-723.tar.gz",
             project / "data/raw/ren_scs" / run_id / "tool/unpacked",
             project / "data/raw/ren_scs" / run_id / "quarantine_extracted",
         )
-        for path in (values.output, values.local, values.archive, values.prior, values.plan, values.packet, values.approval):
+        for path in (values.output, values.local, values.archive, values.prior, values.plan, values.packet, values.approval, values.release):
             _no_symlink_components(project, path)
         ignored = _run(["/usr/bin/git", "-C", str(project), "check-ignore", "-q", "--", str(values.local.relative_to(project))], 30)
         if ignored.returncode != 0:
@@ -224,6 +290,8 @@ class Paths:
         else:
             _require_dir(values.output, "run evidence directory")
             _require_dir(values.local, "local run staging")
+            if any(values.output.glob("*_BLOCKED*.json")) or any((values.local / "evidence").glob("*_BLOCKED*.json")):
+                _fail("this run has a recorded BLOCKED stage")
         return values
 
 
@@ -232,13 +300,46 @@ def _bound(logical: Mapping[str, Path]) -> dict[str, dict[str, Any]]:
 
 
 def _authority(paths: Paths) -> dict[str, Path]:
-    return {"source_archive": paths.archive, "frozen_plan": paths.plan, "approval_packet": paths.packet,
-            "approval_record": paths.approval, "prior_listing_ledger": paths.prior}
+    return {
+        "source_archive": paths.archive,
+        "frozen_plan": paths.plan,
+        "approval_packet": paths.packet,
+        "approval_record": paths.approval,
+        "pre_run_release": paths.release,
+        "prior_listing_ledger": paths.prior,
+        "policy:generator": paths.project / "experiments/audit_cap/ren_p1r1_recovery.py",
+        "policy:verifier": paths.project / "experiments/audit_cap/verify_ren_p1r1_recovery.py",
+        "policy:generator_tests": paths.project / "tests/test_ren_p1r1_recovery.py",
+        "policy:verifier_tests": paths.project / "tests/test_verify_ren_p1r1_recovery.py",
+        "policy:gitignore": paths.project / ".gitignore",
+    }
+
+
+def _validate_release(paths: Paths) -> None:
+    payload = _strict_json(paths.release)
+    policy = _authority(paths)
+    policy.pop("source_archive")
+    policy.pop("frozen_plan")
+    policy.pop("approval_packet")
+    policy.pop("approval_record")
+    policy.pop("prior_listing_ledger")
+    policy.pop("pre_run_release")
+    expected = {name: _digests(path)["sha256"] for name, path in sorted(policy.items())}
+    if (
+        payload.get("schema_version") != "RenP1R1R2Release.v1"
+        or payload.get("status") != "PASS_TO_RUN_R1ABC"
+        or payload.get("approval_record_sha256") != APPROVAL_SHA256
+        or payload.get("reviewed_policy_sha256") != expected
+        or payload.get("automatic_next_stage") is not False
+        or payload.get("model_or_api_executed") is not False
+    ):
+        _fail("fresh pre-run review release record does not bind current policy bytes")
 
 
 def _r1a_files(paths: Paths) -> dict[str, Path]:
     result = _authority(paths)
     result.update({f"artifact:{name}": paths.output / name for name in R1A_ARTIFACTS})
+    result.update({f"local_evidence:{name}": paths.local / "evidence" / name for name in R1A_LOCAL_EVIDENCE})
     result.update({"tool_tarball": paths.tool_tar, "rar_binary": paths.tool_root / "rar/rar",
                    "unrar_binary": paths.tool_root / "rar/unrar", "tool_license": paths.tool_root / "rar/license.txt"})
     return result
@@ -248,6 +349,7 @@ def _r1b_files(paths: Paths) -> dict[str, Path]:
     result = _r1a_files(paths)
     result["seal:R1A"] = paths.output / "R1A_SEAL.json"
     result.update({f"artifact:{name}": paths.output / name for name in R1B_ARTIFACTS})
+    result.update({f"local_evidence:{name}": paths.local / "evidence" / name for name in R1B_LOCAL_EVIDENCE})
     return result
 
 
@@ -259,7 +361,7 @@ def _seal(path: Path, stage: str, status_value: str, bound: Mapping[str, Mapping
 
 def _verify_seal(path: Path, stage: str, status_value: str, current: Mapping[str, Mapping[str, Any]]) -> None:
     payload = _strict_json(path)
-    if payload.get("stage") != stage or payload.get("status") != status_value or payload.get("bound_files") != current:
+    if payload.get("schema_version") != SCHEMA_VERSION or payload.get("stage") != stage or payload.get("status") != status_value or payload.get("bound_files") != current:
         _fail(f"{stage} seal or a bound byte changed")
     if payload.get("model_or_api_executed") is not False or payload.get("numeric_target_emitted") is not False or payload.get("automatic_next_stage") is not False:
         _fail(f"{stage} seal permission boundary differs")
@@ -281,18 +383,55 @@ def _validate_https_url(value: str, expected_path: str) -> str:
     return safe
 
 
-def _curl_download(url: str, payload: Path, headers: Path, receipt_path: Path) -> dict[str, Any]:
+def _sanitized_headers(path: Path, expected_path: str) -> dict[str, Any]:
+    text = path.read_text(encoding="utf-8", errors="replace")
+    statuses: list[str] = []
+    locations: list[str] = []
+    selected: dict[str, list[str]] = {
+        "content-length": [], "content-type": [], "etag": [], "last-modified": []
+    }
+    for raw in text.splitlines():
+        line = raw.strip()
+        lower = line.lower()
+        if line.startswith("HTTP/"):
+            statuses.append(" ".join(line.split()[:3]))
+        elif lower.startswith("location:"):
+            locations.append(_validate_https_url(line.split(":", 1)[1].strip(), expected_path))
+        else:
+            for key in selected:
+                if lower.startswith(key + ":"):
+                    selected[key].append(line.split(":", 1)[1].strip())
+    if not statuses or not any(re.match(r"HTTP/\S+ 200(?:\s|$)", status) for status in statuses):
+        _fail("download headers do not contain HTTP 200")
+    return {
+        "http_status_lines": statuses,
+        "redirect_scheme_host_paths": locations,
+        "selected_headers": selected,
+        "raw": _digests(path),
+        "query_fragment_credentials_persisted": False,
+    }
+
+
+def _curl_download(url: str, payload: Path, evidence: Path, prefix: str) -> dict[str, Any]:
     curl = Path("/usr/bin/curl")
     if _digests(curl)["sha256"] != CURL_SHA256:
         _fail("curl binary identity differs")
+    headers = evidence / f"{prefix}.headers.raw"
     partial = payload.with_name(payload.name + ".partial")
-    for path in (payload, partial, headers, receipt_path):
+    raw_targets = (
+        evidence / f"{prefix}.curl.stdout.raw",
+        evidence / f"{prefix}.curl.stderr.raw",
+        evidence / f"{prefix}.curl.command.json",
+    )
+    for path in (payload, partial, headers, *raw_targets):
         if path.exists() or path.is_symlink():
             _fail(f"download target already exists: {path}")
-    completed = _run([str(curl), "--proto", "=https", "--tlsv1.2", "--location", "--max-redirs", "3",
-                      "--fail-with-body", "--show-error", "--silent", "--dump-header", str(headers),
-                      "--output", str(partial), "--write-out", "%{json}", url], 300)
-    if completed.returncode != 0 or completed.stderr:
+    argv = [str(curl), "--proto", "=https", "--tlsv1.2", "--location", "--max-redirs", "3",
+            "--fail-with-body", "--show-error", "--silent", "--dump-header", str(headers),
+            "--output", str(partial), "--write-out", "%{json}", url]
+    completed = _run(argv, 300)
+    command = _persist_command(evidence, f"{prefix}.curl", completed, argv_label=("curl", "HTTPS_ONLY_FIXED_URL", prefix))
+    if completed.returncode != 0 or completed.stderr or completed.timed_out or completed.execution_error:
         _fail("curl download failed or emitted stderr")
     try:
         meta = json.loads(completed.stdout)
@@ -302,58 +441,59 @@ def _curl_download(url: str, payload: Path, headers: Path, receipt_path: Path) -
     effective = _validate_https_url(str(meta.get("url_effective", "")), expected_path)
     if int(meta.get("http_code", 0)) != 200:
         _fail("tool transport did not end in HTTP 200")
-    header_text = headers.read_text(encoding="utf-8", errors="replace")
-    for location in re.findall(r"(?im)^location:\s*(\S+)\s*$", header_text):
-        _validate_https_url(location, expected_path)
+    sanitized_headers = _sanitized_headers(headers, expected_path)
     os.replace(partial, payload)
     receipt = {"schema_version": SCHEMA_VERSION, "requested_url": url, "effective_scheme_host_path": effective,
                "http_code": meta["http_code"], "num_redirects": meta.get("num_redirects"),
                "size_download": meta.get("size_download"), "content_type": meta.get("content_type"),
                "remote_ip_redacted": True, "curl": {"path": str(curl), **_digests(curl)},
-               "headers": _digests(headers), "payload": _digests(payload),
-               "stderr_bytes": 0, "stderr_sha256": hashlib.sha256(completed.stderr).hexdigest(),
+               "headers": sanitized_headers, "payload": _digests(payload),
+               "raw_command_evidence": command,
                "model_or_api_executed": False, "numeric_target_emitted": False}
-    _write_json(receipt_path, receipt)
     return receipt
 
 
 def _extract_tool(tarball: Path, root: Path) -> list[dict[str, Any]]:
-    root.mkdir(mode=0o700)
-    rows: dict[str, tuple[str, int]] = {}
-    with tarfile.open(tarball, "r:gz") as archive:
-        members = archive.getmembers()
-        for member in members:
-            pure = PurePosixPath(member.name)
-            if not member.name or pure.is_absolute() or ".." in pure.parts or "." in pure.parts or member.issym() or member.islnk():
-                _fail(f"unsafe RARLAB tar member: {member.name}")
-            kind = "dir" if member.isdir() else "file" if member.isfile() else "special"
-            if member.name in rows:
-                _fail(f"duplicate RARLAB tar member: {member.name}")
-            rows[member.name] = (kind, member.size)
-        if rows != EXPECTED_TAR_MEMBERS:
-            _fail("RARLAB tar member structure differs")
-        for member in members:
-            target = root.joinpath(*PurePosixPath(member.name).parts)
-            if member.isdir():
-                target.mkdir(mode=0o700, parents=True)
-            else:
-                target.parent.mkdir(mode=0o700, parents=True)
-                source = archive.extractfile(member)
-                if source is None:
-                    _fail(f"cannot read tool member: {member.name}")
-                _write_bytes(target, source.read())
-                target.chmod(0o755 if member.name in {"rar/rar", "rar/unrar", "rar/default.sfx"} else 0o600)
+    try:
+        root.mkdir(mode=0o700)
+        rows: dict[str, tuple[str, int]] = {}
+        with tarfile.open(tarball, "r:gz") as archive:
+            members = archive.getmembers()
+            for member in members:
+                pure = PurePosixPath(member.name)
+                if not member.name or pure.is_absolute() or ".." in pure.parts or "." in pure.parts or member.issym() or member.islnk():
+                    _fail(f"unsafe RARLAB tar member: {member.name}")
+                kind = "dir" if member.isdir() else "file" if member.isfile() else "special"
+                if member.name in rows:
+                    _fail(f"duplicate RARLAB tar member: {member.name}")
+                rows[member.name] = (kind, member.size)
+            if rows != EXPECTED_TAR_MEMBERS:
+                _fail("RARLAB tar member structure differs")
+            for member in members:
+                target = root.joinpath(*PurePosixPath(member.name).parts)
+                if member.isdir():
+                    target.mkdir(mode=0o700, parents=True)
+                else:
+                    target.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+                    source = archive.extractfile(member)
+                    if source is None:
+                        _fail(f"cannot read tool member: {member.name}")
+                    _write_bytes(target, source.read())
+                    target.chmod(0o755 if member.name in {"rar/rar", "rar/unrar", "rar/default.sfx"} else 0o600)
+    except RecoveryError:
+        raise
+    except (OSError, EOFError, UnicodeError, tarfile.TarError) as exc:
+        raise RecoveryError("RARLAB tool package could not be safely inspected/extracted") from exc
     return [{"path": name, "kind": kind, "bytes": size} for name, (kind, size) in sorted(rows.items())]
 
 
-def _version(tool: Path, output: Path, error: Path) -> str:
+def _version(tool: Path, evidence: Path, prefix: str) -> dict[str, Any]:
     completed = _run([str(tool), "-iver"], 30)
-    _write_bytes(output, completed.stdout)
-    _write_bytes(error, completed.stderr)
+    command = _persist_command(evidence, prefix, completed, argv_label=(tool.name, "-iver"))
     value = completed.stdout.decode("ascii", errors="replace").strip()
-    if completed.returncode != 0 or completed.stderr or value != "7.23":
+    if completed.returncode != 0 or completed.stderr or completed.timed_out or completed.execution_error or value != "7.23":
         _fail(f"tool version mismatch: {tool.name}")
-    return value
+    return {"version": value, "evidence": command}
 
 
 def _parse_unrar_listing(raw: bytes, *, expected_member_count: int = EXPECTED_MEMBER_COUNT) -> tuple[dict[str, str], list[dict[str, Any]]]:
@@ -462,6 +602,9 @@ def r1a(paths: Paths) -> int:
     paths.output.mkdir(mode=0o755)
     paths.local.mkdir(mode=0o700)
     paths.tool_tar.parent.mkdir(mode=0o700)
+    evidence = paths.local / "evidence"
+    evidence.mkdir(mode=0o700)
+    _validate_release(paths)
     for path, digest in ((paths.plan, PLAN_SHA256), (paths.packet, PACKET_SHA256),
                          (paths.approval, APPROVAL_SHA256), (paths.prior, PRIOR_LEDGER_SHA256)):
         if _digests(path)["sha256"] != digest:
@@ -472,13 +615,14 @@ def r1a(paths: Paths) -> int:
     source = _digests(paths.archive, md5=True)
     if source != {"bytes": ARCHIVE_BYTES, "sha256": ARCHIVE_SHA256, "md5": ARCHIVE_MD5}:
         _fail("raw.rar identity differs")
-    page = paths.local / "tool/download.htm"
-    page_receipt = _curl_download(DOWNLOAD_PAGE_URL, page, paths.output / "DOWNLOAD_PAGE.headers.txt", paths.output / "DOWNLOAD_PAGE.curl.json")
+    page = evidence / "DOWNLOAD_PAGE.html.raw"
+    page_receipt = _curl_download(DOWNLOAD_PAGE_URL, page, evidence, "DOWNLOAD_PAGE")
     page_bytes = page.read_bytes()
     if b'href="/rar/rarlinux-x64-723.tar.gz"' not in page_bytes or b"RAR for Linux x64 7.23" not in page_bytes:
         _fail("official download page no longer lists Linux x64 7.23")
-    _write_bytes(paths.output / "DOWNLOAD_PAGE.html", page_bytes)
-    tool_receipt = _curl_download(TOOL_URL, paths.tool_tar, paths.output / "TOOL_DOWNLOAD.headers.txt", paths.output / "TOOL_DOWNLOAD.curl.json")
+    tool_receipt = _curl_download(TOOL_URL, paths.tool_tar, evidence, "TOOL_DOWNLOAD")
+    _write_json(paths.output / "DOWNLOAD_PAGE_RECEIPT.json", page_receipt)
+    _write_json(paths.output / "TOOL_DOWNLOAD_RECEIPT.json", tool_receipt)
     if _digests(paths.tool_tar) != {"bytes": TOOL_TARBALL_BYTES, "sha256": TOOL_TARBALL_SHA256}:
         _fail("tool tarball identity differs")
     tar_members = _extract_tool(paths.tool_tar, paths.tool_root)
@@ -490,16 +634,26 @@ def r1a(paths: Paths) -> int:
             _fail(f"{label} identity differs")
         identities.append({"item": label, "path_suffix": str(path.relative_to(paths.local)), **observed,
                            "model_or_api_executed": "false", "numeric_target_emitted": "false"})
-    versions = {"rar": _version(rar, paths.output / "RAR_VERSION.stdout.txt", paths.output / "RAR_VERSION.stderr.txt"),
-                "unrar": _version(unrar, paths.output / "UNRAR_VERSION.stdout.txt", paths.output / "UNRAR_VERSION.stderr.txt")}
+    versions = {"rar": _version(rar, evidence, "RAR_VERSION"),
+                "unrar": _version(unrar, evidence, "UNRAR_VERSION")}
     listing = _run([str(unrar), "lt", "-v", "-p-", str(paths.archive)], 180)
-    _write_bytes(paths.output / "OFFICIAL_LISTING.stdout.txt", listing.stdout)
-    _write_bytes(paths.output / "OFFICIAL_LISTING.stderr.txt", listing.stderr)
-    if listing.returncode != 0 or listing.stderr:
+    listing_evidence = _persist_command(
+        evidence, "OFFICIAL_LISTING", listing,
+        argv_label=("unrar", "lt", "-v", "-p-", "FROZEN_RAW_RAR"),
+    )
+    if listing.returncode != 0 or listing.stderr or listing.timed_out or listing.execution_error:
         _fail("official listing failed or emitted stderr")
     banner, official = _parse_unrar_listing(listing.stdout)
     difference = _listing_diff(official, _prior_rows(paths.prior))
-    free = shutil.disk_usage(paths.local.parent).free
+    disk = _run(["/usr/bin/df", "--output=avail", "-B1", str(paths.local.parent)], 30)
+    disk_evidence = _persist_command(evidence, "DISK_PREFLIGHT", disk,
+                                     argv_label=("df", "--output=avail", "-B1", "LOCAL_STAGING_PARENT"))
+    if disk.returncode != 0 or disk.stderr or disk.timed_out or disk.execution_error:
+        _fail("disk preflight command failed")
+    disk_lines = disk.stdout.decode("ascii").splitlines()
+    if len(disk_lines) != 2 or disk_lines[0].strip() != "Avail" or not disk_lines[1].strip().isdigit():
+        _fail("disk preflight output is not recognized")
+    free = int(disk_lines[1].strip())
     required = EXPECTED_UNCOMPRESSED_BYTES + max(MIN_DISK_SAFETY_BYTES, EXPECTED_UNCOMPRESSED_BYTES // 5)
     passed = difference["status"] == "PASS_EXACT_LISTING_DIFF" and free >= required
     tool_identity = {"schema_version": SCHEMA_VERSION, "status": "PASS_TOOL_IDENTITY",
@@ -512,10 +666,8 @@ def r1a(paths: Paths) -> int:
                  "status": "PASS_R1A_PREFLIGHT" if passed else "BLOCKED_R1A", "source": source,
                  "plan_sha256": PLAN_SHA256, "packet_sha256": PACKET_SHA256,
                  "approval_sha256": APPROVAL_SHA256, "prior_ledger_sha256": PRIOR_LEDGER_SHA256,
-                 "listing": {"return_code": listing.returncode, **banner,
-                             "stdout": _digests(paths.output / "OFFICIAL_LISTING.stdout.txt"),
-                             "stderr": _digests(paths.output / "OFFICIAL_LISTING.stderr.txt")},
-                 "disk": {"available_bytes": free, "required_bytes": required,
+                 "listing": {**banner, **listing_evidence},
+                 "disk": {"available_bytes": free, "required_bytes": required, "command_evidence": disk_evidence,
                           "status": "PASS" if free >= required else "BLOCKED"},
                  "model_or_api_executed": False, "numeric_target_emitted": False,
                  "automatic_next_stage": False}
@@ -554,32 +706,60 @@ def _danger(text: str) -> dict[str, int]:
     return {token: len(re.findall(re.escape(token), text, re.I)) for token in tokens}
 
 
+def _archive_test_report(
+    result: CommandResult,
+    command_evidence: Mapping[str, Any],
+    expected: Sequence[str],
+) -> dict[str, Any]:
+    combined = (result.stdout + b"\n" + result.stderr).decode("utf-8", errors="replace").replace("\r", "\n")
+    observed = sorted(_ok_paths(result.stdout, "Testing"))
+    danger = _danger(combined)
+    all_ok = len(re.findall(r"^All OK\s*$", combined, re.M))
+    passed = (
+        result.returncode == 0
+        and not result.stderr
+        and not result.timed_out
+        and not result.execution_error
+        and observed == sorted(expected)
+        and len(observed) == EXPECTED_FILE_COUNT
+        and all_ok == 1
+        and not any(danger.values())
+    )
+    return {
+        "schema_version": SCHEMA_VERSION,
+        "stage": "R1B",
+        "status": "PASS_ARCHIVE_TEST" if passed else "BLOCKED_ARCHIVE_TEST",
+        "command_evidence": dict(command_evidence),
+        "return_code": result.returncode,
+        "timed_out": result.timed_out,
+        "execution_error": result.execution_error,
+        "expected_tested_file_count": len(expected),
+        "observed_tested_file_count": len(observed),
+        "tested_path_set_exact": observed == sorted(expected),
+        "all_ok_marker_count": all_ok,
+        "danger_marker_counts": danger,
+        "extraction_authorized_by_this_report": passed,
+        "extraction_attempted": False,
+        "model_or_api_executed": False,
+        "numeric_target_emitted": False,
+        "automatic_next_stage": False,
+    }
+
+
 def r1b(paths: Paths, timeout: int) -> int:
     _verify_seal(paths.output / "R1A_SEAL.json", "R1A", "PASS_R1A_SEALED", _bound(_r1a_files(paths)))
     if any((paths.output / name).exists() for name in (*R1B_ARTIFACTS, "R1B_SEAL.json")):
         _fail("R1B already attempted")
     members = _stored_members(paths.output / "OFFICIAL_ARCHIVE_MEMBER_LEDGER.csv")
     expected = sorted(row["member_path"] for row in members if row["member_type"] == "regular_file")
-    completed = _run([str(paths.tool_root / "rar/unrar"), "t", "-p-", str(paths.archive)], timeout)
-    _write_bytes(paths.output / "ARCHIVE_TEST.stdout.txt", completed.stdout)
-    _write_bytes(paths.output / "ARCHIVE_TEST.stderr.txt", completed.stderr)
-    combined = (completed.stdout + b"\n" + completed.stderr).decode("utf-8", errors="replace").replace("\r", "\n")
-    observed = sorted(_ok_paths(completed.stdout, "Testing"))
-    danger = _danger(combined)
-    all_ok = len(re.findall(r"^All OK\s*$", combined, re.M))
-    passed = completed.returncode == 0 and not completed.stderr and observed == expected and len(observed) == EXPECTED_FILE_COUNT and all_ok == 1 and not any(danger.values())
-    report = {"schema_version": SCHEMA_VERSION, "stage": "R1B",
-              "status": "PASS_ARCHIVE_TEST" if passed else "BLOCKED_ARCHIVE_TEST",
-              "return_code": completed.returncode, "expected_tested_file_count": len(expected),
-              "observed_tested_file_count": len(observed), "tested_path_set_exact": observed == expected,
-              "all_ok_marker_count": all_ok, "danger_marker_counts": danger,
-              "stdout": _digests(paths.output / "ARCHIVE_TEST.stdout.txt"),
-              "stderr": _digests(paths.output / "ARCHIVE_TEST.stderr.txt"),
-              "extraction_authorized_by_this_report": passed, "extraction_attempted": False,
-              "model_or_api_executed": False, "numeric_target_emitted": False,
-              "automatic_next_stage": False}
+    completed = _run([str(paths.tool_root / "rar/unrar"), "t", "-idp", "-p-", str(paths.archive)], timeout)
+    command_evidence = _persist_command(
+        paths.local / "evidence", "ARCHIVE_TEST", completed,
+        argv_label=("unrar", "t", "-idp", "-p-", "FROZEN_RAW_RAR"),
+    )
+    report = _archive_test_report(completed, command_evidence, expected)
     _write_json(paths.output / "ARCHIVE_TEST_REPORT.json", report)
-    if not passed:
+    if report["status"] != "PASS_ARCHIVE_TEST":
         _fail("full archive test did not pass; extraction forbidden")
     _seal(paths.output / "R1B_SEAL.json", "R1B", "PASS_R1B_SEALED", _bound(_r1b_files(paths)))
     print(paths.output / "ARCHIVE_TEST_REPORT.json")
@@ -594,22 +774,14 @@ def _crc32(path: Path) -> str:
     return f"{crc & 0xFFFFFFFF:08X}"
 
 
-def r1c(paths: Paths, timeout: int) -> int:
-    _verify_seal(paths.output / "R1A_SEAL.json", "R1A", "PASS_R1A_SEALED", _bound(_r1a_files(paths)))
-    _verify_seal(paths.output / "R1B_SEAL.json", "R1B", "PASS_R1B_SEALED", _bound(_r1b_files(paths)))
-    if paths.extraction.exists() or paths.extraction.is_symlink() or any((paths.output / name).exists() for name in (*R1C_ARTIFACTS, "R1C_SEAL.json")):
-        _fail("R1C already attempted")
-    paths.extraction.mkdir(mode=0o700)
-    completed = _run([str(paths.tool_root / "rar/unrar"), "x", "-p-", "-o-", str(paths.archive), str(paths.extraction) + os.sep], timeout)
-    _write_bytes(paths.output / "EXTRACTION.stdout.txt", completed.stdout)
-    _write_bytes(paths.output / "EXTRACTION.stderr.txt", completed.stderr)
-    expected_rows = _stored_members(paths.output / "OFFICIAL_ARCHIVE_MEMBER_LEDGER.csv")
-    expected = {row["member_path"]: row for row in expected_rows}
+def _scan_extraction(
+    extraction: Path, expected: Mapping[str, Mapping[str, str]]
+) -> tuple[list[dict[str, Any]], list[str], list[str], list[str]]:
     rows: list[dict[str, Any]] = []
     observed: set[str] = set()
     unsafe: list[str] = []
-    for path in sorted(paths.extraction.rglob("*")):
-        rel = path.relative_to(paths.extraction).as_posix()
+    for path in sorted(extraction.rglob("*")):
+        rel = path.relative_to(extraction).as_posix()
         observed.add(rel)
         meta = path.lstat()
         kind = "symlink" if stat.S_ISLNK(meta.st_mode) else "regular_file" if stat.S_ISREG(meta.st_mode) else "directory" if stat.S_ISDIR(meta.st_mode) else "special"
@@ -630,50 +802,123 @@ def r1c(paths: Paths, timeout: int) -> int:
                      "type_match": str(type_ok).lower(), "size_match": str(size_ok).lower(),
                      "crc_match": str(crc_ok).lower(), "status": "PASS" if type_ok and size_ok and crc_ok else "FAIL",
                      "model_or_api_executed": "false", "numeric_target_emitted": "false"})
-    missing, unexpected = sorted(expected.keys() - observed), sorted(observed - expected.keys())
-    text = (completed.stdout + b"\n" + completed.stderr).decode("utf-8", errors="replace").replace("\r", "\n")
-    extracted_ok = sorted(_ok_paths(completed.stdout, "Extracting"))
+    return rows, sorted(expected.keys() - observed), sorted(observed - expected.keys()), unsafe
+
+
+def _extraction_manifest(
+    result: CommandResult,
+    command_evidence: Mapping[str, Any],
+    rows: Sequence[Mapping[str, Any]],
+    missing: Sequence[str],
+    unexpected: Sequence[str],
+    unsafe: Sequence[str],
+    destination_name: str,
+) -> dict[str, Any]:
+    text = (result.stdout + b"\n" + result.stderr).decode("utf-8", errors="replace").replace("\r", "\n")
+    extracted_ok = sorted(_ok_paths(result.stdout, "Extracting"))
+    expected_paths = sorted(row["member_path"] for row in rows if row["observed_type"] == "regular_file")
     danger = _danger(text)
     all_ok = len(re.findall(r"^All OK\s*$", text, re.M))
-    passed = completed.returncode == 0 and not completed.stderr and not missing and not unexpected and not unsafe and len(rows) == EXPECTED_MEMBER_COUNT and len(extracted_ok) == EXPECTED_FILE_COUNT and all_ok == 1 and not any(danger.values())
-    manifest = {"schema_version": SCHEMA_VERSION, "stage": "R1C",
-                "status": "PASS_EXTRACTION_BYTE_IDENTITY" if passed else "QUARANTINED_EXTRACTION_MISMATCH",
-                "quarantine_state": "RELEASED_FOR_READ_ONLY_ROW_AUDIT" if passed else "QUARANTINED_BLOCKED",
-                "destination_name": paths.extraction.name, "return_code": completed.returncode,
-                "stdout": _digests(paths.output / "EXTRACTION.stdout.txt"),
-                "stderr": _digests(paths.output / "EXTRACTION.stderr.txt"),
-                "all_ok_marker_count": all_ok, "danger_marker_counts": danger,
-                "extract_ok_file_count": len(extracted_ok), "observed_member_count": len(rows),
-                "observed_regular_file_count": sum(row["observed_type"] == "regular_file" for row in rows),
-                "observed_directory_count": sum(row["observed_type"] == "directory" for row in rows),
-                "observed_regular_file_bytes": sum(int(row["observed_bytes"]) for row in rows if row["observed_type"] == "regular_file"),
-                "missing_members": missing, "unexpected_members": unexpected,
-                "unsafe_or_mismatched": unsafe, "workbook_opened_or_parsed": False,
-                "model_or_api_executed": False, "numeric_target_emitted": False,
-                "automatic_next_stage": False}
+    passed = (
+        result.returncode == 0
+        and not result.stderr
+        and not result.timed_out
+        and not result.execution_error
+        and not missing
+        and not unexpected
+        and not unsafe
+        and len(rows) == EXPECTED_MEMBER_COUNT
+        and len(extracted_ok) == EXPECTED_FILE_COUNT
+        and extracted_ok == expected_paths
+        and all_ok == 1
+        and not any(danger.values())
+    )
+    return {
+        "schema_version": SCHEMA_VERSION,
+        "stage": "R1C",
+        "status": "PASS_EXTRACTION_BYTE_IDENTITY" if passed else "QUARANTINED_EXTRACTION_MISMATCH",
+        "quarantine_state": "RELEASED_FOR_READ_ONLY_ROW_AUDIT" if passed else "QUARANTINED_BLOCKED",
+        "destination_name": destination_name,
+        "command_evidence": dict(command_evidence),
+        "return_code": result.returncode,
+        "timed_out": result.timed_out,
+        "execution_error": result.execution_error,
+        "all_ok_marker_count": all_ok,
+        "danger_marker_counts": danger,
+        "extract_ok_file_count": len(extracted_ok),
+        "extracted_path_set_exact": extracted_ok == expected_paths,
+        "observed_member_count": len(rows),
+        "observed_regular_file_count": sum(row["observed_type"] == "regular_file" for row in rows),
+        "observed_directory_count": sum(row["observed_type"] == "directory" for row in rows),
+        "observed_regular_file_bytes": sum(int(row["observed_bytes"]) for row in rows if row["observed_type"] == "regular_file"),
+        "missing_members": list(missing),
+        "unexpected_members": list(unexpected),
+        "unsafe_or_mismatched": list(unsafe),
+        "workbook_opened_or_parsed": False,
+        "model_or_api_executed": False,
+        "numeric_target_emitted": False,
+        "automatic_next_stage": False,
+    }
+
+
+def r1c(paths: Paths, timeout: int) -> int:
+    _verify_seal(paths.output / "R1A_SEAL.json", "R1A", "PASS_R1A_SEALED", _bound(_r1a_files(paths)))
+    _verify_seal(paths.output / "R1B_SEAL.json", "R1B", "PASS_R1B_SEALED", _bound(_r1b_files(paths)))
+    if paths.extraction.exists() or paths.extraction.is_symlink() or any((paths.output / name).exists() for name in (*R1C_ARTIFACTS, "R1C_SEAL.json")):
+        _fail("R1C already attempted")
+    paths.extraction.mkdir(mode=0o700)
+    completed = _run([str(paths.tool_root / "rar/unrar"), "x", "-idp", "-p-", "-o-", str(paths.archive), str(paths.extraction) + os.sep], timeout)
+    command_evidence = _persist_command(
+        paths.local / "evidence", "EXTRACTION", completed,
+        argv_label=("unrar", "x", "-idp", "-p-", "-o-", "FROZEN_RAW_RAR", "QUARANTINE_DESTINATION"),
+    )
+    expected_rows = _stored_members(paths.output / "OFFICIAL_ARCHIVE_MEMBER_LEDGER.csv")
+    expected = {row["member_path"]: row for row in expected_rows}
+    rows, missing, unexpected, unsafe = _scan_extraction(paths.extraction, expected)
+    manifest = _extraction_manifest(
+        completed, command_evidence, rows, missing, unexpected, unsafe, paths.extraction.name
+    )
     fields = tuple(rows[0]) if rows else ("member_path",)
     _write_csv(paths.output / "EXTRACTION_MEMBER_LEDGER.csv", rows, fields)
     _write_json(paths.output / "EXTRACTION_MANIFEST.json", manifest)
-    if not passed:
+    if manifest["status"] != "PASS_EXTRACTION_BYTE_IDENTITY":
         _fail("extraction remains quarantined after validation failure")
     r1c_files = _r1b_files(paths)
     r1c_files["seal:R1B"] = paths.output / "R1B_SEAL.json"
     r1c_files.update({f"artifact:{name}": paths.output / name for name in R1C_ARTIFACTS})
+    r1c_files.update({f"local_evidence:{name}": paths.local / "evidence" / name for name in R1C_LOCAL_EVIDENCE})
     _seal(paths.output / "R1C_SEAL.json", "R1C", "PASS_R1C_SEALED", _bound(r1c_files))
     print(paths.extraction)
     return 0
 
 
-def _record_block(paths: Paths | None, phase: str, message: str) -> None:
-    if paths is None or not paths.output.is_dir():
+def _record_block(paths: Paths | None, phase: str, error: BaseException) -> None:
+    if paths is None:
         return
-    target = paths.output / f"{phase.upper()}_BLOCKED.json"
-    if target.exists() or target.is_symlink():
-        return
-    _write_json(target, {"schema_version": SCHEMA_VERSION, "stage": phase.upper(),
-                         "status": "BLOCKED", "reason": message,
-                         "local_staging_is_quarantine": True, "model_or_api_executed": False,
-                         "numeric_target_emitted": False, "automatic_next_stage": False})
+    payload = {
+        "schema_version": SCHEMA_VERSION,
+        "stage": phase.upper(),
+        "status": "BLOCKED",
+        "error_type": type(error).__name__,
+        "reason": str(error)[:1000],
+        "local_staging_is_quarantine": True,
+        "model_or_api_executed": False,
+        "numeric_target_emitted": False,
+        "automatic_next_stage": False,
+    }
+    candidates = (
+        paths.output / f"{phase.upper()}_BLOCKED.json",
+        paths.local / "evidence" / f"{phase.upper()}_BLOCKED.local.json",
+    )
+    for target in candidates:
+        try:
+            if target.exists() or target.is_symlink():
+                continue
+            target.parent.mkdir(parents=True, mode=0o700, exist_ok=True)
+            _write_json(target, payload)
+            return
+        except Exception:
+            continue
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -691,9 +936,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         if args.phase == "r1b":
             return r1b(paths, args.timeout)
         return r1c(paths, args.timeout)
-    except RecoveryError as exc:
-        _record_block(paths, args.phase, str(exc))
-        raise
+    except Exception as exc:
+        _record_block(paths, args.phase, exc)
+        if isinstance(exc, RecoveryError):
+            raise
+        raise RecoveryError(f"{args.phase} failed closed: {type(exc).__name__}: {str(exc)[:500]}") from exc
 
 
 if __name__ == "__main__":

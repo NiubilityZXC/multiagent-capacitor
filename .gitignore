@@ -10,11 +10,12 @@
 !/.aris/runs/
 !/.aris/runs/*.json
 /.aris/runs/*.lock
-!/.aris/traces/
-!/.aris/traces/**
+# New full review transcripts stay local; existing versioned history is retained.
+/.aris/traces/
 /data/raw/
 /logs/
 /.venv-audit-cap/
+/.venv-ren-p1r1/
 **/__pycache__/
 /.pytest_cache/
 .env
