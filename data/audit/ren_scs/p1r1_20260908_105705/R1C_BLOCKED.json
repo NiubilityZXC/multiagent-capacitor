@@ -1,0 +1,1 @@
+{"automatic_next_stage":false,"error_type":"RecoveryError","local_staging_is_quarantine":true,"model_or_api_executed":false,"numeric_target_emitted":false,"reason":"extraction remains quarantined after validation failure","schema_version":"audit-cap.ren-p1r1-recovery.v4","stage":"R1C","status":"BLOCKED"}

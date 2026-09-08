@@ -229,3 +229,5 @@
 | 2026-09-08 10:57 | /experiment-bridge | refine-logs/REN_P1R1_R3_AND_R1D_REVIEWS_20260908_105705.md | review | R3 修复复审 PASS、R1D fresh 审查 PASS、487 全量回归；仅批准范围内运行 |
 | 2026-09-08 10:57 | /experiment-bridge | refine-logs/REN_P1R1_R3_RELEASE_20260908_105705.json; refine-logs/REN_P1R1_R3_RELEASE.json | implementation | v4 恢复五个 policy 哈希与复审绑定；旧 R2 不改写 |
 | 2026-09-08 10:57 | /experiment-bridge | refine-logs/REN_P1R1_R1D_RELEASE_20260908_105705.json; refine-logs/REN_P1R1_R1D_RELEASE.json | implementation | 静态 OLE/BIFF inventory 六项 policy 与 fresh pre-run 审查绑定；不授权行解析 |
+| 2026-09-08 11:01 | /experiment-bridge | data/audit/ren_scs/p1r1_20260908_105705/ | data-audit | R1A/B PASS；实际解压 size/CRC/type 全符，但绝对/相对 transcript 路径比较导致 R1C quarantine |
+| 2026-09-08 11:01 | /experiment-bridge | refine-logs/REN_P1R1_R3_RUNTIME_BLOCK_20260908_110100.md | data-audit | R1C 原始格式根因与强停止记录，未读取 XLS 内容 |
