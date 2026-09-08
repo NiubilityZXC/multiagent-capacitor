@@ -222,3 +222,7 @@
 | 2026-09-07 17:06 | /experiment-bridge | tests/test_ren_p1r1_recovery.py; tests/test_verify_ren_p1r1_recovery.py | implementation | 完整 mock R1ABC + verifier、re-sealed report mutation 和强停止测试 |
 | 2026-09-07 17:06 | /experiment-bridge | experiments/audit_cap/ren_p1r1_xls_static.py; experiments/audit_cap/ren_p1r1_static_gate.py | implementation | R1D 静态组件/caller 草稿，真实数据运行仍需独立 pre-run release |
 | 2026-09-07 17:06 | /experiment-bridge | tests/test_ren_p1r1_xls_static.py; tests/test_ren_p1r1_static_gate.py | implementation | 54 项静态合成测试，未打开实际 XLS |
+| 2026-09-07 17:07 | /experiment-bridge | refine-logs/REN_P1R1_R2_CODE_REVIEW_20260907_170700.md | review | fresh xhigh PASS_TO_RUN_R1ABC，62 独立定向测试通过；same-family provisional |
+| 2026-09-07 17:07 | /experiment-bridge | refine-logs/REN_P1R1_R2_RELEASE_20260907_170700.json; refine-logs/REN_P1R1_R2_RELEASE.json | implementation | R2 五个 policy hash 与原批准/独立复审绑定 |
+| 2026-09-08 10:48 | /experiment-bridge | data/audit/ren_scs/p1r1_20260907_170700/ | data-audit | R1A sealed PASS；R1B 官方 All OK，但目录输出误计入文件数导致 BLOCKED；未解压 |
+| 2026-09-08 10:48 | /experiment-bridge | refine-logs/REN_P1R1_R2_RUNTIME_BLOCK_20260908_104800.md | data-audit | 真实 233 file + 4 directory test transcript 分类错误根因；原记录保持不变 |

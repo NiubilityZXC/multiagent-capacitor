@@ -1,0 +1,43 @@
+{
+  "schema_version": "RenP1R1R2Release.v1",
+  "recorded_at": "2026-09-07T17:07:00+08:00",
+  "status": "PASS_TO_RUN_R1ABC",
+  "approval_record_sha256": "314dc2e62acf35eccf0053a8fd77591a1bc90d82fae9e70e1dbc4820f882f2d8",
+  "reviewed_policy_sha256": {
+    "policy:generator": "8571c40a25bdc30e47db11209a389dd4e1150f8be52c2ede21a5037123a9ccd2",
+    "policy:verifier": "bc04a5aa1329be72d01b8ff235e2198eb3f65f3218f0b2483672305d630464e3",
+    "policy:generator_tests": "d8ad8349e46ead5cfbbc3ed7caa7bcb5e2b8a274a4073842b6b399bcc8d13d48",
+    "policy:verifier_tests": "9130e4ba6b2fb9ca2329acf95579434d242fa4046246dc10a7e0bc2e9048dc91",
+    "policy:gitignore": "5a54505ab59a5ba2eac61b095d2ce00ef64f0429b2bc33dd1db51d24d255fce4"
+  },
+  "review": {
+    "agent": "/root/ren_r2_prerun_review",
+    "requested_model": "gpt-5.6-sol",
+    "reasoning_effort": "xhigh",
+    "independence": "same-family",
+    "acceptance_status": "provisional",
+    "response_sha256": "e5f3725f5af60169afb2efedb30af08a31d83e1a2f6a026640d8e0c7046818e4",
+    "trace": ".aris/traces/experiment-bridge/2026-09-07_run01/001-ren-p1r1-r2-pre-run-review-pass",
+    "blocking_findings": 0,
+    "targeted_tests_passed": 62
+  },
+  "reviewed_commit": "9099cea",
+  "scope": [
+    "R1A",
+    "R1B",
+    "R1C"
+  ],
+  "not_in_this_release": [
+    "R1D",
+    "R1E",
+    "R1F",
+    "models",
+    "RUL",
+    "Ark",
+    "GPU",
+    "P2+"
+  ],
+  "model_or_api_executed": false,
+  "numeric_target_emitted": false,
+  "automatic_next_stage": false
+}
