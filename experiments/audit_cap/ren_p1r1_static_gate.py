@@ -7,9 +7,16 @@ import json
 from pathlib import Path
 import sys
 
-from experiments.audit_cap import ren_p1r1_recovery as recovery
-from experiments.audit_cap import verify_ren_p1r1_recovery as independent
-from experiments.audit_cap.ren_p1r1_xls_static import ScanLimits, scan_xls_bytes
+if __package__:
+    from experiments.audit_cap import ren_p1r1_recovery as recovery
+    from experiments.audit_cap import verify_ren_p1r1_recovery as independent
+    from experiments.audit_cap.ren_p1r1_xls_static import ScanLimits, scan_xls_bytes
+else:
+    # Direct script execution in the isolated two-package audit venv must not
+    # import audit_cap.__init__, which eagerly imports unrelated numpy models.
+    import ren_p1r1_recovery as recovery
+    import verify_ren_p1r1_recovery as independent
+    from ren_p1r1_xls_static import ScanLimits, scan_xls_bytes
 
 
 FLAGS = {"model_or_api_executed": False, "numeric_target_emitted": False,

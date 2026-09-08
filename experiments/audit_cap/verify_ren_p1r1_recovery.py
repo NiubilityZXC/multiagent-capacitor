@@ -18,8 +18,8 @@ from urllib.parse import urlsplit
 import zlib
 
 
-SCHEMA_VERSION = "audit-cap.ren-p1r1-recovery-verifier.v3"
-GENERATOR_SCHEMA = "audit-cap.ren-p1r1-recovery.v3"
+SCHEMA_VERSION = "audit-cap.ren-p1r1-recovery-verifier.v4"
+GENERATOR_SCHEMA = "audit-cap.ren-p1r1-recovery.v4"
 PLAN_SHA256 = "a7a8f5521b6b249af59a9ded0971cb02f912d9f46e8babfe3d60777cbfcc3c6d"
 PACKET_SHA256 = "8ea05474bf90609a89e2c6e1725777e6c9030c2dae5067d94c3ad6b54511c365"
 APPROVAL_SHA256 = "314dc2e62acf35eccf0053a8fd77591a1bc90d82fae9e70e1dbc4820f882f2d8"
@@ -376,19 +376,27 @@ def _danger(text: str) -> dict[str, int]:
 
 
 def _rebuild_test_report(
-    command: Mapping[str, Any], stdout: bytes, stderr: bytes, expected: Sequence[str]
+    command: Mapping[str, Any], stdout: bytes, stderr: bytes, expected: Sequence[str],
+    expected_directories: Sequence[str] = (),
 ) -> dict[str, Any]:
     combined = (stdout + b"\n" + stderr).decode("utf-8", errors="replace").replace("\r", "\n")
-    observed = sorted(_ok_paths(stdout, "Testing")); danger = _danger(combined)
+    tested = sorted(_ok_paths(stdout, "Testing")); danger = _danger(combined)
+    observed = [path for path in tested if path in set(expected)]
+    directories = [path for path in tested if path in set(expected_directories)]
+    all_expected = sorted([*expected, *expected_directories])
     all_ok = len(re.findall(r"^All OK\s*$", combined, re.M))
     passed = (command["return_code"] == 0 and not stderr and command["timed_out"] is False
               and command["execution_error"] is False and observed == sorted(expected)
-              and len(observed) == FILE_COUNT and all_ok == 1 and not any(danger.values()))
+              and tested == all_expected and len(observed) == FILE_COUNT and all_ok == 1 and not any(danger.values()))
     return {"schema_version": GENERATOR_SCHEMA, "stage": "R1B",
             "status": "PASS_ARCHIVE_TEST" if passed else "BLOCKED_ARCHIVE_TEST",
             "command_evidence": dict(command), "return_code": command["return_code"],
             "timed_out": command["timed_out"], "execution_error": command["execution_error"],
             "expected_tested_file_count": len(expected), "observed_tested_file_count": len(observed),
+            "expected_tested_directory_count": len(expected_directories),
+            "observed_tested_directory_count": len(directories),
+            "expected_tested_member_count": len(all_expected), "observed_tested_member_count": len(tested),
+            "tested_member_path_set_exact": tested == all_expected,
             "tested_path_set_exact": observed == sorted(expected), "all_ok_marker_count": all_ok,
             "danger_marker_counts": danger, "extraction_authorized_by_this_report": passed,
             "extraction_attempted": False, "model_or_api_executed": False,
@@ -455,7 +463,7 @@ def verify(project: Path, run_id: str) -> dict[str, Any]:
     plan = project / "refine-logs/REN_P1R1_ARCHIVE_RECOVERY_PLAN_20260904_145423.md"
     packet = project / "refine-logs/REN_P1R1_APPROVAL_PACKET_20260904_145423.json"
     approval = project / "refine-logs/REN_P1R1_APPROVAL_RECORD_20260904_213130.json"
-    release = project / "refine-logs/REN_P1R1_R2_RELEASE.json"
+    release = project / "refine-logs/REN_P1R1_R3_RELEASE.json"
     tool_tar, tool_root = local / "tool/rarlinux-x64-723.tar.gz", local / "tool/unpacked"
     for path in (output, local, evidence, extraction, archive, prior, plan, packet, approval, release):
         _no_symlink_components(project, path)
@@ -499,7 +507,7 @@ def verify(project: Path, run_id: str) -> dict[str, Any]:
     release_payload = _json(release)
     for path in policy.values():
         _no_symlink_components(project, path)
-    if (release_payload.get("schema_version") != "RenP1R1R2Release.v1"
+    if (release_payload.get("schema_version") != "RenP1R1R3Release.v1"
             or release_payload.get("status") != "PASS_TO_RUN_R1ABC"
             or release_payload.get("approval_record_sha256") != APPROVAL_SHA256
             or release_payload.get("reviewed_policy_sha256") != {name: _hash(path)["sha256"] for name, path in sorted(policy.items())}
@@ -566,7 +574,8 @@ def verify(project: Path, run_id: str) -> dict[str, Any]:
     if test_command["argv"] != ["unrar", "t", "-idp", "-p-", "FROZEN_RAW_RAR"]:
         _fail("archive-test command label mismatch")
     expected_paths = sorted(row["member_path"] for row in files)
-    rebuilt_test = _rebuild_test_report(test_command, test_stdout, test_stderr, expected_paths)
+    expected_directories = sorted(row["member_path"] for row in official if row["member_type"] == "directory")
+    rebuilt_test = _rebuild_test_report(test_command, test_stdout, test_stderr, expected_paths, expected_directories)
     if _json(output / "ARCHIVE_TEST_REPORT.json") != rebuilt_test or rebuilt_test["status"] != "PASS_ARCHIVE_TEST":
         _fail("archive test report field reconstruction mismatch")
 

@@ -226,3 +226,6 @@
 | 2026-09-07 17:07 | /experiment-bridge | refine-logs/REN_P1R1_R2_RELEASE_20260907_170700.json; refine-logs/REN_P1R1_R2_RELEASE.json | implementation | R2 五个 policy hash 与原批准/独立复审绑定 |
 | 2026-09-08 10:48 | /experiment-bridge | data/audit/ren_scs/p1r1_20260907_170700/ | data-audit | R1A sealed PASS；R1B 官方 All OK，但目录输出误计入文件数导致 BLOCKED；未解压 |
 | 2026-09-08 10:48 | /experiment-bridge | refine-logs/REN_P1R1_R2_RUNTIME_BLOCK_20260908_104800.md | data-audit | 真实 233 file + 4 directory test transcript 分类错误根因；原记录保持不变 |
+| 2026-09-08 10:57 | /experiment-bridge | refine-logs/REN_P1R1_R3_AND_R1D_REVIEWS_20260908_105705.md | review | R3 修复复审 PASS、R1D fresh 审查 PASS、487 全量回归；仅批准范围内运行 |
+| 2026-09-08 10:57 | /experiment-bridge | refine-logs/REN_P1R1_R3_RELEASE_20260908_105705.json; refine-logs/REN_P1R1_R3_RELEASE.json | implementation | v4 恢复五个 policy 哈希与复审绑定；旧 R2 不改写 |
+| 2026-09-08 10:57 | /experiment-bridge | refine-logs/REN_P1R1_R1D_RELEASE_20260908_105705.json; refine-logs/REN_P1R1_R1D_RELEASE.json | implementation | 静态 OLE/BIFF inventory 六项 policy 与 fresh pre-run 审查绑定；不授权行解析 |

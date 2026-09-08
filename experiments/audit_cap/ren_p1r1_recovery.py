@@ -25,7 +25,7 @@ from urllib.parse import urlsplit, urlunsplit
 import zlib
 
 
-SCHEMA_VERSION = "audit-cap.ren-p1r1-recovery.v3"
+SCHEMA_VERSION = "audit-cap.ren-p1r1-recovery.v4"
 ARCHIVE_BYTES = 2_114_703_017
 ARCHIVE_MD5 = "26a7a663217c59377c83fb2a8274466b"
 ARCHIVE_SHA256 = "a8f1083b887f95483561a94b624b323ff42814654ee7f23e7f95bc042fa258d8"
@@ -271,7 +271,7 @@ class Paths:
             project / "refine-logs/REN_P1R1_ARCHIVE_RECOVERY_PLAN_20260904_145423.md",
             project / "refine-logs/REN_P1R1_APPROVAL_PACKET_20260904_145423.json",
             project / "refine-logs/REN_P1R1_APPROVAL_RECORD_20260904_213130.json",
-            project / "refine-logs/REN_P1R1_R2_RELEASE.json",
+            project / "refine-logs/REN_P1R1_R3_RELEASE.json",
             project / "data/raw/ren_scs" / run_id / "tool/rarlinux-x64-723.tar.gz",
             project / "data/raw/ren_scs" / run_id / "tool/unpacked",
             project / "data/raw/ren_scs" / run_id / "quarantine_extracted",
@@ -326,7 +326,7 @@ def _validate_release(paths: Paths) -> None:
     policy.pop("pre_run_release")
     expected = {name: _digests(path)["sha256"] for name, path in sorted(policy.items())}
     if (
-        payload.get("schema_version") != "RenP1R1R2Release.v1"
+        payload.get("schema_version") != "RenP1R1R3Release.v1"
         or payload.get("status") != "PASS_TO_RUN_R1ABC"
         or payload.get("approval_record_sha256") != APPROVAL_SHA256
         or payload.get("reviewed_policy_sha256") != expected
@@ -710,9 +710,13 @@ def _archive_test_report(
     result: CommandResult,
     command_evidence: Mapping[str, Any],
     expected: Sequence[str],
+    expected_directories: Sequence[str] = (),
 ) -> dict[str, Any]:
     combined = (result.stdout + b"\n" + result.stderr).decode("utf-8", errors="replace").replace("\r", "\n")
-    observed = sorted(_ok_paths(result.stdout, "Testing"))
+    tested = sorted(_ok_paths(result.stdout, "Testing"))
+    observed = [path for path in tested if path in set(expected)]
+    directories = [path for path in tested if path in set(expected_directories)]
+    all_expected = sorted([*expected, *expected_directories])
     danger = _danger(combined)
     all_ok = len(re.findall(r"^All OK\s*$", combined, re.M))
     passed = (
@@ -721,6 +725,7 @@ def _archive_test_report(
         and not result.timed_out
         and not result.execution_error
         and observed == sorted(expected)
+        and tested == all_expected
         and len(observed) == EXPECTED_FILE_COUNT
         and all_ok == 1
         and not any(danger.values())
@@ -735,6 +740,11 @@ def _archive_test_report(
         "execution_error": result.execution_error,
         "expected_tested_file_count": len(expected),
         "observed_tested_file_count": len(observed),
+        "expected_tested_directory_count": len(expected_directories),
+        "observed_tested_directory_count": len(directories),
+        "expected_tested_member_count": len(all_expected),
+        "observed_tested_member_count": len(tested),
+        "tested_member_path_set_exact": tested == all_expected,
         "tested_path_set_exact": observed == sorted(expected),
         "all_ok_marker_count": all_ok,
         "danger_marker_counts": danger,
@@ -757,7 +767,8 @@ def r1b(paths: Paths, timeout: int) -> int:
         paths.local / "evidence", "ARCHIVE_TEST", completed,
         argv_label=("unrar", "t", "-idp", "-p-", "FROZEN_RAW_RAR"),
     )
-    report = _archive_test_report(completed, command_evidence, expected)
+    expected_directories = sorted(row["member_path"] for row in members if row["member_type"] == "directory")
+    report = _archive_test_report(completed, command_evidence, expected, expected_directories)
     _write_json(paths.output / "ARCHIVE_TEST_REPORT.json", report)
     if report["status"] != "PASS_ARCHIVE_TEST":
         _fail("full archive test did not pass; extraction forbidden")

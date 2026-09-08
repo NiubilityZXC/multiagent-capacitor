@@ -328,7 +328,7 @@ class MockRecoveryRun:
         monkeypatch.setattr(verifier, "FILE_BYTES", sum(map(len, self.files.values())))
         policy = {name: path for name, path in recovery._authority(self.paths).items() if name.startswith("policy:")}
         self.write_json(self.paths.release, {
-            "schema_version": "RenP1R1R2Release.v1", "status": "PASS_TO_RUN_R1ABC",
+            "schema_version": "RenP1R1R3Release.v1", "status": "PASS_TO_RUN_R1ABC",
             "approval_record_sha256": recovery.APPROVAL_SHA256,
             "reviewed_policy_sha256": {name: hashlib.sha256(path.read_bytes()).hexdigest() for name, path in policy.items()},
             "automatic_next_stage": False, "model_or_api_executed": False,
@@ -379,7 +379,8 @@ class MockRecoveryRun:
                 suffix = ["-o-", str(self.paths.archive), str(self.paths.extraction) + os.sep] if action == "x" else [str(self.paths.archive)]
                 assert argv[1:] == [action, "-idp", "-p-", *suffix]
                 label = "Testing" if action == "t" else "Extracting"
-                stdout = ("".join(f"{label} {name} OK\n" for name in self.files) + "All OK\n").encode()
+                directory_lines = "".join(f"Testing batch{index} OK\n" for index in range(4)) if action == "t" else ""
+                stdout = ("".join(f"{label} {name} OK\n" for name in self.files) + directory_lines + "All OK\n").encode()
                 if action == "x":
                     for name, payload in self.files.items():
                         target = self.paths.extraction / name
@@ -547,3 +548,28 @@ def test_full_verifier_report_can_be_rechecked_and_cannot_be_forged(mocked_recov
     run.write_json(target, result)
     with pytest.raises(run.verifier.VerificationError, match="stored verification report"):
         run.verifier.verify(run.project, run.run_id)
+
+
+@pytest.mark.parametrize("directory_lines,passed", [
+    (b"Testing batch OK\n", True),
+    (b"", False),
+    (b"Testing unknown OK\n", False),
+    (b"Testing batch OK\nTesting batch OK\n", False),
+    (b"Testing batch OK\nTesting extra.xls OK\n", False),
+])
+def test_real_unrar_directory_ok_format_is_classified_by_ledger(monkeypatch, directory_lines, passed):
+    import experiments.audit_cap.verify_ren_p1r1_recovery as verifier
+    monkeypatch.setattr(recovery, "EXPECTED_FILE_COUNT", 1)
+    monkeypatch.setattr(verifier, "FILE_COUNT", 1)
+    stdout = b"Testing batch/a.xls OK\n" + directory_lines + b"All OK\n"
+    result = recovery.CommandResult(("unrar",), 0, stdout, b"", False, False)
+    evidence = recovery._command_record(result, argv_label=("unrar", "t", "-idp", "-p-", "FROZEN_RAW_RAR"))
+    generated = recovery._archive_test_report(result, evidence, ["batch/a.xls"], ["batch"])
+    rebuilt = verifier._rebuild_test_report(evidence, stdout, b"", ["batch/a.xls"], ["batch"])
+    assert generated == rebuilt
+    assert (generated["status"] == "PASS_ARCHIVE_TEST") is passed
+    assert generated["observed_tested_file_count"] == 1
+    assert generated["expected_tested_directory_count"] == 1
+    if passed:
+        assert generated["observed_tested_directory_count"] == 1
+        assert generated["observed_tested_member_count"] == 2

@@ -1,0 +1,32 @@
+{
+  "schema_version": "RenP1R1StaticRelease.v1",
+  "recorded_at": "2026-09-08T10:57:05+08:00",
+  "status": "PASS_TO_RUN_STATIC_R1D",
+  "approval_record_sha256": "314dc2e62acf35eccf0053a8fd77591a1bc90d82fae9e70e1dbc4820f882f2d8",
+  "reviewed_policy_sha256": {
+    "experiments/audit_cap/ren_p1r1_xls_static.py": "79be203b37fe3ebc9e338f3762d0b1b75dc20f3dc0128d006c7df6fb7ac4ef47",
+    "experiments/audit_cap/ren_p1r1_static_gate.py": "6020e21816934fa64e90513d12130a9ef50a3a3c39f40f7c2cf1a472d23256bd",
+    "tests/test_ren_p1r1_xls_static.py": "0b8485b2f868c379421655c21274b768c8dec7c93fa84ba6fec2c0af2c7e89f8",
+    "tests/test_ren_p1r1_static_gate.py": "942157c8eab7e4413a4aa4295876a8d95ae59d7a6f8d0ecf9bac576679e0244e",
+    "requirements-ren-p1r1-audit.lock": "9c4c5b0d486a661813021a2eee67be8706520df465cddf28c05ebd05d31f256d",
+    "refine-logs/REN_P1R1_PARSER_ENVIRONMENT_20260906_101027.json": "577b3016d8c882d6caa8a82fa169bc1d1ae5390405998956c3340971e170dbde"
+  },
+  "review": {
+    "agent": "/root/ren_r1d_prerun_review",
+    "model_requested": "gpt-5.6-sol",
+    "reasoning_effort": "xhigh",
+    "review_independence": "same-family",
+    "acceptance_status": "provisional",
+    "response_sha256": "219945328571960f60562be9b7c7672a2414b17042738aa1f6765b29ea19999c",
+    "targeted_tests_passed": 54,
+    "blocking_findings": 0,
+    "trace": ".aris/traces/experiment-bridge/2026-09-08_run01/003-ren-p1r1-r1d-pre-run-review-pass"
+  },
+  "required_prerequisite": "NEW_V4_R1ABC_INDEPENDENT_VERIFICATION_PASS",
+  "scope": "R1D static structural inventory only",
+  "row_parse_authorized": false,
+  "p2_eligible": false,
+  "model_or_api_executed": false,
+  "numeric_target_emitted": false,
+  "automatic_next_stage": false
+}
