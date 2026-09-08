@@ -235,3 +235,5 @@
 | 2026-09-08 15:08 | /experiment-bridge | refine-logs/REN_P1R1_R4_RELEASE_20260908_150800.json; refine-logs/REN_P1R1_R4_RELEASE.json | implementation | v5 绝对路径精确对账修复，五项 policy 与新复审绑定 |
 | 2026-09-08 15:08 | /experiment-bridge | refine-logs/REN_P1R1_R1D_RELEASE_20260908_150800.json; refine-logs/REN_P1R1_R1D_RELEASE.json | review | 保留原静态 policy，通过已保存的兼容性补充意见绑定新 v5 前置条件 |
 | 2026-09-08 15:08 | /experiment-bridge | data/audit/ren_scs/p1r1_20260908_150800/ | data-audit | R1A/B/C 全部 sealed PASS，独立 verifier PASS；233 文件、4 目录、15,223,551,488 bytes |
+| 2026-09-08 15:22 | /experiment-bridge | data/audit/ren_scs/p1r1_20260908_150800_static/ | data-audit | 233 份静态检查完成，BLOCKED_ROW_PARSE；未知记录 233、CONTINUE 6、宏类/嵌入对象类目录标记各 83；255 绑定哈希复核通过 |
+| 2026-09-08 15:22 | /experiment-bridge | refine-logs/REN_P1R1_EXECUTION_TRACKER_20260908_152249.md; refine-logs/REN_P1R1_EXECUTION_TRACKER.md | data-audit | 恢复 PASS 与静态阻断分开裁决；R1E/F、P2、模型与 RUL 未执行 |
