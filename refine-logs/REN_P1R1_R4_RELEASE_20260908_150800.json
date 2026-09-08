@@ -1,0 +1,48 @@
+{
+  "schema_version": "RenP1R1R4Release.v1",
+  "recorded_at": "2026-09-08T15:08:00+08:00",
+  "status": "PASS_TO_RUN_R1ABC",
+  "approval_record_sha256": "314dc2e62acf35eccf0053a8fd77591a1bc90d82fae9e70e1dbc4820f882f2d8",
+  "reviewed_policy_sha256": {
+    "policy:generator": "f24d2811494d74efe4a41728218d18b5f6ea32dd0d6b6af27b056dfe5abe47a0",
+    "policy:verifier": "3874b1d3c6b01ae03de0e0f10a7613b6170f0d3cd224a347ebc9bdd0dcdd3c10",
+    "policy:generator_tests": "5c9395d73fcabed73aa234a7bfa142821929a4f9d053c8501c4bec43ba42fdf0",
+    "policy:verifier_tests": "d9cb3f8360790f0da7811649eef3803a622c1b57dcfe88275dbd3044c6c1fbd3",
+    "policy:gitignore": "5a54505ab59a5ba2eac61b095d2ce00ef64f0429b2bc33dd1db51d24d255fce4"
+  },
+  "review": {
+    "agent": "/root/ren_r4_release_review",
+    "requested_model": "gpt-5.6-sol",
+    "reasoning_effort": "xhigh",
+    "independence": "same-family",
+    "acceptance_status": "provisional",
+    "response_sha256": "85a23bef6c78ef0143c8938d42f3d92c43e994edd21d82dd6d1a43ff43b12ca2",
+    "trace": ".aris/traces/experiment-bridge/2026-09-08_run01/005-ren-r4-prerun-review-pass",
+    "blocking_findings": 0,
+    "targeted_tests_passed": 72,
+    "route": "fresh reviewer following interrupted session"
+  },
+  "scope": [
+    "R1A",
+    "R1B",
+    "R1C"
+  ],
+  "not_in_this_release": [
+    "R1D",
+    "R1E",
+    "R1F",
+    "models",
+    "RUL",
+    "Ark",
+    "GPU",
+    "P2+"
+  ],
+  "model_or_api_executed": false,
+  "numeric_target_emitted": false,
+  "automatic_next_stage": false,
+  "base_commit": "c994d55",
+  "full_regression": {
+    "passed": 492,
+    "seconds": 51.15
+  }
+}

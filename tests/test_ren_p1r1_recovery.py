@@ -217,7 +217,7 @@ def test_mocked_r1b_r1c_pass_then_seals_reject_mutation(monkeypatch, tmp_path) -
     def fake_extract(argv, timeout):
         (paths.extraction / "batch").mkdir()
         (paths.extraction / "batch/a.xls").write_bytes(file_bytes)
-        return recovery.CommandResult(tuple(argv), 0, b"Extracting batch/a.xls OK\nAll OK\n", b"", False, False)
+        return recovery.CommandResult(tuple(argv), 0, f"Extracting {paths.extraction}/batch/a.xls OK\nAll OK\n".encode(), b"", False, False)
 
     monkeypatch.setattr(recovery, "_run", fake_extract)
     assert recovery.r1c(paths, 1) == 0
@@ -328,7 +328,7 @@ class MockRecoveryRun:
         monkeypatch.setattr(verifier, "FILE_BYTES", sum(map(len, self.files.values())))
         policy = {name: path for name, path in recovery._authority(self.paths).items() if name.startswith("policy:")}
         self.write_json(self.paths.release, {
-            "schema_version": "RenP1R1R3Release.v1", "status": "PASS_TO_RUN_R1ABC",
+            "schema_version": "RenP1R1R4Release.v1", "status": "PASS_TO_RUN_R1ABC",
             "approval_record_sha256": recovery.APPROVAL_SHA256,
             "reviewed_policy_sha256": {name: hashlib.sha256(path.read_bytes()).hexdigest() for name, path in policy.items()},
             "automatic_next_stage": False, "model_or_api_executed": False,
@@ -380,7 +380,8 @@ class MockRecoveryRun:
                 assert argv[1:] == [action, "-idp", "-p-", *suffix]
                 label = "Testing" if action == "t" else "Extracting"
                 directory_lines = "".join(f"Testing batch{index} OK\n" for index in range(4)) if action == "t" else ""
-                stdout = ("".join(f"{label} {name} OK\n" for name in self.files) + directory_lines + "All OK\n").encode()
+                names = self.files if action == "t" else [str(self.paths.extraction / name) for name in self.files]
+                stdout = ("".join(f"{label} {name} OK\n" for name in names) + directory_lines + "All OK\n").encode()
                 if action == "x":
                     for name, payload in self.files.items():
                         target = self.paths.extraction / name

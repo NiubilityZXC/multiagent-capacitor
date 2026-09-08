@@ -25,7 +25,7 @@ from urllib.parse import urlsplit, urlunsplit
 import zlib
 
 
-SCHEMA_VERSION = "audit-cap.ren-p1r1-recovery.v4"
+SCHEMA_VERSION = "audit-cap.ren-p1r1-recovery.v5"
 ARCHIVE_BYTES = 2_114_703_017
 ARCHIVE_MD5 = "26a7a663217c59377c83fb2a8274466b"
 ARCHIVE_SHA256 = "a8f1083b887f95483561a94b624b323ff42814654ee7f23e7f95bc042fa258d8"
@@ -271,7 +271,7 @@ class Paths:
             project / "refine-logs/REN_P1R1_ARCHIVE_RECOVERY_PLAN_20260904_145423.md",
             project / "refine-logs/REN_P1R1_APPROVAL_PACKET_20260904_145423.json",
             project / "refine-logs/REN_P1R1_APPROVAL_RECORD_20260904_213130.json",
-            project / "refine-logs/REN_P1R1_R3_RELEASE.json",
+            project / "refine-logs/REN_P1R1_R4_RELEASE.json",
             project / "data/raw/ren_scs" / run_id / "tool/rarlinux-x64-723.tar.gz",
             project / "data/raw/ren_scs" / run_id / "tool/unpacked",
             project / "data/raw/ren_scs" / run_id / "quarantine_extracted",
@@ -326,7 +326,7 @@ def _validate_release(paths: Paths) -> None:
     policy.pop("pre_run_release")
     expected = {name: _digests(path)["sha256"] for name, path in sorted(policy.items())}
     if (
-        payload.get("schema_version") != "RenP1R1R3Release.v1"
+        payload.get("schema_version") != "RenP1R1R4Release.v1"
         or payload.get("status") != "PASS_TO_RUN_R1ABC"
         or payload.get("approval_record_sha256") != APPROVAL_SHA256
         or payload.get("reviewed_policy_sha256") != expected
@@ -824,10 +824,13 @@ def _extraction_manifest(
     unexpected: Sequence[str],
     unsafe: Sequence[str],
     destination_name: str,
+    destination_path: Path | None = None,
 ) -> dict[str, Any]:
     text = (result.stdout + b"\n" + result.stderr).decode("utf-8", errors="replace").replace("\r", "\n")
     extracted_ok = sorted(_ok_paths(result.stdout, "Extracting"))
     expected_paths = sorted(row["member_path"] for row in rows if row["observed_type"] == "regular_file")
+    if destination_path is not None:
+        expected_paths = sorted(str(destination_path / member) for member in expected_paths)
     danger = _danger(text)
     all_ok = len(re.findall(r"^All OK\s*$", text, re.M))
     passed = (
@@ -887,7 +890,7 @@ def r1c(paths: Paths, timeout: int) -> int:
     expected = {row["member_path"]: row for row in expected_rows}
     rows, missing, unexpected, unsafe = _scan_extraction(paths.extraction, expected)
     manifest = _extraction_manifest(
-        completed, command_evidence, rows, missing, unexpected, unsafe, paths.extraction.name
+        completed, command_evidence, rows, missing, unexpected, unsafe, paths.extraction.name, paths.extraction
     )
     fields = tuple(rows[0]) if rows else ("member_path",)
     _write_csv(paths.output / "EXTRACTION_MEMBER_LEDGER.csv", rows, fields)

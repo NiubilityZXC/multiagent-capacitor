@@ -121,3 +121,26 @@ def test_symlink_ancestor_is_rejected(tmp_path) -> None:
     (project / "data").symlink_to(outside, target_is_directory=True)
     with pytest.raises(VerificationError, match="symlink path component"):
         verifier._no_symlink_components(project, project / "data/raw/ren_scs")
+
+
+@pytest.mark.parametrize("path,passed", [
+    ("/quarantine/batch/a.xls", True),
+    ("batch/a.xls", False),
+    ("/outside/batch/a.xls", False),
+    ("/quarantine_extra/batch/a.xls", False),
+    ("/quarantine/batch/../batch/a.xls", False),
+])
+def test_real_absolute_extraction_paths_are_exact_not_basename_matched(monkeypatch, path, passed):
+    import experiments.audit_cap.ren_p1r1_recovery as generator
+    monkeypatch.setattr(verifier, "MEMBER_COUNT", 1)
+    monkeypatch.setattr(verifier, "FILE_COUNT", 1)
+    monkeypatch.setattr(generator, "EXPECTED_MEMBER_COUNT", 1)
+    monkeypatch.setattr(generator, "EXPECTED_FILE_COUNT", 1)
+    stdout = f"Extracting {path} OK\nAll OK\n".encode()
+    rows = [{"member_path": "batch/a.xls", "observed_type": "regular_file", "observed_bytes": "3"}]
+    command = {"return_code": 0, "timed_out": False, "execution_error": False}
+    result = generator.CommandResult(("unrar",), 0, stdout, b"", False, False)
+    generated = generator._extraction_manifest(result, command, rows, [], [], [], "quarantine", Path("/quarantine"))
+    rebuilt = verifier._rebuild_extraction_manifest(command, stdout, b"", rows, [], [], [], "quarantine", Path("/quarantine"))
+    assert generated == rebuilt
+    assert (rebuilt["status"] == "PASS_EXTRACTION_BYTE_IDENTITY") is passed

@@ -18,8 +18,8 @@ from urllib.parse import urlsplit
 import zlib
 
 
-SCHEMA_VERSION = "audit-cap.ren-p1r1-recovery-verifier.v4"
-GENERATOR_SCHEMA = "audit-cap.ren-p1r1-recovery.v4"
+SCHEMA_VERSION = "audit-cap.ren-p1r1-recovery-verifier.v5"
+GENERATOR_SCHEMA = "audit-cap.ren-p1r1-recovery.v5"
 PLAN_SHA256 = "a7a8f5521b6b249af59a9ded0971cb02f912d9f46e8babfe3d60777cbfcc3c6d"
 PACKET_SHA256 = "8ea05474bf90609a89e2c6e1725777e6c9030c2dae5067d94c3ad6b54511c365"
 APPROVAL_SHA256 = "314dc2e62acf35eccf0053a8fd77591a1bc90d82fae9e70e1dbc4820f882f2d8"
@@ -423,10 +423,13 @@ def _scan_extraction(extraction: Path, listed: Mapping[str, Mapping[str, Any]]) 
 
 def _rebuild_extraction_manifest(command: Mapping[str, Any], stdout: bytes, stderr: bytes,
                                  rows: Sequence[Mapping[str, str]], missing: Sequence[str],
-                                 unexpected: Sequence[str], unsafe: Sequence[str], destination: str) -> dict[str, Any]:
+                                 unexpected: Sequence[str], unsafe: Sequence[str], destination: str,
+                                 destination_path: Path | None = None) -> dict[str, Any]:
     text = (stdout + b"\n" + stderr).decode("utf-8", errors="replace").replace("\r", "\n")
     extracted = sorted(_ok_paths(stdout, "Extracting")); danger = _danger(text)
     expected_paths = sorted(row["member_path"] for row in rows if row["observed_type"] == "regular_file")
+    if destination_path is not None:
+        expected_paths = sorted(str(destination_path / member) for member in expected_paths)
     all_ok = len(re.findall(r"^All OK\s*$", text, re.M))
     passed = (command["return_code"] == 0 and not stderr and command["timed_out"] is False
               and command["execution_error"] is False and not missing and not unexpected and not unsafe
@@ -463,7 +466,7 @@ def verify(project: Path, run_id: str) -> dict[str, Any]:
     plan = project / "refine-logs/REN_P1R1_ARCHIVE_RECOVERY_PLAN_20260904_145423.md"
     packet = project / "refine-logs/REN_P1R1_APPROVAL_PACKET_20260904_145423.json"
     approval = project / "refine-logs/REN_P1R1_APPROVAL_RECORD_20260904_213130.json"
-    release = project / "refine-logs/REN_P1R1_R3_RELEASE.json"
+    release = project / "refine-logs/REN_P1R1_R4_RELEASE.json"
     tool_tar, tool_root = local / "tool/rarlinux-x64-723.tar.gz", local / "tool/unpacked"
     for path in (output, local, evidence, extraction, archive, prior, plan, packet, approval, release):
         _no_symlink_components(project, path)
@@ -507,7 +510,7 @@ def verify(project: Path, run_id: str) -> dict[str, Any]:
     release_payload = _json(release)
     for path in policy.values():
         _no_symlink_components(project, path)
-    if (release_payload.get("schema_version") != "RenP1R1R3Release.v1"
+    if (release_payload.get("schema_version") != "RenP1R1R4Release.v1"
             or release_payload.get("status") != "PASS_TO_RUN_R1ABC"
             or release_payload.get("approval_record_sha256") != APPROVAL_SHA256
             or release_payload.get("reviewed_policy_sha256") != {name: _hash(path)["sha256"] for name, path in sorted(policy.items())}
@@ -588,7 +591,7 @@ def verify(project: Path, run_id: str) -> dict[str, Any]:
     if extraction_command["argv"] != ["unrar", "x", "-idp", "-p-", "-o-", "FROZEN_RAW_RAR", "QUARANTINE_DESTINATION"]:
         _fail("extraction command label mismatch")
     rebuilt_manifest = _rebuild_extraction_manifest(extraction_command, extraction_stdout, extraction_stderr,
-                                                    rebuilt_rows, missing, unexpected, unsafe, extraction.name)
+                                                    rebuilt_rows, missing, unexpected, unsafe, extraction.name, extraction)
     if _json(output / "EXTRACTION_MANIFEST.json") != rebuilt_manifest or rebuilt_manifest["status"] != "PASS_EXTRACTION_BYTE_IDENTITY":
         _fail("extraction manifest field reconstruction mismatch")
     result = {"schema_version": SCHEMA_VERSION, "status": "PASS_R1ABC_INDEPENDENT_VERIFICATION",

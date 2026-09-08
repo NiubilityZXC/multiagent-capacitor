@@ -231,3 +231,7 @@
 | 2026-09-08 10:57 | /experiment-bridge | refine-logs/REN_P1R1_R1D_RELEASE_20260908_105705.json; refine-logs/REN_P1R1_R1D_RELEASE.json | implementation | 静态 OLE/BIFF inventory 六项 policy 与 fresh pre-run 审查绑定；不授权行解析 |
 | 2026-09-08 11:01 | /experiment-bridge | data/audit/ren_scs/p1r1_20260908_105705/ | data-audit | R1A/B PASS；实际解压 size/CRC/type 全符，但绝对/相对 transcript 路径比较导致 R1C quarantine |
 | 2026-09-08 11:01 | /experiment-bridge | refine-logs/REN_P1R1_R3_RUNTIME_BLOCK_20260908_110100.md | data-audit | R1C 原始格式根因与强停止记录，未读取 XLS 内容 |
+| 2026-09-08 15:08 | /experiment-bridge | refine-logs/REN_P1R1_R4_REVIEW_20260908_150800.md | review | fresh R4 pre-run PASS；72 独立定向测试与 492 全项目回归通过 |
+| 2026-09-08 15:08 | /experiment-bridge | refine-logs/REN_P1R1_R4_RELEASE_20260908_150800.json; refine-logs/REN_P1R1_R4_RELEASE.json | implementation | v5 绝对路径精确对账修复，五项 policy 与新复审绑定 |
+| 2026-09-08 15:08 | /experiment-bridge | refine-logs/REN_P1R1_R1D_RELEASE_20260908_150800.json; refine-logs/REN_P1R1_R1D_RELEASE.json | review | 保留原静态 policy，通过已保存的兼容性补充意见绑定新 v5 前置条件 |
+| 2026-09-08 15:08 | /experiment-bridge | data/audit/ren_scs/p1r1_20260908_150800/ | data-audit | R1A/B/C 全部 sealed PASS，独立 verifier PASS；233 文件、4 目录、15,223,551,488 bytes |
