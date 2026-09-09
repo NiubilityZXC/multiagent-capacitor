@@ -1,0 +1,491 @@
+{
+  "schema_version": "RenObservedBiffCatalog.v1",
+  "source_url": "https://officeprotocoldoc.z19.web.core.windows.net/files/MS-XLS/%5BMS-XLS%5D-250819.docx",
+  "source_sha256": "66800e9bdfae1eec8e462c2e2d6411f56f2592f79a0b980de00df1e7bf2210b2",
+  "observed_record_types": 60,
+  "status": "ALL_60_NAMES_RESOLVED_NOT_A_SAFETY_ALLOWLIST",
+  "entries": [
+    {
+      "record_id": "0x000C",
+      "spec_name": "CalcCount",
+      "spec_section": "2.4.31",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x000D",
+      "spec_name": "CalcMode",
+      "spec_section": "2.4.34",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x000E",
+      "spec_name": "CalcPrecision",
+      "spec_section": "2.4.35",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x000F",
+      "spec_name": "CalcRefMode",
+      "spec_section": "2.4.36",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0010",
+      "spec_name": "CalcDelta",
+      "spec_section": "2.4.32",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0011",
+      "spec_name": "CalcIter",
+      "spec_section": "2.4.33",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0012",
+      "spec_name": "Protect",
+      "spec_section": "2.4.207",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0013",
+      "spec_name": "Password",
+      "spec_section": "2.4.191",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0014",
+      "spec_name": "Header",
+      "spec_section": "2.4.136",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0015",
+      "spec_name": "Footer",
+      "spec_section": "2.4.124",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0019",
+      "spec_name": "WinProtect",
+      "spec_section": "2.4.347",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x001D",
+      "spec_name": "Selection",
+      "spec_section": "2.4.248",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0026",
+      "spec_name": "LeftMargin",
+      "spec_section": "2.4.151",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0027",
+      "spec_name": "RightMargin",
+      "spec_section": "2.4.219",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0028",
+      "spec_name": "TopMargin",
+      "spec_section": "2.4.328",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0029",
+      "spec_name": "BottomMargin",
+      "spec_section": "2.4.27",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x002A",
+      "spec_name": "PrintRowCol",
+      "spec_section": "2.4.203",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x002B",
+      "spec_name": "PrintGrid",
+      "spec_section": "2.4.202",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0040",
+      "spec_name": "Backup",
+      "spec_section": "2.4.14",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x004D",
+      "spec_name": "Pls",
+      "spec_section": "2.4.199",
+      "workbook_count": 6,
+      "classification_work_item": "printer_settings_continue_context_required",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0055",
+      "spec_name": "DefColWidth",
+      "spec_section": "2.4.89",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x005F",
+      "spec_name": "CalcSaveRecalc",
+      "spec_section": "2.4.37",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x007D",
+      "spec_name": "ColInfo",
+      "spec_section": "2.4.53",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0080",
+      "spec_name": "Guts",
+      "spec_section": "2.4.134",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0081",
+      "spec_name": "WsBool",
+      "spec_section": "2.4.351",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0082",
+      "spec_name": "GridSet",
+      "spec_section": "2.4.132",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0083",
+      "spec_name": "HCenter",
+      "spec_section": "2.4.135",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0084",
+      "spec_name": "VCenter",
+      "spec_section": "2.4.342",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x008D",
+      "spec_name": "HideObj",
+      "spec_section": "2.4.139",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x009C",
+      "spec_name": "BuiltInFnGroupCount",
+      "spec_section": "2.4.30",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x00A1",
+      "spec_name": "Setup",
+      "spec_section": "2.4.257",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x00C1",
+      "spec_name": "Mms",
+      "spec_section": "2.4.169",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x00D3",
+      "spec_name": "ObProj",
+      "spec_section": "2.4.185",
+      "workbook_count": 53,
+      "classification_work_item": "vba_project_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x00DA",
+      "spec_name": "BookBool",
+      "spec_section": "2.4.22",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x00EF",
+      "spec_name": "PhoneticInfo",
+      "spec_section": "2.4.192",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x013D",
+      "spec_name": "RRTabId",
+      "spec_section": "2.4.241",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0160",
+      "spec_name": "UsesELFs",
+      "spec_section": "2.4.337",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0161",
+      "spec_name": "DSF",
+      "spec_section": "2.4.94",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x01AF",
+      "spec_name": "Prot4Rev",
+      "spec_section": "2.4.205",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x01B7",
+      "spec_name": "RefreshAll",
+      "spec_section": "2.4.217",
+      "workbook_count": 233,
+      "classification_work_item": "refresh_policy_not_external_link_evidence",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x01BA",
+      "spec_name": "CodeName",
+      "spec_section": "2.4.51",
+      "workbook_count": 83,
+      "classification_work_item": "vba_project_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x01BC",
+      "spec_name": "Prot4RevPass",
+      "spec_section": "2.4.206",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x01BD",
+      "spec_name": "ObNoMacros",
+      "spec_section": "2.4.184",
+      "workbook_count": 53,
+      "classification_work_item": "vba_project_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x01C0",
+      "spec_name": "Excel9File",
+      "spec_section": "2.4.104",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x01C1",
+      "spec_name": "RecalcId",
+      "spec_section": "2.4.215",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0225",
+      "spec_name": "DefaultRowHeight",
+      "spec_section": "2.4.87",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0863",
+      "spec_name": "BookExt",
+      "spec_section": "2.4.23",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0867",
+      "spec_name": "FeatHdr",
+      "spec_section": "2.4.112",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x087C",
+      "spec_name": "XFCRC",
+      "spec_section": "2.4.354",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x087D",
+      "spec_name": "XFExt",
+      "spec_section": "2.4.355",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x088B",
+      "spec_name": "PLV",
+      "spec_section": "2.4.200",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x088C",
+      "spec_name": "Compat12",
+      "spec_section": "2.4.54",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x088E",
+      "spec_name": "TableStyles",
+      "spec_section": "2.4.322",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0892",
+      "spec_name": "StyleExt",
+      "spec_section": "2.4.270",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0896",
+      "spec_name": "Theme",
+      "spec_section": "2.4.326",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x0897",
+      "spec_name": "GUIDTypeLib",
+      "spec_section": "2.4.133",
+      "workbook_count": 83,
+      "classification_work_item": "vba_project_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x089A",
+      "spec_name": "MTRSettings",
+      "spec_section": "2.4.173",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x089B",
+      "spec_name": "CompressPictures",
+      "spec_section": "2.4.55",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x089C",
+      "spec_name": "HeaderFooter",
+      "spec_section": "2.4.137",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    },
+    {
+      "record_id": "0x08A3",
+      "spec_name": "ForceFullCalculation",
+      "spec_section": "2.4.125",
+      "workbook_count": 233,
+      "classification_work_item": "format_or_workbook_metadata_review_pending",
+      "row_parse_authorized": false
+    }
+  ],
+  "row_parse_authorized": false,
+  "p2_eligible": false
+}
