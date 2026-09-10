@@ -1,0 +1,4452 @@
+{
+  "diagnostics_sha256": "03b24b14081e45a295ad5036780d208b03b735f93297c55749f4f58c99ffb519",
+  "model_or_api_executed": false,
+  "p2_eligible": false,
+  "policy_sha256": {
+    "experiments/audit_cap/ren_static_context_resolution.py": "8b6e2e6689741b907f815c2d1a898cbe98cd8d72bade326f5c752c34e7a5ca56",
+    "tests/test_ren_static_context_resolution.py": "7f5fbe61788ea33e8f777e3aa865ab36d08f8c1513b96d77a7fabbec010d939b"
+  },
+  "review_response_sha256": "021baeb9eb430af12ea8aae943c8006e3ab254e08a8b2ff20e265dac02f0cf99",
+  "row_parse_authorized": false,
+  "schema_version": "RenContextResolutionLedger.v1",
+  "status": "CONTEXT_MARKERS_RESOLVED_DATA_GATE_STILL_BLOCKED",
+  "summary": {
+    "remaining_blocker_counts": {
+      "ole_macro_entry": 83,
+      "unclassified_record_types": 233
+    },
+    "resolved_marker_counts": {
+      "ole_embedded_object_entry": 83,
+      "unclassified_active_or_context_record_CONTINUE": 6
+    },
+    "workbooks": 233
+  },
+  "workbooks": [
+    {
+      "input_sha256": "43310a35cfb7f3a798350328bdf81a38dfe972be2dd2eb5ab8ac010974f0f341",
+      "member_path": "batch3/1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_active_or_context_record_CONTINUE",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "unclassified_active_or_context_record_CONTINUE",
+          "reason": "PLS_CONTINUE_SETUP_PRINT_CONTEXT_PAYLOAD_NOT_EXECUTED"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "0689fb95234cd414fbc51daf4c2fe7e4db39d03fca792ab1a40eef68fcc2dab6",
+      "member_path": "batch3/10.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "9edcba10de9a089c90cb1cc802a0eeb73b66952e8b0cb8d5186bc0bad9d03aba",
+      "member_path": "batch3/10__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "51702e26e2a7b57f93945d6dce08a427f317b19f738be51280e0aa07bff71df8",
+      "member_path": "batch3/10__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "5945f83ae978de1848f4c04073e33ebdd23853027cf0968cfb5ef969573d5454",
+      "member_path": "batch3/11.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "52d45e570654619ead68d9e5c3388e35eb217c25cfb0ff7caa7f2133e6085012",
+      "member_path": "batch3/11__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "fbd2f5709cb7a1bed82a328a65bb369ae08a26bac6ca46bb11b4acc336d3e097",
+      "member_path": "batch3/11__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "e0f9cf487629af63aa58fb0381cf4d125ea7518682dcaa55be7519897bdc20ef",
+      "member_path": "batch3/12.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "49c5e55def20e31de42990994fded84c289bfc9414902aca3fe91d3b59549a1e",
+      "member_path": "batch3/12__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "8b0a96ee14b2670894f896fed7694e2e082bde426b6f904c28abb5486ae881cf",
+      "member_path": "batch3/12__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "f948a665404114f3b1e7416d532c9625184c14abd3c7b488e152bf07daf5c399",
+      "member_path": "batch3/13.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "c1ba7a2386524464e6af0ad00cc6c0f46faf3d98c8926e0a873420ca81a4e400",
+      "member_path": "batch3/13__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "826ecb5f48bc890c27b9946a7bd9f73557137d22be580fe5456f1b7d0fab4a9f",
+      "member_path": "batch3/13__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "73e7cd26158458df0b07d94a726074c8163a5790e074ec2373d777ca0a02f1af",
+      "member_path": "batch3/14.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "b9660991a5256aa109ec632422aa69366cac558fe02f75b824cb4537a10859aa",
+      "member_path": "batch3/14__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "cec38b85e78d990cb45533b2974383ae5bd026ff1dc7636715a7f786173f55d4",
+      "member_path": "batch3/14__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "516cb69510dfcef9efe373bb531ff378985fe0396b10b941162c0882b16b66a2",
+      "member_path": "batch3/15.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "29566a465cdf0bb187ad869778f83b736796eaa939f022d2e75c563eaf057047",
+      "member_path": "batch3/15__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "7382a5bb98a8c1b76f12373db382453481b5e8321a08cc640c71c65b74c4885e",
+      "member_path": "batch3/15__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "4087ee850a0e3634bb8bc29427c647807d05b44d4c40de6912d78e017f940faa",
+      "member_path": "batch3/16.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "de1636177ec15a987e4d7c2d3e5ab4b5a20e7f6a92f38888b942448aa213826e",
+      "member_path": "batch3/16__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "7cb87d15732dd56523e5146b7619fe6bc33a71559df7c623025bf300c65d4494",
+      "member_path": "batch3/16__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "daefaad3150c74b10df77a116771945b2f31d18c320b543e0e8af9b8b96ba68d",
+      "member_path": "batch3/17.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "2f1fb8b865d23a55285d2befbb6b1c4b2918b80d3d23e2944e46fe18aa697b2d",
+      "member_path": "batch3/17__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "d7a6b7ea96db92f687e21f661e654d4763f446260059a5d9e7ca71e63b7d58c0",
+      "member_path": "batch3/17__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "187a5a6ffe25bffa9f376c84da9d6340e0cd5836455137fb75295fefd0d8d1b7",
+      "member_path": "batch3/18.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "5acc3b850c166ba5af9f8b6f98553b007bb5d507ffc50c2ff5f330f46c4d04c9",
+      "member_path": "batch3/18__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "7e5305942f2b8e682d076b428389890a15390b2b2d6f7b1f0ce7fcada7fc1d88",
+      "member_path": "batch3/18__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "1270df4107d6e4ddf4cfc69e204c633d92e432dbe09a3b600b84dc162a2f4f70",
+      "member_path": "batch3/19.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "83c49b0dbb1879182100d0362e8e120077dd926451cb43a76df9329d3362c2d4",
+      "member_path": "batch3/19__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "1fb73498d6ec23ddfbdef9346b5918ed27ac256d951633df8b1a7439b1353bb0",
+      "member_path": "batch3/19__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "90aa6fbc756ad1a83e853f4388158bc1b52c6d203299d8d3f6a7f38b85b6a426",
+      "member_path": "batch3/1__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_active_or_context_record_CONTINUE",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "unclassified_active_or_context_record_CONTINUE",
+          "reason": "PLS_CONTINUE_SETUP_PRINT_CONTEXT_PAYLOAD_NOT_EXECUTED"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "7755160c2065365cb37e0f7887d4df47dfa82f23f97d56af8462f5e2612abd24",
+      "member_path": "batch3/1__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_active_or_context_record_CONTINUE",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "unclassified_active_or_context_record_CONTINUE",
+          "reason": "PLS_CONTINUE_SETUP_PRINT_CONTEXT_PAYLOAD_NOT_EXECUTED"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "ad519f37a40622bc4124b48830a163171502bbbd84c84f98903841f04486df1c",
+      "member_path": "batch3/2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "544475801d19d1b4299fd0a336e98a4d71c60acc49b797ec558255b57b10a89a",
+      "member_path": "batch3/20.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "e1c45f2b704e64223be3c05b8dedeaa2afc4612e940914fe6b555088192706a6",
+      "member_path": "batch3/20__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "086e20cb853fb0a528f1287f2829dfc5c920759c9f854d9d9bebcd647352082f",
+      "member_path": "batch3/20__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "caaa5c623b3a2acb6335f1f889184b270e1bf1b95bbaba4e744e857a611d4398",
+      "member_path": "batch3/21.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "503267c4a43db6cd8748b30bd12e390da47d9e4d1e5eb55591fe357f24d50567",
+      "member_path": "batch3/21__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "e25190f720eeee1f2e7d62fe03553f26453c0a997f3ee3f501e4dcfd75f779f5",
+      "member_path": "batch3/21__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "7fba8ef9a6fc88bc58ea31d326d57609e3c093f12397e3d872bab7d7d8cc37cc",
+      "member_path": "batch3/22.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "ecd8060dd02f6798aa38f0672e6aec6d12f20624a31ea4d092c4cd36f2f814e7",
+      "member_path": "batch3/22__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "d2444f20bd25cd88d15965898373165b8e8a7600ee518cea6e89b8b3c62634c5",
+      "member_path": "batch3/22__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "65018541844a714bc733458861d698ecb16b0e68f6c03dc915a3181131131f22",
+      "member_path": "batch3/23.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "24fc6d27e7eab1f8966f7ad92b4dd38b25d925aac53a716df122faea9519f6d9",
+      "member_path": "batch3/23__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "d78b48ec818de5f001c88c481c98e2e2d4fbace56ba81b13790f682717439441",
+      "member_path": "batch3/23__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "6b6ac383cd59eb6bfd7b56aee129db5566ff76a59fe0839bfbe8ae08aa00027c",
+      "member_path": "batch3/24.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "6740d2db8cc33addbdbf7f38ce7ae5d5e9a142f306fbffd2048512ba11d7292c",
+      "member_path": "batch3/24__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "029c02eafb2bc21e2a491dfa3a5c355fe31b7b3f3f2cf4a9efd2990c60dcf666",
+      "member_path": "batch3/24__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "46817273aea4fcb184f306934e4c07e845d1c1986dd69845425b5cdac1365ab5",
+      "member_path": "batch3/25.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "70b493f9a40a8b32c84e15f47501bde67cc0a511abc27da088ed0b65d61fc1f1",
+      "member_path": "batch3/25__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "64114bcbf4e844b697890b8578eb3bdf6808e45f0779692513f4d2d28bada1ff",
+      "member_path": "batch3/25__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "b08f27fa5528c94ba607865715818e310048ac698bdc2bfc749fc2c7bcf66340",
+      "member_path": "batch3/26.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "fa08c45ac78a813c5fae21f9c5455f21106e515aa74aaf4c0e42eaee7c460ea4",
+      "member_path": "batch3/26__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "55e8d7ab46df78cab051bcb3ed4321e88601cf2456f534dfd34fcb60089d0c9f",
+      "member_path": "batch3/26__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "2786f06e2e192923aa0a82ca36526a46f346fa62c51addc906533d9de880c250",
+      "member_path": "batch3/27.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "9c89a6606037df0bd17a5d49c2f05a316002dfa95f49af0e606f0b5366e382f9",
+      "member_path": "batch3/27__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "a000c612f0412eaed19170e12c581a6548a8e704881c107de86302529512ddd7",
+      "member_path": "batch3/27__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "6533a779c4a2fc7a8cecf95717a52a0e188a7605f3ba2e559df4ba39a0aaf056",
+      "member_path": "batch3/28.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "9e2ab54145b1a89594532c0d7e12cdf7bf8b3e27681148297489e077427690c4",
+      "member_path": "batch3/28__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "530f9afa8f12f64b10a53cdc2c34739d32ce5c470d1baefac1a0db76bf6128e9",
+      "member_path": "batch3/28__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "451667a83440a9bacecf0b222198baf997a166faaefe7c0806ab4c7c99a00c15",
+      "member_path": "batch3/29.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "d61620e1f524c15b263ea1f2e2fb224f45906e18577754d35a65d0a98c87eb3d",
+      "member_path": "batch3/29__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "3f1275ae2c151cdb089955bdbd182e3726f5a12b980b339644f37c25af2ee38c",
+      "member_path": "batch3/29__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "a6fdd47cd8aba21fbe5cf3f2a6f6b71b82d17b9529243a16c457b11f6739e5cc",
+      "member_path": "batch3/2__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "f64a3d63337a6e21d1dfe94ed19147c577b6e2b23dbd69e4cf267e68755e9fc2",
+      "member_path": "batch3/2__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "614d79af354bef31905db4a3d294e71e1ea0b6bd19359163e5a9cb8990e81e10",
+      "member_path": "batch3/3.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "a2197751e022148a01e90e8d295cd542c222adffa22959ff8b8180579c077189",
+      "member_path": "batch3/30.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "d8498a0702f6d924e5db49d5213d032d3e4aba96f9d3332a59bed0f2510e5a53",
+      "member_path": "batch3/30__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "9f51da1ef2f265fb5cafb611d57c383e5f1249d6304b73c2e988165dc18ae6a1",
+      "member_path": "batch3/30__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "03724da941e7492aef8ecb91261f8024a017452b36bb5160b3103baf48ff37dc",
+      "member_path": "batch3/3__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "565a72ab44055f541656db09cc81ad75fb0cdea936c3512d8d973632e701fa9b",
+      "member_path": "batch3/3__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "74627e3b0d335ea49e8989f7e33e481702888acd14c9eec0b5e6755beba6c943",
+      "member_path": "batch3/4.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "e718efe8c6fc3fad99a304f2b8618f4c87370515a23ed2fea7196623e19368f3",
+      "member_path": "batch3/4__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "1af3588d3d76ca82c58acae236bc704a8fba276a969b90f59c13bd9da132b762",
+      "member_path": "batch3/4__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "1e54bb1e95401dbe6cb21bdb7442455751c674d882b0a6363e6a2c8477b05b2c",
+      "member_path": "batch3/5.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "b10d67b11dc770ebd08ee088e05c0d1d7bd12cc934313d95f18b28ad729d3585",
+      "member_path": "batch3/5__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "24b3650a7a2ca4bb02662852d979f84b02ab5e9d1d4083aa938323cba08a5e5d",
+      "member_path": "batch3/5__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "76449745253761c03f42ec312d5988252c9801614d01f2190bbc5f02e7efd77f",
+      "member_path": "batch3/6.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "7f0141d2d6d996b71749b2d5bd0bc49424044053cf32d47d25bd9014433fe80e",
+      "member_path": "batch3/6__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "d28d7db5e525aec5d1687ac01458887f9992bcdfb0f4074afc15d4d64a88c23c",
+      "member_path": "batch3/6__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "f610f501807c1b5d85ab0824dbef3b2a5482dc455375cc8a5e046704db66de02",
+      "member_path": "batch3/7.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "3208b2e23b80e26743dcedbee2c866ae14b8b47e10dbdd39fc94896772a5d6ee",
+      "member_path": "batch3/7__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "bcaabcae0604d2427e2bad295da1b4888ce477e5a6307c6c69f498b7c4d75bfa",
+      "member_path": "batch3/7__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "12f420c64365a9dbd4a9cf8cf4dae1ddeb705eeaab119cedb807cc303b40598e",
+      "member_path": "batch3/8.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "631354c848617cab353f0d3a49dec5245cde1e299433d8c4261f4c55aedd1703",
+      "member_path": "batch3/8__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "108bada1136988156cf371c703d4644e3abb5b56bcab8e9024f389da0ace1b2c",
+      "member_path": "batch3/8__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "2515bbd6e93571c7574e388a85bac3bc22e0dc2a2ddfe57545112bd9f410777c",
+      "member_path": "batch3/9.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "2fa11e08b5ff07e92ad35ec5b8cdc94c4811204b8922ce6fb33b4e664d652aa0",
+      "member_path": "batch3/9__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "336297436c706128f4baf542c2d6ea6d86b8035127580de2c9fed82af109f7ac",
+      "member_path": "batch3/9__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "5b4c302605e0d3fddb4392801f341391fed54a5f48ef654a71caf8a8ebb7e559",
+      "member_path": "batch4/1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "a812b4a5f6efa041b12cad7be1dedd855f230199cf15bdf759ccc0073c99f552",
+      "member_path": "batch4/10.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "8837f24d6f5b5551e20c84677fbd354fb1aa1d45278482ef1cb8ce959a21c118",
+      "member_path": "batch4/10__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "e3fb1e5af3d4deb233885bed649b689ae0e779e379a56cedbaac14fdbc871953",
+      "member_path": "batch4/10__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "3032f4eef84bfeabcf841ea7173c010889707c2412a0f1500b888c75d4376f96",
+      "member_path": "batch4/11.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "e7159f894b4a028b10e60eb9ec3141d49f5cb481c88609fd60342f5a0dcb7b83",
+      "member_path": "batch4/11__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "690bec601f634c47da8bc4c345e744a141519df8f72fdab7ebde6b0bcd7b504c",
+      "member_path": "batch4/11__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "1fae7dfd7a93d1f826e42ded87c1c4ae6cd82785c2b244865366f1f884b75b2e",
+      "member_path": "batch4/12.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "4facf7cd2c9bdc1311e2c90f87986ce9f0f4d4114c7e8120c84937b90949d385",
+      "member_path": "batch4/12__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "fbdb33dacd662c100299ed9cfefd28fa8ea7add234f463aa9aa9d1dbc0080c70",
+      "member_path": "batch4/12__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "256ab8d980b1bfa88e9f9f9346d0d0c3d5987fca43d138c8f8b9d18831430fbf",
+      "member_path": "batch4/13.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "9b5de8582a633b058a2890003e7c0e856cad50f58a360a45c70434bdcdc5dbae",
+      "member_path": "batch4/13__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "ada3750857cdcd879c708160e969996502fa447d475def3a98591fd41ca1c413",
+      "member_path": "batch4/13__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "2be7989474a3a480a1d576f5f66be45c808de2ee752bbc53fe28ff31f3fbd08b",
+      "member_path": "batch4/14.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "e29e0254c6dff9c9725bcdb61e3158fd53c41a7a02bda3bd498b384ac63a4514",
+      "member_path": "batch4/14__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "774c817d1bc09fbaf825a729d55d3601a5dd17a6fd910aecc1feb1a44a78d1b2",
+      "member_path": "batch4/14__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "02b4e40ccc2e210b037bfcca64b9681566f2dbe47f44ff44f32d3599b4d1a9bd",
+      "member_path": "batch4/15.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "8d6d66a46804b44a6da732868277f7b63d0e2a599daead6891fef531ef5596a4",
+      "member_path": "batch4/15__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "9ed1ff83e28c8a7316d36e1f31a79b6ccf054f097e2e8f39c8d58ba05773a317",
+      "member_path": "batch4/15__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "e153ccd596ae1489a5006f31874ca4fbcc55a22a8e93b2124a4a74cb9b21b02e",
+      "member_path": "batch4/16.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "267a904979957c102a4df2f307f3fc5ea44c3df227e52bcef96897ed5e41c1b1",
+      "member_path": "batch4/16__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "c3a0e3d21f114effbdd8cc38553e8c11af8e3f94324bbed4d146b11b9fcfc34d",
+      "member_path": "batch4/16__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "73931b2ab4488935875df82672cf6e463f01450c2788337de868e0f15a3fcf6a",
+      "member_path": "batch4/17.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "e01054eaba2eef94788dd71f2a89e0decd11e8dbbe5754a5ba4999fe47eae887",
+      "member_path": "batch4/17__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "e49b723ad328ab7e9ad290e16298945a207212e5ab00936af04dc99d9e60b586",
+      "member_path": "batch4/17__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "7a82bfccccebd558af87de582743512628a8ab42a8e4ec59f2a218d14a83c5d5",
+      "member_path": "batch4/18.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "50db321d02207bd96f7136f6094cb93625df6f18559d02d4010d0b8febbf37a9",
+      "member_path": "batch4/18__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "a49bc0b55b7d6a70d0d083740ca84574ca7264d5c19bc8ab6b92970bc1bca93b",
+      "member_path": "batch4/18__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "e140b36fae56a838753d29948106b631951f2663019ba62268754b869383b72c",
+      "member_path": "batch4/19.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "3511241bfb1b6224edb0226a4c02b63e4a34266d841157d57f6b5f9497648e23",
+      "member_path": "batch4/19__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "a79581d9ceac808d279249e5e5630cd07962c38419625e7e946b65c8c199982d",
+      "member_path": "batch4/19__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "fcf83e5ac243ce8b0be77f633cfcdaa4ecc04bda206c87fdd8960a6acc4c1ca7",
+      "member_path": "batch4/1__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_active_or_context_record_CONTINUE",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "unclassified_active_or_context_record_CONTINUE",
+          "reason": "PLS_CONTINUE_SETUP_PRINT_CONTEXT_PAYLOAD_NOT_EXECUTED"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "ded79deaa33c51f76fa936d2b9df508d8b5fcee0bbb90157b2652df3528d103a",
+      "member_path": "batch4/1__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_active_or_context_record_CONTINUE",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        },
+        {
+          "marker": "unclassified_active_or_context_record_CONTINUE",
+          "reason": "PLS_CONTINUE_SETUP_PRINT_CONTEXT_PAYLOAD_NOT_EXECUTED"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "4c2ae930eaccd4d8a8a7a3eb488ab96b6e826396cfdc906012bd03bf58d5ef2d",
+      "member_path": "batch4/2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "5425f7619edf394750e854da938e4ca5eee77cd77d1f8566b1235b093fc66344",
+      "member_path": "batch4/20.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "c6f6c3ec71104efc34d3e55858c08a1bf71e7bf01e40d6fecde198b359e7ebec",
+      "member_path": "batch4/20__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "f49441ef435cb9a8cb82b787d0732029473ecee83d2eee603316d19738cd7442",
+      "member_path": "batch4/20__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "82d73731e33d716d9a8e1409ab3c5fdf9ba38afc7f31270dc4278a22003b7ce9",
+      "member_path": "batch4/21.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "f6a8279649dbc92ffcfe5d0e5356080bdba8ad65aa6777d9512404fdba353bae",
+      "member_path": "batch4/21__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "539d31af3b86433353edb9a4e27c8bfbbf22e578516f1defe8bd4d7e9da0f753",
+      "member_path": "batch4/21__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "12aedcb14b76d9cf551afd76fc0662bd7ae6f8bbc6f608bb85f34ecf221713e3",
+      "member_path": "batch4/22.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "0270dd63ebc3385492c00f03c05a2d68e8ce9621786b723e209dd953ff79da77",
+      "member_path": "batch4/22__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "9187a340493ec364dbbf5ea64fbac82eeddc58e0408846dd03c680690e6ac218",
+      "member_path": "batch4/22__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "8d3a852cd0c5aae3be250830a3cf45a121de7b61a46e520c3dcf28b2ac39954a",
+      "member_path": "batch4/23.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "b4d6375bfccad90b6a41a50cd481c07e30cdaa2de2b1c890f348ba4396a386d5",
+      "member_path": "batch4/23__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "e245da56de32dd0a363a9aa3ba77b68f69c9b7d5e4c4cf3d640a4bef35516186",
+      "member_path": "batch4/23__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "18365c08cd65c62a604ed8536745da958cc0f7e361de381a2ec2214c848187d6",
+      "member_path": "batch4/24.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "8b842742a647ff1fbf404469c7633361a6bbe56b0c893830a5ac6f7a339fb0b7",
+      "member_path": "batch4/24__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "2964320add96177510149925ecee9b125b6860b7b1fa739c1f83ddf420af4835",
+      "member_path": "batch4/24__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "222c87d700559d881ef963c3f0eb4f7456a59202634bcc34a136bdd98a6c3c73",
+      "member_path": "batch4/25.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "6a5d094223482e083de17cd3a7a50fa0ab0b51fe06524624f928fd1787d79f27",
+      "member_path": "batch4/25__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "c80c1cfbbf9a169db97f267d0cd7b304cefc702a5c6f0db31411ae4dc61093ae",
+      "member_path": "batch4/25__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "208b65668f36dbfc4a0fbf41774f59ca17c6ef0ac586d02b267b1b2f6a63cd62",
+      "member_path": "batch4/26.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "39f677d1210ba3a79b04dded6a37d76d307b742fd9dcd5d875de5d29be70a8e4",
+      "member_path": "batch4/26__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "5d4c4f98bda17c4610c7c0e1e685cca577c290420ae7e0aae99974709d9db614",
+      "member_path": "batch4/26__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "4c9448dfb31d306e74417861eedf87c0df67b742831ab34bc73041e634507aa8",
+      "member_path": "batch4/27.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "6305030bd9de87ba121be9e86ec21288eaab2f355d43d68d39ecb238e734df14",
+      "member_path": "batch4/27__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "63b7b6a87a0ee07250e402417d4efabe19f4aa905066dc324474a7e91ea89da9",
+      "member_path": "batch4/27__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "2ad504dee0d933fb8dec0efb0837125ca57bd029d0e3d47919640f60b5ac48a4",
+      "member_path": "batch4/28.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "773cb3bfd460062f6614d29f5e515fbdafa6e3566c9e0854855f5ce1fa10d427",
+      "member_path": "batch4/28__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "c14f03367bd67875fe164cbb1923a6fe1b640ea138031f71d442000f390aee88",
+      "member_path": "batch4/28__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "e6fb932d559df47cbb9303200f31cd7e9da23575aaf712bd9610272294f1c0c7",
+      "member_path": "batch4/29.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "6a53add153e4f1a17b02b6e702b45c944ec3940bfef5aef9008572efb7b96937",
+      "member_path": "batch4/29__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "13d35f618755fd62d9a40658c7983f65f3afc5be48243c4fe16c2320000a6ddc",
+      "member_path": "batch4/29__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "7e3b9fe9b40523af847a5a701a02cca3090e3a6b9c14bb837d67720615c5aaa2",
+      "member_path": "batch4/2__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "fbe570ed0ce2105aaeb22fdc0b48ac6bd1ea5a24655cf218fedb1417c895e926",
+      "member_path": "batch4/2__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "79278b4d2473b34074077d14fbc00477bead5aba8f413fc02c86d93fd8ea4ef6",
+      "member_path": "batch4/3.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "bbb6cd674b22b1ab5d1b43ec5b7ccf27e170e8eeefb76157587a1f695ccc31ec",
+      "member_path": "batch4/30.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "e39763002784b76f234d588a4b6f56a8622676f33731873b545e5980fa1a1119",
+      "member_path": "batch4/30__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "08179efb1e705f5785721c4838dd004841a8a10f93bef77bb1d29ccc21e6072d",
+      "member_path": "batch4/30__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "5441cbf1a5d51cb6c0a396f980f85b03ff6731fa99c76b4ed15fb10e65e4d454",
+      "member_path": "batch4/3__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "77a2dd3863ea482a7a5c6d5769bed03f65c87c9c74fc98d1e2c97433130f7cc4",
+      "member_path": "batch4/3__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "ba193fdec86a3c1b230b5b4d6c043c11bb892502d690e7af9b7d547adb4e0aaa",
+      "member_path": "batch4/4.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "45380915084a246f1c886667360d2fd354b401d7dab6714a09c64d21827f7051",
+      "member_path": "batch4/4__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "69092b500000214ec5a603c01d9bd82981864c208d2c6bae33e4f47a0094ea09",
+      "member_path": "batch4/4__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "4e3e911cd9904738a25d8d8cff3cb0bbbe6d5b43b9e8c8727395b379d90a1eb8",
+      "member_path": "batch4/5.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "13027fb2ea93bd249f3a64919554e66f579bbeec579bd7db9ee1ded7a6c9e99a",
+      "member_path": "batch4/5__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "e226be756389d4865c05b66686b3a40182cbe097cc9ef342e14fcf9b253b6876",
+      "member_path": "batch4/5__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "dc29b5bcf54eb906bf88c3b8004fdb4f510e4a3f8337ec4274c971de32add825",
+      "member_path": "batch4/6.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "1b6ee4a903b096aafab47dcb3aef03545082cbb49f50816d4c11e66b682a47a8",
+      "member_path": "batch4/6__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "2259dd9ee31a665786ee53b9f002abde9abb100f7f946d81a351ff0404e737ed",
+      "member_path": "batch4/6__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "68ffdfa55887ad7abd88ac248f103a4b09f7ee1f5876416c6f850c6c4b2e9795",
+      "member_path": "batch4/7.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "39198cecd62ce3c7047e81077d34693418c7411632340eb131c6b86a9247f96d",
+      "member_path": "batch4/7__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "5a1c7e429a60fb9cdac8a57ee313ca13809345b40d923a47952b63d69bb5a1bb",
+      "member_path": "batch4/7__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "3fd8133260a9d4e606e5bd8b653d87ebe16190e057d180903496101e2abb162d",
+      "member_path": "batch4/8.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "fcb3c5df1ad58c98baa5aebcd6596dfd7848b7ca08ba2c05f4d176d06d8b1b84",
+      "member_path": "batch4/8__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "7d7f9251125eacbdb6010efdd0b4e09ce3a4175252d9bc2f49ff5c2a98f00597",
+      "member_path": "batch4/8__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "689446b690a6f0ef12dd8a4e1444c9a6f54718b547c07b4bbb14702744e09df2",
+      "member_path": "batch4/9.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "a87dd1768b646fb90e8be05b557117dec2ee8339201afc1290a5146bd2e120a2",
+      "member_path": "batch4/9__1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "633d3e295a8b4352c7278aa188982d5971a06848b6465d5c78c9b805f2a19523",
+      "member_path": "batch4/9__2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "676b041ac58e6ac1644416f7a180f4f520656660d2f27d334068e862c2bb0a33",
+      "member_path": "batch1/1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_active_or_context_record_CONTINUE",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        },
+        {
+          "marker": "unclassified_active_or_context_record_CONTINUE",
+          "reason": "PLS_CONTINUE_SETUP_PRINT_CONTEXT_PAYLOAD_NOT_EXECUTED"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "3930e9a154d67a27f079ebc0ab141e520a6a543b272263a90af326ed7ecbddc9",
+      "member_path": "batch1/10.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "ba9fe77f68e84af8c0a3245d0624e1ee04324a8d74525018c54c7efd57ff7b70",
+      "member_path": "batch1/11.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "d97a20290be0cfac522df8f6afc703579786a34f4b63e4563c28e6a4db631ea7",
+      "member_path": "batch1/12.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "51490caa24770beb46894b8d6b3769c6ffe95e9949fed58d0b714502e411b5dc",
+      "member_path": "batch1/13.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "2275f7a313cff74bf16eb91f195b189c23879aa9de200d7a81669665fc26c912",
+      "member_path": "batch1/14.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "ce15eca1fa057d5294a78a4be99d2edbef37e0997937576e4786d822999642ab",
+      "member_path": "batch1/15.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "be91f9ff22f7b06d527554a66633e38cf38b9e6857ebc7f66f643d7d6d1305a9",
+      "member_path": "batch1/16.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "d0a5d82c50aa43edde16b2b47b20df1c44f27ea9486a0f52749d103f512c3eae",
+      "member_path": "batch1/17.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "0d3bb89004aca08a51043f503f83675a57c24a5ffedea0d03627613b4de12b89",
+      "member_path": "batch1/18.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "5e88ae9385cc9c652f9c6f81db6d735afa9a8a6c85075fb74f1e87417deb6707",
+      "member_path": "batch1/19.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "d7ea3e4155930a74b86939839b3f043fd65b134b8d24272f5de540fd41c2d4b2",
+      "member_path": "batch1/2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "db72e4e79d19b57dbd0ef78c0549ddaab00e92dea171e9fb77726abb7e4a24a0",
+      "member_path": "batch1/20.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "d0680b6fbc67cb92300ed272ab66ed11455eab5cef6a4c1705848b12f58b2533",
+      "member_path": "batch1/21.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "e7b84682e203f002f9dfa02fb2efb73405f2901d89967d98e1c47c6bf0d409e3",
+      "member_path": "batch1/22.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "049918bdee977e941b09a7615c1aeabb1053b33f1bc243c64750c1e375339c63",
+      "member_path": "batch1/23.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "2304068e0383a4c3bfc9db65263da9cc7b41603adb110a8f3c135e2286b873a3",
+      "member_path": "batch1/24.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "76ed81901e3f11d62359033885a70fc60bd08dd64bd56b062aefbae98cd2db16",
+      "member_path": "batch1/25.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "33c525a03d8bdaa0fbabdba3ccfbad47b50adf9a7249b415bd0cb30a69366a81",
+      "member_path": "batch1/26.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "47965c94fcfea2b30aefe63deab188b4e42dec07864fe054b9a878bcb9e99dcc",
+      "member_path": "batch1/27.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "d686295b93bc64e1b85b8e3a558004fe597c91d3458e323e8693b91b904940f0",
+      "member_path": "batch1/28.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "e750cda514428d1dec0c8faca7ce2e8fd38ed0dfc409365502ded57108c4ae6b",
+      "member_path": "batch1/3.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "398085c4ce09a765f2208c8b0804d2072973c53948f80385e39ae90fb7d2e71c",
+      "member_path": "batch1/4.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "8a99393f571f9a762a8e47ef239d7671c90bffbc263884821435a48a39e6dec6",
+      "member_path": "batch1/5.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "8911b5e58b6f3dbb1c78c7e033904c9b737ba2ebfc36440e6d42aafb3e3fa235",
+      "member_path": "batch1/6.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "9d37ef776ef04907b6949662bee3bdd50eaaf5fd42e89c961acb293a85662a30",
+      "member_path": "batch1/7.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "892170b49393ddbc7e2b9bc6280f7b22fc6ddc08e340fa3975f66759e001d1d8",
+      "member_path": "batch1/8.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "20659f801de77aca172ee98c53f7390e399afbcc67d1d55c85de3b94542d9088",
+      "member_path": "batch1/9.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "e653465d15e5ddfc33108729e1b9d32be33caeb3084871c96a8024fa086dab2f",
+      "member_path": "batch2/1.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "6e7e80b423b27fec404d470363909d591e480451ca56713c7764380a803e3089",
+      "member_path": "batch2/10.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "1efc6b94fdc8056db2b30186a294333c98e0064a2696f56c82ce1f9e54e58c3a",
+      "member_path": "batch2/11.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "459b33d25a06dd527945bcb88a6c32665cedc0095b823cac52fee37b41d2bf83",
+      "member_path": "batch2/12.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "1e270183883b11218a1ce206f662d218da1af9bbd8e346576391f70319c80246",
+      "member_path": "batch2/13.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "7335a948b6ae5f1682d08ccf30c84312af5a93eaaae8e295f1bd34f05c0c0168",
+      "member_path": "batch2/14.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "7a200da066e20cef1e450289cd21487cf64b2ed289bb8ce50829e27b9217304b",
+      "member_path": "batch2/15.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "96980d7b3e4ebb916cd26e504c32f31524c244aa9c76cc28c63ba58c3c9b78a2",
+      "member_path": "batch2/16.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "bdd04ffc5086b7dc98afeebaa7b041464eec8be8a0ee7b6b39cecdceacd431e2",
+      "member_path": "batch2/17.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "4c964e7d5cfdf880e4ccf3a1737abf7dfdba0891b6b2f4768fb0258f3c076c4a",
+      "member_path": "batch2/18.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "76197ab740e4126ac168fcd75724fd18259cba7553afb841d24fcd04318e33e6",
+      "member_path": "batch2/19.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "ee8dbec2902c141f008647ebb365c71c7762b9eeafc0b7643f19fb06f487a153",
+      "member_path": "batch2/2.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "5f5ed2395ab46c599ff3bb599c5f28c8cb1250365af2119ef7f1fbcc884989d2",
+      "member_path": "batch2/20.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "7ae4b34dd166321eca58e75f4f8cc1aba45a916ded7ee431dd750b459fe146f3",
+      "member_path": "batch2/21.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "9c85332477c0955d15738e65003cad9b54b405b3f71dcf55749467599b8f442c",
+      "member_path": "batch2/22.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "7b562eb4d904fd841df41a6f69404a788c8dce93242b4c51c462c4f3072c7480",
+      "member_path": "batch2/23.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "f28aa6886bbda43d88658ff75b471443315361878c49e73925c5002d3908a7be",
+      "member_path": "batch2/24.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "97546c6c4924a24c910b5a50e4e82b22875301d859e5f1b3a96f6f6b6514c0b1",
+      "member_path": "batch2/25.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "50bc3b599270b45fb1befd4bb32a253ef33865219e45ba08a8b465c32468272b",
+      "member_path": "batch2/3.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "76cc3cf55df177e64985948cbb2dfefbd459bcb2ddbf39a7518090aa4ead6ed7",
+      "member_path": "batch2/4.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "4d7c558a6cf64798d3f0bba99be0ad57a6101e0b59ae147ac54683d2540eb16f",
+      "member_path": "batch2/5.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "51ee2cf71706ec8f6e58927d575de2c3b8964d730bc2134f709ed3b03aeda5dc",
+      "member_path": "batch2/6.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "c80492307abd820e1eda08f946b327621352304975538c96d4852de9846cde1e",
+      "member_path": "batch2/7.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "f6d931f9df29df26e4d4fad66d25644f4543631bd69c9ff684cdb04eaa917c2f",
+      "member_path": "batch2/8.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    },
+    {
+      "input_sha256": "e24eec4fb5215e6cfcf184f9b1c5aac3d6f9e94860621e62549b06f94e34bab0",
+      "member_path": "batch2/9.xls",
+      "model_or_api_executed": false,
+      "numeric_target_emitted": false,
+      "original_blockers": [
+        "ole_embedded_object_entry",
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "p2_eligible": false,
+      "remaining_blockers": [
+        "ole_macro_entry",
+        "unclassified_record_types"
+      ],
+      "resolved_markers": [
+        {
+          "marker": "ole_embedded_object_entry",
+          "reason": "ROOT_COMPOBJ_METADATA_NOT_EMBEDDED_CONTAINER"
+        }
+      ],
+      "row_parse_authorized": false,
+      "status": "CONTEXT_RESOLUTION_ONLY_NOT_DATA_GATE"
+    }
+  ]
+}

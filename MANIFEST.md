@@ -237,3 +237,7 @@
 | 2026-09-08 15:08 | /experiment-bridge | data/audit/ren_scs/p1r1_20260908_150800/ | data-audit | R1A/B/C 全部 sealed PASS，独立 verifier PASS；233 文件、4 目录、15,223,551,488 bytes |
 | 2026-09-08 15:22 | /experiment-bridge | data/audit/ren_scs/p1r1_20260908_150800_static/ | data-audit | 233 份静态检查完成，BLOCKED_ROW_PARSE；未知记录 233、CONTINUE 6、宏类/嵌入对象类目录标记各 83；255 绑定哈希复核通过 |
 | 2026-09-08 15:22 | /experiment-bridge | refine-logs/REN_P1R1_EXECUTION_TRACKER_20260908_152249.md; refine-logs/REN_P1R1_EXECUTION_TRACKER.md | data-audit | 恢复 PASS 与静态阻断分开裁决；R1E/F、P2、模型与 RUL 未执行 |
+| 2026-09-09 13:31 | /experiment-bridge | refine-logs/REN_STATIC_CONTEXT_RELEASE_20260909_133121.json; refine-logs/REN_STATIC_CONTEXT_RELEASE.json | review | 只读诊断独立 pre-run PASS；18 定向/510 全项目测试 |
+| 2026-09-10 15:08 | /experiment-bridge | data/audit/ren_scs/p1r1_20260908_150800_static_context_v1/ | data-audit | 收取并对账 87 个真实工作簿的目录/CONTINUE 诊断，旧 Data Gate 不变 |
+| 2026-09-10 15:08 | /experiment-bridge | experiments/audit_cap/ren_static_context_resolution.py; tests/test_ren_static_context_resolution.py; data/audit/ren_scs/REN_CONTEXT_RESOLUTION_20260910_150809.json | implementation | 解决 CompObj 83 与 CONTINUE 6 标记；31 定向/523 回归；未知类型和 VBA 阻断保留 |
+| 2026-09-10 15:08 | /experiment-bridge | refine-logs/REN_P1R1_EXECUTION_TRACKER_20260910_150809.md; refine-logs/REN_P1R1_EXECUTION_TRACKER.md | data-audit | 分类修复与完整 Data Gate 分开，下一步 R1E Workbook-only 边界实现 |

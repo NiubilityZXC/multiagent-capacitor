@@ -1,0 +1,25 @@
+{
+  "schema_version": "RenStaticContextRelease.v1",
+  "status": "PASS_DIAGNOSTIC_ONLY",
+  "recorded_at": "2026-09-09T13:31:21+08:00",
+  "policy_sha256": {
+    "experiments/audit_cap/ren_static_context.py": "d3478ad9fa48039b6a212a158a396ad339458849fdfd7cc410c73f8746a706a6",
+    "tests/test_ren_static_context.py": "5e037ebcac73bffe13c08beddf62ff88460ce6dde07aa63cbe9ea069ffa84c89"
+  },
+  "prior_manifest_sha256": "10adcf8fa53162dbddc00b051e2fe6c6d4a05bf9bcb6cffe23b309b1f3cb64d7",
+  "approval_record_sha256": "314dc2e62acf35eccf0053a8fd77591a1bc90d82fae9e70e1dbc4820f882f2d8",
+  "review": {
+    "agent": "/root/static_context_review",
+    "requested_model": "gpt-5.6-sol",
+    "reasoning_effort": "xhigh",
+    "acceptance_status": "same-family provisional",
+    "response_sha256": "2a436a3681f83b22c535dd419bdef228296843fa05b86ccf6c88d045a7ba5741",
+    "trace": ".aris/traces/experiment-bridge/2026-09-09_run01/001-ren-static-context-prerun-pass",
+    "tests_passed": 18
+  },
+  "full_regression_passed": 510,
+  "row_parse_authorized": false,
+  "p2_eligible": false,
+  "model_or_api_executed": false,
+  "automatic_next_stage": false
+}
