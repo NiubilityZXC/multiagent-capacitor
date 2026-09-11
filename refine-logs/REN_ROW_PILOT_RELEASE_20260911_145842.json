@@ -1,0 +1,32 @@
+{
+  "schema_version": "RenRowPilotRelease.v1",
+  "status": "PASS_FIRST_MEMBER_ROW_PILOT",
+  "recorded_at": "2026-09-11T14:58:42+08:00",
+  "policy_sha256": {
+    "experiments/audit_cap/ren_workbook_reader.py": "d331118f5718b7aa730a21f677e441d6a34763fa63d5a42f2ac3dc04bf5d294a",
+    "experiments/audit_cap/ren_row_pilot.py": "fcece803ecef54bcbeb0e3bc432a5aacc63a03ee9e803bcf2d5c058b405168f8",
+    "experiments/audit_cap/ren_static_context.py": "d3478ad9fa48039b6a212a158a396ad339458849fdfd7cc410c73f8746a706a6",
+    "experiments/audit_cap/ren_static_context_resolution.py": "8b6e2e6689741b907f815c2d1a898cbe98cd8d72bade326f5c752c34e7a5ca56",
+    "tests/test_ren_workbook_reader.py": "4ce422b83ba7a9b8cd072d530cb2a5cae55c5ff8cd8a420fe9e02dc1271b97a6",
+    "tests/test_ren_row_pilot.py": "017f9bea3db7bae62b9689ff6f7805e05927bb7051ecb445077cf3c4364ac10f",
+    "refine-logs/REN_READER_BOUNDARY_POLICY_20260910.md": "c96a694ff7d81597333e1049b25c7fb7a753b88d6e90c991287d141fd28f8f25"
+  },
+  "approval_record_sha256": "314dc2e62acf35eccf0053a8fd77591a1bc90d82fae9e70e1dbc4820f882f2d8",
+  "review": {
+    "agent": "/root/row_review_recovery",
+    "requested_model": "gpt-5.6-sol",
+    "reasoning_effort": "xhigh",
+    "acceptance_status": "same-family provisional",
+    "response_sha256": "8dcf3c647c55c8e2f8fe2970e899693e19a9bc25a606711a21b6a16f8c37a463",
+    "tests_passed": 31,
+    "tests_skipped": 0
+  },
+  "scope": "First sorted member only; read-only schema/rows; not full Data Gate",
+  "full_regression": {
+    "passed": 552,
+    "skipped": 2
+  },
+  "p2_eligible": false,
+  "model_or_api_executed": false,
+  "automatic_next_stage": false
+}
