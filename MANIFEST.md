@@ -248,3 +248,7 @@
 | 2026-09-11 15:18 | /experiment-bridge | experiments/audit_cap/ren_fleet_schema.py; experiments/audit_cap/verify_ren_fleet_schema.py; tests/test_ren_fleet_schema.py; refine-logs/REN_FLEET_SCHEMA_POLICY_20260911.md | implementation | 全量233文件schema-only执行器与独立字段重建，68定向通过 |
 | 2026-09-11 15:18 | /experiment-bridge | refine-logs/REN_FLEET_SCHEMA_RELEASE_20260911_151712.json; refine-logs/REN_FLEET_SCHEMA_RELEASE.json | review | fresh pre-run PASS，12项policy绑定；无Data Gate/P2授权 |
 | 2026-09-11 15:18 | /experiment-bridge | refine-logs/REN_FLEET_SCHEMA_RUN_20260911_151815.md | implementation | 本地只读任务已启动，非完成声明；raw/logs ignored |
+| 2026-09-11 17:24 | /experiment-bridge | data/audit/ren_scs/fleet_schema_20260911_v1/ | data-audit | 全部233文件/1859表/108332665存储行证据完成；非Data Gate PASS |
+| 2026-09-11 17:24 | /experiment-bridge | data/audit/ren_scs/FLEET_SCHEMA_INVENTORY_20260911.json; data/audit/ren_scs/FLEET_SCHEMA_RECONCILIATION_20260911.json | data-audit | 独立持久化证据复核无阻断；原session失效，exit code未观测 |
+| 2026-09-11 17:24 | /experiment-bridge | refine-logs/REN_AUTHOR_CODE_STATIC_NOTES_20260911.md | implementation | 固定作者commit文本审查；113命名候选组，不执行代码或推断设备身份 |
+| 2026-09-11 17:24 | /experiment-bridge | refine-logs/REN_P1R1_EXECUTION_TRACKER_20260911_172419.md; refine-logs/REN_P1R1_EXECUTION_TRACKER.md | data-audit | 全量schema完成；转向行语义、跨分片连续性及身份/目标证据 |

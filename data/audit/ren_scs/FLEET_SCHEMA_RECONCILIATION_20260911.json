@@ -1,0 +1,27 @@
+{
+  "status": "PERSISTED_FLEET_SCHEMA_RECONCILED_NOT_DATA_GATE",
+  "recorded_at": "2026-09-11T17:24:19+08:00",
+  "run": "fleet_schema_20260911_v1",
+  "files_reconciled": 233,
+  "sheets": 1859,
+  "stored_rows_including_headers": 108332665,
+  "nonfinite_count": 0,
+  "summary_sha256": "361f9f854aa22fe02be8b5bc9cddcb3ebd36bc23b1979c5037ca3cc65b8e4b3f",
+  "complete_sha256": "bb7bedb39d139135598a4cb4d4f7d109772713b7177f96fe5867de07e4b8cdcd",
+  "runtime_log_sha256": "1dc7d7b5f64885f12b4d0869ed88fac9f46b7baacbc2309ec40f921243c1523b",
+  "runtime_progress_records": 233,
+  "final_elapsed_seconds": 2558.3,
+  "process_exit_code": null,
+  "process_exit_observed": false,
+  "review": {
+    "agent": "/root/fleet_result_reconciliation",
+    "model": "gpt-5.6-sol",
+    "effort": "xhigh",
+    "acceptance_status": "same-family provisional",
+    "response_sha256": "9ad0d80c100bd1212fca56c979bb1bb7d7820b32477b87a4ae3dca77dbf1091a"
+  },
+  "independent_parser": false,
+  "p2_eligible": false,
+  "model_or_api_executed": false,
+  "numeric_target_emitted": false
+}

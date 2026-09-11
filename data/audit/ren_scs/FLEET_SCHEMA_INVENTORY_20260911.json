@@ -1,0 +1,53 @@
+{
+  "schema_version": "RenFleetSchemaInventory.v1",
+  "recorded_at": "2026-09-11T17:19:31+08:00",
+  "status": "OBSERVATIONAL_SCHEMA_INVENTORY_NOT_DATA_GATE",
+  "source_run": "fleet_schema_20260911_v1",
+  "summary_sha256": "361f9f854aa22fe02be8b5bc9cddcb3ebd36bc23b1979c5037ca3cc65b8e4b3f",
+  "files": 233,
+  "sheets": 1859,
+  "stored_rows_including_headers": 108332665,
+  "nonfinite_cells": 0,
+  "cell_type_counts": {
+    "1": 107216748,
+    "2": 853492687
+  },
+  "ragged_rectangular_absent_cells_including_headers": 0,
+  "semantic_missingness_verified": false,
+  "sheets_without_complete_text_first_row": 0,
+  "distinct_exact_header_layouts": 6,
+  "sheets_at_biff8_row_limit": 1520,
+  "files_by_batch": {
+    "batch1": 28,
+    "batch2": 25,
+    "batch3": 90,
+    "batch4": 90
+  },
+  "sheet_kind_counts": {
+    "step": 113,
+    "cycle": 113,
+    "record": 1633
+  },
+  "exact_duplicate_container_groups": 0,
+  "exact_duplicate_workbook_groups": 0,
+  "partial_record_overlap_verified": false,
+  "source_naming": {
+    "commit": "8a71f99d9e25adbd722708199438a89ff739d2a5",
+    "candidate_groups": 113,
+    "groups_by_batch": {
+      "batch1": 28,
+      "batch2": 25,
+      "batch3": 30,
+      "batch4": 30
+    },
+    "single_file_groups": 53,
+    "three_file_groups": 60,
+    "all_fragment_numbers_contiguous": true,
+    "naming_only_not_row_continuity": true
+  },
+  "physical_identity_verified": false,
+  "target_verified": false,
+  "p2_eligible": false,
+  "model_or_api_executed": false,
+  "numeric_target_emitted": false
+}
