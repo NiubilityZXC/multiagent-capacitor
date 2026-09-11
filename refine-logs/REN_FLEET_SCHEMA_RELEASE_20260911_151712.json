@@ -1,0 +1,38 @@
+{
+  "schema_version": "RenFleetSchemaRelease.v1",
+  "status": "PASS_FULL_FLEET_SCHEMA_AUDIT",
+  "recorded_at": "2026-09-11T15:17:12+08:00",
+  "policy_sha256": {
+    "experiments/audit_cap/ren_workbook_reader.py": "d331118f5718b7aa730a21f677e441d6a34763fa63d5a42f2ac3dc04bf5d294a",
+    "experiments/audit_cap/ren_row_pilot.py": "fcece803ecef54bcbeb0e3bc432a5aacc63a03ee9e803bcf2d5c058b405168f8",
+    "experiments/audit_cap/ren_static_context.py": "d3478ad9fa48039b6a212a158a396ad339458849fdfd7cc410c73f8746a706a6",
+    "experiments/audit_cap/ren_static_context_resolution.py": "8b6e2e6689741b907f815c2d1a898cbe98cd8d72bade326f5c752c34e7a5ca56",
+    "tests/test_ren_workbook_reader.py": "4ce422b83ba7a9b8cd072d530cb2a5cae55c5ff8cd8a420fe9e02dc1271b97a6",
+    "tests/test_ren_row_pilot.py": "017f9bea3db7bae62b9689ff6f7805e05927bb7051ecb445077cf3c4364ac10f",
+    "refine-logs/REN_READER_BOUNDARY_POLICY_20260910.md": "c96a694ff7d81597333e1049b25c7fb7a753b88d6e90c991287d141fd28f8f25",
+    "experiments/audit_cap/ren_fleet_schema.py": "3da5e939d599276abaf16726b69d48f810bec348444c0eccd4c3b923d7b2a239",
+    "experiments/audit_cap/verify_ren_fleet_schema.py": "51b62db05a4a56d8b6bef0c364a04b3f2f6b34b7977c453d1bf92eb8e50823f6",
+    "tests/test_ren_fleet_schema.py": "67894c30b7d62569714a1e6154a8ef05938b928aee20219e539b5eac5f434049",
+    ".gitignore": "5a54505ab59a5ba2eac61b095d2ce00ef64f0429b2bc33dd1db51d24d255fce4",
+    "refine-logs/REN_FLEET_SCHEMA_POLICY_20260911.md": "d585d8987da4d02bd9da438847f024c1e68d839cbc8d302233fba761576a3e9c"
+  },
+  "approval_record_sha256": "314dc2e62acf35eccf0053a8fd77591a1bc90d82fae9e70e1dbc4820f882f2d8",
+  "review": {
+    "agent": "/root/fleet_schema_review",
+    "requested_model": "gpt-5.6-sol",
+    "reasoning_effort": "xhigh",
+    "acceptance_status": "same-family provisional",
+    "response_sha256": "0b490c0368aceaddb38c7b8c894fb8e18fec348703174b73d8aae556281b7a53",
+    "tests_passed": 68,
+    "tests_skipped": 0,
+    "nonblocking": "Final receipt mismatch may attribute failed_member to last parsed file; no false completion possible."
+  },
+  "scope": "One append-only full 233-member schema audit only; no R1F or Data Gate eligibility",
+  "full_regression": {
+    "passed": 564,
+    "skipped": 27
+  },
+  "model_or_api_executed": false,
+  "p2_eligible": false,
+  "automatic_next_stage": false
+}

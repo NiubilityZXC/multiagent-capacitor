@@ -245,3 +245,6 @@
 | 2026-09-11 15:00 | /experiment-bridge | refine-logs/REN_ROW_PILOT_RELEASE_20260911_145842.json; refine-logs/REN_ROW_PILOT_RELEASE.json | review | fresh reviewer 无阻断，七项哈希绑定；仅 first-member pilot 放行 |
 | 2026-09-11 15:00 | /experiment-bridge | data/audit/ren_scs/row_pilot_20260910_v1/SUMMARY.json; data/audit/ren_scs/row_pilot_20260910_v1/COMPLETE.json | data-audit | batch1/1.xls 实跑 exit 0，5 表/211256 存储行，Data Gate pending；原始文本提示 ignored |
 | 2026-09-11 15:00 | /experiment-bridge | refine-logs/REN_P1R1_EXECUTION_TRACKER_20260911_150005.md; refine-logs/REN_P1R1_EXECUTION_TRACKER.md | data-audit | 记录 mAh 与 F 区别、时间归零及跨 sheet 完整性待核验；R1F/P2 未执行 |
+| 2026-09-11 15:18 | /experiment-bridge | experiments/audit_cap/ren_fleet_schema.py; experiments/audit_cap/verify_ren_fleet_schema.py; tests/test_ren_fleet_schema.py; refine-logs/REN_FLEET_SCHEMA_POLICY_20260911.md | implementation | 全量233文件schema-only执行器与独立字段重建，68定向通过 |
+| 2026-09-11 15:18 | /experiment-bridge | refine-logs/REN_FLEET_SCHEMA_RELEASE_20260911_151712.json; refine-logs/REN_FLEET_SCHEMA_RELEASE.json | review | fresh pre-run PASS，12项policy绑定；无Data Gate/P2授权 |
+| 2026-09-11 15:18 | /experiment-bridge | refine-logs/REN_FLEET_SCHEMA_RUN_20260911_151815.md | implementation | 本地只读任务已启动，非完成声明；raw/logs ignored |
