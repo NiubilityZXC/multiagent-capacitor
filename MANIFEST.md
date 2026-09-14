@@ -260,3 +260,6 @@
 | 2026-09-14 14:14 | /experiment-bridge | refine-logs/REN_R1F_REMAINING_EVIDENCE_20260914.md | implementation | 明确身份/跨组重叠/目标/删失/切分所缺证据，不新增模型授权 |
 | 2026-09-14 14:14 | /monitor-experiment | refine-logs/REN_P1R1_EXECUTION_TRACKER_20260914_141400.md; refine-logs/REN_P1R1_EXECUTION_TRACKER.md | implementation | 全量完成取代局部进度；旧版本保持不变 |
 | 2026-09-14 14:15 | /experiment-bridge | refine-logs/REN_CHRONOLOGY_RESULTS_20260914.md | review | 正式独立 post-run PASS，无阻断，完整 trace ignored |
+| 2026-09-14 14:25 | /experiment-bridge | experiments/audit_cap/ren_overlap.py; tests/test_ren_overlap.py | implementation | 跨组测量投影片段筛选内核，21 新增/143 隔离测试通过，未读取真实数据 |
+| 2026-09-14 14:25 | /experiment-bridge | refine-logs/REN_MEASUREMENT_AUDIT_DESIGN_20260914.md | review | pure-kernel fresh PASS；明确集成边界、索引最坏规模及作者 0.903 F 语义 |
+| 2026-09-14 14:25 | /experiment-bridge | refine-logs/REN_P1R1_EXECUTION_TRACKER_20260914_142500.md; refine-logs/REN_P1R1_EXECUTION_TRACKER.md | implementation | 631 全回归通过、35 跳过；下一步 adapter/index/back-read 与端到端审查 |
