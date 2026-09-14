@@ -255,3 +255,8 @@
 | 2026-09-14 11:20 | /experiment-bridge | experiments/audit_cap/ren_chronology.py; experiments/audit_cap/ren_chronology_gate.py; tests/test_ren_chronology.py; refine-logs/REN_CHRONOLOGY_POLICY_20260911.md | implementation | 时序元数据双路径重建；122 必测通过无跳过，610 一般回归通过 |
 | 2026-09-14 11:20 | /experiment-bridge | refine-logs/REN_CHRONOLOGY_RELEASE_20260914_111800.json; refine-logs/REN_CHRONOLOGY_RELEASE.json; refine-logs/REN_CHRONOLOGY_RUN_20260914_112000.md | review | fresh pre-run PASS，16 项绑定；真实只读时序任务启动，非 Data Gate PASS |
 | 2026-09-14 11:20 | /monitor-experiment | refine-logs/REN_P1R1_EXECUTION_TRACKER_20260914_112007.md; refine-logs/REN_P1R1_EXECUTION_TRACKER.md | implementation | 29/113 组局部持久化回执对账，任务继续运行，非完成声明 |
+| 2026-09-14 14:14 | /monitor-experiment | data/audit/ren_scs/record_chronology_20260911_v1/; data/audit/ren_scs/CHRONOLOGY_COLLECTION_20260914.json | implementation | 113 组全量时序审计完成，实际退出码 0；非 Data Gate PASS |
+| 2026-09-14 14:14 | /experiment-bridge | refine-logs/REN_CHRONOLOGY_RESULTS_20260914.md | review | 全量统计、运行后 122 项测试与持久化复核记录 |
+| 2026-09-14 14:14 | /experiment-bridge | refine-logs/REN_R1F_REMAINING_EVIDENCE_20260914.md | implementation | 明确身份/跨组重叠/目标/删失/切分所缺证据，不新增模型授权 |
+| 2026-09-14 14:14 | /monitor-experiment | refine-logs/REN_P1R1_EXECUTION_TRACKER_20260914_141400.md; refine-logs/REN_P1R1_EXECUTION_TRACKER.md | implementation | 全量完成取代局部进度；旧版本保持不变 |
+| 2026-09-14 14:15 | /experiment-bridge | refine-logs/REN_CHRONOLOGY_RESULTS_20260914.md | review | 正式独立 post-run PASS，无阻断，完整 trace ignored |

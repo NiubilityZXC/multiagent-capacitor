@@ -1,0 +1,36 @@
+{
+  "status": "PARENT_PERSISTED_CHRONOLOGY_RECONCILED_REVIEW_PENDING",
+  "run": "record_chronology_20260911_v1",
+  "collected_date": "2026-09-14",
+  "source_naming_candidates": 113,
+  "member_count": 233,
+  "record_sheet_count": 1633,
+  "rows": 104190778,
+  "boundaries": {
+    "within_file": 1400,
+    "cross_file": 120,
+    "total": 1520
+  },
+  "status_counts": {
+    "0": 50423380,
+    "1": 53767398
+  },
+  "batch_rows": {
+    "batch1": 5073621,
+    "batch2": 7793294,
+    "batch3": 45778038,
+    "batch4": 45545825
+  },
+  "child_returncode": 0,
+  "record_scan_elapsed_seconds": 1869.6,
+  "summary_sha256": "90600e3546069a0be49d3599ecf41a91ab6205d77f91b98c332305994147fe40",
+  "complete_sha256": "3440a45453065dca7daee3418ceef70e22917878050c9dc1fce69d4c2e82330f",
+  "runtime_log_sha256": "e5af66e44adda576fde7351d85669723d33f5030438ae18b1e6f0fa9cda1f4a3",
+  "method": "Re-read all 113 persisted evidence documents and receipts, recompute local SHA and aggregate, match SUMMARY/COMPLETE and log 1..113/final summary/returncode. No raw XLS rerun.",
+  "physical_identity_verified": false,
+  "cross_group_partial_overlap_verified": false,
+  "target_verified": false,
+  "p2_eligible": false,
+  "model_or_api_executed": false,
+  "numeric_target_emitted": false
+}
