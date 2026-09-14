@@ -1,0 +1,42 @@
+{
+  "status": "PASS_RECORD_CHRONOLOGY_AUDIT",
+  "created_at": "2026-09-14T11:18:00+08:00",
+  "run": "record_chronology_20260911_v1",
+  "policy_sha256": {
+    "experiments/audit_cap/ren_workbook_reader.py": "d331118f5718b7aa730a21f677e441d6a34763fa63d5a42f2ac3dc04bf5d294a",
+    "experiments/audit_cap/ren_row_pilot.py": "fcece803ecef54bcbeb0e3bc432a5aacc63a03ee9e803bcf2d5c058b405168f8",
+    "experiments/audit_cap/ren_static_context.py": "d3478ad9fa48039b6a212a158a396ad339458849fdfd7cc410c73f8746a706a6",
+    "experiments/audit_cap/ren_static_context_resolution.py": "8b6e2e6689741b907f815c2d1a898cbe98cd8d72bade326f5c752c34e7a5ca56",
+    "tests/test_ren_workbook_reader.py": "4ce422b83ba7a9b8cd072d530cb2a5cae55c5ff8cd8a420fe9e02dc1271b97a6",
+    "tests/test_ren_row_pilot.py": "017f9bea3db7bae62b9689ff6f7805e05927bb7051ecb445077cf3c4364ac10f",
+    "refine-logs/REN_READER_BOUNDARY_POLICY_20260910.md": "c96a694ff7d81597333e1049b25c7fb7a753b88d6e90c991287d141fd28f8f25",
+    "experiments/audit_cap/ren_fleet_schema.py": "3da5e939d599276abaf16726b69d48f810bec348444c0eccd4c3b923d7b2a239",
+    "experiments/audit_cap/verify_ren_fleet_schema.py": "51b62db05a4a56d8b6bef0c364a04b3f2f6b34b7977c453d1bf92eb8e50823f6",
+    "tests/test_ren_fleet_schema.py": "67894c30b7d62569714a1e6154a8ef05938b928aee20219e539b5eac5f434049",
+    ".gitignore": "5a54505ab59a5ba2eac61b095d2ce00ef64f0429b2bc33dd1db51d24d255fce4",
+    "refine-logs/REN_FLEET_SCHEMA_POLICY_20260911.md": "d585d8987da4d02bd9da438847f024c1e68d839cbc8d302233fba761576a3e9c",
+    "experiments/audit_cap/ren_chronology.py": "7757976cf4d09cb1d77720ad3fd3ad06639b50a2b7e73565643fc7a46b10a4fe",
+    "experiments/audit_cap/ren_chronology_gate.py": "b795838e8c7087d9a7f74a6a37209a5c0ec3d162b4e4dcbfe195489c918a9bd7",
+    "tests/test_ren_chronology.py": "bde947a06555d51c0f9f82371484cc04a22a299f2f88f54bba4df961e7ece3c6",
+    "refine-logs/REN_CHRONOLOGY_POLICY_20260911.md": "34bf4cfddd80c36357a542ad0cbf360564073b60498a2d73e354b3430f055f71"
+  },
+  "approval_record_sha256": "314dc2e62acf35eccf0053a8fd77591a1bc90d82fae9e70e1dbc4820f882f2d8",
+  "review": {
+    "agent": "/root/chronology_prerun",
+    "model": "gpt-5.6-sol",
+    "effort": "xhigh",
+    "classification": "same-family provisional engineering review",
+    "response_sha256": "45b0383bb3c0577bb3206f4eed2caca354d2104bf9261e342f8f2e17a1a13f4b",
+    "blocking_findings": 0,
+    "mandatory_tests": {
+      "passed": 122,
+      "skipped": 0
+    },
+    "general_tests": {
+      "passed": 610,
+      "skipped": 35
+    }
+  },
+  "scope": "One append-only read-only chronology observation run: 113 source-naming candidates, 233 recovered XLS files. No physical identity, targets, Data Gate PASS, P2, RUL, model or API authority."
+}
+
