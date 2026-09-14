@@ -263,3 +263,5 @@
 | 2026-09-14 14:25 | /experiment-bridge | experiments/audit_cap/ren_overlap.py; tests/test_ren_overlap.py | implementation | 跨组测量投影片段筛选内核，21 新增/143 隔离测试通过，未读取真实数据 |
 | 2026-09-14 14:25 | /experiment-bridge | refine-logs/REN_MEASUREMENT_AUDIT_DESIGN_20260914.md | review | pure-kernel fresh PASS；明确集成边界、索引最坏规模及作者 0.903 F 语义 |
 | 2026-09-14 14:25 | /experiment-bridge | refine-logs/REN_P1R1_EXECUTION_TRACKER_20260914_142500.md; refine-logs/REN_P1R1_EXECUTION_TRACKER.md | implementation | 631 全回归通过、35 跳过；下一步 adapter/index/back-read 与端到端审查 |
+| 2026-09-14 14:36 | /experiment-bridge | experiments/audit_cap/ren_measurement_stream.py; tests/test_ren_measurement_stream.py; refine-logs/REN_MEASUREMENT_STREAM_INCREMENT_20260914.md | implementation | Workbook测量流候选，160隔离测试通过；独立复审pending，未放行真实运行 |
+| 2026-09-14 14:36 | /experiment-bridge | refine-logs/REN_P1R1_EXECUTION_TRACKER_20260914_143600.md; refine-logs/REN_P1R1_EXECUTION_TRACKER.md | implementation | 记录适配层增量、631一般回归通过52跳过与pending_init复审状态 |
