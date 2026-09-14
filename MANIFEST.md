@@ -254,3 +254,4 @@
 | 2026-09-11 17:24 | /experiment-bridge | refine-logs/REN_P1R1_EXECUTION_TRACKER_20260911_172419.md; refine-logs/REN_P1R1_EXECUTION_TRACKER.md | data-audit | 全量schema完成；转向行语义、跨分片连续性及身份/目标证据 |
 | 2026-09-14 11:20 | /experiment-bridge | experiments/audit_cap/ren_chronology.py; experiments/audit_cap/ren_chronology_gate.py; tests/test_ren_chronology.py; refine-logs/REN_CHRONOLOGY_POLICY_20260911.md | implementation | 时序元数据双路径重建；122 必测通过无跳过，610 一般回归通过 |
 | 2026-09-14 11:20 | /experiment-bridge | refine-logs/REN_CHRONOLOGY_RELEASE_20260914_111800.json; refine-logs/REN_CHRONOLOGY_RELEASE.json; refine-logs/REN_CHRONOLOGY_RUN_20260914_112000.md | review | fresh pre-run PASS，16 项绑定；真实只读时序任务启动，非 Data Gate PASS |
+| 2026-09-14 11:20 | /monitor-experiment | refine-logs/REN_P1R1_EXECUTION_TRACKER_20260914_112007.md; refine-logs/REN_P1R1_EXECUTION_TRACKER.md | implementation | 29/113 组局部持久化回执对账，任务继续运行，非完成声明 |
