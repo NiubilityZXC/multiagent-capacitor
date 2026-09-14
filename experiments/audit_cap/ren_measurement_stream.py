@@ -40,14 +40,16 @@ def records(data, allowed, schema, xlrd_module=None):
         for index, expected in enumerate(schema["sheets"]):
             if expected["index"] != index:
                 raise ValueError("measurement schema index mismatch")
-            if expected["name"] in ("step", "cycle"):
-                continue
-            if re.fullmatch(r"record_[1-9][0-9]*", expected["name"]) is None:
-                raise ValueError("unrecognized measurement sheet")
             sheet = book.sheet_by_index(index)
             try:
                 if (sheet.name != expected["name"] or sheet.nrows != expected["nrows"]
-                        or sheet.ncols != expected["ncols"] or not 2 <= sheet.nrows <= 65536):
+                        or sheet.ncols != expected["ncols"]):
+                    raise ValueError("measurement dimensions mismatch")
+                if sheet.name in ("step", "cycle"):
+                    continue
+                if re.fullmatch(r"record_[1-9][0-9]*", sheet.name) is None:
+                    raise ValueError("unrecognized measurement sheet")
+                if not 2 <= sheet.nrows <= 65536:
                     raise ValueError("measurement dimensions mismatch")
                 header = tuple(sheet.row_values(0))
                 if header not in (chronology.HEADER, chronology.HEADER+("energy(mWh)",)):

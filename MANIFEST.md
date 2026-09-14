@@ -265,3 +265,5 @@
 | 2026-09-14 14:25 | /experiment-bridge | refine-logs/REN_P1R1_EXECUTION_TRACKER_20260914_142500.md; refine-logs/REN_P1R1_EXECUTION_TRACKER.md | implementation | 631 全回归通过、35 跳过；下一步 adapter/index/back-read 与端到端审查 |
 | 2026-09-14 14:36 | /experiment-bridge | experiments/audit_cap/ren_measurement_stream.py; tests/test_ren_measurement_stream.py; refine-logs/REN_MEASUREMENT_STREAM_INCREMENT_20260914.md | implementation | Workbook测量流候选，160隔离测试通过；独立复审pending，未放行真实运行 |
 | 2026-09-14 14:36 | /experiment-bridge | refine-logs/REN_P1R1_EXECUTION_TRACKER_20260914_143600.md; refine-logs/REN_P1R1_EXECUTION_TRACKER.md | implementation | 记录适配层增量、631一般回归通过52跳过与pending_init复审状态 |
+| 2026-09-14 21:17 | /experiment-bridge | experiments/audit_cap/ren_measurement_stream.py; tests/test_ren_measurement_stream.py; refine-logs/REN_MEASUREMENT_STREAM_R2_20260914.md | review | 修复reserved-name漏读；164隔离测试与R2复审通过，原BLOCKED保留 |
+| 2026-09-14 21:17 | /experiment-bridge | refine-logs/REN_P1R1_EXECUTION_TRACKER_20260914_211700.md; refine-logs/REN_P1R1_EXECUTION_TRACKER.md | implementation | pending状态更新为R2适配层PASS；完整caller与真实重叠审计尚未完成 |

@@ -113,3 +113,14 @@ def test_late_failure_cannot_be_mistaken_for_exhaustion():
     assert next(stream)[:3]==(0,"record_1",2)
     with pytest.raises(ValueError,match="numeric cell"):
         next(stream)
+
+
+@pytest.mark.parametrize("reserved", ["step", "cycle"])
+@pytest.mark.parametrize("sheet_index", [0, 1])
+def test_reserved_schema_name_cannot_hide_record_sheet(reserved,sheet_index):
+    row=[1,1,0,1,"0:00:00",1.,-20.,.2]
+    data=multibook([[row],[row]])
+    schema=schema_rows(data,ALLOWED)
+    schema["sheets"][sheet_index]["name"]=reserved
+    with pytest.raises(ValueError,match="dimensions mismatch"):
+        list(m.records(data,ALLOWED,schema))
