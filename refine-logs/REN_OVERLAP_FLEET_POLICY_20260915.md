@@ -1,0 +1,11 @@
+# Ren 全量重叠审计冻结政策
+
+本版本仅执行既有P1-R1范围的跨来源测量重叠观察，不是Data Gate或P2放行。新增入口 ren_overlap_fleet.py，不修改首两组release绑定的26项文件。输入复用已恢复的233个XLS及冻结schema/chronology，禁止重新下载、archive test、解压或执行作者代码。
+
+启动前要求独立pre-run PASS，release绑定新旧29项代码/测试/政策/.gitignore、原批准记录、run、候选预算及磁盘门槛。先核验release、首两组SUMMARY/COMPLETE和独立post-run响应，再检查磁盘和旧preflight。全部113来源命名候选组、233不同member、1633 record表、104190778数据行必须覆盖，顺序由旧chronology规则重建。不得截成首两组。
+
+资源：本地CPU、既有隔离依赖，至少40GiB启动可用空间；104190778×49=5105348122字节measurement spool及SQLite仅写ignored新目录overlap_fleet_20260915_v1。指纹内存有界，SQLite磁盘可增长；40GiB不是最坏情况保证。最多1000000跨组同指纹候选，超过时BLOCKED且无COMPLETE，保留失败输出，不自动改阈值或重试。读完整来源流后才接受组完成。
+
+复用既有精确测量投影：status、工步内微秒时间、V/mA/mAh，排除编号与cycle/step，energy只做匹配后辅助核验。8行seed、25窗口、rightmost最小hash选取，对精确32行公共投影提供候选保证；不覆盖近似重复或不同时间基准。全部索引从spool独立重建；候选逐值确认，持久化匹配另一路几何重建。多个anchors可能描述同一事件，不把其数量称作独立重复事件。
+
+完成仅发布OVERLAP_OBSERVATIONS_NOT_DATA_GATE；所有原始spool/matches/logs/transcripts ignored。无numeric_target、model/API、GPU、RUL；physical_identity_verified、target_verified、cross_group_partial_overlap_verified、p2_eligible和automatic_next_stage始终false。全量无候选也不能自动验证设备独立性、近似复制缺失、目标/删失或切分。
