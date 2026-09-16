@@ -1,0 +1,1 @@
+{"automatic_next_stage": false, "cross_group_partial_overlap_verified": false, "error_type": "BrokenPipeError", "group": "batch2/22", "groups_indexed": 50, "model_or_api_executed": false, "numeric_target_emitted": false, "p2_eligible": false, "physical_identity_verified": false, "status": "OVERLAP_FAILED_CLOSED", "target_verified": false}
