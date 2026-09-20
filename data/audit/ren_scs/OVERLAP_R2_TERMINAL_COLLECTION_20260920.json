@@ -1,0 +1,19 @@
+{
+  "status": "PROCESS_COMPLETE_POSTRUN_REVIEW_PENDING",
+  "run": "overlap_fleet_20260917_r2",
+  "returned": {
+    "child_returncode": 0,
+    "elapsed_seconds": 3944.625099378871,
+    "finished_unix": 1789877811.986426
+  },
+  "returned_sha256": "c6285b562d0ec45c84508e082d12bdf3023ebe5af07a76e0b7f0e8c436e225fb",
+  "summary_sha256": "fc15f82bbf72aadebf5491a3bd3b2fe1d517b837cfd636f2ad28ac3ef47aaa1f",
+  "complete_sha256": "f9475d816e533383f8aeb533f68c71dfe1d24805d486579a5c2169d3931e2fed",
+  "runtime_log_sha256": "9eacbbc97f9f0da34c3f949deac3246dff7b2e333f3ee5d593e8d3ea2dbeb650",
+  "release_sha256": "0da4ea3dcef8efc45219fdb162db7403ff592b047ea1c10ae13a41d3f60543d8",
+  "legacy_blocked_sha256": "4088156530860dd17421312c901371006143f4c23e651eafe828612490811200",
+  "independent_postrun_review_complete": false,
+  "data_gate_pass": false,
+  "model_or_api_executed": false,
+  "p2_eligible": false
+}
