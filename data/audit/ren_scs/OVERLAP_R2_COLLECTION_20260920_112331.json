@@ -1,0 +1,16 @@
+{
+  "observed_unix": 1789874610.9905756,
+  "run": "overlap_fleet_20260917_r2",
+  "status": "PARTIAL_RECEIPT_SPOOL_CHECK_NOT_COMPLETE",
+  "snapshot_groups": 61,
+  "snapshot_rows": 24826931,
+  "expected_groups": 113,
+  "expected_rows": 104190778,
+  "receipt_spans_sizes_hashes_verified": true,
+  "fingerprints_independently_rebuilt_in_this_check": false,
+  "returned": null,
+  "complete_present": false,
+  "blocked_present": false,
+  "data_gate_pass": false,
+  "model_or_api_executed": false
+}
