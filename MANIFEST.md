@@ -282,3 +282,4 @@
 | 2026-09-20 | /experiment-bridge | refine-logs/REN_TARGET_AUDIT_NEXT_20260920.md | implementation | 已批准 P1 目标资格剩余实现清单，不放行真实数据或 P2 |
 | 2026-09-20 | /experiment-bridge | experiments/audit_cap/ren_step_evidence.py; tests/test_ren_step_evidence.py; refine-logs/REN_STEP_EVIDENCE_IMPLEMENTATION_20260920.md | review | 纯函数独立 PASS；19 新测试、237 必测、702 一般回归通过，未运行真实目标审计 |
 | 2026-09-20 | /monitor-experiment | refine-logs/REN_P1R1_EXECUTION_TRACKER_20260920_161000.md; refine-logs/REN_P1R1_EXECUTION_TRACKER.md | implementation | 全文 apply_patch 恢复固定进度入口；旧版本已核对保留；本索引同样全文保留并补记 |
+| 2026-09-21 | /experiment-bridge | experiments/audit_cap/ren_step_summary_join.py; tests/test_ren_step_summary_join.py; refine-logs/REN_STEP_SUMMARY_JOIN_IMPLEMENTATION_20260921.md | review | 工步汇总对照纯函数独立 PASS；38 组件测试、406 Ren 必测、721 一般回归通过，非真实数据放行 |
