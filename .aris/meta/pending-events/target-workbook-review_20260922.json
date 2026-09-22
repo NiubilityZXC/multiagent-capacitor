@@ -1,0 +1,20 @@
+{
+  "event": "review_trace",
+  "skill": "experiment-bridge",
+  "purpose": "target-workbook-review",
+  "thread_id": "/root/target_workbook_review",
+  "trace_path": ".aris/traces/experiment-bridge/2026-09-21_run02/",
+  "reviewer_model": "gpt-5.6-sol",
+  "reviewer_model_source": "configured",
+  "configured_reasoning_effort": "xhigh",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "status": "ok",
+  "prior_call_status": "error",
+  "interrupted": true,
+  "interruption_reason": "quota/approval usage limit before pytest execution",
+  "resumed_at": "2026-09-22T05:27:48Z",
+  "resume_scope": "Workbook-byte canonical event adapter synthetic component review only",
+  "event_index_status": "PENDING_APPEND",
+  "event_index_error": "Add File replacement rejected for history preservation; append-only Update File failed bwrap RTM_NEWADDR. Original events.jsonl left unchanged."
+}
