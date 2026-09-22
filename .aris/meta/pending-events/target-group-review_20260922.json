@@ -1,0 +1,20 @@
+{
+  "event": "review_trace",
+  "skill": "experiment-bridge",
+  "purpose": "target-group-review",
+  "thread_id": "/root/target_group_review",
+  "trace_path": ".aris/traces/experiment-bridge/2026-09-22_run01/",
+  "reviewer_model": "gpt-5.6-sol",
+  "reviewer_model_source": "configured",
+  "configured_reasoning_effort": "xhigh",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "status": "ok",
+  "prior_call_status": "error",
+  "interrupted": true,
+  "pre_fix_blocker": "Workbook stream not promptly closed when reducer exception traceback retained",
+  "blocker_resolved": true,
+  "report_sha256": "a137beb661fdd96c05cf45fd671221d7642404df9175fb26873707eab29d285e",
+  "event_index_status": "PENDING_APPEND",
+  "event_index_reason": "Preserve existing events.jsonl; in-place apply_patch is unavailable due known bwrap failure."
+}
