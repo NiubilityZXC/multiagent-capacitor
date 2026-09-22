@@ -283,3 +283,4 @@
 | 2026-09-20 | /experiment-bridge | experiments/audit_cap/ren_step_evidence.py; tests/test_ren_step_evidence.py; refine-logs/REN_STEP_EVIDENCE_IMPLEMENTATION_20260920.md | review | 纯函数独立 PASS；19 新测试、237 必测、702 一般回归通过，未运行真实目标审计 |
 | 2026-09-20 | /monitor-experiment | refine-logs/REN_P1R1_EXECUTION_TRACKER_20260920_161000.md; refine-logs/REN_P1R1_EXECUTION_TRACKER.md | implementation | 全文 apply_patch 恢复固定进度入口；旧版本已核对保留；本索引同样全文保留并补记 |
 | 2026-09-21 | /experiment-bridge | experiments/audit_cap/ren_step_summary_join.py; tests/test_ren_step_summary_join.py; refine-logs/REN_STEP_SUMMARY_JOIN_IMPLEMENTATION_20260921.md | review | 工步汇总对照纯函数独立 PASS；38 组件测试、406 Ren 必测、721 一般回归通过，非真实数据放行 |
+| 2026-09-22 | /experiment-audit | refine-logs/REN_OVERLAP_R2_POSTRUN_AUDIT_20260922.md; refine-logs/REN_OVERLAP_R2_POSTRUN_AUDIT_20260922.json | review | R2 composite PASS / overall WARN；一对完整投影相同，身份和切分仍待裁决；原失败链保留 |
