@@ -1,0 +1,16 @@
+{
+  "event": "review_trace",
+  "skill": "experiment-bridge",
+  "purpose": "target-source-verify-review",
+  "agent_id": "/root/target_source_verify_review",
+  "configured_model": "gpt-5.6-sol",
+  "reasoning_effort": "xhigh",
+  "trace_path": ".aris/traces/experiment-bridge/2026-09-23_run01/",
+  "review_independence": "same-family",
+  "acceptance_status": "provisional",
+  "verdict": "PASS_SCOPED_COMPONENT_NOT_FLEET_RELEASE",
+  "report_sha256": "7ca60fdb82f812509e42db170f44e0db3fa0c7503388d2eabfee8e92817e6ca5",
+  "status": "ok",
+  "index_status": "PENDING_APPEND",
+  "index_reason": "Existing central append-only events preserved; UpdateFile is blocked by the bwrap read helper fault."
+}
